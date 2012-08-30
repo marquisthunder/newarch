@@ -6,7 +6,7 @@
 	    <artifactId>kaas</artifactId>
 	    <version>0.0.1-SNAPSHOT</version>
   	</parent>
-	<groupId>com.thinkingtop.service</groupId>
+	<groupId>com.thinkingtop.www</groupId>
 	<artifactId>kaas-service</artifactId>
 	<packaging>war</packaging>
 	<version>0.0.1-SNAPSHOT</version>

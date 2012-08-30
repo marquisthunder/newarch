@@ -5,7 +5,7 @@
   <version>0.0.1-SNAPSHOT</version>
   <packaging>pom</packaging>
    <modules>
-	   <module>kaas-servcie</module>
+	   <module>kaas-service</module>
 	   <module>kaas-ETL</module>
    </modules>
 </project>
