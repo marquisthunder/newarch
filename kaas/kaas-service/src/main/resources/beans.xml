@@ -14,7 +14,7 @@
            http://www.springframework.org/schema/tx/spring-tx-2.5.xsd
            ">
 	<context:annotation-config />
-	<context:component-scan base-package="com.pocoer" />
+	<context:component-scan base-package="com.thinkingtop.kaas.services" />
 	<aop:aspectj-autoproxy />
 
 
@@ -47,7 +47,7 @@
 		 -->
 		 <property name="packagesToScan">
 			<list>
-				<value>com.pocoer.model</value>
+				<value>com.thinkingtop.kaas.services.model</value>
 			</list>
 		</property>
 		<property name="hibernateProperties">
@@ -69,7 +69,7 @@
 	<tx:annotation-driven transaction-manager="txManager"/>
 	<aop:config>
 		<aop:pointcut id="bussinessService"
-			expression="execution(public * com.pocoer.manage..*.*(..))" />
+			expression="execution(public * com.thinkingtop.kaas.services.manage..*.*(..))" />
 		<aop:advisor pointcut-ref="bussinessService"
 			advice-ref="txAdvice" />
 	</aop:config>
