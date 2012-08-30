@@ -6,6 +6,6 @@
   <packaging>pom</packaging>
    <modules>
 	   <module>kaas-service</module>
-	   <module>kaas-ETL</module>
+	   <module>kaas-etl</module>
    </modules>
 </project>
