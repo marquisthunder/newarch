@@ -7,6 +7,7 @@ import org.springframework.stereotype.Component;
 import com.thinkingtop.kaas.services.dao.KebsiteDAO;
 import com.thinkingtop.kaas.services.model.Kebsite;
 
+
 /**
  * 这是存取用户信息的管理类
  * @author roadahead
@@ -52,6 +53,14 @@ public class KebsiteManage{
 	@Resource(name="kebsiteDAOImpl")
 	public void setKebsiteDAO(KebsiteDAO kebsiteDAO) {
 		this.kebsiteDAO = kebsiteDAO;
+	}
+	public boolean isHold(String kebsiteName) {
+		Kebsite kebsite = getKebsite(kebsiteName);
+		if(kebsite==null){
+			return false;
+		}else{
+			return true;
+		}
 	}
 
 }

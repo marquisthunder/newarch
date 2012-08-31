@@ -4,6 +4,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -25,6 +26,7 @@ public class Kebsite {
 	public void setId(Long id) {
 		this.id = id;
 	}
+	@Column(nullable=false)
 	public String getKebsiteName() {
 		return kebsiteName;
 	}

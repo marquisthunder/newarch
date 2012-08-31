@@ -11,8 +11,6 @@ import org.springframework.stereotype.Component;
 
 import com.thinkingtop.kaas.services.dao.ExclusiveKeyDAO;
 import com.thinkingtop.kaas.services.model.ExclusiveKey;
-import com.thinkingtop.kaas.services.model.Kebsite;
-
 /**
  * APIKey数据库访问实现类
  * @author roadahead
@@ -62,15 +60,21 @@ public class ExclusiveKeyDAOImpl implements ExclusiveKeyDAO {
 	public boolean isHold(String APIKey) {
 		boolean exclusiveKey = false;
 		Session session = sessionFactory.getCurrentSession();
-		SQLQuery q = session.createSQLQuery("select * from ExclusiveKey exclusiveKey " + " where exclusiveKey.keyString like '"+APIKey+"'").addEntity(ExclusiveKey.class);
+		SQLQuery q = session.createSQLQuery("select * from ExclusiveKey exclusiveKey  where exclusiveKey.keyString = '"+APIKey+"'").addEntity(ExclusiveKey.class);
 		List<ExclusiveKey> exclusiveKeys = (List<ExclusiveKey>)q.list();
 		if(!exclusiveKeys.isEmpty()){
-			for(ExclusiveKey e : exclusiveKeys){
-				if(e.getKeyString().equals(APIKey)){
-					exclusiveKey = true;
-					return exclusiveKey;
-				}
-			}
+			exclusiveKey = true;
+		}
+		return exclusiveKey;
+	}
+
+	public ExclusiveKey getExclusiveKey(String APIKey) {
+		ExclusiveKey exclusiveKey = null;
+		Session session = sessionFactory.getCurrentSession();
+		SQLQuery q = session.createSQLQuery("select * from ExclusiveKey exclusiveKey  where exclusiveKey.keyString = '"+APIKey+"'").addEntity(ExclusiveKey.class);
+		List<ExclusiveKey> exclusiveKeys = (List<ExclusiveKey>)q.list();
+		if(!exclusiveKeys.isEmpty()){
+			exclusiveKey = exclusiveKeys.get(0);
 		}
 		return exclusiveKey;
 	}

@@ -5,15 +5,15 @@ import java.util.Date;
 import java.util.Random;
 
 import javax.annotation.Resource;
+import javax.jws.WebParam;
 import javax.jws.WebService;
 
 import org.springframework.stereotype.Component;
 
-import com.thinkingtop.kaas.services.dao.ExclusiveKeyDAO;
 import com.thinkingtop.kaas.services.manage.ExclusiveKeyManage;
 import com.thinkingtop.kaas.services.manage.KebsiteManage;
-import com.thinkingtop.kaas.services.model.ExclusiveKey;
 import com.thinkingtop.kaas.services.model.Kebsite;
+
 
 /**
  * 这是一个ExclusiveKeyService实现类
@@ -22,11 +22,28 @@ import com.thinkingtop.kaas.services.model.Kebsite;
  *
  */
 @Component("exclusiveKeyServiceImpl")
-@WebService(endpointInterface = "com.thinkingtop.kaas.services.service.ExclusiveKeyService")
+@WebService(endpointInterface = "com.pocoer.service.ExclusiveKeyService")
 public class ExclusiveKeyServiceImpl implements ExclusiveKeyService{
 	private ExclusiveKeyManage exclusiveKeyManage;
 	private KebsiteManage kebsiteManage;
-
+	/**
+	 * 对外暴露的方法，验证账户跟密码，然后返回推荐物品
+	 */
+	public String[] getGoods(String kebsiteName,String APIKey) {
+		if(!kebsiteManage.isHold(kebsiteName)){
+			System.out.println("该用户不存在");
+			return null;
+		}
+		if(!exclusiveKeyManage.isHold(kebsiteName,APIKey)){
+			System.out.println("该用户没有这个APIKey");
+			return null;
+		}
+		if(exclusiveKeyManage.isActivation(APIKey)){
+			String[] aa = {"aaa","bbb"};
+			return aa;
+		}
+		return null;
+	}
 	/**
 	 * 对外暴露的方法，创建并返回一个APIKey，同时将其存进数据库中
 	 */
@@ -152,5 +169,7 @@ public class ExclusiveKeyServiceImpl implements ExclusiveKeyService{
 	public void setKebsiteManage(KebsiteManage kebsiteManage) {
 		this.kebsiteManage = kebsiteManage;
 	}
+
+	
 
 }

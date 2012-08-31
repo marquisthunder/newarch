@@ -1,5 +1,6 @@
 package com.thinkingtop.kaas.services.model;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -14,6 +15,7 @@ public class ExclusiveKey {
 	private Long id;
 	private String keyString;
 	private Kebsite kebsite;
+	private boolean activation;
 	
 	@Id
 	@GeneratedValue
@@ -23,6 +25,7 @@ public class ExclusiveKey {
 	public void setId(Long id) {
 		this.id = id;
 	}
+	@Column(nullable=false)
 	public String getKeyString() {
 		return keyString;
 	}
@@ -34,7 +37,15 @@ public class ExclusiveKey {
 	public Kebsite getKebsite() {
 		return kebsite;
 	}
+	@Column(nullable=false)
 	public void setKebsite(Kebsite kebsite) {
 		this.kebsite = kebsite;
+	}
+	@Column(nullable=false)
+	public boolean isActivation() {
+		return activation;
+	}
+	public void setActivation(boolean activation) {
+		this.activation = activation;
 	}
 }
