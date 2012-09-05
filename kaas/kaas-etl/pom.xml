@@ -5,7 +5,7 @@
 	    <groupId>com.thinkingtop.www</groupId>
 	    <artifactId>kaas</artifactId>
 	    <version>0.0.1-SNAPSHOT</version>
-  	</parent>
+  	</parent> 
 	<groupId>com.thinkingtop.www</groupId>
 	<artifactId>kaas-etl</artifactId>
 	<version>0.0.1-SNAPSHOT</version>

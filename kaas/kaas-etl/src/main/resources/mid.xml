@@ -7,7 +7,6 @@
 		<id name="id" type="integer">
 			<column name="order_id" />
 		</id>
-
 		
 		<mapping type="relation1" table="ecs_order">
 			<one-to-many column="order_id">
