@@ -2,10 +2,10 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<parent>
-		<groupId>com.thinkingtop.www</groupId>
-		<artifactId>kaas</artifactId>
-		<version>0.0.1-SNAPSHOT</version>
-	</parent>
+	    <groupId>com.thinkingtop.www</groupId>
+	    <artifactId>kaas</artifactId>
+	    <version>0.0.1-SNAPSHOT</version>
+  	</parent>
 	<groupId>com.thinkingtop.www</groupId>
 	<artifactId>kaas-etl</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
@@ -27,8 +27,8 @@
 			<scope>test</scope>
 		</dependency>
 
-		<!-- jdbctemplate start -->
-		<dependency>
+<!-- jdbctemplate start -->
+	<dependency>
 			<groupId>commons-dbcp</groupId>
 			<artifactId>commons-dbcp</artifactId>
 			<version>1.4</version>
@@ -72,43 +72,38 @@
 				</exclusion>
 			</exclusions>
 		</dependency>
-		<!-- jdom end -->
-		<!-- ms sql datasource -->
+<!-- jdom end -->
+<!-- ms sql datasource -->
 		<dependency>
 			<groupId>net.sourceforge.jtds</groupId>
 			<artifactId>jtds</artifactId>
 			<version>1.2.4</version>
 		</dependency>
-		<!-- ms sql datasource end -->
+		<!-- ms sql datasource end-->
 
 	</dependencies>
-	<build>
-		<plugins>
-			<plugin>
-				<artifactId>maven-assembly-plugin</artifactId>
-				<configuration>
-					<appendAssemblyId>false</appendAssemblyId>
-					<descriptorRefs>
-						<descriptorRef>jar-with-dependencies</descriptorRef>
-					</descriptorRefs>
-					<!-- <archive>
-						<manifest>
-							<mainClass>org.hardcode.juf.sample.JUpdateClientSample</mainClass>
-						</manifest>
-					</archive> -->
-					<outputDirectory>../dis</outputDirectory>
-				</configuration>
-				<executions>
-					<execution>
-						<id>make-assembly</id>
-						<phase>package</phase>
-						<goals>
-							<goal>assembly</goal>
-						</goals>
-					</execution>
-				</executions>
-			</plugin>
-
-		</plugins>
-	</build>
+	   <build>
+        <plugins>
+            <plugin>
+                <artifactId>maven-assembly-plugin</artifactId>
+                <configuration>
+                    <!-- not append assembly id in release file name -->
+                    <appendAssemblyId>ture</appendAssemblyId>
+                    <descriptors>
+                        <descriptor>src/main/assemble/package.xml</descriptor>
+                    </descriptors>
+                </configuration>
+                <executions>
+                    <execution>
+                        <id>make-assembly</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>single</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+        <outputDirectory>classes</outputDirectory>
+    </build>
 </project>

@@ -1,0 +1,5 @@
+#surefire
+#Wed Sep 05 15:03:33 CST 2012
+user.dir=/home/roadahead/Documents/workspace-sts-2.9.2.RELEASE/kaas/kaas-etl
+localRepository=/home/roadahead/m2/repository
+basedir=/home/roadahead/Documents/workspace-sts-2.9.2.RELEASE/kaas/kaas-etl
