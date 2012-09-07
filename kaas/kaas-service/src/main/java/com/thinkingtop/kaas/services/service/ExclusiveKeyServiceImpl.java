@@ -5,15 +5,16 @@ import java.util.Date;
 import java.util.Random;
 
 import javax.annotation.Resource;
-import javax.jws.WebParam;
 import javax.jws.WebService;
 
 import org.springframework.stereotype.Component;
 
+import com.thinkingtop.kaas.services.dao.ExclusiveKeyDAO;
 import com.thinkingtop.kaas.services.manage.ExclusiveKeyManage;
 import com.thinkingtop.kaas.services.manage.KebsiteManage;
+import com.thinkingtop.kaas.services.model.ExclusiveKey;
 import com.thinkingtop.kaas.services.model.Kebsite;
-
+import com.thinkingtop.kaas.services.tasks.AprioriRunner;
 
 /**
  * 这是一个ExclusiveKeyService实现类
@@ -22,10 +23,12 @@ import com.thinkingtop.kaas.services.model.Kebsite;
  *
  */
 @Component("exclusiveKeyServiceImpl")
-@WebService(endpointInterface = "com.pocoer.service.ExclusiveKeyService")
+@WebService(endpointInterface = "com.thinkingtop.kaas.services.service.ExclusiveKeyService")
 public class ExclusiveKeyServiceImpl implements ExclusiveKeyService{
 	private ExclusiveKeyManage exclusiveKeyManage;
 	private KebsiteManage kebsiteManage;
+	private AprioriRunner aprioriRunner;
+
 	/**
 	 * 对外暴露的方法，验证账户跟密码，然后返回推荐物品
 	 */
@@ -39,11 +42,13 @@ public class ExclusiveKeyServiceImpl implements ExclusiveKeyService{
 			return null;
 		}
 		if(exclusiveKeyManage.isActivation(APIKey)){
+			aprioriRunner.runIt();
 			String[] aa = {"aaa","bbb"};
 			return aa;
 		}
 		return null;
 	}
+	
 	/**
 	 * 对外暴露的方法，创建并返回一个APIKey，同时将其存进数据库中
 	 */
@@ -61,6 +66,8 @@ public class ExclusiveKeyServiceImpl implements ExclusiveKeyService{
 		exclusiveKeyManage.add(kebsite,keyString);
 		return keyString.toString();
 	}
+	
+	
 	
 	/**
 	 * 创建一个APIKey并返回
@@ -170,6 +177,13 @@ public class ExclusiveKeyServiceImpl implements ExclusiveKeyService{
 		this.kebsiteManage = kebsiteManage;
 	}
 
-	
+	public AprioriRunner getAprioriRunner() {
+		return aprioriRunner;
+	}
+
+	@Resource(name="aprioriRunner")
+	public void setAprioriRunner(AprioriRunner aprioriRunner) {
+		this.aprioriRunner = aprioriRunner;
+	}
 
 }

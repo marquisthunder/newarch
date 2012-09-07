@@ -15,7 +15,7 @@ public class ExclusiveKey {
 	private Long id;
 	private String keyString;
 	private Kebsite kebsite;
-	private boolean activation;
+	private boolean Activation;
 	
 	@Id
 	@GeneratedValue
@@ -38,14 +38,13 @@ public class ExclusiveKey {
 		return kebsite;
 	}
 	@Column(nullable=false)
-	public void setKebsite(Kebsite kebsite) {
-		this.kebsite = kebsite;
-	}
-	@Column(nullable=false)
 	public boolean isActivation() {
-		return activation;
+		return Activation;
 	}
 	public void setActivation(boolean activation) {
-		this.activation = activation;
+		Activation = activation;
+	}
+	public void setKebsite(Kebsite kebsite) {
+		this.kebsite = kebsite;
 	}
 }

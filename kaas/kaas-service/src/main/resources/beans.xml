@@ -21,7 +21,10 @@
 	<bean
 		class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
 		<property name="locations">
-			<value>classpath:jdbc.properties</value>
+			<list>
+				<value>classpath:jdbc.properties</value>
+				<value>classpath:runner.properties</value>
+			</list>
 		</property>
 	</bean>
 
@@ -89,5 +92,24 @@
 		<property name="sessionFactory" ref="sessionFactory"></property>
 	</bean>
 -->
-	
+	    <bean id="threadPoolTaskExecutor"
+        class="org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor">  
+        <property name="corePoolSize" value="10" />  
+        <property name="maxPoolSize" value="15" />  
+        <property name="queueCapacity" value="1000" />  
+    </bean>
+    <bean id="aprioriRunner" 
+    	class="com.thinkingtop.kaas.services.tasks.AprioriRunner">
+    	<property name="taskExecutor" ref="threadPoolTaskExecutor"/>
+    	<property name="fileHistoryDAO" ref="fileHistoryDAOFileImpl"/>
+    	<property name="ofdao" ref="marsOrderFrequentDAOFileImpl"/>
+    	<property name="rdao" ref="marsRuleDAOFileImpl"/>
+    	<property name="threadNum" value="${runner.threadNum}"/>
+    	<property name="dataPath" value="${runner.dataPath}"/>
+    	<property name="folder" value="${runner.folder}"/>
+    	<property name="waitTime" value="${runner.waitTime}"/>
+    	<property name="submitLoopMaxStr" value="${runner.submitLoopMaxStr}"/>
+    	<property name="freqSetMaxSizeStr" value="${runner.freqSetMaxSizeStr}"/>
+    	<property name="supportGateStr" value="${runner.supportGateStr}"/>
+    </bean>
 </beans>

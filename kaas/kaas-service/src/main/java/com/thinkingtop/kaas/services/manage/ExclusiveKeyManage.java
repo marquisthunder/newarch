@@ -12,7 +12,6 @@ import com.thinkingtop.kaas.services.dao.ExclusiveKeyDAO;
 import com.thinkingtop.kaas.services.model.ExclusiveKey;
 import com.thinkingtop.kaas.services.model.Kebsite;
 
-
 /**
  * 这是存取APIKey的管理类
  * @author roadahead
@@ -70,10 +69,8 @@ public class ExclusiveKeyManage{
 		ExclusiveKey ek = new ExclusiveKey();
 		ek.setKebsite(kebsite);
 		ek.setKeyString(keyString.toString());
-		ek.setActivation(false);
 		exclusiveKeyDAO.save(ek);
 	}
-
 	public boolean isHold(String kebsiteName, String APIKey) {
 		ExclusiveKey exclusiveKey = exclusiveKeyDAO.getExclusiveKey(APIKey);
 		if(exclusiveKey!=null&&exclusiveKey.getKebsite().getKebsiteName().equals(kebsiteName)){
@@ -89,4 +86,5 @@ public class ExclusiveKeyManage{
 		}
 		return false;
 	}
+	
 }

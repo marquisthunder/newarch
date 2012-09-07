@@ -7,7 +7,6 @@ import org.springframework.stereotype.Component;
 import com.thinkingtop.kaas.services.dao.KebsiteDAO;
 import com.thinkingtop.kaas.services.model.Kebsite;
 
-
 /**
  * 这是存取用户信息的管理类
  * @author roadahead
@@ -42,7 +41,7 @@ public class KebsiteManage{
 	 * @return
 	 */
 	public Kebsite getKebsite(String KebsiteName){
-		System.out.println(KebsiteName);
+System.out.println(KebsiteName);
 		return kebsiteDAO.getKebsite(KebsiteName);
 	}
 	
@@ -62,5 +61,4 @@ public class KebsiteManage{
 			return true;
 		}
 	}
-
 }

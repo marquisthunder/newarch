@@ -18,7 +18,7 @@ public class KebsiteManageTest {
 		KebsiteManage service = (KebsiteManage)ctx.getBean("kebsiteManage");
 		System.out.println(service.getClass());
 		Kebsite kebsite = new Kebsite();
-		kebsite.setKebsiteName("京东");
+		kebsite.setKebsiteName("jingdong");
 		service.add(kebsite);
 		ctx.destroy();
 	}

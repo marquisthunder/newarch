@@ -1,4 +1,5 @@
 package com.thinkingtop.kaas.services.dao;
+
 import com.thinkingtop.kaas.services.model.Kebsite;
 
 /**
