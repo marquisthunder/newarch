@@ -45,6 +45,7 @@ public class AprioriRunner {
     private String submitLoopMaxStr;
     private String freqSetMaxSizeStr;
     private String supportGateStr;
+    private int threadEndNum;
 
     public String getSupportGateStr() {
         return supportGateStr;
@@ -113,6 +114,10 @@ public class AprioriRunner {
     public void setRdao(MarsRuleDAO rdao) {
         this.rdao = rdao;
     }
+    
+    public String getGoods(String basisGoods, int basisSize){
+    	return rdao.getRuleMap(basisGoods,basisSize);
+    }
 
     public void println(){
     	System.out.println("------------------------------------println properties ");
@@ -131,6 +136,9 @@ public class AprioriRunner {
     
     public void runIt(){
     //println();
+    	ofdao.setFileAll(new HashMap<String, MarsOrderFrequent>());
+    	rdao.setMarsRuleAll(new HashMap<String, MarsRule>());
+    	threadEndNum=0;
         List<String> filelist=fileHistoryDAO.getFileList("Order", 4, 2);
     //System.out.println(filelist.size());
         if(filelist == null || filelist.size() == 0){
@@ -168,13 +176,15 @@ public class AprioriRunner {
             taskExecutor.execute(marsAprioriTask);
         }
 //System.out.println("-------------------------------------------------");
-        /*int time=Integer.parseInt(waitTime);
+        int time=Integer.parseInt(waitTime);
         try{
-            Thread.sleep(time*60*1000);
+        	while(threadEndNum!=threadN){
+        		Thread.sleep(100);
+        	}
         }catch(Exception e){
             ;
         }
-        taskExecutor.getThreadPoolExecutor().shutdownNow();*/
+        /*taskExecutor.getThreadPoolExecutor().shutdownNow();*/
         logger.info("Offline Training Task Finished Once!");
 
         return;
@@ -316,6 +326,7 @@ public class AprioriRunner {
             }
             genRulesFromMemory();
             //fileHistoryDAO.updateFlag(filelist, "Order", 4);
+            threadEndNum++;
 
         }
         

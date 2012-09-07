@@ -23,6 +23,8 @@ public interface ExclusiveKeyService {
 	
 	@WebMethod(operationName="GetGoods")
 	@WebResult(name = "result")
-	public String[] getGoods(@WebParam(name = "kebsiteName")String kebsiteName,
-			@WebParam(name = "APIKey")String APIKey);
+	public String getGoods(@WebParam(name = "kebsiteName")String kebsiteName,
+			@WebParam(name = "APIKey")String APIKey,
+			@WebParam(name = "BasisGoods")String BasisGoods,
+			@WebParam(name = "BasisSize")int BasisSize);
 }

@@ -2,7 +2,9 @@ package com.thinkingtop.kaas.services.service;
 
 import java.math.BigInteger;
 import java.util.Date;
+import java.util.Map;
 import java.util.Random;
+import java.util.Set;
 
 import javax.annotation.Resource;
 import javax.jws.WebService;
@@ -32,7 +34,7 @@ public class ExclusiveKeyServiceImpl implements ExclusiveKeyService{
 	/**
 	 * 对外暴露的方法，验证账户跟密码，然后返回推荐物品
 	 */
-	public String[] getGoods(String kebsiteName,String APIKey) {
+	public String getGoods(String kebsiteName,String APIKey,String BasisGoods,int BasisSize) {
 		if(!kebsiteManage.isHold(kebsiteName)){
 			System.out.println("该用户不存在");
 			return null;
@@ -43,8 +45,8 @@ public class ExclusiveKeyServiceImpl implements ExclusiveKeyService{
 		}
 		if(exclusiveKeyManage.isActivation(APIKey)){
 			aprioriRunner.runIt();
-			String[] aa = {"aaa","bbb"};
-			return aa;
+			String mapGoods = aprioriRunner.getGoods(BasisGoods,BasisSize);
+			return mapGoods;
 		}
 		return null;
 	}

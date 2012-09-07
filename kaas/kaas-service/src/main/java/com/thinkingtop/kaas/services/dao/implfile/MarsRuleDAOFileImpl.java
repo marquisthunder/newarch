@@ -4,10 +4,12 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Set;
+import java.util.TreeMap;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
@@ -104,6 +106,28 @@ public class MarsRuleDAOFileImpl implements MarsRuleDAO {
 			}
 		}
 		return marsRuleList;
+	}
+
+	public Map<String, MarsRule> getMarsRuleAll() {
+		return marsRuleAll;
+	}
+
+	public void setMarsRuleAll(Map<String, MarsRule> marsRuleAll) {
+		this.marsRuleAll = marsRuleAll;
+	}
+
+	public String getRuleMap(String basisGoods, int basisSize) {
+		TreeMap<Double,String> marsRuleList = new TreeMap<Double,String>();
+		for(Map.Entry<String, MarsRule> me : marsRuleAll.entrySet()){
+			String[] bg = me.getKey().split("\\|");
+			if(bg[0].equals(basisGoods)&&(bg[1].split(",").length==basisSize)){
+				marsRuleList.put(me.getValue().getConfidence(),bg[1]);
+			}
+		}
+		if(marsRuleList.size()>0){
+			return marsRuleList.get(marsRuleList.lastKey());
+		}
+		return null;
 	}
 
 }

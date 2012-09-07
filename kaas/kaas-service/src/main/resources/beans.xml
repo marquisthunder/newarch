@@ -98,7 +98,7 @@
         <property name="maxPoolSize" value="15" />  
         <property name="queueCapacity" value="1000" />  
     </bean>
-    <bean id="aprioriRunner" 
+    <bean id="aprioriRunner"
     	class="com.thinkingtop.kaas.services.tasks.AprioriRunner">
     	<property name="taskExecutor" ref="threadPoolTaskExecutor"/>
     	<property name="fileHistoryDAO" ref="fileHistoryDAOFileImpl"/>

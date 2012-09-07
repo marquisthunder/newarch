@@ -25,14 +25,14 @@ public class KebsiteManageTest {
 	
 	@Test
 	public void testGetKebsite() {
-		ClassPathXmlApplicationContext ctx = new ClassPathXmlApplicationContext("beans.xml");
+		/*ClassPathXmlApplicationContext ctx = new ClassPathXmlApplicationContext("beans.xml");
 		KebsiteManage service = (KebsiteManage)ctx.getBean("kebsiteManage");
 		System.out.println(service.getClass());
 		Kebsite kebsite = service.getKebsite(1);
 		System.out.println(kebsite.getKebsiteName());
 		kebsite = service.getKebsite("京东");
 		System.out.println(kebsite.getId());
-		ctx.destroy();
+		ctx.destroy();*/
 	}
 
 }
