@@ -7,6 +7,8 @@
    <modules>
    		<module>kaas-etl</module>
 	    <module>kaas-service</module>
-   </modules>
+           <module>kaas-daemon</module>
+	   <module>kaas-server</module>
+ </modules>
    
 </project>
