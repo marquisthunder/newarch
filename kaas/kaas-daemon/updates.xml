@@ -1,0 +1,2 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<updates><update component-name="I am component" version="11"><installer class-name="SampleUpdate" jar-url="http://127.0.0.1:8080/juf/sample-update-1.0.jar"/><feature>I am content</feature></update></updates>
