@@ -4,9 +4,9 @@
 package org.hardcode.juf;
 
 /**
- * Excepcn producida cuando no se puede acceder a lade las actualizaciones en el cliente
+ * Excepción producida cuando no se puede acceder a la información de las actualizaciones en el cliente
  * 
- * @author Fernando G
+ * @author Fernando González Cortés
  */
 public class ClientStatusException extends Exception {
 

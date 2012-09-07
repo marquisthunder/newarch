@@ -4,7 +4,7 @@
 package org.hardcode.juf;
 
 /**
- * @author Fernando
+ * @author Fernando González Cortés
  */
 public class DownloadException extends Exception {
 

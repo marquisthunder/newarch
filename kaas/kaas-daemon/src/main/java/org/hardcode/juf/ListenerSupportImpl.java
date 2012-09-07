@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.Iterator;
 
 /**
- * @author Fernando G
+ * @author Fernando González Cortés
  */
 class ListenerSupportImpl implements ListenerSupport{
 

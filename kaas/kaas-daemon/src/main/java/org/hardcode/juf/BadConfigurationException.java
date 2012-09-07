@@ -6,7 +6,7 @@ package org.hardcode.juf;
 /**
  * DOCUMENT ME!
  *
- * @author Fern
+ * @author Fernando González Cortés
  */
 public class BadConfigurationException extends Exception {
     /**
