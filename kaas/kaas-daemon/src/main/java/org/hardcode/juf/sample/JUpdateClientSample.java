@@ -39,13 +39,13 @@ public class JUpdateClientSample {
 			clientUpdateInfo = update.getClientUpdateInformation("sample");
 			if (clientUpdateInfo == null) {
 			    clientUpdateInfo = new UpdateInfo();
-			    clientUpdateInfo.setUrlPrefix("http://127.0.0.1:8080/juf/update.xml");
+			    clientUpdateInfo.setUrlPrefix("http://192.168.1.101:8787/kaas/update.xml");
 			}
 		} catch (IOException e) {
-			System.err.println("No se pudo obtener la informaci de la actualizan");
+			System.err.println("No se pudo obtener la information de la actualization");
 			System.exit(-1);
 		}
-		
+		//daemon
 		Update[] actualizaciones = null;
 		try {
 			actualizaciones = update.checkUpdates("sample", clientUpdateInfo, null);
@@ -66,7 +66,7 @@ public class JUpdateClientSample {
 			});
 			jf.getContentPane().add(j_exit,java.awt.BorderLayout.SOUTH);
 			jf.setSize(new Dimension(400, 400));
-			//jf.show();//过时了、、
+			//jf.show();//、、
 			jf.setVisible(true);
 			//System.out.println("==================================");
 			actualizaciones = up.getSelectedUpdates();

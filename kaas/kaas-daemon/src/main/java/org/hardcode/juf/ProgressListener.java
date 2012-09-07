@@ -4,7 +4,7 @@
 package org.hardcode.juf;
 
 /**
- * @author Fernan
+ * @author Fernando González Cortés
  */
 public interface ProgressListener {
 	void progress(int progress);

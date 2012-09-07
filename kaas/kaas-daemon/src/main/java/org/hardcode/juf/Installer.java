@@ -8,15 +8,15 @@ import java.util.HashMap;
 /**
  * Interfaz a implementar por las actualizaciones
  *
- * @author Fernando Gonzlez Cort
+ * @author Fernando González Cortés
  */
-public interface Installer { 
+public interface Installer {
     /**
-     * Mï¿½todo invocado cuando se ha descargado el jar de actualizaci
+     * Método invocado cuando se ha descargado el jar de actualización
      *
-     * @param clientStatus Estado asignado por el cliente para la ejecuc de la actualizaciï¿½n
-     * @param status actualizacin residente en el cliente
-     * @param listener escuchador del progreso de la actualizaci Puede ser
+     * @param clientStatus Estado asignado por el cliente para la ejecución de la actualización
+     * @param status actualización residente en el cliente
+     * @param listener escuchador del progreso de la actualización. Puede ser
      *        null
      *
      * @return DOCUMENT ME!

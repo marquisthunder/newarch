@@ -1,7 +1,7 @@
 package org.hardcode.juf;
 
 /**
- * Excepci
+ * Excepción genérica que indica un fallo en la ejecución de una actualización
  */
 public class InstallException extends Exception {
     /**

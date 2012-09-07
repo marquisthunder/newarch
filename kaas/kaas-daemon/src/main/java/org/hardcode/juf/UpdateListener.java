@@ -4,7 +4,7 @@
 package org.hardcode.juf;
 
 /**
- * @author Fernand
+ * @author Fernando González Cortés
  */
 public interface UpdateListener extends ProgressListener{
 	void fileProgress(int progress);

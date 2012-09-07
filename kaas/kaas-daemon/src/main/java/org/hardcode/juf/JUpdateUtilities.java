@@ -24,7 +24,7 @@ import java.nio.channels.FileChannel;
 /**
  * DOCUMENT ME!
  *
- * @author Fernando
+ * @author Fernando González Cortés
  */
 public class JUpdateUtilities extends ListenerSupportImpl {
     /**
@@ -91,7 +91,7 @@ public class JUpdateUtilities extends ListenerSupportImpl {
      * @throws IOException DOCUMENT ME!
      */
     public void copy(File source, File dest) throws IOException {
-        FileChannel in = null; 
+        FileChannel in = null;
         FileChannel out = null;
 
         try {
@@ -114,13 +114,13 @@ public class JUpdateUtilities extends ListenerSupportImpl {
     }
 
     /**
-     * Obtiene el estado de la actualizaciï¿½n del componente cuyo nombre se pasa
-     * como parï¿½metro buscando en la informaciï¿½n que se pasa como primer parï¿½metro
+     * Obtiene el estado de la actualización del componente cuyo nombre se pasa
+     * como parámetro buscando en la información que se pasa como primer parámetro
      *
-     * @param status Informaciï¿½n de las actualizaciones de toda la aplicaciï¿½n
-     * @param componentName Nombre del componente cuya informaciï¿½n se quiere obtener
+     * @param status Información de las actualizaciones de toda la aplicación
+     * @param componentName Nombre del componente cuya información se quiere obtener
      *
-     * @return La informaciï¿½n buscada o null si no informaciï¿½n sobre un componente
+     * @return La información buscada o null si no información sobre un componente
      * de nombre 'componentName' en el objeto UpdateInfo
      */
     public Status getComponentStatus(UpdateInfo status, String componentName) {

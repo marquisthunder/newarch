@@ -6,7 +6,7 @@ package org.hardcode.juf;
 import java.io.IOException;
 
 /**
- * @author Fernando G
+ * @author Fernando González Cortés
  */
 public class NoServerFileException extends IOException {
 

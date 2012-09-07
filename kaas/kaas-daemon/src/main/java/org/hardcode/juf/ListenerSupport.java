@@ -4,7 +4,7 @@
 package org.hardcode.juf;
 
 /**
- * @author Fernando G
+ * @author Fernando González Cortés
  */
 interface ListenerSupport {
 
