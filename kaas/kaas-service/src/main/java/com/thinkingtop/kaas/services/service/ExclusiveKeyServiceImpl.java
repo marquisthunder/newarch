@@ -32,7 +32,12 @@ public class ExclusiveKeyServiceImpl implements ExclusiveKeyService{
 	private AprioriRunner aprioriRunner;
 
 	/**
-	 * 对外暴露的方法，验证账户跟密码，然后返回推荐物品
+	 * External exposure method, verification of account and password,
+	 * and then give the user the recommended products
+	 * @param kebsiteName: User address or username 
+	 * @param APIKey: User APIKey
+	 * @param BasisGoods: Recommend products origin
+	 * @param BasisSize: To recommend a product
 	 */
 	public String getGoods(String kebsiteName,String APIKey,String BasisGoods,int BasisSize) {
 		if(!kebsiteManage.isHold(kebsiteName)){
@@ -52,7 +57,9 @@ public class ExclusiveKeyServiceImpl implements ExclusiveKeyService{
 	}
 	
 	/**
-	 * 对外暴露的方法，创建并返回一个APIKey，同时将其存进数据库中
+	 * External exposure method, the user request and returns a APIKey,
+	 * and put it into the database
+	 * @param kebsiteName: User address or username
 	 */
 	public String getAPIKey(String kebsiteName) {
 		Kebsite kebsite =kebsiteManage.getKebsite(kebsiteName);

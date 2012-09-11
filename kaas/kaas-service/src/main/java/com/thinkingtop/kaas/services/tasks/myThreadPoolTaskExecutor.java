@@ -24,13 +24,13 @@ import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
 import org.springframework.stereotype.Component;
 
 import com.thinkingtop.kaas.services.dao.FileHistoryDAO;
-import com.thinkingtop.kaas.services.dao.MarsOrderFrequentDAO;
-import com.thinkingtop.kaas.services.dao.MarsRuleDAO;
+import com.thinkingtop.kaas.services.dao.KaasOrderFrequentDAO;
+import com.thinkingtop.kaas.services.dao.KaasRuleDAO;
 import com.thinkingtop.kaas.services.dao.implfile.FileHistoryDAOFileImpl;
-import com.thinkingtop.kaas.services.dao.implfile.MarsOrderFrequentDAOFileImpl;
-import com.thinkingtop.kaas.services.dao.implfile.MarsRuleDAOFileImpl;
-import com.thinkingtop.kaas.services.model.MarsOrderFrequent;
-import com.thinkingtop.kaas.services.model.MarsRule;
+import com.thinkingtop.kaas.services.dao.implfile.KaasOrderFrequentDAOFileImpl;
+import com.thinkingtop.kaas.services.dao.implfile.KaasRuleDAOFileImpl;
+import com.thinkingtop.kaas.services.model.KaasOrderFrequent;
+import com.thinkingtop.kaas.services.model.KaasRule;
 import com.thinkingtop.kaas.services.tools.CombinationModel;
 
 
@@ -39,8 +39,8 @@ public class myThreadPoolTaskExecutor {
     static Logger logger=Logger.getLogger(MarsAprioriJobRunner.class);
     private ThreadPoolTaskExecutor taskExecutor;
     private FileHistoryDAO fileHistoryDAO;
-    private MarsOrderFrequentDAO ofdao;
-    private MarsRuleDAO rdao;
+    private KaasOrderFrequentDAO ofdao;
+    private KaasRuleDAO rdao;
     private String threadNum = "1";
     private String dataPath ="/home/roadahead/myTest/testsmb";//目录
     private String folder = "smbChildren"; //主目录下的分目录
@@ -53,8 +53,8 @@ public class myThreadPoolTaskExecutor {
     public void runIt(){
     	inof = 0;
     	fileHistoryDAO = new FileHistoryDAOFileImpl();
-    	ofdao = new MarsOrderFrequentDAOFileImpl();
-    	rdao =  new MarsRuleDAOFileImpl();
+    	ofdao = new KaasOrderFrequentDAOFileImpl();
+    	rdao =  new KaasRuleDAOFileImpl();
     	List<String> partOfFiles=new ArrayList<String>(); //文件列表
     	int start=1;
     	int end=2;
@@ -118,7 +118,7 @@ public class myThreadPoolTaskExecutor {
     private class MarsAprioriTask implements Runnable {
     	private List<String> filelist;
         private Map<String,Integer> submitMap;
-        private List<MarsOrderFrequent> MarsOrderFrequents;
+        private List<KaasOrderFrequent> MarsOrderFrequents;
 
         private int submitLoopCur;
         private int submitLoopNum;
@@ -141,7 +141,7 @@ public class myThreadPoolTaskExecutor {
         	int start = 0;
         	int end = 0;
         	for(int i=start,j=0;i<end;i++){
-        		MarsOrderFrequent kmof = ofdao.getKeyMarsOrderFrequent(i);
+        		KaasOrderFrequent kmof = ofdao.getKeyMarsOrderFrequent(i);
         		j++;
         		if(j==supportGate){
         			
@@ -306,17 +306,17 @@ public class myThreadPoolTaskExecutor {
         
         
         public boolean genRulesFromMemoryR(){
-        	List<MarsRule> rlist=new ArrayList<MarsRule>();
+        	List<KaasRule> rlist=new ArrayList<KaasRule>();
         	return true;
         }
         
 		public boolean genRulesFromMemory(){
-            List<MarsOrderFrequent> olist=new ArrayList<MarsOrderFrequent>(); //全部
-            List<MarsRule> rlist=new ArrayList<MarsRule>(); //value超过supportGate
+            List<KaasOrderFrequent> olist=new ArrayList<KaasOrderFrequent>(); //全部
+            List<KaasRule> rlist=new ArrayList<KaasRule>(); //value超过supportGate
         System.out.println("------------------------------------------------------");
             long startTime1 = System.nanoTime();
             for(Map.Entry<String, Integer> me : submitMap.entrySet()){
-                MarsOrderFrequent of = new MarsOrderFrequent();
+                KaasOrderFrequent of = new KaasOrderFrequent();
                 of.setFreqSet(me.getKey());
                 of.setSupport(me.getValue());
                 of.setLevel(me.getKey().split(",").length);
@@ -326,9 +326,9 @@ public class myThreadPoolTaskExecutor {
                 if(newSup>= supportGate){
            System.out.println("mekey:"+me.getKey());
            System.out.println("newSup:"+newSup);
-                    List<MarsRule> subRlist = genRulesByLine(me.getKey(),newSup);
+                    List<KaasRule> subRlist = genRulesByLine(me.getKey(),newSup);
          //System.out.println(subRlist.size());
-        for(MarsRule mr : subRlist){
+        for(KaasRule mr : subRlist){
         	System.out.println(mr.getProducts());
         	System.out.println(mr.getRecommendation());
         	System.out.println(mr.getFlag());
@@ -339,11 +339,11 @@ public class myThreadPoolTaskExecutor {
                     continue;
                 }
 
-                MarsOrderFrequent tmp = ofdao.findOneByProperty("freqSet", me.getKey());
+                KaasOrderFrequent tmp = ofdao.findOneByProperty("freqSet", me.getKey());
                 if(tmp != null){
                     newSup+=tmp.getSupport();
                     if(newSup >= supportGate){
-                        List<MarsRule> subRlist = genRulesByLine(me.getKey(),newSup);
+                        List<KaasRule> subRlist = genRulesByLine(me.getKey(),newSup);
                         rlist.addAll(subRlist);
                         continue;
                     }
@@ -355,7 +355,7 @@ public class myThreadPoolTaskExecutor {
             submitMap.clear();
             submitLoopCur = 0;
 
-            for(MarsOrderFrequent o : olist){
+            for(KaasOrderFrequent o : olist){
                 int rval=0;
                 rval = ofdao.submit(o);
                 if(rval !=1){
@@ -411,7 +411,7 @@ public class myThreadPoolTaskExecutor {
 		 * @param baseSupport
 		 * @return 大于supportGate的组合的MarsRule
 		 */
-        private List<MarsRule> genRulesByLine(String line,int baseSupport) {
+        private List<KaasRule> genRulesByLine(String line,int baseSupport) {
 
             String[] lineArr=line.split(",");
             Map<String,Integer> rulemap = null;
@@ -421,16 +421,16 @@ public class myThreadPoolTaskExecutor {
             cm = null;
         System.out.println(rulemap.size());
             lineArr=null;
-            List<MarsRule> rlist= new ArrayList<MarsRule>();
+            List<KaasRule> rlist= new ArrayList<KaasRule>();
             if(rulemap != null){
                 for (Map.Entry<String, Integer> me: rulemap.entrySet()){
                     String[] tmp = me.getKey().split("\\|");
 
-                    MarsOrderFrequent of = ofdao.findOneByProperty("freqSet", tmp[0]);
+                    KaasOrderFrequent of = ofdao.findOneByProperty("freqSet", tmp[0]);
                     if(of != null || submitMap.containsKey(tmp[0])){
                         Double downSup = (of == null?0.0:of.getSupport())+submitMap.get(tmp[0]);
                         Double x = (baseSupport*1.0)/downSup;
-                        MarsRule r = new MarsRule();
+                        KaasRule r = new KaasRule();
                         r.setProducts(tmp[0]);
                         r.setRecommendation(tmp[1]);
                         r.setConfidence(x);
@@ -452,10 +452,10 @@ public class myThreadPoolTaskExecutor {
             }
             return rlist;
         }
-		public List<MarsOrderFrequent> getMarsOrderFrequents() {
+		public List<KaasOrderFrequent> getMarsOrderFrequents() {
 			return MarsOrderFrequents;
 		}
-		public void setMarsOrderFrequents(List<MarsOrderFrequent> marsOrderFrequents) {
+		public void setMarsOrderFrequents(List<KaasOrderFrequent> marsOrderFrequents) {
 			MarsOrderFrequents = marsOrderFrequents;
 		}
 

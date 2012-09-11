@@ -15,11 +15,7 @@ import com.thinkingtop.kaas.services.dao.FileHistoryDAO;
 @Component("fileHistoryDAOFileImpl")
 public class FileHistoryDAOFileImpl implements FileHistoryDAO {
 	private String fileString;
-	public List<String> getFileList(String Order, int in1, int in2) {
-		// TODO Auto-generated method stub
-		/*for(int i=0;i<10;i++){
-			fileLiest.add("smb"+i);
-		}*/
+	public List<String> getFileList() {
 		List<String> fileLiest = new ArrayList<String>();
 		String[] files = fileString.split(",");
 		for(String file : files){
@@ -31,10 +27,7 @@ public class FileHistoryDAOFileImpl implements FileHistoryDAO {
 		return fileLiest;
 	}
 
-	public void updateFlag(List<String> filelist, String Order, int i) {
-		// TODO Auto-generated method stub
 
-	}
 
 	public String getFileString() {
 		return fileString;

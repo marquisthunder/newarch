@@ -19,10 +19,10 @@ import org.apache.log4j.Logger;
 import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
 
 import com.thinkingtop.kaas.services.dao.FileHistoryDAO;
-import com.thinkingtop.kaas.services.dao.MarsOrderFrequentDAO;
-import com.thinkingtop.kaas.services.dao.MarsRuleDAO;
-import com.thinkingtop.kaas.services.model.MarsOrderFrequent;
-import com.thinkingtop.kaas.services.model.MarsRule;
+import com.thinkingtop.kaas.services.dao.KaasOrderFrequentDAO;
+import com.thinkingtop.kaas.services.dao.KaasRuleDAO;
+import com.thinkingtop.kaas.services.model.KaasOrderFrequent;
+import com.thinkingtop.kaas.services.model.KaasRule;
 import com.thinkingtop.kaas.services.tools.CombinationModel;
 
 
@@ -31,8 +31,8 @@ public class MarsAprioriJobRunner {
     static Logger logger=Logger.getLogger(MarsAprioriJobRunner.class);
     private ThreadPoolTaskExecutor taskExecutor;
     private FileHistoryDAO fileHistoryDAO;
-    private MarsOrderFrequentDAO ofdao;
-    private MarsRuleDAO rdao;
+    private KaasOrderFrequentDAO ofdao;
+    private KaasRuleDAO rdao;
     private String threadNum;
     private String dataPath;
     private String folder;
@@ -95,26 +95,25 @@ public class MarsAprioriJobRunner {
     public void setFreqSetMaxSizeStr(String freqSetMaxSizeStr) {
         this.freqSetMaxSizeStr = freqSetMaxSizeStr;
     }
-    public MarsOrderFrequentDAO getOfdao() {
+    public KaasOrderFrequentDAO getOfdao() {
         return ofdao;
     }
-    public void setOfdao(MarsOrderFrequentDAO ofdao) {
+    public void setOfdao(KaasOrderFrequentDAO ofdao) {
         this.ofdao = ofdao;
     }
-    public MarsRuleDAO getRdao() {
+    public KaasRuleDAO getRdao() {
         return rdao;
     }
-    public void setRdao(MarsRuleDAO rdao) {
+    public void setRdao(KaasRuleDAO rdao) {
         this.rdao = rdao;
     }
 
     public void runIt(){
-        List<String> filelist=fileHistoryDAO.getFileList("Order", 4, 2);
+        List<String> filelist=fileHistoryDAO.getFileList();
         if(filelist == null || filelist.size() == 0){
             logger.info("No orders are needed to do offline training!");
             return;
         }
-        fileHistoryDAO.updateFlag(filelist, "Order", 3);
 
         int threadN=Integer.parseInt(threadNum);
         int loop;
@@ -216,7 +215,7 @@ public class MarsAprioriJobRunner {
 
 
 
-        private List<MarsRule> genRulesByLine(String line,int baseSupport) {
+        private List<KaasRule> genRulesByLine(String line,int baseSupport) {
 
             String[] lineArr=line.split(",");
             Map<String,Integer> rulemap = null;
@@ -225,16 +224,16 @@ public class MarsAprioriJobRunner {
             rulemap = cm.genRuleCombinations();
             cm = null;
             lineArr=null;
-            List<MarsRule> rlist= new ArrayList<MarsRule>();
+            List<KaasRule> rlist= new ArrayList<KaasRule>();
             if(rulemap != null){
                 for (Map.Entry<String, Integer> me: rulemap.entrySet()){
                     String[] tmp = me.getKey().split("\\|");
 
-                    MarsOrderFrequent of = ofdao.findOneByProperty("freqSet", tmp[1]);
+                    KaasOrderFrequent of = ofdao.findOneByProperty("freqSet", tmp[1]);
                     if(of != null || submitMap.containsKey(tmp[1])){
                         Double downSup = (of == null?0.0:of.getSupport())+submitMap.get(tmp[1]);
                         Double x = (baseSupport*1.0)/downSup;
-                        MarsRule r = new MarsRule();
+                        KaasRule r = new KaasRule();
                         r.setProducts(tmp[0]);
                         r.setRecommendation(tmp[1]);
                         r.setConfidence(x);
@@ -259,12 +258,12 @@ public class MarsAprioriJobRunner {
         }
 
         public boolean genRulesFromMemory(){
-            List<MarsOrderFrequent> olist=new ArrayList<MarsOrderFrequent>();
-            List<MarsRule> rlist=new ArrayList<MarsRule>();
+            List<KaasOrderFrequent> olist=new ArrayList<KaasOrderFrequent>();
+            List<KaasRule> rlist=new ArrayList<KaasRule>();
 
             long startTime1 = System.nanoTime();
             for(Map.Entry<String, Integer> me : submitMap.entrySet()){
-                MarsOrderFrequent of = new MarsOrderFrequent();
+                KaasOrderFrequent of = new KaasOrderFrequent();
                 of.setFreqSet(me.getKey());
                 of.setSupport(me.getValue());
                 of.setLevel(me.getKey().split(",").length);
@@ -272,16 +271,16 @@ public class MarsAprioriJobRunner {
                 olist.add(of);
                 int newSup=me.getValue();
                 if(newSup>= supportGate){
-                    List<MarsRule> subRlist = genRulesByLine(me.getKey(),newSup);
+                    List<KaasRule> subRlist = genRulesByLine(me.getKey(),newSup);
                     rlist.addAll(subRlist);
                     continue;
                 }
 
-                MarsOrderFrequent tmp = ofdao.findOneByProperty("freqSet", me.getKey());
+                KaasOrderFrequent tmp = ofdao.findOneByProperty("freqSet", me.getKey());
                 if(tmp != null){
                     newSup+=tmp.getSupport();
                     if(newSup >= supportGate){
-                        List<MarsRule> subRlist = genRulesByLine(me.getKey(),newSup);
+                        List<KaasRule> subRlist = genRulesByLine(me.getKey(),newSup);
                         rlist.addAll(subRlist);
                         continue;
                     }
@@ -294,7 +293,7 @@ public class MarsAprioriJobRunner {
             submitLoopCur = 0;
 
 
-            for(MarsOrderFrequent o : olist){
+            for(KaasOrderFrequent o : olist){
                 int rval=0;
                 rval = ofdao.submit(o);
                 if(rval !=1){
@@ -314,7 +313,7 @@ public class MarsAprioriJobRunner {
             }
             long consumingTime1 = System.nanoTime();
             logger.warn("save all OF:"+(consumingTime1- consumingTime0)/1000000000+" seconds!");
-            for(MarsRule r: rlist){
+            for(KaasRule r: rlist){
                 int rval=0;
                 rdao.submit(r);
                 if(rval !=1){
@@ -387,8 +386,6 @@ public class MarsAprioriJobRunner {
                         if(Thread.currentThread().isInterrupted()){
                             in.close();
                             logger.warn("offline training threads interrupted");
-                            fileHistoryDAO.updateFlag(notFinished, "Order", 2);
-                            fileHistoryDAO.updateFlag(finished, "Order", 4);
                             return;
                         }
 
@@ -408,7 +405,6 @@ public class MarsAprioriJobRunner {
                 finished.add(fileone);
             }
             genRulesFromMemory();
-            fileHistoryDAO.updateFlag(filelist, "Order", 4);
 
         }
 

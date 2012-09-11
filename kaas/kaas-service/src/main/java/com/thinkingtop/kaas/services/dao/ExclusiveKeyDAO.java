@@ -3,7 +3,7 @@ package com.thinkingtop.kaas.services.dao;
 import com.thinkingtop.kaas.services.model.ExclusiveKey;
 
 /**
- * APIKey数据库访问抽象类
+ * APIKey database access abstract class
  * @author roadahead
  *
  */

@@ -21,19 +21,24 @@ import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
 import org.springframework.stereotype.Component;
 
 import com.thinkingtop.kaas.services.dao.FileHistoryDAO;
-import com.thinkingtop.kaas.services.dao.MarsOrderFrequentDAO;
-import com.thinkingtop.kaas.services.dao.MarsRuleDAO;
-import com.thinkingtop.kaas.services.model.MarsOrderFrequent;
-import com.thinkingtop.kaas.services.model.MarsRule;
+import com.thinkingtop.kaas.services.dao.KaasOrderFrequentDAO;
+import com.thinkingtop.kaas.services.dao.KaasRuleDAO;
+import com.thinkingtop.kaas.services.model.KaasOrderFrequent;
+import com.thinkingtop.kaas.services.model.KaasRule;
 import com.thinkingtop.kaas.services.tools.CombinationModel;
 
+/**
+ * Generation rule class
+ * @author roadahead
+ *
+ */
 public class AprioriRunner {
 
     static Logger logger=Logger.getLogger(AprioriRunner.class);
     private ThreadPoolTaskExecutor taskExecutor;
     private FileHistoryDAO fileHistoryDAO;
-    private MarsOrderFrequentDAO ofdao;
-    private MarsRuleDAO rdao;
+    private KaasOrderFrequentDAO ofdao;
+    private KaasRuleDAO rdao;
     private String threadNum;
     private String dataPath;
     private String folder;
@@ -41,6 +46,8 @@ public class AprioriRunner {
     private String submitLoopMaxStr;
     private String freqSetMaxSizeStr;
     private String supportGateStr;
+    private String goodsDelimiter;
+    private String maxTryCount;
     private int threadEndNum;
 
     public String getSupportGateStr() {
@@ -98,18 +105,19 @@ public class AprioriRunner {
     public void setFreqSetMaxSizeStr(String freqSetMaxSizeStr) {
         this.freqSetMaxSizeStr = freqSetMaxSizeStr;
     }
-    public MarsOrderFrequentDAO getOfdao() {
+    public KaasOrderFrequentDAO getOfdao() {
         return ofdao;
     }
-    public void setOfdao(MarsOrderFrequentDAO ofdao) {
+    public void setOfdao(KaasOrderFrequentDAO ofdao) {
         this.ofdao = ofdao;
     }
-    public MarsRuleDAO getRdao() {
+    public KaasRuleDAO getRdao() {
         return rdao;
     }
-    public void setRdao(MarsRuleDAO rdao) {
+    public void setRdao(KaasRuleDAO rdao) {
         this.rdao = rdao;
     }
+    
     
     public String getGoods(String basisGoods, int basisSize){
     	return rdao.getRuleMap(basisGoods,basisSize);
@@ -130,18 +138,17 @@ public class AprioriRunner {
     	System.out.println("------------------------------------println properties end");
     }
     
+    
     public void runIt(){
     //println();
-    	ofdao.setFileAll(new HashMap<String, MarsOrderFrequent>());
-    	rdao.setMarsRuleAll(new HashMap<String, MarsRule>());
+    	ofdao.setFileAll(new HashMap<String, KaasOrderFrequent>());
+    	rdao.setMarsRuleAll(new HashMap<String, KaasRule>());
     	threadEndNum=0;
-        List<String> filelist=fileHistoryDAO.getFileList("Order", 4, 2);
-    //System.out.println(filelist.size());
+        List<String> filelist=fileHistoryDAO.getFileList();
         if(filelist == null || filelist.size() == 0){
             logger.info("No orders are needed to do offline training!");
             return;
         }
-        fileHistoryDAO.updateFlag(filelist, "Order", 3);
         int threadN=Integer.parseInt(threadNum);
         int loop;
         int taskN;
@@ -171,7 +178,6 @@ public class AprioriRunner {
             MarsAprioriTask marsAprioriTask = new MarsAprioriTask(partOfFiles,submitLoopMax,freqSetMaxSize,supportGate);
             taskExecutor.execute(marsAprioriTask);
         }
-//System.out.println("-------------------------------------------------");
         int time=Integer.parseInt(waitTime);
         try{
         	while(threadEndNum!=threadN){
@@ -180,7 +186,6 @@ public class AprioriRunner {
         }catch(Exception e){
             ;
         }
-        /*taskExecutor.getThreadPoolExecutor().shutdownNow();*/
         logger.info("Offline Training Task Finished Once!");
 
         return;
@@ -207,7 +212,6 @@ public class AprioriRunner {
         	System.out.println(supportGate);
         }
         public MarsAprioriTask(List<String> filelist,int submitLoopMax,int freqSetMaxSize,int supportGate) {
-        	System.out.println();
             this.filelist = filelist;
             this.submitLoopMax = submitLoopMax;
             submitLoopCur = 0;
@@ -266,12 +270,9 @@ public class AprioriRunner {
                         if(Thread.currentThread().isInterrupted()){
                             in.close();
                             logger.warn("offline training threads interrupted");
-                            fileHistoryDAO.updateFlag(notFinished, "Order", 2);
-                            fileHistoryDAO.updateFlag(finished, "Order", 4);
                             return;
                         }
                         Set<String> idlist = getProductsInOrderLine(line);
-                    //System.out.println(idlist.toString());
                         executeLine(idlist);
                     }
                 } catch (IOException e) {
@@ -283,11 +284,8 @@ public class AprioriRunner {
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
-            //notFinished.remove(fileone);
-            //finished.add(fileone);
             }
             genRulesFromMemory();
-            //fileHistoryDAO.updateFlag(filelist, "Order", 4);
             threadEndNum++;
 
         }
@@ -296,7 +294,7 @@ public class AprioriRunner {
             if(line == null || line.length()<=0){
                 return null;
             }
-            String[] ss = line.split(" ");
+            String[] ss = line.split(goodsDelimiter);
             if(ss.length <= 1){
                 return null;
             }
@@ -321,35 +319,26 @@ public class AprioriRunner {
 
             CombinationModel cm = new CombinationModel(idlist.toArray(new String[0]),submitMap);
             cm.genCombinations(freqSetMaxSize);
-            //sset=null;
             cm=null;
             submitLoopCur++;
-        /*System.out.println("---------------------" + submitLoopCur);
-        for(Map.Entry<String, Integer> me : submitMap.entrySet()){
-        	System.out.println(me.getKey()+" : "+ me.getValue());
-        }
-        System.out.println("---------------------end");*/
             if(submitLoopCur == submitLoopMax){
-        //System.out.println("submitLoopCur:"+submitLoopCur);
                 genRulesFromMemory();
             }
         }
 
         public boolean genRulesFromMemory(){
-            List<MarsOrderFrequent> olist=new ArrayList<MarsOrderFrequent>();
-            List<MarsRule> rlist=new ArrayList<MarsRule>();
+            List<KaasOrderFrequent> olist=new ArrayList<KaasOrderFrequent>();
+            List<KaasRule> rlist=new ArrayList<KaasRule>();
 
             long startTime1 = System.nanoTime();
             for(Map.Entry<String, Integer> me : submitMap.entrySet()){
             	Map<String,Integer> histery = rdao.getRuleMap(me.getKey());
-        //System.out.println(me.getKey()+" : "+ me.getValue());
-        //System.out.println(histery.size());
         		if(histery.size()>0){
-        			List<MarsRule> subRlist = genMapRulesByLine(histery);
+        			List<KaasRule> subRlist = genMapRulesByLine(histery);
         			rlist.addAll(subRlist);
         		}
         		
-                MarsOrderFrequent of = new MarsOrderFrequent();
+                KaasOrderFrequent of = new KaasOrderFrequent();
                 of.setFreqSet(me.getKey());
                 of.setSupport(me.getValue());
                 of.setLevel(me.getKey().split(",").length);
@@ -357,22 +346,17 @@ public class AprioriRunner {
                 olist.add(of);
                 int newSup=me.getValue();
                 
-                MarsOrderFrequent tmp = ofdao.findOneByProperty("freqSet", me.getKey());
-            //System.out.println(tmp);
-            //System.out.println(newSup);
+                KaasOrderFrequent tmp = ofdao.findOneByProperty("freqSet", me.getKey());
                 if(tmp != null){
-        //System.out.println(tmp.getSupport());
                     newSup+=tmp.getSupport();
                 }
                 
                 if(newSup >= supportGate){
-            //System.out.println(newSup);
-                    List<MarsRule> subRlist = genRulesByLine(me.getKey(),newSup);
+                    List<KaasRule> subRlist = genRulesByLine(me.getKey(),newSup);
                     rlist.addAll(subRlist);
                     continue;
                 }
             }
-        //System.out.println("----------------------");
             long consumingTime0 = System.nanoTime();
             logger.warn("generate all rules:"+(consumingTime0- startTime1)/1000000000+" seconds!");
 
@@ -380,17 +364,17 @@ public class AprioriRunner {
             submitLoopCur = 0;
 
 
-            for(MarsOrderFrequent o : olist){
+            for(KaasOrderFrequent o : olist){
                 int rval=0;
                 rval = ofdao.submit(o);
                 if(rval !=1){
                     //all error case
                     if(rval == 2){
                         //concurrent case
-                        int maxTryCount=10;
-                        while(rval == 2 && maxTryCount>0){
+                    	int maxTryCountNum=Integer.valueOf(maxTryCount);
+                        while(rval == 2 && maxTryCountNum>0){
                             rval=ofdao.submit(o);
-                            maxTryCount--;
+                            maxTryCountNum--;
                         }
                         if(rval==2){
                             logger.warn("exceed maxTryCount of order frequent submit!");
@@ -401,17 +385,17 @@ public class AprioriRunner {
             ofdao.submit();
             long consumingTime1 = System.nanoTime();
             logger.warn("save all OF:"+(consumingTime1- consumingTime0)/1000000000+" seconds!");
-            for(MarsRule r: rlist){
+            for(KaasRule r: rlist){
                 int rval=0;
                 rdao.submit(r);
                 if(rval !=1){
                     //all error case
                     if(rval == 2){
                         //concurrent case
-                        int maxTryCount=10;
-                        while(rval == 2 && maxTryCount>0){
+                        int maxTryCountNum=Integer.valueOf(maxTryCount);
+                        while(rval == 2 && maxTryCountNum>0){
                             rval=rdao.submit(r);
-                            maxTryCount--;
+                            maxTryCountNum--;
                         }
                         if(rval==2){
                             logger.warn("exceed maxTryCount of rule submit!");
@@ -424,16 +408,10 @@ public class AprioriRunner {
             logger.warn("save all Rule:"+(consumingTime2- consumingTime1)/1000000000+" seconds!");
 
             logger.info("Loop times:"+submitLoopNum++);
-        /*System.out.println("listAll---------------------");
-        List<MarsRule> marsRuleList = rdao.getRule("1,3");
-        for(MarsRule m : marsRuleList){
-        	System.out.println(m.getProducts()+"=>"+m.getRecommendation()+"  : "+m.getConfidence());
-        }
-        System.out.println("---------------------------");*/
             return true;
         }
 
-        private List<MarsRule> genRulesByLine(String line,int baseSupport) {
+        private List<KaasRule> genRulesByLine(String line,int baseSupport) {
 
             Map<String,Integer> rulemap = null;
             //generate all rules
@@ -442,24 +420,21 @@ public class AprioriRunner {
             rulemap = cm.genRuleCombinations();
             cm = null;
             lineArr=null;
-       //System.out.println(line);
-       //rulemap.putAll(histery);
-            List<MarsRule> rlist= new ArrayList<MarsRule>();
+            List<KaasRule> rlist= new ArrayList<KaasRule>();
             if(rulemap != null){
                 for (Map.Entry<String, Integer> me: rulemap.entrySet()){
                     String[] tmp = me.getKey().split("\\|");
-                    MarsOrderFrequent of = ofdao.findOneByProperty("freqSet", tmp[0]);
+                    KaasOrderFrequent of = ofdao.findOneByProperty("freqSet", tmp[0]);
                     if(of != null || submitMap.containsKey(tmp[0])){
                         Double downSup = (of == null?0.0:of.getSupport())+submitMap.get(tmp[0]);
                         Double x = (baseSupport*1.0)/downSup;
-                        MarsRule r = new MarsRule();
+                        KaasRule r = new KaasRule();
                         r.setProducts(tmp[0]);
                         r.setRecommendation(tmp[1]);
                         r.setConfidence(x);
                         r.setFlag("general");
                         ////logger.info(tmp[0]+"->"+tmp[1]+":"+x.toString());
                         //rdao.submit(r);
-                    //System.out.println(tmp[0]+"->"+tmp[1]+":"+x.toString());
                         rlist.add(r);
                         tmp=null;
                         x=null;
@@ -477,29 +452,28 @@ public class AprioriRunner {
             return rlist;
         }
         
-        private List<MarsRule> genMapRulesByLine(Map<String,Integer> hisertry){
-        	List<MarsRule> rlist= new ArrayList<MarsRule>();
-        	for (Map.Entry<String, Integer> me: hisertry.entrySet()){
+        private List<KaasRule> genMapRulesByLine(Map<String,Integer> history){
+        	List<KaasRule> rlist= new ArrayList<KaasRule>();
+        	for (Map.Entry<String, Integer> me: history.entrySet()){
                 String[] tmp = me.getKey().split("\\|");
                 if(submitMap.containsKey(tmp[0]+","+tmp[1])){
                 	continue;
                 }
-                MarsOrderFrequent hi = ofdao.findOneByProperty("freqSet", tmp[0]+","+tmp[1]);
+                KaasOrderFrequent hi = ofdao.findOneByProperty("freqSet", tmp[0]+","+tmp[1]);
                 if(hi==null){
                 	continue;
                 }
-                MarsOrderFrequent of = ofdao.findOneByProperty("freqSet", tmp[0]);
+                KaasOrderFrequent of = ofdao.findOneByProperty("freqSet", tmp[0]);
                 if(of != null || submitMap.containsKey(tmp[0])){
                     Double downSup = (of == null?0.0:of.getSupport())+submitMap.get(tmp[0]);
                     Double x = (hi.getSupport()*1.0)/downSup;
-                    MarsRule r = new MarsRule();
+                    KaasRule r = new KaasRule();
                     r.setProducts(tmp[0]);
                     r.setRecommendation(tmp[1]);
                     r.setConfidence(x);
                     r.setFlag("general");
                     ////logger.info(tmp[0]+"->"+tmp[1]+":"+x.toString());
                     //rdao.submit(r);
-                //System.out.println(tmp[0]+"->"+tmp[1]+":"+x.toString());
                     rlist.add(r);
                     tmp=null;
                     x=null;
@@ -514,5 +488,18 @@ public class AprioriRunner {
         }
 
     }
+
+	public String getGoodsDelimiter() {
+		return goodsDelimiter;
+	}
+	public void setGoodsDelimiter(String goodsDelimiter) {
+		this.goodsDelimiter = goodsDelimiter;
+	}
+	public String getMaxTryCount() {
+		return maxTryCount;
+	}
+	public void setMaxTryCount(String maxTryCount) {
+		this.maxTryCount = maxTryCount;
+	}
 
 }

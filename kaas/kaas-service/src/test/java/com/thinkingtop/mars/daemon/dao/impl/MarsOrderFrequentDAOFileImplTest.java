@@ -4,8 +4,8 @@ import static org.junit.Assert.*;
 
 import org.junit.Test;
 
-import com.thinkingtop.kaas.services.dao.MarsOrderFrequentDAO;
-import com.thinkingtop.kaas.services.model.MarsOrderFrequent;
+import com.thinkingtop.kaas.services.dao.KaasOrderFrequentDAO;
+import com.thinkingtop.kaas.services.model.KaasOrderFrequent;
 
 public class MarsOrderFrequentDAOFileImplTest {
 

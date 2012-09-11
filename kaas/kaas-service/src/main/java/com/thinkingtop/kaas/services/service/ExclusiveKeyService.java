@@ -7,8 +7,8 @@ import javax.jws.WebService;
 
 import com.thinkingtop.kaas.services.model.ExclusiveKey;
 /**
- * 这是一个ExclusiveKeyService抽象类
- * 它对外暴露一个方法，让用户调用
+ * This is a ExclusiveKeyService Abstract class
+ * External exposure method, allows users to call
  * @author roadahead
  *
  */

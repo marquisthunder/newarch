@@ -102,8 +102,8 @@
     	class="com.thinkingtop.kaas.services.tasks.AprioriRunner">
     	<property name="taskExecutor" ref="threadPoolTaskExecutor"/>
     	<property name="fileHistoryDAO" ref="fileHistoryDAOFileImpl"/>
-    	<property name="ofdao" ref="marsOrderFrequentDAOFileImpl"/>
-    	<property name="rdao" ref="marsRuleDAOFileImpl"/>
+    	<property name="ofdao" ref="kaasOrderFrequentDAOFileImpl"/>
+    	<property name="rdao" ref="kaasRuleDAOFileImpl"/>
     	<property name="threadNum" value="${runner.threadNum}"/>
     	<property name="dataPath" value="${runner.dataPath}"/>
     	<property name="folder" value="${runner.folder}"/>
@@ -111,5 +111,7 @@
     	<property name="submitLoopMaxStr" value="${runner.submitLoopMaxStr}"/>
     	<property name="freqSetMaxSizeStr" value="${runner.freqSetMaxSizeStr}"/>
     	<property name="supportGateStr" value="${runner.supportGateStr}"/>
+    	<property name="goodsDelimiter" value="${runner.goodsDelimiter}"/>
+    	<property name="maxTryCount" value="${runner.maxTryCount}"/>
     </bean>
 </beans>

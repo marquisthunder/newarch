@@ -14,6 +14,11 @@ import org.apache.log4j.Logger;
 
 import com.thinkingtop.kaas.services.tasks.AprioriRunner;
 
+/**
+ * Combination Generator class
+ * @author roadahead
+ *
+ */
 public class CombinationGenerator {
 
     private int[] a;

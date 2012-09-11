@@ -3,7 +3,7 @@ package com.thinkingtop.kaas.services.dao;
 import com.thinkingtop.kaas.services.model.Kebsite;
 
 /**
- * 用户信息数据库访问抽象类
+ * The user information database access abstract class
  * @author roadahead
  *
  */

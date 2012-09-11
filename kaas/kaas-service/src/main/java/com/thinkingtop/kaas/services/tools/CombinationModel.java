@@ -3,6 +3,11 @@ package com.thinkingtop.kaas.services.tools;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * Combination generator auxiliary class
+ * @author roadahead
+ *
+ */
 public class CombinationModel {
 	private String[] lineArr;
 	Map<String, Integer> submitMap;
