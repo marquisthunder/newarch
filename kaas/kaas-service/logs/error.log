@@ -1,0 +1,112 @@
+2012-09-11 15:47:15  [ main:9 ] - [ INFO ]  Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@1fae3c6: startup date [Tue Sep 11 15:47:15 CST 2012]; root of context hierarchy
+2012-09-11 15:47:16  [ main:77 ] - [ INFO ]  Loading XML bean definitions from class path resource [beans.xml]
+2012-09-11 15:47:16  [ main:745 ] - [ INFO ]  Loading properties file from class path resource [jdbc.properties]
+2012-09-11 15:47:16  [ main:746 ] - [ INFO ]  Loading properties file from class path resource [runner.properties]
+2012-09-11 15:47:16  [ main:798 ] - [ INFO ]  Pre-instantiating singletons in org.springframework.beans.factory.support.DefaultListableBeanFactory@e5bbd6: defining beans [org.springframework.context.annotation.internalConfigurationAnnotationProcessor,org.springframework.context.annotation.internalAutowiredAnnotationProcessor,org.springframework.context.annotation.internalRequiredAnnotationProcessor,org.springframework.context.annotation.internalCommonAnnotationProcessor,org.springframework.context.annotation.internalPersistenceAnnotationProcessor,exclusiveKeyServiceImpl,exclusiveKeyDAOImpl,kebsiteDAOImpl,marsOrderFrequentDAOFileImpl,fileHistoryDAOFileImpl,marsRuleDAOFileImpl,exclusiveKeyManage,kebsiteManage,org.springframework.aop.config.internalAutoProxyCreator,org.springframework.beans.factory.config.PropertyPlaceholderConfigurer#0,dataSource,sessionFactory,txManager,org.springframework.transaction.annotation.AnnotationTransactionAttributeSource#0,org.springframework.transaction.interceptor.TransactionInterceptor#0,org.springframework.transaction.config.internalTransactionAdvisor,bussinessService,org.springframework.aop.support.DefaultBeanFactoryPointcutAdvisor#0,txAdvice,threadPoolTaskExecutor,aprioriRunner,org.springframework.context.annotation.ConfigurationClassPostProcessor$ImportAwareBeanPostProcessor#0]; root of factory hierarchy
+2012-09-11 15:47:17  [ main:1219 ] - [ INFO ]  Hibernate Commons Annotations 3.2.0.Final
+2012-09-11 15:47:17  [ main:1224 ] - [ INFO ]  Hibernate 3.6.10.Final
+2012-09-11 15:47:17  [ main:1226 ] - [ INFO ]  hibernate.properties not found
+2012-09-11 15:47:17  [ main:1229 ] - [ INFO ]  Bytecode provider name : javassist
+2012-09-11 15:47:17  [ main:1232 ] - [ INFO ]  using JDK 1.4 java.sql.Timestamp handling
+2012-09-11 15:47:17  [ main:1322 ] - [ INFO ]  Binding entity from annotated class: com.thinkingtop.kaas.services.model.Kebsite
+2012-09-11 15:47:17  [ main:1357 ] - [ INFO ]  Bind entity com.thinkingtop.kaas.services.model.Kebsite on table Kebsite
+2012-09-11 15:47:17  [ main:1410 ] - [ INFO ]  Binding entity from annotated class: com.thinkingtop.kaas.services.model.ExclusiveKey
+2012-09-11 15:47:17  [ main:1411 ] - [ INFO ]  Bind entity com.thinkingtop.kaas.services.model.ExclusiveKey on table ExclusiveKey
+2012-09-11 15:47:17  [ main:1426 ] - [ INFO ]  Mapping collection: com.thinkingtop.kaas.services.model.Kebsite.exclusiveKey -> ExclusiveKey
+2012-09-11 15:47:17  [ main:1434 ] - [ INFO ]  Hibernate Validator not found: ignoring
+2012-09-11 15:47:17  [ main:1437 ] - [ INFO ]  Building new Hibernate SessionFactory
+2012-09-11 15:47:17  [ main:1442 ] - [ INFO ]  Unable to find org.hibernate.search.event.FullTextIndexEventListener on the classpath. Hibernate Search is not enabled.
+2012-09-11 15:47:17  [ main:1446 ] - [ INFO ]  Initializing connection provider: org.springframework.orm.hibernate3.LocalDataSourceConnectionProvider
+2012-09-11 15:47:17  [ main:1738 ] - [ INFO ]  Using dialect: org.hibernate.dialect.MySQLDialect
+2012-09-11 15:47:17  [ main:1749 ] - [ INFO ]  Database ->
+       name : MySQL
+    version : 5.1.63-0ubuntu0.11.04.1
+      major : 5
+      minor : 1
+2012-09-11 15:47:17  [ main:1749 ] - [ INFO ]  Driver ->
+       name : MySQL-AB JDBC Driver
+    version : mysql-connector-java-5.1.21 ( Revision: ${bzr.revision-id} )
+      major : 5
+      minor : 1
+2012-09-11 15:47:17  [ main:1751 ] - [ INFO ]  Transaction strategy: org.springframework.orm.hibernate3.SpringTransactionFactory
+2012-09-11 15:47:17  [ main:1752 ] - [ INFO ]  No TransactionManagerLookup configured (in JTA environment, use of read-write or transactional second-level cache is not recommended)
+2012-09-11 15:47:17  [ main:1753 ] - [ INFO ]  Automatic flush during beforeCompletion(): disabled
+2012-09-11 15:47:17  [ main:1753 ] - [ INFO ]  Automatic session close at end of transaction: disabled
+2012-09-11 15:47:17  [ main:1753 ] - [ INFO ]  JDBC batch size: 15
+2012-09-11 15:47:17  [ main:1754 ] - [ INFO ]  JDBC batch updates for versioned data: disabled
+2012-09-11 15:47:17  [ main:1754 ] - [ INFO ]  Scrollable result sets: enabled
+2012-09-11 15:47:17  [ main:1755 ] - [ INFO ]  JDBC3 getGeneratedKeys(): enabled
+2012-09-11 15:47:17  [ main:1755 ] - [ INFO ]  Connection release mode: auto
+2012-09-11 15:47:17  [ main:1756 ] - [ INFO ]  Maximum outer join fetch depth: 2
+2012-09-11 15:47:17  [ main:1756 ] - [ INFO ]  Default batch fetch size: 1
+2012-09-11 15:47:17  [ main:1757 ] - [ INFO ]  Generate SQL with comments: disabled
+2012-09-11 15:47:17  [ main:1757 ] - [ INFO ]  Order SQL updates by primary key: disabled
+2012-09-11 15:47:17  [ main:1757 ] - [ INFO ]  Order SQL inserts for batching: disabled
+2012-09-11 15:47:17  [ main:1757 ] - [ INFO ]  Query translator: org.hibernate.hql.ast.ASTQueryTranslatorFactory
+2012-09-11 15:47:17  [ main:1759 ] - [ INFO ]  Using ASTQueryTranslatorFactory
+2012-09-11 15:47:17  [ main:1759 ] - [ INFO ]  Query language substitutions: {}
+2012-09-11 15:47:17  [ main:1759 ] - [ INFO ]  JPA-QL strict compliance: disabled
+2012-09-11 15:47:17  [ main:1760 ] - [ INFO ]  Second-level cache: enabled
+2012-09-11 15:47:17  [ main:1760 ] - [ INFO ]  Query cache: disabled
+2012-09-11 15:47:17  [ main:1760 ] - [ INFO ]  Cache region factory : org.hibernate.cache.impl.NoCachingRegionFactory
+2012-09-11 15:47:17  [ main:1761 ] - [ INFO ]  Optimize cache for minimal puts: disabled
+2012-09-11 15:47:17  [ main:1762 ] - [ INFO ]  Structured second-level cache entries: disabled
+2012-09-11 15:47:17  [ main:1765 ] - [ INFO ]  Echoing all SQL to stdout
+2012-09-11 15:47:17  [ main:1765 ] - [ INFO ]  Statistics: disabled
+2012-09-11 15:47:17  [ main:1766 ] - [ INFO ]  Deleted entity synthetic identifier rollback: disabled
+2012-09-11 15:47:17  [ main:1766 ] - [ INFO ]  Default entity-mode: pojo
+2012-09-11 15:47:17  [ main:1766 ] - [ INFO ]  Named query checking : enabled
+2012-09-11 15:47:17  [ main:1767 ] - [ INFO ]  Check Nullability in Core (should be disabled when Bean Validation is on): enabled
+2012-09-11 15:47:17  [ main:1787 ] - [ INFO ]  building session factory
+2012-09-11 15:47:17  [ main:1795 ] - [ INFO ]  Type registration [clob] overrides previous : org.hibernate.type.ClobType@322bce
+2012-09-11 15:47:17  [ main:1795 ] - [ INFO ]  Type registration [java.sql.Clob] overrides previous : org.hibernate.type.ClobType@322bce
+2012-09-11 15:47:17  [ main:1795 ] - [ INFO ]  Type registration [characters_clob] overrides previous : org.hibernate.type.PrimitiveCharacterArrayClobType@1c1ac46
+2012-09-11 15:47:17  [ main:1796 ] - [ INFO ]  Type registration [wrapper_materialized_blob] overrides previous : org.hibernate.type.WrappedMaterializedBlobType@1226a77
+2012-09-11 15:47:17  [ main:1796 ] - [ INFO ]  Type registration [wrapper_characters_clob] overrides previous : org.hibernate.type.CharacterArrayClobType@1f0aecc
+2012-09-11 15:47:17  [ main:1796 ] - [ INFO ]  Type registration [materialized_blob] overrides previous : org.hibernate.type.MaterializedBlobType@1a0d866
+2012-09-11 15:47:17  [ main:1797 ] - [ INFO ]  Type registration [materialized_clob] overrides previous : org.hibernate.type.MaterializedClobType@1a5db4b
+2012-09-11 15:47:17  [ main:1797 ] - [ INFO ]  Type registration [blob] overrides previous : org.hibernate.type.BlobType@29c204
+2012-09-11 15:47:17  [ main:1797 ] - [ INFO ]  Type registration [java.sql.Blob] overrides previous : org.hibernate.type.BlobType@29c204
+2012-09-11 15:47:17  [ main:1969 ] - [ INFO ]  Not binding factory to JNDI, no JNDI name configured
+2012-09-11 15:47:17  [ main:1973 ] - [ INFO ]  Running hbm2ddl schema update
+2012-09-11 15:47:17  [ main:1974 ] - [ INFO ]  fetching database metadata
+2012-09-11 15:47:17  [ main:1976 ] - [ INFO ]  updating schema
+2012-09-11 15:47:17  [ main:2001 ] - [ INFO ]  table found: kaasservice.ExclusiveKey
+2012-09-11 15:47:17  [ main:2002 ] - [ INFO ]  columns: [keystring, id, kebsiteid, activation]
+2012-09-11 15:47:17  [ main:2002 ] - [ INFO ]  foreign keys: []
+2012-09-11 15:47:17  [ main:2002 ] - [ INFO ]  indexes: [primary, fkda8bcf0149afd174]
+2012-09-11 15:47:17  [ main:2006 ] - [ INFO ]  table found: kaasservice.Kebsite
+2012-09-11 15:47:17  [ main:2007 ] - [ INFO ]  columns: [id, kebsitename]
+2012-09-11 15:47:17  [ main:2007 ] - [ INFO ]  foreign keys: []
+2012-09-11 15:47:17  [ main:2007 ] - [ INFO ]  indexes: [primary]
+2012-09-11 15:47:17  [ main:2008 ] - [ INFO ]  schema update complete
+2012-09-11 15:47:18  [ main:2093 ] - [ INFO ]  Using DataSource [org.apache.commons.dbcp.BasicDataSource@407166] of Hibernate SessionFactory for HibernateTransactionManager
+2012-09-11 15:47:18  [ main:2286 ] - [ INFO ]  Initializing ExecutorService  'threadPoolTaskExecutor'
+2012-09-11 15:47:18  [ main:2464 ] - [ INFO ]  Do offline training With 1 Threads!
+2012-09-11 15:47:18  [ threadPoolTaskExecutor-1:2467 ] - [ INFO ]  Current File Name:smb2 | Training Progress:1/1
+2012-09-11 15:47:18  [ threadPoolTaskExecutor-1:2472 ] - [ WARN ]  generate all rules:0 seconds!
+2012-09-11 15:47:18  [ threadPoolTaskExecutor-1:2474 ] - [ WARN ]  save all OF:0 seconds!
+2012-09-11 15:47:18  [ threadPoolTaskExecutor-1:2475 ] - [ WARN ]  save all Rule:0 seconds!
+2012-09-11 15:47:18  [ threadPoolTaskExecutor-1:2475 ] - [ INFO ]  Loop times:0
+2012-09-11 15:47:18  [ threadPoolTaskExecutor-1:2478 ] - [ WARN ]  generate all rules:0 seconds!
+2012-09-11 15:47:18  [ threadPoolTaskExecutor-1:2479 ] - [ WARN ]  save all OF:0 seconds!
+2012-09-11 15:47:18  [ threadPoolTaskExecutor-1:2480 ] - [ WARN ]  save all Rule:0 seconds!
+2012-09-11 15:47:18  [ threadPoolTaskExecutor-1:2480 ] - [ INFO ]  Loop times:1
+2012-09-11 15:47:18  [ threadPoolTaskExecutor-1:2484 ] - [ WARN ]  generate all rules:0 seconds!
+2012-09-11 15:47:18  [ threadPoolTaskExecutor-1:2485 ] - [ WARN ]  save all OF:0 seconds!
+2012-09-11 15:47:18  [ threadPoolTaskExecutor-1:2487 ] - [ WARN ]  save all Rule:0 seconds!
+2012-09-11 15:47:18  [ threadPoolTaskExecutor-1:2487 ] - [ INFO ]  Loop times:2
+2012-09-11 15:47:18  [ threadPoolTaskExecutor-1:2490 ] - [ WARN ]  generate all rules:0 seconds!
+2012-09-11 15:47:18  [ threadPoolTaskExecutor-1:2491 ] - [ WARN ]  save all OF:0 seconds!
+2012-09-11 15:47:18  [ threadPoolTaskExecutor-1:2492 ] - [ WARN ]  save all Rule:0 seconds!
+2012-09-11 15:47:18  [ threadPoolTaskExecutor-1:2492 ] - [ INFO ]  Loop times:3
+2012-09-11 15:47:18  [ threadPoolTaskExecutor-1:2493 ] - [ WARN ]  generate all rules:0 seconds!
+2012-09-11 15:47:18  [ threadPoolTaskExecutor-1:2494 ] - [ WARN ]  save all OF:0 seconds!
+2012-09-11 15:47:18  [ threadPoolTaskExecutor-1:2495 ] - [ WARN ]  save all Rule:0 seconds!
+2012-09-11 15:47:18  [ threadPoolTaskExecutor-1:2496 ] - [ INFO ]  Loop times:4
+2012-09-11 15:47:18  [ main:2567 ] - [ INFO ]  Offline Training Task Finished Once!
+2012-09-11 15:47:18  [ main:2568 ] - [ INFO ]  Closing org.springframework.context.support.ClassPathXmlApplicationContext@1fae3c6: startup date [Tue Sep 11 15:47:15 CST 2012]; root of context hierarchy
+2012-09-11 15:47:18  [ main:2569 ] - [ INFO ]  Destroying singletons in org.springframework.beans.factory.support.DefaultListableBeanFactory@e5bbd6: defining beans [org.springframework.context.annotation.internalConfigurationAnnotationProcessor,org.springframework.context.annotation.internalAutowiredAnnotationProcessor,org.springframework.context.annotation.internalRequiredAnnotationProcessor,org.springframework.context.annotation.internalCommonAnnotationProcessor,org.springframework.context.annotation.internalPersistenceAnnotationProcessor,exclusiveKeyServiceImpl,exclusiveKeyDAOImpl,kebsiteDAOImpl,marsOrderFrequentDAOFileImpl,fileHistoryDAOFileImpl,marsRuleDAOFileImpl,exclusiveKeyManage,kebsiteManage,org.springframework.aop.config.internalAutoProxyCreator,org.springframework.beans.factory.config.PropertyPlaceholderConfigurer#0,dataSource,sessionFactory,txManager,org.springframework.transaction.annotation.AnnotationTransactionAttributeSource#0,org.springframework.transaction.interceptor.TransactionInterceptor#0,org.springframework.transaction.config.internalTransactionAdvisor,bussinessService,org.springframework.aop.support.DefaultBeanFactoryPointcutAdvisor#0,txAdvice,threadPoolTaskExecutor,aprioriRunner,org.springframework.context.annotation.ConfigurationClassPostProcessor$ImportAwareBeanPostProcessor#0]; root of factory hierarchy
+2012-09-11 15:47:18  [ main:2574 ] - [ INFO ]  Shutting down ExecutorService 'threadPoolTaskExecutor'
+2012-09-11 15:47:18  [ main:2575 ] - [ INFO ]  Closing Hibernate SessionFactory
+2012-09-11 15:47:18  [ main:2576 ] - [ INFO ]  closing
