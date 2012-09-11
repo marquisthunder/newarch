@@ -19,8 +19,8 @@ import com.thinkingtop.kaas.services.model.Kebsite;
 import com.thinkingtop.kaas.services.tasks.AprioriRunner;
 
 /**
- * 这是一个ExclusiveKeyService实现类
- * 它对外暴露一个方法，让用户调用
+ * This is a ExclusiveKeyService implementation class
+ * External exposure method, allows users to call
  * @author roadahead
  *
  */
@@ -36,11 +36,11 @@ public class ExclusiveKeyServiceImpl implements ExclusiveKeyService{
 	 */
 	public String getGoods(String kebsiteName,String APIKey,String BasisGoods,int BasisSize) {
 		if(!kebsiteManage.isHold(kebsiteName)){
-			System.out.println("该用户不存在");
+			System.out.println("The user does not exist");
 			return null;
 		}
 		if(!exclusiveKeyManage.isHold(kebsiteName,APIKey)){
-			System.out.println("该用户没有这个APIKey");
+			System.out.println("The user does not have the APIKey");
 			return null;
 		}
 		if(exclusiveKeyManage.isActivation(APIKey)){
@@ -105,10 +105,10 @@ public class ExclusiveKeyServiceImpl implements ExclusiveKeyService{
 			}
 			KeyString.append(cKey[random.nextInt(cKey.length)]);
         }
-		System.out.println(KeyString.toString());
-		System.out.println("APIKey长度："+KeyString.length());
-		System.out.println("可选字符长度："+keyS.length());
-		System.out.println();
+System.out.println(KeyString.toString());
+System.out.println("APIKey长度："+KeyString.length());
+System.out.println("可选字符长度："+keyS.length());
+System.out.println();
 		return KeyString;
 	}
 

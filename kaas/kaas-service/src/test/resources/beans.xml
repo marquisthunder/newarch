@@ -84,6 +84,7 @@
 			<tx:method name="get*" read-only="true" />
 			<tx:method name="getUsers" read-only="true" />
 			<tx:method name="isHold" read-only="true" />
+			<tx:method name="isActivation" read-only="true" />
 		</tx:attributes>
 	</tx:advice>
 <!--

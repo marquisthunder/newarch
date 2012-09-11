@@ -18,9 +18,6 @@ import java.util.TreeSet;
 
 import javax.annotation.Resource;
 
-import jcifs.smb.SmbException;
-import jcifs.smb.SmbFile;
-import jcifs.smb.SmbFileInputStream;
 
 import org.apache.log4j.Logger;
 import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
@@ -163,24 +160,6 @@ public class myThreadPoolTaskExecutor {
             boolean smbAddr=false;
             for(String base:basePathes){
             	System.out.println(base);
-                if(base.matches("^smb://.*")){
-                    try {
-                        SmbFile smbFile=new SmbFile(base);
-                        if(smbFile.isDirectory()){
-                            realBase=base;
-                            smbAddr=true;
-                            break;
-                        }
-                        
-                    } catch (MalformedURLException e) {
-                        logger.warn("wrong format of samba address of offline!");
-                        continue;
-                    } catch (SmbException e) {
-                        logger.warn("wrong samba folder of offline!");
-                        continue;
-                    }
-
-                }else{
                     File tmp=new File(base);
            System.out.println(tmp.getClass());
                     if(tmp.isDirectory()){
@@ -190,7 +169,7 @@ public class myThreadPoolTaskExecutor {
                         break;
                     }
                 }
-            }
+            
             if (realBase == null) {
                 logger.info("No valide order folders");
                 return;
@@ -207,36 +186,19 @@ public class myThreadPoolTaskExecutor {
                 indexFile++;
                 //BufferedReader in = null;
                 DataInputStream in = null;
-                if (smbAddr) {
-                    try {
-                        in = new DataInputStream(new BufferedInputStream(
-                                new SmbFileInputStream(realBase
-                                        + "/" + folder + "/"
-                                        + fileone)));
-                    } catch (SmbException e) {
-                        logger.warn("error in fetch remote offline files");
-                        continue;
-                    } catch (MalformedURLException e) {
-                        logger.warn("wrond format address of remote offline files");
-                        continue;
-                    } catch (UnknownHostException e) {
-                        logger.warn("Unkown host of remote offline files");
-                        continue;
-                    }
-                } else {
-                    try {
-                        in = new DataInputStream(new BufferedInputStream(
+                try {
+                    in = new DataInputStream(new BufferedInputStream(
+                            new FileInputStream(realBase + File.separator
+                                    + folder + File.separator + fileone)));
+                	/*in = new BufferedReader(new InputStreamReader(
+                    		new BufferedInputStream(
                                 new FileInputStream(realBase + File.separator
-                                        + folder + File.separator + fileone)));
-                    	/*in = new BufferedReader(new InputStreamReader(
-                        		new BufferedInputStream(
-	                                new FileInputStream(realBase + File.separator
-	                                        + folder + File.separator + fileone))));*/
-                    } catch (FileNotFoundException e) {
-                        logger.warn("local offline file may be moved or renamed!");
-                        continue;
-                    }
+                                        + folder + File.separator + fileone))));*/
+                } catch (FileNotFoundException e) {
+                    logger.warn("local offline file may be moved or renamed!");
+                    continue;
                 }
+                
                 
                 logger.info("Current File Name:" + fileone
                         + " | Training Progress:" + indexFile + "/"
