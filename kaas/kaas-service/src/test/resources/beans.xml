@@ -114,4 +114,20 @@
     	<property name="goodsDelimiter" value="${runner.goodsDelimiter}"/>
     	<property name="maxTryCount" value="${runner.maxTryCount}"/>
     </bean>
+        <bean id="aprioriRunnerMultiThread" 
+    	class="com.thinkingtop.kaas.services.tasks.AprioriRunnerMultiThread">
+    	<property name="taskExecutor" ref="threadPoolTaskExecutor"/>
+    	<property name="fileHistoryDAO" ref="fileHistoryDAOFileImpl"/>
+    	<property name="ofdao" ref="kaasOrderFrequentDAOFileImpl"/>
+    	<property name="rdao" ref="kaasRuleDAOFileImpl"/>
+    	<property name="threadNum" value="${runner.threadNum}"/>
+    	<property name="dataPath" value="${runner.dataPath}"/>
+    	<property name="folder" value="${runner.folder}"/>
+    	<property name="waitTime" value="${runner.waitTime}"/>
+    	<property name="submitLoopMaxStr" value="${runner.submitLoopMaxStr}"/>
+    	<property name="freqSetMaxSizeStr" value="${runner.freqSetMaxSizeStr}"/>
+    	<property name="supportGateStr" value="${runner.supportGateStr}"/>
+    	<property name="goodsDelimiter" value="${runner.goodsDelimiter}"/>
+    	<property name="maxTryCount" value="${runner.maxTryCount}"/>
+    </bean>
 </beans>

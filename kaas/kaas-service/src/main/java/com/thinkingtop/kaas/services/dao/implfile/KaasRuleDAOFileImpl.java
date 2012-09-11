@@ -20,6 +20,7 @@ import com.thinkingtop.kaas.services.model.KaasRule;
 
 @Component("kaasRuleDAOFileImpl")
 public class KaasRuleDAOFileImpl implements KaasRuleDAO {
+	private String goodsDelimiter;
 	private String outFilePath; 
 	private Map<String,KaasRule> marsRuleAll;
 	public KaasRuleDAOFileImpl(){
@@ -109,7 +110,7 @@ public class KaasRuleDAOFileImpl implements KaasRuleDAO {
 		TreeMap<Double,String> marsRuleList = new TreeMap<Double,String>();
 		for(Map.Entry<String, KaasRule> me : marsRuleAll.entrySet()){
 			String[] bg = me.getKey().split("\\|");
-			if(bg[0].equals(basisGoods)&&(bg[1].split(",").length==basisSize)){
+			if(bg[0].equals(basisGoods)&&(bg[1].split(goodsDelimiter).length==basisSize)){
 				marsRuleList.put(me.getValue().getConfidence(),bg[1]);
 			}
 		}
@@ -117,6 +118,15 @@ public class KaasRuleDAOFileImpl implements KaasRuleDAO {
 			return marsRuleList.get(marsRuleList.lastKey());
 		}
 		return null;
+	}
+
+	public String getGoodsDelimiter() {
+		return goodsDelimiter;
+	}
+	
+	@Value("${runner.goodsDelimiter}")
+	public void setGoodsDelimiter(String goodsDelimiter) {
+		this.goodsDelimiter = goodsDelimiter;
 	}
 
 }

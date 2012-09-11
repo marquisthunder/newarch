@@ -341,7 +341,7 @@ public class AprioriRunner {
                 KaasOrderFrequent of = new KaasOrderFrequent();
                 of.setFreqSet(me.getKey());
                 of.setSupport(me.getValue());
-                of.setLevel(me.getKey().split(",").length);
+                of.setLevel(me.getKey().split(goodsDelimiter).length);
                 of.setOfType("all");
                 olist.add(of);
                 int newSup=me.getValue();
@@ -415,7 +415,7 @@ public class AprioriRunner {
 
             Map<String,Integer> rulemap = null;
             //generate all rules
-            String[] lineArr=line.split(",");
+            String[] lineArr=line.split(goodsDelimiter);
             CombinationModel cm = new CombinationModel(lineArr);
             rulemap = cm.genRuleCombinations();
             cm = null;
@@ -456,10 +456,10 @@ public class AprioriRunner {
         	List<KaasRule> rlist= new ArrayList<KaasRule>();
         	for (Map.Entry<String, Integer> me: history.entrySet()){
                 String[] tmp = me.getKey().split("\\|");
-                if(submitMap.containsKey(tmp[0]+","+tmp[1])){
+                if(submitMap.containsKey(tmp[0]+goodsDelimiter+tmp[1])){
                 	continue;
                 }
-                KaasOrderFrequent hi = ofdao.findOneByProperty("freqSet", tmp[0]+","+tmp[1]);
+                KaasOrderFrequent hi = ofdao.findOneByProperty("freqSet", tmp[0]+goodsDelimiter+tmp[1]);
                 if(hi==null){
                 	continue;
                 }

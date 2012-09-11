@@ -14,7 +14,7 @@ public class ExclusiveKeyManageTest {
 
 	@Test
 	public void teatAdd(){
-		ClassPathXmlApplicationContext ctx = new ClassPathXmlApplicationContext("beans.xml");
+		/*ClassPathXmlApplicationContext ctx = new ClassPathXmlApplicationContext("beans.xml");
 		ExclusiveKeyManage service = (ExclusiveKeyManage)ctx.getBean("exclusiveKeyManage");
 		KebsiteManage serviceKebsiteManage = (KebsiteManage)ctx.getBean("kebsiteManage");
 		ExclusiveKeyServiceImpl eksi = (ExclusiveKeyServiceImpl)ctx.getBean("exclusiveKeyServiceImpl");
@@ -27,19 +27,19 @@ public class ExclusiveKeyManageTest {
 		Kebsite kebsite = serviceKebsiteManage.getKebsite("jingdong");
 		ek.setKebsite(kebsite);
 		service.add(ek);
-		ctx.destroy();
+		ctx.destroy();*/
 	}
 	
 	@Test
 	public void testIsHold() {
 
 		
-		ClassPathXmlApplicationContext ctx = new ClassPathXmlApplicationContext("beans.xml");
+		/*ClassPathXmlApplicationContext ctx = new ClassPathXmlApplicationContext("beans.xml");
 		ExclusiveKeyManage service = (ExclusiveKeyManage)ctx.getBean("exclusiveKeyManage");
 		System.out.println(service.getClass());
 		boolean ish = service.isHold(new StringBuffer("NOk4OPyDZ8vNrJa1FlO3#46l0scN4SgKcLaf39UT6R_48U_rAhr8i3gEJ6nm8k7Qm9rtQ_B4TKcjpYy"));
 		System.out.println(ish);
-		ctx.destroy();
+		ctx.destroy();*/
 	}
 	
 	@Test

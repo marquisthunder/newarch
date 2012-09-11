@@ -14,13 +14,13 @@ public class KebsiteManageTest {
 
 	@Test
 	public void testAdd() {
-		ClassPathXmlApplicationContext ctx = new ClassPathXmlApplicationContext("beans.xml");
+		/*ClassPathXmlApplicationContext ctx = new ClassPathXmlApplicationContext("beans.xml");
 		KebsiteManage service = (KebsiteManage)ctx.getBean("kebsiteManage");
 		System.out.println(service.getClass());
 		Kebsite kebsite = new Kebsite();
 		kebsite.setKebsiteName("jingdong");
 		service.add(kebsite);
-		ctx.destroy();
+		ctx.destroy();*/
 	}
 	
 	@Test
