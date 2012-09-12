@@ -60,23 +60,11 @@
 		<dependency>
 			<groupId>org.jdom</groupId>
 			<artifactId>jdom</artifactId>
-			<version>1.1.3</version>
 		</dependency>
 
 		<dependency>
 			<groupId>jaxen</groupId>
 			<artifactId>jaxen</artifactId>
-			<version>1.1.3</version>
-			<exclusions>
-				<exclusion>
-					<groupId>maven-plugins</groupId>
-					<artifactId>maven-cobertura-plugin</artifactId>
-				</exclusion>
-				<exclusion>
-					<groupId>maven-plugins</groupId>
-					<artifactId>maven-findbugs-plugin</artifactId>
-				</exclusion>
-			</exclusions>
 		</dependency>
 		<!-- jdom end -->
 <!-- <dependency>
