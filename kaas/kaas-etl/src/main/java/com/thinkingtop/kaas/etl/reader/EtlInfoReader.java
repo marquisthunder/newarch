@@ -33,7 +33,6 @@ public class EtlInfoReader {
 				Document doc = sb.build(Thread.currentThread().getContextClassLoader().getResourceAsStream(fileName));
 				// the class of Document is inside the packet org.jdom;
 				root = doc.getRootElement();
-				System.out.println(root.getName() + "..............");
 				logger.info(root.getName()+" has been initialized");
 			} catch (Exception e) {
 				e.printStackTrace();
@@ -47,10 +46,9 @@ public class EtlInfoReader {
 		Map<String, String> map = new HashMap<String, String>();
 		try {
 			List<Element> satNameElet = XPath.selectNodes(root, "//mapping");
-			System.out.println(root.getName());
+			logger.info(root.getName()+" has been initialized");
 			for (Iterator<Element> ite = satNameElet.iterator(); ite.hasNext();) {
 				Element ele = ite.next();
-				System.out.println(ele.getName());
 				if (ele.getName().toString().equals("mapping")) {
 					String mapping_table_name = ele.getAttributeValue("table");
 					map.put("mapping_table_name", mapping_table_name);

@@ -29,7 +29,6 @@ public class EtlMysqlImpl implements EtlDAO {
 		this.jdbcTemplate = jdbcTemplate;
 	}
 	
-	static int temp=1;
 
 	@Override
 	@SuppressWarnings("unchecked")
@@ -48,23 +47,23 @@ public class EtlMysqlImpl implements EtlDAO {
 	@Override
 	@SuppressWarnings("unchecked")
 	public LinkedHashSet<String> getItemIdGroup(String orderId, String tableName, final String itemIdName, String orderIdName) {
-		LinkedHashSet<String> goodsIdList = new LinkedHashSet<String>();
-		System.out.println("select "+itemIdName+" from "+tableName+" where "+orderIdName+" = "+orderId);
-		goodsIdList = (LinkedHashSet<String>)jdbcTemplate.query("select "+itemIdName+" from "+tableName+" where "+orderIdName+" = "+orderId,  new RowMapper() {
+		LinkedHashSet<String> itemIdSet = new LinkedHashSet<String>();
+		logger.info("select "+itemIdName+" from "+tableName+" where "+orderIdName+" = "+orderId);
+		itemIdSet = (LinkedHashSet<String>)jdbcTemplate.query("select "+itemIdName+" from "+tableName+" where "+orderIdName+" = "+orderId,  new RowMapper() {
 			public Object mapRow(ResultSet rs, int rowNum)
 					throws SQLException {
 				String s_temp = rs.getString(itemIdName);
 				return s_temp;
 			}
 		});
-		return goodsIdList;
+		return itemIdSet;
 	}
 
 
 	@Override
 	@SuppressWarnings("unchecked")
 	public LinkedHashSet<String> getItemIdGroup(String orderId, String tableName, final String itemListName, String orderIdName, String separator) {
-		LinkedHashSet<String> goodsIdList = new LinkedHashSet<String>();
+		LinkedHashSet<String> itemIdSet = new LinkedHashSet<String>();
 		String goodsId_str = (String)jdbcTemplate.queryForObject("select "+itemListName+" from "+tableName+" where "+orderIdName+" = "+orderId,  new RowMapper() {
 			public Object mapRow(ResultSet rs, int rowNum)
 					throws SQLException {
@@ -76,9 +75,9 @@ public class EtlMysqlImpl implements EtlDAO {
 		
 		String str_array[] = goodsId_str.split(separator);
 		for(int i=0;i<str_array.length;i++) {
-			goodsIdList.add(String.valueOf(str_array[i]));
+			itemIdSet.add(String.valueOf(str_array[i]));
 		}
-		return goodsIdList;
+		return itemIdSet;
 		
 	}
 
@@ -86,7 +85,7 @@ public class EtlMysqlImpl implements EtlDAO {
 	@Override
 	@SuppressWarnings("unchecked")
 	public LinkedHashSet<String> getItemIdGroup(String orderId, String tableName, String orderIdName, final String prefix, String startId, String colunmCount) {
-		LinkedHashSet<String> goodsIdList = new LinkedHashSet<String>();
+		LinkedHashSet<String> itemIdSet = new LinkedHashSet<String>();
 		final int origin = Integer.parseInt(startId);
 		int start = new Integer(origin);
 		StringBuilder sb = new StringBuilder();
@@ -96,8 +95,8 @@ public class EtlMysqlImpl implements EtlDAO {
 			start++;
 			sb.append(","+prefix+start);
 		}
-		System.out.println("select "+sb.toString()+" from "+tableName+" where "+orderIdName+" = "+orderId);
-		goodsIdList = (LinkedHashSet<String>)jdbcTemplate.queryForObject("select "+sb.toString()+" from "+tableName+" where "+orderIdName+" = "+orderId,  new RowMapper() {
+		logger.info("select "+sb.toString()+" from "+tableName+" where "+orderIdName+" = "+orderId);
+		itemIdSet = (LinkedHashSet<String>)jdbcTemplate.queryForObject("select "+sb.toString()+" from "+tableName+" where "+orderIdName+" = "+orderId,  new RowMapper() {
 			public Object mapRow(ResultSet rs, int rowNum)
 					throws SQLException {
 				LinkedHashSet<String> list = new LinkedHashSet<String>();
@@ -106,17 +105,14 @@ public class EtlMysqlImpl implements EtlDAO {
 					
 					String temp = rs.getString(prefix+start);
 					start++;
-					
 				
 					list.add(temp);
 					}
-			System.out.println("-------------------------------------------------------------------------");
-					
 				return list;
 			}
 		});
 		
-		return goodsIdList;
+		return itemIdSet;
 		
 	}
 

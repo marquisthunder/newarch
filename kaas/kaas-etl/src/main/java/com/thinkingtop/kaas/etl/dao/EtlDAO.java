@@ -7,7 +7,8 @@ import com.thinkingtop.kaas.etl.model.KaasItem;
 
 
 public interface EtlDAO {
-public List<String> getOrderList(String tableName, String orderIdName);
+	
+	public List<String> getOrderList(String tableName, String orderIdName);
 	
 	/**
 	 * itemIdGroup means all the item id in one order.
