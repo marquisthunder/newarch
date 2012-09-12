@@ -1,12 +1,13 @@
 package com.thinkingtop.kaas.etl.dao;
 
+import java.util.LinkedHashSet;
 import java.util.List;
 
 import com.thinkingtop.kaas.etl.model.KaasItem;
 
 
 public interface EtlDAO {
-public List<Integer> getOrderList(String tableName, String orderIdName);
+public List<String> getOrderList(String tableName, String orderIdName);
 	
 	/**
 	 * itemIdGroup means all the item id in one order.
@@ -18,7 +19,7 @@ public List<Integer> getOrderList(String tableName, String orderIdName);
 	 * @param orderIdName
 	 * @return
 	 */
-	public List<Integer> getItemIdGroup(Integer orderId,String tableName, String itemIdName, String orderIdName);
+	public LinkedHashSet<String> getItemIdGroup(String orderId,String tableName, String itemIdName, String orderIdName);
 	
 	/**
 	 *  itemIdGroup means all the item id in one order.
@@ -31,7 +32,7 @@ public List<Integer> getOrderList(String tableName, String orderIdName);
 	 * @param separator
 	 * @return
 	 */
-	public List<Integer> getItemIdGroup(Integer orderId,String tableName, String itemListName,  String orderIdName,String separator);
+	public LinkedHashSet<String> getItemIdGroup(String orderId,String tableName, String itemListName,  String orderIdName,String separator);
 	
 	/**
 	 *   itemIdGroup means all the item id in one order.
@@ -44,5 +45,5 @@ public List<Integer> getOrderList(String tableName, String orderIdName);
 	 * @param colunmCount
 	 * @return
 	 */
-	public List<Integer> getItemIdGroup(Integer orderId,String tableName, String orderIdName, String prefix, String startId, String colunmCount);
+	public LinkedHashSet<String> getItemIdGroup(String orderId,String tableName, String orderIdName, String prefix, String startId, String colunmCount);
 }

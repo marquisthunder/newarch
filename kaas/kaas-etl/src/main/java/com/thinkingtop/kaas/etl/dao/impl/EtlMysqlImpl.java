@@ -4,7 +4,9 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.LinkedHashSet;
 import java.util.List;
+import java.util.Set;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -31,13 +33,13 @@ public class EtlMysqlImpl implements EtlDAO {
 
 	@Override
 	@SuppressWarnings("unchecked")
-	public List<Integer> getOrderList(String tableName, final String orderIdName) {
-		List<Integer> idList = new ArrayList<Integer>();
-		idList = (List<Integer>)jdbcTemplate.query("select DISTINCT "+orderIdName+" from "+tableName, new RowMapper() {
+	public List<String> getOrderList(String tableName, final String orderIdName) {
+		List<String> idList = new ArrayList<String>();
+		idList = (List<String>)jdbcTemplate.query("select DISTINCT "+orderIdName+" from "+tableName, new RowMapper() {
 			public Object mapRow(ResultSet rs, int rowNum)
 					throws SQLException {
-				Integer i_temp = new Integer(rs.getInt(orderIdName));
-				return i_temp;
+				String s_temp = rs.getString(orderIdName);
+				return s_temp;
 			}
 		});
 		return idList;
@@ -45,14 +47,14 @@ public class EtlMysqlImpl implements EtlDAO {
 
 	@Override
 	@SuppressWarnings("unchecked")
-	public List<Integer> getItemIdGroup(Integer orderId, String tableName, final String itemIdName, String orderIdName) {
-		List<Integer> goodsIdList = new ArrayList<Integer>();
+	public LinkedHashSet<String> getItemIdGroup(String orderId, String tableName, final String itemIdName, String orderIdName) {
+		LinkedHashSet<String> goodsIdList = new LinkedHashSet<String>();
 		System.out.println("select "+itemIdName+" from "+tableName+" where "+orderIdName+" = "+orderId);
-		goodsIdList = (List<Integer>)jdbcTemplate.query("select "+itemIdName+" from "+tableName+" where "+orderIdName+" = "+orderId,  new RowMapper() {
+		goodsIdList = (LinkedHashSet<String>)jdbcTemplate.query("select "+itemIdName+" from "+tableName+" where "+orderIdName+" = "+orderId,  new RowMapper() {
 			public Object mapRow(ResultSet rs, int rowNum)
 					throws SQLException {
-				Integer i_temp = new Integer(rs.getInt(itemIdName));
-				return i_temp;
+				String s_temp = rs.getString(itemIdName);
+				return s_temp;
 			}
 		});
 		return goodsIdList;
@@ -61,8 +63,8 @@ public class EtlMysqlImpl implements EtlDAO {
 
 	@Override
 	@SuppressWarnings("unchecked")
-	public List<Integer> getItemIdGroup(Integer orderId, String tableName, final String itemListName, String orderIdName, String separator) {
-		List<Integer> goodsIdList = new ArrayList<Integer>();
+	public LinkedHashSet<String> getItemIdGroup(String orderId, String tableName, final String itemListName, String orderIdName, String separator) {
+		LinkedHashSet<String> goodsIdList = new LinkedHashSet<String>();
 		String goodsId_str = (String)jdbcTemplate.queryForObject("select "+itemListName+" from "+tableName+" where "+orderIdName+" = "+orderId,  new RowMapper() {
 			public Object mapRow(ResultSet rs, int rowNum)
 					throws SQLException {
@@ -74,7 +76,7 @@ public class EtlMysqlImpl implements EtlDAO {
 		
 		String str_array[] = goodsId_str.split(separator);
 		for(int i=0;i<str_array.length;i++) {
-			goodsIdList.add(Integer.parseInt(str_array[i]));
+			goodsIdList.add(String.valueOf(str_array[i]));
 		}
 		return goodsIdList;
 		
@@ -83,8 +85,8 @@ public class EtlMysqlImpl implements EtlDAO {
 
 	@Override
 	@SuppressWarnings("unchecked")
-	public List<Integer> getItemIdGroup(Integer orderId, String tableName, String orderIdName, final String prefix, String startId, String colunmCount) {
-		List<Integer> goodsIdList = new ArrayList<Integer>();
+	public LinkedHashSet<String> getItemIdGroup(String orderId, String tableName, String orderIdName, final String prefix, String startId, String colunmCount) {
+		LinkedHashSet<String> goodsIdList = new LinkedHashSet<String>();
 		final int origin = Integer.parseInt(startId);
 		int start = new Integer(origin);
 		StringBuilder sb = new StringBuilder();
@@ -95,14 +97,14 @@ public class EtlMysqlImpl implements EtlDAO {
 			sb.append(","+prefix+start);
 		}
 		System.out.println("select "+sb.toString()+" from "+tableName+" where "+orderIdName+" = "+orderId);
-		goodsIdList = (List<Integer>)jdbcTemplate.queryForObject("select "+sb.toString()+" from "+tableName+" where "+orderIdName+" = "+orderId,  new RowMapper() {
+		goodsIdList = (LinkedHashSet<String>)jdbcTemplate.queryForObject("select "+sb.toString()+" from "+tableName+" where "+orderIdName+" = "+orderId,  new RowMapper() {
 			public Object mapRow(ResultSet rs, int rowNum)
 					throws SQLException {
-				List<Integer> list = new ArrayList<Integer>();
+				LinkedHashSet<String> list = new LinkedHashSet<String>();
 				int start = origin;
 				for(int i=0;i<length;i++) {
 					
-					Integer temp = new Integer(rs.getInt(prefix+start));
+					String temp = rs.getString(prefix+start);
 					start++;
 					
 				

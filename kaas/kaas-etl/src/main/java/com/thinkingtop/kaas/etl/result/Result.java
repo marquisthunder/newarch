@@ -46,7 +46,7 @@ public class Result{
 			String orderIdName = map.get("order_id"); 
 			String mappingTableName = map.get("mapping_table_name");
 		
-			List<Integer> list = etlService.getOrderList(mappingTableName, orderIdName);
+			List<String> list = etlService.getOrderList(mappingTableName, orderIdName);
 			logger.info("order::{}"+list);
 			//transformerService.getOrderListByFieldName(name)
 			for(int i=0;i<list.size();i++) {
@@ -72,7 +72,7 @@ public class Result{
 				String mappingTableId = map.get("mapping_table_id");
 				String separator = map.get("separator");
 
-				List<Integer> list = etlService.getOrderList(mappingTableName, mappingTableId);
+				List<String> list = etlService.getOrderList(mappingTableName, mappingTableId);
 				logger.info("order::"+list);
 				for(int i=0;i<list.size();i++) {
 					logger.info("order_"+list.get(i)+"'s goods list::");
@@ -97,7 +97,7 @@ public class Result{
 				String columnCount = map.get("columnCount");
 				String startId = map.get("startid");
 				
-				List<Integer> list = etlService.getOrderList(mappingTableName, mappingTableId);
+				List<String> list = etlService.getOrderList(mappingTableName, mappingTableId);
 				logger.info("order::"+list);
 				logger.info("result:::::::::::::::::::::::::");
 				for(int i=0;i<list.size();i++) {
