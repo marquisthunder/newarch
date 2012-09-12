@@ -7,7 +7,7 @@
 	<packaging>pom</packaging>
 	<modules>
 		<module>kaas-etl</module>
-
+		<module>kaas-service</module>
 		<module>kaas-daemon</module>
 		<module>kaas-server</module>
 	</modules>
