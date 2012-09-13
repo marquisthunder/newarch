@@ -1,0 +1,919 @@
+2012-09-12 15:05:17  [ main:0 ] - [ DEBUG ]  Initializing new StandardEnvironment
+2012-09-12 15:05:17  [ main:4 ] - [ DEBUG ]  Adding [systemProperties] PropertySource with lowest search precedence
+2012-09-12 15:05:17  [ main:6 ] - [ DEBUG ]  Adding [systemEnvironment] PropertySource with lowest search precedence
+2012-09-12 15:05:17  [ main:6 ] - [ DEBUG ]  Initialized StandardEnvironment with PropertySources [systemProperties,systemEnvironment]
+2012-09-12 15:05:17  [ main:27 ] - [ INFO ]  Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@e83912: startup date [Wed Sep 12 15:05:17 CST 2012]; root of context hierarchy
+2012-09-12 15:05:17  [ main:222 ] - [ DEBUG ]  Initializing new StandardEnvironment
+2012-09-12 15:05:17  [ main:223 ] - [ DEBUG ]  Adding [systemProperties] PropertySource with lowest search precedence
+2012-09-12 15:05:17  [ main:223 ] - [ DEBUG ]  Adding [systemEnvironment] PropertySource with lowest search precedence
+2012-09-12 15:05:17  [ main:223 ] - [ DEBUG ]  Initialized StandardEnvironment with PropertySources [systemProperties,systemEnvironment]
+2012-09-12 15:05:17  [ main:224 ] - [ DEBUG ]  Initializing new StandardEnvironment
+2012-09-12 15:05:18  [ main:225 ] - [ DEBUG ]  Adding [systemProperties] PropertySource with lowest search precedence
+2012-09-12 15:05:18  [ main:225 ] - [ DEBUG ]  Adding [systemEnvironment] PropertySource with lowest search precedence
+2012-09-12 15:05:18  [ main:225 ] - [ DEBUG ]  Initialized StandardEnvironment with PropertySources [systemProperties,systemEnvironment]
+2012-09-12 15:05:18  [ main:451 ] - [ INFO ]  Loading XML bean definitions from class path resource [beans.xml]
+2012-09-12 15:05:18  [ main:663 ] - [ DEBUG ]  Using JAXP provider [org.apache.xerces.jaxp.DocumentBuilderFactoryImpl]
+2012-09-12 15:05:18  [ main:827 ] - [ DEBUG ]  Loading schema mappings from [META-INF/spring.schemas]
+2012-09-12 15:05:18  [ main:831 ] - [ DEBUG ]  Loaded schema mappings: {http://www.springframework.org/schema/tx/spring-tx-2.5.xsd=org/springframework/transaction/config/spring-tx-2.5.xsd, http://www.springframework.org/schema/context/spring-context-3.1.xsd=org/springframework/context/config/spring-context-3.1.xsd, http://www.springframework.org/schema/jms/spring-jms-2.5.xsd=org/springframework/jms/config/spring-jms-2.5.xsd, http://www.springframework.org/schema/util/spring-util-3.0.xsd=org/springframework/beans/factory/xml/spring-util-3.0.xsd, http://cxf.apache.org/schemas/configuration/http-conf.xsd=schemas/configuration/http-conf.xsd, http://www.w3.org/TR/xmldsig-core/xmldsig-core-schema.xsd=schemas/xmldsig-core-schema.xsd, http://www.springframework.org/schema/tool/spring-tool.xsd=org/springframework/beans/factory/xml/spring-tool-3.1.xsd, http://www.w3.org/2006/07/ws-policy.xsd=schemas/ws-policy-200607.xsd, http://cxf.apache.org/schemas/jaxrs.xsd=schemas/jaxrs.xsd, http://www.springframework.org/schema/jdbc/spring-jdbc-3.1.xsd=org/springframework/jdbc/config/spring-jdbc-3.1.xsd, http://cxf.apache.org/schemas/configuration/wsrm-manager.xsd=schemas/configuration/wsrm-manager.xsd, http://www.springframework.org/schema/util/spring-util-2.0.xsd=org/springframework/beans/factory/xml/spring-util-2.0.xsd, http://www.springframework.org/schema/context/spring-context.xsd=org/springframework/context/config/spring-context-3.1.xsd, http://schemas.xmlsoap.org/ws/2004/08/addressing=schemas/wsdl/addressing.xsd, http://www.springframework.org/schema/context/spring-context-3.0.xsd=org/springframework/context/config/spring-context-3.0.xsd, http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-secext-1.0.xsd=schemas/oasis-200401-wss-wssecurity-secext-1.0.xsd, http://www.springframework.org/schema/util/spring-util-2.5.xsd=org/springframework/beans/factory/xml/spring-util-2.5.xsd, http://www.springframework.org/schema/aop/spring-aop-3.1.xsd=org/springframework/aop/config/spring-aop-3.1.xsd, http://schemas.xmlsoap.org/wsdl/=schemas/wsdl/wsdl.xsd, http://cxf.apache.org/schemas/bindings/object.xsd=schemas/bindings/object.xsd, http://www.springframework.org/schema/lang/spring-lang-3.1.xsd=org/springframework/scripting/config/spring-lang-3.1.xsd, http://www.springframework.org/schema/cache/spring-cache-3.1.xsd=org/springframework/cache/config/spring-cache-3.1.xsd, http://cxf.apache.org/schemas/configuration/jms.xsd=schemas/configuration/jms.xsd, http://www.springframework.org/schema/jdbc/spring-jdbc-3.0.xsd=org/springframework/jdbc/config/spring-jdbc-3.0.xsd, http://www.springframework.org/schema/jdbc/spring-jdbc.xsd=org/springframework/jdbc/config/spring-jdbc-3.1.xsd, http://cxf.apache.org/schemas/configuration/http-jetty.xsd=schemas/configuration/http-jetty.xsd, http://www.springframework.org/schema/tool/spring-tool-3.1.xsd=org/springframework/beans/factory/xml/spring-tool-3.1.xsd, http://schemas.xmlsoap.org/wsdl/http/=schemas/wsdl/http.xsd, http://cxf.apache.org/schemas/wsdl/jms.xsd=schemas/wsdl/jms.xsd, http://www.springframework.org/schema/jee/spring-jee-3.1.xsd=org/springframework/ejb/config/spring-jee-3.1.xsd, http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd=schemas/oasis-200401-wss-wssecurity-utility-1.0.xsd, http://cxf.apache.org/schemas/configuration/parameterized-types.xsd=schemas/configuration/parameterized-types.xsd, http://www.springframework.org/schema/beans/spring-beans-3.1.xsd=org/springframework/beans/factory/xml/spring-beans-3.1.xsd, http://www.springframework.org/schema/util/spring-util.xsd=org/springframework/beans/factory/xml/spring-util-3.1.xsd, http://www.springframework.org/schema/aop/spring-aop-3.0.xsd=org/springframework/aop/config/spring-aop-3.0.xsd, http://schemas.xmlsoap.org/ws/2005/02/rm/wsrm-policy.xsd=schemas/configuration/wsrm-policy.xsd, http://www.springframework.org/schema/beans/spring-beans.xsd=org/springframework/beans/factory/xml/spring-beans-3.1.xsd, http://www.springframework.org/schema/lang/spring-lang-3.0.xsd=org/springframework/scripting/config/spring-lang-3.0.xsd, http://www.springframework.org/schema/tx/spring-tx-3.1.xsd=org/springframework/transaction/config/spring-tx-3.1.xsd, http://schemas.xmlsoap.org/wsdl/2003-02-11.xsd=schemas/wsdl/wsdl.xsd, http://www.springframework.org/schema/context/spring-context-2.5.xsd=org/springframework/context/config/spring-context-2.5.xsd, http://cxf.apache.org/schemas/ws/addressing.xsd=schemas/ws-addr-conf.xsd, http://www.springframework.org/schema/tool/spring-tool-3.0.xsd=org/springframework/beans/factory/xml/spring-tool-3.0.xsd, http://www.springframework.org/schema/aop/spring-aop-2.0.xsd=org/springframework/aop/config/spring-aop-2.0.xsd, http://www.springframework.org/schema/jee/spring-jee-3.0.xsd=org/springframework/ejb/config/spring-jee-3.0.xsd, http://www.springframework.org/schema/task/spring-task-3.1.xsd=org/springframework/scheduling/config/spring-task-3.1.xsd, http://www.springframework.org/schema/beans/spring-beans-3.0.xsd=org/springframework/beans/factory/xml/spring-beans-3.0.xsd, http://cxf.apache.org/schemas/wsdl/http-conf.xsd=schemas/wsdl/http-conf.xsd, http://www.w3.org/2001/xml.xsd=schemas/xml.xsd, http://www.springframework.org/schema/jee/spring-jee.xsd=org/springframework/ejb/config/spring-jee-3.1.xsd, http://www.springframework.org/schema/jms/spring-jms.xsd=org/springframework/jms/config/spring-jms-2.5.xsd, http://www.springframework.org/schema/aop/spring-aop-2.5.xsd=org/springframework/aop/config/spring-aop-2.5.xsd, http://www.springframework.org/schema/lang/spring-lang-2.0.xsd=org/springframework/scripting/config/spring-lang-2.0.xsd, http://www.w3.org/2007/02/ws-policy.xsd=schemas/ws-policy-200702.xsd, http://www.springframework.org/schema/task/spring-task.xsd=org/springframework/scheduling/config/spring-task-3.1.xsd, http://www.springframework.org/schema/tool/spring-tool-2.0.xsd=org/springframework/beans/factory/xml/spring-tool-2.0.xsd, http://cxf.apache.org/schemas/policy.xsd=schemas/policy.xsd, http://www.springframework.org/schema/tx/spring-tx-3.0.xsd=org/springframework/transaction/config/spring-tx-3.0.xsd, http://www.springframework.org/schema/lang/spring-lang-2.5.xsd=org/springframework/scripting/config/spring-lang-2.5.xsd, http://schemas.xmlsoap.org/ws/2004/09/policy/ws-policy.xsd=schemas/ws-policy-200409.xsd, http://www.springframework.org/schema/jee/spring-jee-2.0.xsd=org/springframework/ejb/config/spring-jee-2.0.xsd, http://www.springframework.org/schema/tool/spring-tool-2.5.xsd=org/springframework/beans/factory/xml/spring-tool-2.5.xsd, http://www.springframework.org/schema/jee/spring-jee-2.5.xsd=org/springframework/ejb/config/spring-jee-2.5.xsd, http://cxf.apache.org/schemas/configuration/cxf-beans.xsd=schemas/configuration/cxf-beans.xsd, http://www.springframework.org/schema/task/spring-task-3.0.xsd=org/springframework/scheduling/config/spring-task-3.0.xsd, http://cxf.apache.org/schemas/core.xsd=schemas/core.xsd, http://www.springframework.org/schema/lang/spring-lang.xsd=org/springframework/scripting/config/spring-lang-3.1.xsd, http://www.springframework.org/schema/util/spring-util-3.1.xsd=org/springframework/beans/factory/xml/spring-util-3.1.xsd, http://www.springframework.org/schema/beans/spring-beans-2.0.xsd=org/springframework/beans/factory/xml/spring-beans-2.0.xsd, http://cxf.apache.org/schemas/configuration/security.xsd=schemas/configuration/security.xsd, http://www.springframework.org/schema/cache/spring-cache.xsd=org/springframework/cache/config/spring-cache-3.1.xsd, http://www.springframework.org/schema/tx/spring-tx.xsd=org/springframework/transaction/config/spring-tx-3.1.xsd, http://cxf.apache.org/schemas/configuration/soap.xsd=schemas/configuration/soap.xsd, http://www.springframework.org/schema/beans/spring-beans-2.5.xsd=org/springframework/beans/factory/xml/spring-beans-2.5.xsd, http://cxf.apache.org/schemas/jaxws.xsd=schemas/jaxws.xsd, http://cxf.apache.org/schemas/simple.xsd=schemas/simple.xsd, http://www.springframework.org/schema/tx/spring-tx-2.0.xsd=org/springframework/transaction/config/spring-tx-2.0.xsd, http://cxf.apache.org/schemas/configuration/wsrm-manager-types.xsd=schemas/configuration/wsrm-manager-types.xsd, http://www.springframework.org/schema/aop/spring-aop.xsd=org/springframework/aop/config/spring-aop-3.1.xsd}
+2012-09-12 15:05:18  [ main:832 ] - [ DEBUG ]  Found XML schema [http://www.springframework.org/schema/beans/spring-beans-2.5.xsd] in classpath: org/springframework/beans/factory/xml/spring-beans-2.5.xsd
+2012-09-12 15:05:18  [ main:907 ] - [ DEBUG ]  Found XML schema [http://www.springframework.org/schema/context/spring-context-2.5.xsd] in classpath: org/springframework/context/config/spring-context-2.5.xsd
+2012-09-12 15:05:18  [ main:959 ] - [ DEBUG ]  Found XML schema [http://www.springframework.org/schema/tool/spring-tool-2.5.xsd] in classpath: org/springframework/beans/factory/xml/spring-tool-2.5.xsd
+2012-09-12 15:05:18  [ main:963 ] - [ DEBUG ]  Found XML schema [http://www.springframework.org/schema/aop/spring-aop-2.5.xsd] in classpath: org/springframework/aop/config/spring-aop-2.5.xsd
+2012-09-12 15:05:18  [ main:971 ] - [ DEBUG ]  Found XML schema [http://www.springframework.org/schema/tx/spring-tx-2.5.xsd] in classpath: org/springframework/transaction/config/spring-tx-2.5.xsd
+2012-09-12 15:05:18  [ main:987 ] - [ DEBUG ]  Loading bean definitions
+2012-09-12 15:05:18  [ main:1009 ] - [ DEBUG ]  Loaded NamespaceHandler mappings: {http://www.springframework.org/schema/task=org.springframework.scheduling.config.TaskNamespaceHandler, http://www.springframework.org/schema/p=org.springframework.beans.factory.xml.SimplePropertyNamespaceHandler, http://cxf.apache.org/transports/http-jetty/configuration=org.apache.cxf.transport.http_jetty.spring.NamespaceHandler, http://www.w3.org/2006/07/ws-policy=org.apache.cxf.ws.policy.spring.PolicyNamespaceHandler, http://www.springframework.org/schema/lang=org.springframework.scripting.config.LangNamespaceHandler, http://www.springframework.org/schema/util=org.springframework.beans.factory.xml.UtilNamespaceHandler, http://www.springframework.org/schema/c=org.springframework.beans.factory.xml.SimpleConstructorNamespaceHandler, http://cxf.apache.org/jaxws=org.apache.cxf.jaxws.spring.NamespaceHandler, http://cxf.apache.org/policy=org.apache.cxf.ws.policy.spring.NamespaceHandler, http://www.springframework.org/schema/jee=org.springframework.ejb.config.JeeNamespaceHandler, http://cxf.apache.org/transports/jms=org.apache.cxf.transport.jms.spring.NamespaceHandler, http://cxf.apache.org/transports/http/configuration=org.apache.cxf.transport.http.spring.NamespaceHandler, http://cxf.apache.org/bindings/object=org.apache.cxf.binding.object.spring.NamespaceHandler, http://www.springframework.org/schema/tx=org.springframework.transaction.config.TxNamespaceHandler, http://cxf.apache.org/ws/addressing=org.apache.cxf.ws.addressing.spring.NamespaceHandler, http://cxf.apache.org/clustering=org.apache.cxf.clustering.spring.NamespaceHandler, http://cxf.apache.org/simple=org.apache.cxf.frontend.spring.NamespaceHandler, http://www.springframework.org/schema/jdbc=org.springframework.jdbc.config.JdbcNamespaceHandler, http://www.springframework.org/schema/aop=org.springframework.aop.config.AopNamespaceHandler, http://cxf.apache.org/jaxrs=org.apache.cxf.jaxrs.spring.NamespaceHandler, http://www.springframework.org/schema/context=org.springframework.context.config.ContextNamespaceHandler, http://cxf.apache.org/core=org.apache.cxf.bus.spring.NamespaceHandler, http://cxf.apache.org/binding/coloc=org.apache.cxf.binding.coloc.spring.NamespaceHandler, http://schemas.xmlsoap.org/ws/2004/09/policy=org.apache.cxf.ws.policy.spring.PolicyNamespaceHandler, http://www.springframework.org/schema/jms=org.springframework.jms.config.JmsNamespaceHandler, http://www.springframework.org/schema/cache=org.springframework.cache.config.CacheNamespaceHandler, http://www.w3.org/ns/ws-policy=org.apache.cxf.ws.policy.spring.PolicyNamespaceHandler, http://cxf.apache.org/ws/rm/manager=org.apache.cxf.ws.rm.spring.NamespaceHandler, http://cxf.apache.org/bindings/soap=org.apache.cxf.binding.soap.spring.NamespaceHandler}
+2012-09-12 15:05:18  [ main:1078 ] - [ DEBUG ]  Initializing new StandardEnvironment
+2012-09-12 15:05:18  [ main:1078 ] - [ DEBUG ]  Adding [systemProperties] PropertySource with lowest search precedence
+2012-09-12 15:05:18  [ main:1078 ] - [ DEBUG ]  Adding [systemEnvironment] PropertySource with lowest search precedence
+2012-09-12 15:05:18  [ main:1078 ] - [ DEBUG ]  Initialized StandardEnvironment with PropertySources [systemProperties,systemEnvironment]
+2012-09-12 15:05:18  [ main:1086 ] - [ DEBUG ]  Looking for matching resources in directory tree [/home/roadahead/workspace/newarch/kaas/kaas-service/target/test-classes/com/thinkingtop/kaas/services]
+2012-09-12 15:05:18  [ main:1086 ] - [ DEBUG ]  Searching directory [/home/roadahead/workspace/newarch/kaas/kaas-service/target/test-classes/com/thinkingtop/kaas/services] for files matching pattern [/home/roadahead/workspace/newarch/kaas/kaas-service/target/test-classes/com/thinkingtop/kaas/services/**/*.class]
+2012-09-12 15:05:18  [ main:1087 ] - [ DEBUG ]  Searching directory [/home/roadahead/workspace/newarch/kaas/kaas-service/target/test-classes/com/thinkingtop/kaas/services/service] for files matching pattern [/home/roadahead/workspace/newarch/kaas/kaas-service/target/test-classes/com/thinkingtop/kaas/services/**/*.class]
+2012-09-12 15:05:18  [ main:1089 ] - [ DEBUG ]  Searching directory [/home/roadahead/workspace/newarch/kaas/kaas-service/target/test-classes/com/thinkingtop/kaas/services/manage] for files matching pattern [/home/roadahead/workspace/newarch/kaas/kaas-service/target/test-classes/com/thinkingtop/kaas/services/**/*.class]
+2012-09-12 15:05:18  [ main:1091 ] - [ DEBUG ]  Searching directory [/home/roadahead/workspace/newarch/kaas/kaas-service/target/test-classes/com/thinkingtop/kaas/services/tasks] for files matching pattern [/home/roadahead/workspace/newarch/kaas/kaas-service/target/test-classes/com/thinkingtop/kaas/services/**/*.class]
+2012-09-12 15:05:18  [ main:1094 ] - [ DEBUG ]  Looking for matching resources in directory tree [/home/roadahead/workspace/newarch/kaas/kaas-service/target/classes/com/thinkingtop/kaas/services]
+2012-09-12 15:05:18  [ main:1094 ] - [ DEBUG ]  Searching directory [/home/roadahead/workspace/newarch/kaas/kaas-service/target/classes/com/thinkingtop/kaas/services] for files matching pattern [/home/roadahead/workspace/newarch/kaas/kaas-service/target/classes/com/thinkingtop/kaas/services/**/*.class]
+2012-09-12 15:05:18  [ main:1095 ] - [ DEBUG ]  Searching directory [/home/roadahead/workspace/newarch/kaas/kaas-service/target/classes/com/thinkingtop/kaas/services/service] for files matching pattern [/home/roadahead/workspace/newarch/kaas/kaas-service/target/classes/com/thinkingtop/kaas/services/**/*.class]
+2012-09-12 15:05:18  [ main:1096 ] - [ DEBUG ]  Searching directory [/home/roadahead/workspace/newarch/kaas/kaas-service/target/classes/com/thinkingtop/kaas/services/model] for files matching pattern [/home/roadahead/workspace/newarch/kaas/kaas-service/target/classes/com/thinkingtop/kaas/services/**/*.class]
+2012-09-12 15:05:18  [ main:1097 ] - [ DEBUG ]  Searching directory [/home/roadahead/workspace/newarch/kaas/kaas-service/target/classes/com/thinkingtop/kaas/services/dao] for files matching pattern [/home/roadahead/workspace/newarch/kaas/kaas-service/target/classes/com/thinkingtop/kaas/services/**/*.class]
+2012-09-12 15:05:18  [ main:1098 ] - [ DEBUG ]  Searching directory [/home/roadahead/workspace/newarch/kaas/kaas-service/target/classes/com/thinkingtop/kaas/services/dao/impl] for files matching pattern [/home/roadahead/workspace/newarch/kaas/kaas-service/target/classes/com/thinkingtop/kaas/services/**/*.class]
+2012-09-12 15:05:18  [ main:1099 ] - [ DEBUG ]  Searching directory [/home/roadahead/workspace/newarch/kaas/kaas-service/target/classes/com/thinkingtop/kaas/services/dao/implfile] for files matching pattern [/home/roadahead/workspace/newarch/kaas/kaas-service/target/classes/com/thinkingtop/kaas/services/**/*.class]
+2012-09-12 15:05:18  [ main:1100 ] - [ DEBUG ]  Searching directory [/home/roadahead/workspace/newarch/kaas/kaas-service/target/classes/com/thinkingtop/kaas/services/manage] for files matching pattern [/home/roadahead/workspace/newarch/kaas/kaas-service/target/classes/com/thinkingtop/kaas/services/**/*.class]
+2012-09-12 15:05:18  [ main:1101 ] - [ DEBUG ]  Searching directory [/home/roadahead/workspace/newarch/kaas/kaas-service/target/classes/com/thinkingtop/kaas/services/tasks] for files matching pattern [/home/roadahead/workspace/newarch/kaas/kaas-service/target/classes/com/thinkingtop/kaas/services/**/*.class]
+2012-09-12 15:05:18  [ main:1103 ] - [ DEBUG ]  Searching directory [/home/roadahead/workspace/newarch/kaas/kaas-service/target/classes/com/thinkingtop/kaas/services/tools] for files matching pattern [/home/roadahead/workspace/newarch/kaas/kaas-service/target/classes/com/thinkingtop/kaas/services/**/*.class]
+2012-09-12 15:05:18  [ main:1105 ] - [ DEBUG ]  Resolved location pattern [classpath*:com/thinkingtop/kaas/services/**/*.class] to resources [file [/home/roadahead/workspace/newarch/kaas/kaas-service/target/test-classes/com/thinkingtop/kaas/services/service/ExclusiveKeyServiceImplTest.class], file [/home/roadahead/workspace/newarch/kaas/kaas-service/target/test-classes/com/thinkingtop/kaas/services/manage/KebsiteManageTest.class], file [/home/roadahead/workspace/newarch/kaas/kaas-service/target/test-classes/com/thinkingtop/kaas/services/manage/ExclusiveKeyManageTest.class], file [/home/roadahead/workspace/newarch/kaas/kaas-service/target/test-classes/com/thinkingtop/kaas/services/tasks/myThreadPoolTaskExecutorTest.class], file [/home/roadahead/workspace/newarch/kaas/kaas-service/target/test-classes/com/thinkingtop/kaas/services/tasks/AprioriRunnerTest.class], file [/home/roadahead/workspace/newarch/kaas/kaas-service/target/test-classes/com/thinkingtop/kaas/services/tasks/AprioriRunnerMultiThreadTest.class], file [/home/roadahead/workspace/newarch/kaas/kaas-service/target/classes/com/thinkingtop/kaas/services/service/ExclusiveKeyServiceImpl.class], file [/home/roadahead/workspace/newarch/kaas/kaas-service/target/classes/com/thinkingtop/kaas/services/service/ExclusiveKeyService.class], file [/home/roadahead/workspace/newarch/kaas/kaas-service/target/classes/com/thinkingtop/kaas/services/model/Kebsite.class], file [/home/roadahead/workspace/newarch/kaas/kaas-service/target/classes/com/thinkingtop/kaas/services/model/KaasOrderFrequent.class], file [/home/roadahead/workspace/newarch/kaas/kaas-service/target/classes/com/thinkingtop/kaas/services/model/ExclusiveKey.class], file [/home/roadahead/workspace/newarch/kaas/kaas-service/target/classes/com/thinkingtop/kaas/services/model/KaasRule.class], file [/home/roadahead/workspace/newarch/kaas/kaas-service/target/classes/com/thinkingtop/kaas/services/dao/KebsiteDAO.class], file [/home/roadahead/workspace/newarch/kaas/kaas-service/target/classes/com/thinkingtop/kaas/services/dao/impl/ExclusiveKeyDAOImpl.class], file [/home/roadahead/workspace/newarch/kaas/kaas-service/target/classes/com/thinkingtop/kaas/services/dao/impl/KebsiteDAOImpl.class], file [/home/roadahead/workspace/newarch/kaas/kaas-service/target/classes/com/thinkingtop/kaas/services/dao/KaasRuleDAO.class], file [/home/roadahead/workspace/newarch/kaas/kaas-service/target/classes/com/thinkingtop/kaas/services/dao/KaasOrderFrequentDAO.class], file [/home/roadahead/workspace/newarch/kaas/kaas-service/target/classes/com/thinkingtop/kaas/services/dao/implfile/FileHistoryDAOFileImpl.class], file [/home/roadahead/workspace/newarch/kaas/kaas-service/target/classes/com/thinkingtop/kaas/services/dao/implfile/KaasRuleDAOFileImpl.class], file [/home/roadahead/workspace/newarch/kaas/kaas-service/target/classes/com/thinkingtop/kaas/services/dao/implfile/KaasOrderFrequentDAOFileImpl.class], file [/home/roadahead/workspace/newarch/kaas/kaas-service/target/classes/com/thinkingtop/kaas/services/dao/FileHistoryDAO.class], file [/home/roadahead/workspace/newarch/kaas/kaas-service/target/classes/com/thinkingtop/kaas/services/dao/ExclusiveKeyDAO.class], file [/home/roadahead/workspace/newarch/kaas/kaas-service/target/classes/com/thinkingtop/kaas/services/manage/ExclusiveKeyManage.class], file [/home/roadahead/workspace/newarch/kaas/kaas-service/target/classes/com/thinkingtop/kaas/services/manage/KebsiteManage.class], file [/home/roadahead/workspace/newarch/kaas/kaas-service/target/classes/com/thinkingtop/kaas/services/tasks/createTestFile.class], file [/home/roadahead/workspace/newarch/kaas/kaas-service/target/classes/com/thinkingtop/kaas/services/tasks/MarsAprioriJobRunner$MarsAprioriTask.class], file [/home/roadahead/workspace/newarch/kaas/kaas-service/target/classes/com/thinkingtop/kaas/services/tasks/AprioriRunner$MarsAprioriTask.class], file [/home/roadahead/workspace/newarch/kaas/kaas-service/target/classes/com/thinkingtop/kaas/services/tasks/AprioriRunner.class], file [/home/roadahead/workspace/newarch/kaas/kaas-service/target/classes/com/thinkingtop/kaas/services/tasks/AprioriRunnerMultiThread.class], file [/home/roadahead/workspace/newarch/kaas/kaas-service/target/classes/com/thinkingtop/kaas/services/tasks/myThreadPoolTaskExecutor$MarsAprioriTask.class], file [/home/roadahead/workspace/newarch/kaas/kaas-service/target/classes/com/thinkingtop/kaas/services/tasks/myThreadPoolTaskExecutor.class], file [/home/roadahead/workspace/newarch/kaas/kaas-service/target/classes/com/thinkingtop/kaas/services/tasks/MarsAprioriJobRunner.class], file [/home/roadahead/workspace/newarch/kaas/kaas-service/target/classes/com/thinkingtop/kaas/services/tasks/AprioriRunnerMultiThread$MarsAprioriTask.class], file [/home/roadahead/workspace/newarch/kaas/kaas-service/target/classes/com/thinkingtop/kaas/services/tools/CombinationGenerator.class], file [/home/roadahead/workspace/newarch/kaas/kaas-service/target/classes/com/thinkingtop/kaas/services/tools/CombinationModel.class]]
+2012-09-12 15:05:18  [ main:1166 ] - [ DEBUG ]  Identified candidate component class: file [/home/roadahead/workspace/newarch/kaas/kaas-service/target/classes/com/thinkingtop/kaas/services/service/ExclusiveKeyServiceImpl.class]
+2012-09-12 15:05:19  [ main:1244 ] - [ DEBUG ]  Identified candidate component class: file [/home/roadahead/workspace/newarch/kaas/kaas-service/target/classes/com/thinkingtop/kaas/services/dao/impl/ExclusiveKeyDAOImpl.class]
+2012-09-12 15:05:19  [ main:1245 ] - [ DEBUG ]  Identified candidate component class: file [/home/roadahead/workspace/newarch/kaas/kaas-service/target/classes/com/thinkingtop/kaas/services/dao/impl/KebsiteDAOImpl.class]
+2012-09-12 15:05:19  [ main:1253 ] - [ DEBUG ]  Identified candidate component class: file [/home/roadahead/workspace/newarch/kaas/kaas-service/target/classes/com/thinkingtop/kaas/services/dao/implfile/FileHistoryDAOFileImpl.class]
+2012-09-12 15:05:19  [ main:1254 ] - [ DEBUG ]  Identified candidate component class: file [/home/roadahead/workspace/newarch/kaas/kaas-service/target/classes/com/thinkingtop/kaas/services/dao/implfile/KaasRuleDAOFileImpl.class]
+2012-09-12 15:05:19  [ main:1255 ] - [ DEBUG ]  Identified candidate component class: file [/home/roadahead/workspace/newarch/kaas/kaas-service/target/classes/com/thinkingtop/kaas/services/dao/implfile/KaasOrderFrequentDAOFileImpl.class]
+2012-09-12 15:05:19  [ main:1266 ] - [ DEBUG ]  Identified candidate component class: file [/home/roadahead/workspace/newarch/kaas/kaas-service/target/classes/com/thinkingtop/kaas/services/manage/ExclusiveKeyManage.class]
+2012-09-12 15:05:19  [ main:1269 ] - [ DEBUG ]  Identified candidate component class: file [/home/roadahead/workspace/newarch/kaas/kaas-service/target/classes/com/thinkingtop/kaas/services/manage/KebsiteManage.class]
+2012-09-12 15:05:19  [ main:1333 ] - [ DEBUG ]  Neither XML 'id' nor 'name' specified - using generated bean name [org.springframework.beans.factory.config.PropertyPlaceholderConfigurer#0]
+2012-09-12 15:05:19  [ main:1376 ] - [ DEBUG ]  Loaded 27 bean definitions from location pattern [beans.xml]
+2012-09-12 15:05:19  [ main:1377 ] - [ DEBUG ]  Bean factory for org.springframework.context.support.ClassPathXmlApplicationContext@e83912: org.springframework.beans.factory.support.DefaultListableBeanFactory@ac6a45: defining beans [org.springframework.context.annotation.internalConfigurationAnnotationProcessor,org.springframework.context.annotation.internalAutowiredAnnotationProcessor,org.springframework.context.annotation.internalRequiredAnnotationProcessor,org.springframework.context.annotation.internalCommonAnnotationProcessor,org.springframework.context.annotation.internalPersistenceAnnotationProcessor,exclusiveKeyServiceImpl,exclusiveKeyDAOImpl,kebsiteDAOImpl,fileHistoryDAOFileImpl,kaasRuleDAOFileImpl,kaasOrderFrequentDAOFileImpl,exclusiveKeyManage,kebsiteManage,org.springframework.aop.config.internalAutoProxyCreator,org.springframework.beans.factory.config.PropertyPlaceholderConfigurer#0,dataSource,sessionFactory,txManager,org.springframework.transaction.annotation.AnnotationTransactionAttributeSource#0,org.springframework.transaction.interceptor.TransactionInterceptor#0,org.springframework.transaction.config.internalTransactionAdvisor,bussinessService,org.springframework.aop.support.DefaultBeanFactoryPointcutAdvisor#0,txAdvice,threadPoolTaskExecutor,aprioriRunner,aprioriRunnerMultiThread]; root of factory hierarchy
+2012-09-12 15:05:19  [ main:1473 ] - [ DEBUG ]  Creating shared instance of singleton bean 'org.springframework.context.annotation.internalConfigurationAnnotationProcessor'
+2012-09-12 15:05:19  [ main:1473 ] - [ DEBUG ]  Creating instance of bean 'org.springframework.context.annotation.internalConfigurationAnnotationProcessor'
+2012-09-12 15:05:19  [ main:1496 ] - [ DEBUG ]  Eagerly caching bean 'org.springframework.context.annotation.internalConfigurationAnnotationProcessor' to allow for resolving potential circular references
+2012-09-12 15:05:19  [ main:1497 ] - [ DEBUG ]  Finished creating instance of bean 'org.springframework.context.annotation.internalConfigurationAnnotationProcessor'
+2012-09-12 15:05:19  [ main:1552 ] - [ DEBUG ]  Creating shared instance of singleton bean 'org.springframework.beans.factory.config.PropertyPlaceholderConfigurer#0'
+2012-09-12 15:05:19  [ main:1552 ] - [ DEBUG ]  Creating instance of bean 'org.springframework.beans.factory.config.PropertyPlaceholderConfigurer#0'
+2012-09-12 15:05:19  [ main:1555 ] - [ DEBUG ]  Eagerly caching bean 'org.springframework.beans.factory.config.PropertyPlaceholderConfigurer#0' to allow for resolving potential circular references
+2012-09-12 15:05:19  [ main:1589 ] - [ DEBUG ]  Finished creating instance of bean 'org.springframework.beans.factory.config.PropertyPlaceholderConfigurer#0'
+2012-09-12 15:05:19  [ main:1589 ] - [ INFO ]  Loading properties file from class path resource [jdbc.properties]
+2012-09-12 15:05:19  [ main:1590 ] - [ INFO ]  Loading properties file from class path resource [runner.properties]
+2012-09-12 15:05:19  [ main:1608 ] - [ DEBUG ]  Creating shared instance of singleton bean 'org.springframework.context.annotation.internalAutowiredAnnotationProcessor'
+2012-09-12 15:05:19  [ main:1608 ] - [ DEBUG ]  Creating instance of bean 'org.springframework.context.annotation.internalAutowiredAnnotationProcessor'
+2012-09-12 15:05:19  [ main:1609 ] - [ DEBUG ]  Eagerly caching bean 'org.springframework.context.annotation.internalAutowiredAnnotationProcessor' to allow for resolving potential circular references
+2012-09-12 15:05:19  [ main:1609 ] - [ DEBUG ]  Finished creating instance of bean 'org.springframework.context.annotation.internalAutowiredAnnotationProcessor'
+2012-09-12 15:05:19  [ main:1609 ] - [ DEBUG ]  Creating shared instance of singleton bean 'org.springframework.context.annotation.internalRequiredAnnotationProcessor'
+2012-09-12 15:05:19  [ main:1609 ] - [ DEBUG ]  Creating instance of bean 'org.springframework.context.annotation.internalRequiredAnnotationProcessor'
+2012-09-12 15:05:19  [ main:1610 ] - [ DEBUG ]  Eagerly caching bean 'org.springframework.context.annotation.internalRequiredAnnotationProcessor' to allow for resolving potential circular references
+2012-09-12 15:05:19  [ main:1610 ] - [ DEBUG ]  Finished creating instance of bean 'org.springframework.context.annotation.internalRequiredAnnotationProcessor'
+2012-09-12 15:05:19  [ main:1610 ] - [ DEBUG ]  Creating shared instance of singleton bean 'org.springframework.context.annotation.internalCommonAnnotationProcessor'
+2012-09-12 15:05:19  [ main:1610 ] - [ DEBUG ]  Creating instance of bean 'org.springframework.context.annotation.internalCommonAnnotationProcessor'
+2012-09-12 15:05:19  [ main:1615 ] - [ DEBUG ]  Eagerly caching bean 'org.springframework.context.annotation.internalCommonAnnotationProcessor' to allow for resolving potential circular references
+2012-09-12 15:05:19  [ main:1615 ] - [ DEBUG ]  Finished creating instance of bean 'org.springframework.context.annotation.internalCommonAnnotationProcessor'
+2012-09-12 15:05:19  [ main:1615 ] - [ DEBUG ]  Creating shared instance of singleton bean 'org.springframework.context.annotation.internalPersistenceAnnotationProcessor'
+2012-09-12 15:05:19  [ main:1615 ] - [ DEBUG ]  Creating instance of bean 'org.springframework.context.annotation.internalPersistenceAnnotationProcessor'
+2012-09-12 15:05:19  [ main:1615 ] - [ DEBUG ]  Eagerly caching bean 'org.springframework.context.annotation.internalPersistenceAnnotationProcessor' to allow for resolving potential circular references
+2012-09-12 15:05:19  [ main:1615 ] - [ DEBUG ]  Finished creating instance of bean 'org.springframework.context.annotation.internalPersistenceAnnotationProcessor'
+2012-09-12 15:05:19  [ main:1615 ] - [ DEBUG ]  Creating shared instance of singleton bean 'org.springframework.context.annotation.ConfigurationClassPostProcessor$ImportAwareBeanPostProcessor#0'
+2012-09-12 15:05:19  [ main:1615 ] - [ DEBUG ]  Creating instance of bean 'org.springframework.context.annotation.ConfigurationClassPostProcessor$ImportAwareBeanPostProcessor#0'
+2012-09-12 15:05:19  [ main:1615 ] - [ DEBUG ]  Eagerly caching bean 'org.springframework.context.annotation.ConfigurationClassPostProcessor$ImportAwareBeanPostProcessor#0' to allow for resolving potential circular references
+2012-09-12 15:05:19  [ main:1615 ] - [ DEBUG ]  Finished creating instance of bean 'org.springframework.context.annotation.ConfigurationClassPostProcessor$ImportAwareBeanPostProcessor#0'
+2012-09-12 15:05:19  [ main:1616 ] - [ DEBUG ]  Creating shared instance of singleton bean 'org.springframework.aop.config.internalAutoProxyCreator'
+2012-09-12 15:05:19  [ main:1616 ] - [ DEBUG ]  Creating instance of bean 'org.springframework.aop.config.internalAutoProxyCreator'
+2012-09-12 15:05:19  [ main:1635 ] - [ DEBUG ]  Eagerly caching bean 'org.springframework.aop.config.internalAutoProxyCreator' to allow for resolving potential circular references
+2012-09-12 15:05:19  [ main:1656 ] - [ DEBUG ]  Finished creating instance of bean 'org.springframework.aop.config.internalAutoProxyCreator'
+2012-09-12 15:05:19  [ main:1659 ] - [ DEBUG ]  Unable to locate MessageSource with name 'messageSource': using default [org.springframework.context.support.DelegatingMessageSource@1e4853f]
+2012-09-12 15:05:19  [ main:1661 ] - [ DEBUG ]  Unable to locate ApplicationEventMulticaster with name 'applicationEventMulticaster': using default [org.springframework.context.event.SimpleApplicationEventMulticaster@26d607]
+2012-09-12 15:05:19  [ main:1663 ] - [ INFO ]  Pre-instantiating singletons in org.springframework.beans.factory.support.DefaultListableBeanFactory@ac6a45: defining beans [org.springframework.context.annotation.internalConfigurationAnnotationProcessor,org.springframework.context.annotation.internalAutowiredAnnotationProcessor,org.springframework.context.annotation.internalRequiredAnnotationProcessor,org.springframework.context.annotation.internalCommonAnnotationProcessor,org.springframework.context.annotation.internalPersistenceAnnotationProcessor,exclusiveKeyServiceImpl,exclusiveKeyDAOImpl,kebsiteDAOImpl,fileHistoryDAOFileImpl,kaasRuleDAOFileImpl,kaasOrderFrequentDAOFileImpl,exclusiveKeyManage,kebsiteManage,org.springframework.aop.config.internalAutoProxyCreator,org.springframework.beans.factory.config.PropertyPlaceholderConfigurer#0,dataSource,sessionFactory,txManager,org.springframework.transaction.annotation.AnnotationTransactionAttributeSource#0,org.springframework.transaction.interceptor.TransactionInterceptor#0,org.springframework.transaction.config.internalTransactionAdvisor,bussinessService,org.springframework.aop.support.DefaultBeanFactoryPointcutAdvisor#0,txAdvice,threadPoolTaskExecutor,aprioriRunner,aprioriRunnerMultiThread,org.springframework.context.annotation.ConfigurationClassPostProcessor$ImportAwareBeanPostProcessor#0]; root of factory hierarchy
+2012-09-12 15:05:19  [ main:1664 ] - [ DEBUG ]  Returning cached instance of singleton bean 'org.springframework.context.annotation.internalConfigurationAnnotationProcessor'
+2012-09-12 15:05:19  [ main:1664 ] - [ DEBUG ]  Returning cached instance of singleton bean 'org.springframework.context.annotation.internalAutowiredAnnotationProcessor'
+2012-09-12 15:05:19  [ main:1664 ] - [ DEBUG ]  Returning cached instance of singleton bean 'org.springframework.context.annotation.internalRequiredAnnotationProcessor'
+2012-09-12 15:05:19  [ main:1664 ] - [ DEBUG ]  Returning cached instance of singleton bean 'org.springframework.context.annotation.internalCommonAnnotationProcessor'
+2012-09-12 15:05:19  [ main:1664 ] - [ DEBUG ]  Returning cached instance of singleton bean 'org.springframework.context.annotation.internalPersistenceAnnotationProcessor'
+2012-09-12 15:05:19  [ main:1664 ] - [ DEBUG ]  Creating shared instance of singleton bean 'exclusiveKeyServiceImpl'
+2012-09-12 15:05:19  [ main:1664 ] - [ DEBUG ]  Creating instance of bean 'exclusiveKeyServiceImpl'
+2012-09-12 15:05:19  [ main:1670 ] - [ DEBUG ]  Creating shared instance of singleton bean 'org.springframework.transaction.config.internalTransactionAdvisor'
+2012-09-12 15:05:19  [ main:1670 ] - [ DEBUG ]  Creating instance of bean 'org.springframework.transaction.config.internalTransactionAdvisor'
+2012-09-12 15:05:19  [ main:1672 ] - [ DEBUG ]  Eagerly caching bean 'org.springframework.transaction.config.internalTransactionAdvisor' to allow for resolving potential circular references
+2012-09-12 15:05:19  [ main:1678 ] - [ DEBUG ]  Creating shared instance of singleton bean 'org.springframework.transaction.annotation.AnnotationTransactionAttributeSource#0'
+2012-09-12 15:05:19  [ main:1678 ] - [ DEBUG ]  Creating instance of bean 'org.springframework.transaction.annotation.AnnotationTransactionAttributeSource#0'
+2012-09-12 15:05:19  [ main:1678 ] - [ DEBUG ]  Creating shared instance of singleton bean 'org.springframework.aop.support.DefaultBeanFactoryPointcutAdvisor#0'
+2012-09-12 15:05:19  [ main:1678 ] - [ DEBUG ]  Creating instance of bean 'org.springframework.aop.support.DefaultBeanFactoryPointcutAdvisor#0'
+2012-09-12 15:05:19  [ main:1680 ] - [ DEBUG ]  Eagerly caching bean 'org.springframework.aop.support.DefaultBeanFactoryPointcutAdvisor#0' to allow for resolving potential circular references
+2012-09-12 15:05:19  [ main:1686 ] - [ DEBUG ]  Creating instance of bean 'bussinessService'
+2012-09-12 15:05:19  [ main:1696 ] - [ DEBUG ]  Finished creating instance of bean 'bussinessService'
+2012-09-12 15:05:19  [ main:1697 ] - [ DEBUG ]  Finished creating instance of bean 'org.springframework.aop.support.DefaultBeanFactoryPointcutAdvisor#0'
+2012-09-12 15:05:19  [ main:1702 ] - [ DEBUG ]  Eagerly caching bean 'org.springframework.transaction.annotation.AnnotationTransactionAttributeSource#0' to allow for resolving potential circular references
+2012-09-12 15:05:19  [ main:1706 ] - [ DEBUG ]  Returning cached instance of singleton bean 'org.springframework.aop.support.DefaultBeanFactoryPointcutAdvisor#0'
+2012-09-12 15:05:19  [ main:1706 ] - [ DEBUG ]  Returning cached instance of singleton bean 'org.springframework.aop.support.DefaultBeanFactoryPointcutAdvisor#0'
+2012-09-12 15:05:19  [ main:1988 ] - [ DEBUG ]  Finished creating instance of bean 'org.springframework.transaction.annotation.AnnotationTransactionAttributeSource#0'
+2012-09-12 15:05:19  [ main:1988 ] - [ DEBUG ]  Finished creating instance of bean 'org.springframework.transaction.config.internalTransactionAdvisor'
+2012-09-12 15:05:19  [ main:1990 ] - [ DEBUG ]  Returning cached instance of singleton bean 'org.springframework.aop.support.DefaultBeanFactoryPointcutAdvisor#0'
+2012-09-12 15:05:19  [ main:2003 ] - [ DEBUG ]  Found injected element on class [com.thinkingtop.kaas.services.service.ExclusiveKeyServiceImpl]: ResourceElement for public void com.thinkingtop.kaas.services.service.ExclusiveKeyServiceImpl.setExclusiveKeyManage(com.thinkingtop.kaas.services.manage.ExclusiveKeyManage)
+2012-09-12 15:05:19  [ main:2003 ] - [ DEBUG ]  Found injected element on class [com.thinkingtop.kaas.services.service.ExclusiveKeyServiceImpl]: ResourceElement for public void com.thinkingtop.kaas.services.service.ExclusiveKeyServiceImpl.setKebsiteManage(com.thinkingtop.kaas.services.manage.KebsiteManage)
+2012-09-12 15:05:19  [ main:2003 ] - [ DEBUG ]  Found injected element on class [com.thinkingtop.kaas.services.service.ExclusiveKeyServiceImpl]: ResourceElement for public void com.thinkingtop.kaas.services.service.ExclusiveKeyServiceImpl.setAprioriRunner(com.thinkingtop.kaas.services.tasks.AprioriRunner)
+2012-09-12 15:05:19  [ main:2004 ] - [ DEBUG ]  Eagerly caching bean 'exclusiveKeyServiceImpl' to allow for resolving potential circular references
+2012-09-12 15:05:19  [ main:2004 ] - [ DEBUG ]  Processing injected method of bean 'exclusiveKeyServiceImpl': ResourceElement for public void com.thinkingtop.kaas.services.service.ExclusiveKeyServiceImpl.setExclusiveKeyManage(com.thinkingtop.kaas.services.manage.ExclusiveKeyManage)
+2012-09-12 15:05:19  [ main:2004 ] - [ DEBUG ]  Creating shared instance of singleton bean 'exclusiveKeyManage'
+2012-09-12 15:05:19  [ main:2004 ] - [ DEBUG ]  Creating instance of bean 'exclusiveKeyManage'
+2012-09-12 15:05:19  [ main:2004 ] - [ DEBUG ]  Returning cached instance of singleton bean 'org.springframework.transaction.config.internalTransactionAdvisor'
+2012-09-12 15:05:19  [ main:2004 ] - [ DEBUG ]  Returning cached instance of singleton bean 'org.springframework.aop.support.DefaultBeanFactoryPointcutAdvisor#0'
+2012-09-12 15:05:19  [ main:2011 ] - [ DEBUG ]  Found injected element on class [com.thinkingtop.kaas.services.manage.ExclusiveKeyManage]: ResourceElement for public void com.thinkingtop.kaas.services.manage.ExclusiveKeyManage.setExclusiveKeyDAO(com.thinkingtop.kaas.services.dao.ExclusiveKeyDAO)
+2012-09-12 15:05:19  [ main:2012 ] - [ DEBUG ]  Eagerly caching bean 'exclusiveKeyManage' to allow for resolving potential circular references
+2012-09-12 15:05:19  [ main:2012 ] - [ DEBUG ]  Processing injected method of bean 'exclusiveKeyManage': ResourceElement for public void com.thinkingtop.kaas.services.manage.ExclusiveKeyManage.setExclusiveKeyDAO(com.thinkingtop.kaas.services.dao.ExclusiveKeyDAO)
+2012-09-12 15:05:19  [ main:2012 ] - [ DEBUG ]  Creating shared instance of singleton bean 'exclusiveKeyDAOImpl'
+2012-09-12 15:05:19  [ main:2012 ] - [ DEBUG ]  Creating instance of bean 'exclusiveKeyDAOImpl'
+2012-09-12 15:05:19  [ main:2012 ] - [ DEBUG ]  Returning cached instance of singleton bean 'org.springframework.transaction.config.internalTransactionAdvisor'
+2012-09-12 15:05:19  [ main:2012 ] - [ DEBUG ]  Returning cached instance of singleton bean 'org.springframework.aop.support.DefaultBeanFactoryPointcutAdvisor#0'
+2012-09-12 15:05:19  [ main:2018 ] - [ DEBUG ]  Found injected element on class [com.thinkingtop.kaas.services.dao.impl.ExclusiveKeyDAOImpl]: ResourceElement for public void com.thinkingtop.kaas.services.dao.impl.ExclusiveKeyDAOImpl.setSessionFactory(org.hibernate.SessionFactory)
+2012-09-12 15:05:19  [ main:2020 ] - [ DEBUG ]  Eagerly caching bean 'exclusiveKeyDAOImpl' to allow for resolving potential circular references
+2012-09-12 15:05:19  [ main:2020 ] - [ DEBUG ]  Processing injected method of bean 'exclusiveKeyDAOImpl': ResourceElement for public void com.thinkingtop.kaas.services.dao.impl.ExclusiveKeyDAOImpl.setSessionFactory(org.hibernate.SessionFactory)
+2012-09-12 15:05:19  [ main:2020 ] - [ DEBUG ]  Creating shared instance of singleton bean 'sessionFactory'
+2012-09-12 15:05:19  [ main:2020 ] - [ DEBUG ]  Creating instance of bean 'sessionFactory'
+2012-09-12 15:05:19  [ main:2020 ] - [ DEBUG ]  Returning cached instance of singleton bean 'org.springframework.transaction.config.internalTransactionAdvisor'
+2012-09-12 15:05:19  [ main:2020 ] - [ DEBUG ]  Returning cached instance of singleton bean 'org.springframework.aop.support.DefaultBeanFactoryPointcutAdvisor#0'
+2012-09-12 15:05:19  [ main:2090 ] - [ DEBUG ]  Eagerly caching bean 'sessionFactory' to allow for resolving potential circular references
+2012-09-12 15:05:19  [ main:2152 ] - [ DEBUG ]  Creating shared instance of singleton bean 'dataSource'
+2012-09-12 15:05:19  [ main:2153 ] - [ DEBUG ]  Creating instance of bean 'dataSource'
+2012-09-12 15:05:19  [ main:2153 ] - [ DEBUG ]  Returning cached instance of singleton bean 'org.springframework.transaction.config.internalTransactionAdvisor'
+2012-09-12 15:05:19  [ main:2153 ] - [ DEBUG ]  Returning cached instance of singleton bean 'org.springframework.aop.support.DefaultBeanFactoryPointcutAdvisor#0'
+2012-09-12 15:05:20  [ main:2234 ] - [ DEBUG ]  Eagerly caching bean 'dataSource' to allow for resolving potential circular references
+2012-09-12 15:05:20  [ main:2259 ] - [ DEBUG ]  Returning cached instance of singleton bean 'org.springframework.transaction.config.internalTransactionAdvisor'
+2012-09-12 15:05:20  [ main:2260 ] - [ DEBUG ]  Returning cached instance of singleton bean 'org.springframework.aop.support.DefaultBeanFactoryPointcutAdvisor#0'
+2012-09-12 15:05:20  [ main:2260 ] - [ DEBUG ]  Returning cached instance of singleton bean 'org.springframework.transaction.config.internalTransactionAdvisor'
+2012-09-12 15:05:20  [ main:2260 ] - [ DEBUG ]  Returning cached instance of singleton bean 'org.springframework.aop.support.DefaultBeanFactoryPointcutAdvisor#0'
+2012-09-12 15:05:20  [ main:2294 ] - [ DEBUG ]  Finished creating instance of bean 'dataSource'
+2012-09-12 15:05:20  [ main:2296 ] - [ DEBUG ]  Initializing new StandardEnvironment
+2012-09-12 15:05:20  [ main:2297 ] - [ DEBUG ]  Adding [systemProperties] PropertySource with lowest search precedence
+2012-09-12 15:05:20  [ main:2297 ] - [ DEBUG ]  Adding [systemEnvironment] PropertySource with lowest search precedence
+2012-09-12 15:05:20  [ main:2297 ] - [ DEBUG ]  Initialized StandardEnvironment with PropertySources [systemProperties,systemEnvironment]
+2012-09-12 15:05:20  [ main:2297 ] - [ DEBUG ]  Initializing new StandardEnvironment
+2012-09-12 15:05:20  [ main:2297 ] - [ DEBUG ]  Adding [systemProperties] PropertySource with lowest search precedence
+2012-09-12 15:05:20  [ main:2297 ] - [ DEBUG ]  Adding [systemEnvironment] PropertySource with lowest search precedence
+2012-09-12 15:05:20  [ main:2297 ] - [ DEBUG ]  Initialized StandardEnvironment with PropertySources [systemProperties,systemEnvironment]
+2012-09-12 15:05:20  [ main:2298 ] - [ DEBUG ]  Initializing new StandardEnvironment
+2012-09-12 15:05:20  [ main:2298 ] - [ DEBUG ]  Adding [systemProperties] PropertySource with lowest search precedence
+2012-09-12 15:05:20  [ main:2298 ] - [ DEBUG ]  Adding [systemEnvironment] PropertySource with lowest search precedence
+2012-09-12 15:05:20  [ main:2298 ] - [ DEBUG ]  Initialized StandardEnvironment with PropertySources [systemProperties,systemEnvironment]
+2012-09-12 15:05:20  [ main:2300 ] - [ DEBUG ]  Initializing new StandardEnvironment
+2012-09-12 15:05:20  [ main:2300 ] - [ DEBUG ]  Adding [systemProperties] PropertySource with lowest search precedence
+2012-09-12 15:05:20  [ main:2300 ] - [ DEBUG ]  Adding [systemEnvironment] PropertySource with lowest search precedence
+2012-09-12 15:05:20  [ main:2300 ] - [ DEBUG ]  Initialized StandardEnvironment with PropertySources [systemProperties,systemEnvironment]
+2012-09-12 15:05:20  [ main:2301 ] - [ DEBUG ]  Initializing new StandardEnvironment
+2012-09-12 15:05:20  [ main:2301 ] - [ DEBUG ]  Adding [systemProperties] PropertySource with lowest search precedence
+2012-09-12 15:05:20  [ main:2301 ] - [ DEBUG ]  Adding [systemEnvironment] PropertySource with lowest search precedence
+2012-09-12 15:05:20  [ main:2301 ] - [ DEBUG ]  Initialized StandardEnvironment with PropertySources [systemProperties,systemEnvironment]
+2012-09-12 15:05:20  [ main:2338 ] - [ DEBUG ]  Invoking afterPropertiesSet() on bean with name 'sessionFactory'
+2012-09-12 15:05:20  [ main:2397 ] - [ DEBUG ]  Adding type registration boolean -> org.hibernate.type.BooleanType@52c6b4
+2012-09-12 15:05:20  [ main:2397 ] - [ DEBUG ]  Adding type registration boolean -> org.hibernate.type.BooleanType@52c6b4
+2012-09-12 15:05:20  [ main:2397 ] - [ DEBUG ]  Adding type registration java.lang.Boolean -> org.hibernate.type.BooleanType@52c6b4
+2012-09-12 15:05:20  [ main:2398 ] - [ DEBUG ]  Adding type registration numeric_boolean -> org.hibernate.type.NumericBooleanType@1ad6b4b
+2012-09-12 15:05:20  [ main:2400 ] - [ DEBUG ]  Adding type registration true_false -> org.hibernate.type.TrueFalseType@6214f5
+2012-09-12 15:05:20  [ main:2402 ] - [ DEBUG ]  Adding type registration yes_no -> org.hibernate.type.YesNoType@4d76b4
+2012-09-12 15:05:20  [ main:2405 ] - [ DEBUG ]  Adding type registration byte -> org.hibernate.type.ByteType@e183e9
+2012-09-12 15:05:20  [ main:2406 ] - [ DEBUG ]  Adding type registration byte -> org.hibernate.type.ByteType@e183e9
+2012-09-12 15:05:20  [ main:2406 ] - [ DEBUG ]  Adding type registration java.lang.Byte -> org.hibernate.type.ByteType@e183e9
+2012-09-12 15:05:20  [ main:2408 ] - [ DEBUG ]  Adding type registration character -> org.hibernate.type.CharacterType@30ae41
+2012-09-12 15:05:20  [ main:2408 ] - [ DEBUG ]  Adding type registration char -> org.hibernate.type.CharacterType@30ae41
+2012-09-12 15:05:20  [ main:2408 ] - [ DEBUG ]  Adding type registration java.lang.Character -> org.hibernate.type.CharacterType@30ae41
+2012-09-12 15:05:20  [ main:2412 ] - [ DEBUG ]  Adding type registration short -> org.hibernate.type.ShortType@8b8a47
+2012-09-12 15:05:20  [ main:2413 ] - [ DEBUG ]  Adding type registration short -> org.hibernate.type.ShortType@8b8a47
+2012-09-12 15:05:20  [ main:2413 ] - [ DEBUG ]  Adding type registration java.lang.Short -> org.hibernate.type.ShortType@8b8a47
+2012-09-12 15:05:20  [ main:2415 ] - [ DEBUG ]  Adding type registration integer -> org.hibernate.type.IntegerType@e41bc3
+2012-09-12 15:05:20  [ main:2415 ] - [ DEBUG ]  Adding type registration int -> org.hibernate.type.IntegerType@e41bc3
+2012-09-12 15:05:20  [ main:2415 ] - [ DEBUG ]  Adding type registration java.lang.Integer -> org.hibernate.type.IntegerType@e41bc3
+2012-09-12 15:05:20  [ main:2418 ] - [ DEBUG ]  Adding type registration long -> org.hibernate.type.LongType@5dc994
+2012-09-12 15:05:20  [ main:2418 ] - [ DEBUG ]  Adding type registration long -> org.hibernate.type.LongType@5dc994
+2012-09-12 15:05:20  [ main:2418 ] - [ DEBUG ]  Adding type registration java.lang.Long -> org.hibernate.type.LongType@5dc994
+2012-09-12 15:05:20  [ main:2420 ] - [ DEBUG ]  Adding type registration float -> org.hibernate.type.FloatType@147358f
+2012-09-12 15:05:20  [ main:2421 ] - [ DEBUG ]  Adding type registration float -> org.hibernate.type.FloatType@147358f
+2012-09-12 15:05:20  [ main:2421 ] - [ DEBUG ]  Adding type registration java.lang.Float -> org.hibernate.type.FloatType@147358f
+2012-09-12 15:05:20  [ main:2424 ] - [ DEBUG ]  Adding type registration double -> org.hibernate.type.DoubleType@676e3f
+2012-09-12 15:05:20  [ main:2424 ] - [ DEBUG ]  Adding type registration double -> org.hibernate.type.DoubleType@676e3f
+2012-09-12 15:05:20  [ main:2424 ] - [ DEBUG ]  Adding type registration java.lang.Double -> org.hibernate.type.DoubleType@676e3f
+2012-09-12 15:05:20  [ main:2427 ] - [ DEBUG ]  Adding type registration big_decimal -> org.hibernate.type.BigDecimalType@d58939
+2012-09-12 15:05:20  [ main:2427 ] - [ DEBUG ]  Adding type registration java.math.BigDecimal -> org.hibernate.type.BigDecimalType@d58939
+2012-09-12 15:05:20  [ main:2435 ] - [ DEBUG ]  Adding type registration big_integer -> org.hibernate.type.BigIntegerType@93df2c
+2012-09-12 15:05:20  [ main:2435 ] - [ DEBUG ]  Adding type registration java.math.BigInteger -> org.hibernate.type.BigIntegerType@93df2c
+2012-09-12 15:05:20  [ main:2437 ] - [ DEBUG ]  Adding type registration string -> org.hibernate.type.StringType@3a1834
+2012-09-12 15:05:20  [ main:2437 ] - [ DEBUG ]  Adding type registration java.lang.String -> org.hibernate.type.StringType@3a1834
+2012-09-12 15:05:20  [ main:2439 ] - [ DEBUG ]  Adding type registration url -> org.hibernate.type.UrlType@2f729e
+2012-09-12 15:05:20  [ main:2439 ] - [ DEBUG ]  Adding type registration java.net.URL -> org.hibernate.type.UrlType@2f729e
+2012-09-12 15:05:20  [ main:2470 ] - [ DEBUG ]  Adding type registration date -> org.hibernate.type.DateType@1eb5666
+2012-09-12 15:05:20  [ main:2470 ] - [ DEBUG ]  Adding type registration java.sql.Date -> org.hibernate.type.DateType@1eb5666
+2012-09-12 15:05:20  [ main:2473 ] - [ DEBUG ]  Adding type registration time -> org.hibernate.type.TimeType@2e323
+2012-09-12 15:05:20  [ main:2473 ] - [ DEBUG ]  Adding type registration java.sql.Time -> org.hibernate.type.TimeType@2e323
+2012-09-12 15:05:20  [ main:2477 ] - [ DEBUG ]  Adding type registration timestamp -> org.hibernate.type.TimestampType@d55986
+2012-09-12 15:05:20  [ main:2478 ] - [ DEBUG ]  Adding type registration java.sql.Timestamp -> org.hibernate.type.TimestampType@d55986
+2012-09-12 15:05:20  [ main:2478 ] - [ DEBUG ]  Adding type registration java.util.Date -> org.hibernate.type.TimestampType@d55986
+2012-09-12 15:05:20  [ main:2479 ] - [ DEBUG ]  Adding type registration dbtimestamp -> org.hibernate.type.DbTimestampType@1f99eea
+2012-09-12 15:05:20  [ main:2482 ] - [ DEBUG ]  Adding type registration calendar -> org.hibernate.type.CalendarType@221e9e
+2012-09-12 15:05:20  [ main:2482 ] - [ DEBUG ]  Adding type registration java.util.Calendar -> org.hibernate.type.CalendarType@221e9e
+2012-09-12 15:05:20  [ main:2482 ] - [ DEBUG ]  Adding type registration java.util.GregorianCalendar -> org.hibernate.type.CalendarType@221e9e
+2012-09-12 15:05:20  [ main:2484 ] - [ DEBUG ]  Adding type registration calendar_date -> org.hibernate.type.CalendarDateType@1264eab
+2012-09-12 15:05:20  [ main:2485 ] - [ DEBUG ]  Adding type registration locale -> org.hibernate.type.LocaleType@430b6
+2012-09-12 15:05:20  [ main:2486 ] - [ DEBUG ]  Adding type registration java.util.Locale -> org.hibernate.type.LocaleType@430b6
+2012-09-12 15:05:20  [ main:2488 ] - [ DEBUG ]  Adding type registration currency -> org.hibernate.type.CurrencyType@1f31652
+2012-09-12 15:05:20  [ main:2488 ] - [ DEBUG ]  Adding type registration java.util.Currency -> org.hibernate.type.CurrencyType@1f31652
+2012-09-12 15:05:20  [ main:2489 ] - [ DEBUG ]  Adding type registration timezone -> org.hibernate.type.TimeZoneType@1367e28
+2012-09-12 15:05:20  [ main:2490 ] - [ DEBUG ]  Adding type registration java.util.TimeZone -> org.hibernate.type.TimeZoneType@1367e28
+2012-09-12 15:05:20  [ main:2491 ] - [ DEBUG ]  Adding type registration class -> org.hibernate.type.ClassType@19a0203
+2012-09-12 15:05:20  [ main:2491 ] - [ DEBUG ]  Adding type registration java.lang.Class -> org.hibernate.type.ClassType@19a0203
+2012-09-12 15:05:20  [ main:2494 ] - [ DEBUG ]  Adding type registration uuid-binary -> org.hibernate.type.UUIDBinaryType@7f58ef
+2012-09-12 15:05:20  [ main:2494 ] - [ DEBUG ]  Adding type registration java.util.UUID -> org.hibernate.type.UUIDBinaryType@7f58ef
+2012-09-12 15:05:20  [ main:2495 ] - [ DEBUG ]  Adding type registration uuid-char -> org.hibernate.type.UUIDCharType@acdd02
+2012-09-12 15:05:20  [ main:2496 ] - [ DEBUG ]  Adding type registration pg-uuid -> org.hibernate.type.PostgresUUIDType@f0b4a3
+2012-09-12 15:05:20  [ main:2498 ] - [ DEBUG ]  Adding type registration binary -> org.hibernate.type.BinaryType@46d228
+2012-09-12 15:05:20  [ main:2499 ] - [ DEBUG ]  Adding type registration byte[] -> org.hibernate.type.BinaryType@46d228
+2012-09-12 15:05:20  [ main:2499 ] - [ DEBUG ]  Adding type registration [B -> org.hibernate.type.BinaryType@46d228
+2012-09-12 15:05:20  [ main:2500 ] - [ DEBUG ]  Adding type registration wrapper-binary -> org.hibernate.type.WrapperBinaryType@1980630
+2012-09-12 15:05:20  [ main:2501 ] - [ DEBUG ]  Adding type registration Byte[] -> org.hibernate.type.WrapperBinaryType@1980630
+2012-09-12 15:05:20  [ main:2501 ] - [ DEBUG ]  Adding type registration [Ljava.lang.Byte; -> org.hibernate.type.WrapperBinaryType@1980630
+2012-09-12 15:05:20  [ main:2502 ] - [ DEBUG ]  Adding type registration image -> org.hibernate.type.ImageType@12f1bf0
+2012-09-12 15:05:20  [ main:2503 ] - [ DEBUG ]  Adding type registration characters -> org.hibernate.type.CharArrayType@1347124
+2012-09-12 15:05:20  [ main:2504 ] - [ DEBUG ]  Adding type registration char[] -> org.hibernate.type.CharArrayType@1347124
+2012-09-12 15:05:20  [ main:2504 ] - [ DEBUG ]  Adding type registration [C -> org.hibernate.type.CharArrayType@1347124
+2012-09-12 15:05:20  [ main:2506 ] - [ DEBUG ]  Adding type registration wrapper-characters -> org.hibernate.type.CharacterArrayType@3aff84
+2012-09-12 15:05:20  [ main:2506 ] - [ DEBUG ]  Adding type registration [Ljava.lang.Character; -> org.hibernate.type.CharacterArrayType@3aff84
+2012-09-12 15:05:20  [ main:2506 ] - [ DEBUG ]  Adding type registration Character[] -> org.hibernate.type.CharacterArrayType@3aff84
+2012-09-12 15:05:20  [ main:2508 ] - [ DEBUG ]  Adding type registration text -> org.hibernate.type.TextType@827968
+2012-09-12 15:05:20  [ main:2515 ] - [ DEBUG ]  Adding type registration blob -> org.hibernate.type.BlobType@4cd580
+2012-09-12 15:05:20  [ main:2515 ] - [ DEBUG ]  Adding type registration java.sql.Blob -> org.hibernate.type.BlobType@4cd580
+2012-09-12 15:05:20  [ main:2516 ] - [ DEBUG ]  Adding type registration materialized_blob -> org.hibernate.type.MaterializedBlobType@e576d4
+2012-09-12 15:05:20  [ main:2517 ] - [ DEBUG ]  Adding type registration wrapper_materialized_blob -> org.hibernate.type.WrappedMaterializedBlobType@1db5ec
+2012-09-12 15:05:20  [ main:2523 ] - [ DEBUG ]  Adding type registration clob -> org.hibernate.type.ClobType@1c1ac46
+2012-09-12 15:05:20  [ main:2524 ] - [ DEBUG ]  Adding type registration java.sql.Clob -> org.hibernate.type.ClobType@1c1ac46
+2012-09-12 15:05:20  [ main:2524 ] - [ DEBUG ]  Adding type registration materialized_clob -> org.hibernate.type.MaterializedClobType@1342a67
+2012-09-12 15:05:20  [ main:2525 ] - [ DEBUG ]  Adding type registration wrapper_characters_clob -> org.hibernate.type.CharacterArrayClobType@57ea52
+2012-09-12 15:05:20  [ main:2525 ] - [ DEBUG ]  Adding type registration characters_clob -> org.hibernate.type.PrimitiveCharacterArrayClobType@2d95b3
+2012-09-12 15:05:20  [ main:2527 ] - [ DEBUG ]  Adding type registration serializable -> org.hibernate.type.SerializableType@73305c
+2012-09-12 15:05:20  [ main:2531 ] - [ DEBUG ]  Adding type registration object -> org.hibernate.type.ObjectType@718242
+2012-09-12 15:05:20  [ main:2531 ] - [ DEBUG ]  Adding type registration java.lang.Object -> org.hibernate.type.ObjectType@718242
+2012-09-12 15:05:20  [ main:2531 ] - [ DEBUG ]  Adding type registration imm_date -> org.hibernate.type.AdaptedImmutableType@3afb99
+2012-09-12 15:05:20  [ main:2531 ] - [ DEBUG ]  Adding type registration imm_time -> org.hibernate.type.AdaptedImmutableType@5c3987
+2012-09-12 15:05:20  [ main:2532 ] - [ DEBUG ]  Adding type registration imm_timestamp -> org.hibernate.type.AdaptedImmutableType@c4d04d
+2012-09-12 15:05:20  [ main:2532 ] - [ DEBUG ]  Adding type registration imm_dbtimestamp -> org.hibernate.type.AdaptedImmutableType@147917a
+2012-09-12 15:05:20  [ main:2532 ] - [ DEBUG ]  Adding type registration imm_calendar -> org.hibernate.type.AdaptedImmutableType@19fe451
+2012-09-12 15:05:20  [ main:2532 ] - [ DEBUG ]  Adding type registration imm_calendar_date -> org.hibernate.type.AdaptedImmutableType@46b90a
+2012-09-12 15:05:20  [ main:2532 ] - [ DEBUG ]  Adding type registration imm_binary -> org.hibernate.type.AdaptedImmutableType@11e67ac
+2012-09-12 15:05:20  [ main:2532 ] - [ DEBUG ]  Adding type registration imm_serializable -> org.hibernate.type.AdaptedImmutableType@1284fd4
+2012-09-12 15:05:20  [ main:2553 ] - [ INFO ]  Hibernate Commons Annotations 3.2.0.Final
+2012-09-12 15:05:20  [ main:2559 ] - [ INFO ]  Hibernate 3.6.10.Final
+2012-09-12 15:05:20  [ main:2565 ] - [ INFO ]  hibernate.properties not found
+2012-09-12 15:05:20  [ main:2573 ] - [ INFO ]  Bytecode provider name : javassist
+2012-09-12 15:05:20  [ main:2576 ] - [ INFO ]  using JDK 1.4 java.sql.Timestamp handling
+2012-09-12 15:05:20  [ main:2637 ] - [ DEBUG ]  Registering IdentifierGenerator strategy [uuid2] -> [class org.hibernate.id.UUIDGenerator]
+2012-09-12 15:05:20  [ main:2638 ] - [ DEBUG ]  Registering IdentifierGenerator strategy [guid] -> [class org.hibernate.id.GUIDGenerator]
+2012-09-12 15:05:20  [ main:2638 ] - [ DEBUG ]  Registering IdentifierGenerator strategy [uuid] -> [class org.hibernate.id.UUIDHexGenerator]
+2012-09-12 15:05:20  [ main:2638 ] - [ DEBUG ]  Registering IdentifierGenerator strategy [uuid.hex] -> [class org.hibernate.id.UUIDHexGenerator]
+2012-09-12 15:05:20  [ main:2640 ] - [ DEBUG ]  Registering IdentifierGenerator strategy [hilo] -> [class org.hibernate.id.TableHiLoGenerator]
+2012-09-12 15:05:20  [ main:2641 ] - [ DEBUG ]  Registering IdentifierGenerator strategy [assigned] -> [class org.hibernate.id.Assigned]
+2012-09-12 15:05:20  [ main:2642 ] - [ DEBUG ]  Registering IdentifierGenerator strategy [identity] -> [class org.hibernate.id.IdentityGenerator]
+2012-09-12 15:05:20  [ main:2642 ] - [ DEBUG ]  Registering IdentifierGenerator strategy [select] -> [class org.hibernate.id.SelectGenerator]
+2012-09-12 15:05:20  [ main:2643 ] - [ DEBUG ]  Registering IdentifierGenerator strategy [sequence] -> [class org.hibernate.id.SequenceGenerator]
+2012-09-12 15:05:20  [ main:2643 ] - [ DEBUG ]  Registering IdentifierGenerator strategy [seqhilo] -> [class org.hibernate.id.SequenceHiLoGenerator]
+2012-09-12 15:05:20  [ main:2644 ] - [ DEBUG ]  Registering IdentifierGenerator strategy [increment] -> [class org.hibernate.id.IncrementGenerator]
+2012-09-12 15:05:20  [ main:2644 ] - [ DEBUG ]  Registering IdentifierGenerator strategy [foreign] -> [class org.hibernate.id.ForeignGenerator]
+2012-09-12 15:05:20  [ main:2645 ] - [ DEBUG ]  Registering IdentifierGenerator strategy [sequence-identity] -> [class org.hibernate.id.SequenceIdentityGenerator]
+2012-09-12 15:05:20  [ main:2646 ] - [ DEBUG ]  Registering IdentifierGenerator strategy [enhanced-sequence] -> [class org.hibernate.id.enhanced.SequenceStyleGenerator]
+2012-09-12 15:05:20  [ main:2646 ] - [ DEBUG ]  Registering IdentifierGenerator strategy [enhanced-table] -> [class org.hibernate.id.enhanced.TableGenerator]
+2012-09-12 15:05:20  [ main:2651 ] - [ DEBUG ]  Looking for matching resources in directory tree [/home/roadahead/workspace/newarch/kaas/kaas-service/target/classes/com/thinkingtop/kaas/services/model]
+2012-09-12 15:05:20  [ main:2651 ] - [ DEBUG ]  Searching directory [/home/roadahead/workspace/newarch/kaas/kaas-service/target/classes/com/thinkingtop/kaas/services/model] for files matching pattern [/home/roadahead/workspace/newarch/kaas/kaas-service/target/classes/com/thinkingtop/kaas/services/model/**/*.class]
+2012-09-12 15:05:20  [ main:2654 ] - [ DEBUG ]  Resolved location pattern [classpath*:com/thinkingtop/kaas/services/model/**/*.class] to resources [file [/home/roadahead/workspace/newarch/kaas/kaas-service/target/classes/com/thinkingtop/kaas/services/model/Kebsite.class], file [/home/roadahead/workspace/newarch/kaas/kaas-service/target/classes/com/thinkingtop/kaas/services/model/KaasOrderFrequent.class], file [/home/roadahead/workspace/newarch/kaas/kaas-service/target/classes/com/thinkingtop/kaas/services/model/ExclusiveKey.class], file [/home/roadahead/workspace/newarch/kaas/kaas-service/target/classes/com/thinkingtop/kaas/services/model/KaasRule.class]]
+2012-09-12 15:05:20  [ main:2695 ] - [ DEBUG ]  Processing hbm.xml files
+2012-09-12 15:05:20  [ main:2695 ] - [ DEBUG ]  Process annotated classes
+2012-09-12 15:05:20  [ main:2699 ] - [ INFO ]  Binding entity from annotated class: com.thinkingtop.kaas.services.model.Kebsite
+2012-09-12 15:05:20  [ main:2753 ] - [ DEBUG ]  Binding column: Ejb3DiscriminatorColumn{logicalColumnName'DTYPE', discriminatorTypeName='string'}
+2012-09-12 15:05:20  [ main:2758 ] - [ DEBUG ]  no value specified for 'javax.persistence.sharedCache.mode'; using UNSPECIFIED
+2012-09-12 15:05:20  [ main:2762 ] - [ DEBUG ]  Import with entity name Kebsite
+2012-09-12 15:05:20  [ main:2768 ] - [ INFO ]  Bind entity com.thinkingtop.kaas.services.model.Kebsite on table Kebsite
+2012-09-12 15:05:20  [ main:2803 ] - [ DEBUG ]  Binding column: Ejb3Column{table=org.hibernate.mapping.Table(Kebsite), mappingColumn=id, insertable=true, updatable=true, unique=false}
+2012-09-12 15:05:20  [ main:2807 ] - [ DEBUG ]  binding property id with lazy=false
+2012-09-12 15:05:20  [ main:2810 ] - [ DEBUG ]  building SimpleValue for id
+2012-09-12 15:05:20  [ main:2813 ] - [ DEBUG ]  Building property id
+2012-09-12 15:05:20  [ main:2818 ] - [ DEBUG ]  Binding column: Ejb3JoinColumn{logicalColumnName='null', referencedColumn='null', mappedBy='kebsite'}
+2012-09-12 15:05:20  [ main:2819 ] - [ DEBUG ]  Binding column: Ejb3Column{table=org.hibernate.mapping.Table(Kebsite), mappingColumn=exclusiveKey, insertable=true, updatable=true, unique=false}
+2012-09-12 15:05:20  [ main:2820 ] - [ DEBUG ]  Binding column: Ejb3Column{table=org.hibernate.mapping.Table(Kebsite), mappingColumn=null, insertable=true, updatable=true, unique=false}
+2012-09-12 15:05:20  [ main:2835 ] - [ DEBUG ]  Binding column: Ejb3Column{table=org.hibernate.mapping.Table(Kebsite), mappingColumn=element, insertable=true, updatable=true, unique=false}
+2012-09-12 15:05:20  [ main:2836 ] - [ DEBUG ]  Binding column: Ejb3Column{table=org.hibernate.mapping.Table(Kebsite), mappingColumn=exclusiveKey_KEY, insertable=true, updatable=true, unique=false}
+2012-09-12 15:05:20  [ main:2837 ] - [ DEBUG ]  Binding column: Ejb3JoinColumn{logicalColumnName='exclusiveKey_KEY', referencedColumn='null', mappedBy='null'}
+2012-09-12 15:05:20  [ main:2838 ] - [ DEBUG ]  Binding column: Ejb3JoinColumn{logicalColumnName='null', referencedColumn='null', mappedBy='kebsite'}
+2012-09-12 15:05:20  [ main:2838 ] - [ DEBUG ]  Binding column: Ejb3JoinColumn{logicalColumnName='null', referencedColumn='null', mappedBy='kebsite'}
+2012-09-12 15:05:20  [ main:2840 ] - [ DEBUG ]  Collection role: com.thinkingtop.kaas.services.model.Kebsite.exclusiveKey
+2012-09-12 15:05:20  [ main:2843 ] - [ DEBUG ]  Building property exclusiveKey
+2012-09-12 15:05:20  [ main:2843 ] - [ DEBUG ]  Binding column: Ejb3Column{table=org.hibernate.mapping.Table(Kebsite), mappingColumn=kebsiteName, insertable=true, updatable=true, unique=false}
+2012-09-12 15:05:20  [ main:2843 ] - [ DEBUG ]  binding property kebsiteName with lazy=false
+2012-09-12 15:05:20  [ main:2843 ] - [ DEBUG ]  building SimpleValue for kebsiteName
+2012-09-12 15:05:20  [ main:2843 ] - [ DEBUG ]  Building property kebsiteName
+2012-09-12 15:05:20  [ main:2845 ] - [ INFO ]  Binding entity from annotated class: com.thinkingtop.kaas.services.model.ExclusiveKey
+2012-09-12 15:05:20  [ main:2846 ] - [ DEBUG ]  Binding column: Ejb3DiscriminatorColumn{logicalColumnName'DTYPE', discriminatorTypeName='string'}
+2012-09-12 15:05:20  [ main:2846 ] - [ DEBUG ]  no value specified for 'javax.persistence.sharedCache.mode'; using UNSPECIFIED
+2012-09-12 15:05:20  [ main:2846 ] - [ DEBUG ]  Import with entity name ExclusiveKey
+2012-09-12 15:05:20  [ main:2846 ] - [ INFO ]  Bind entity com.thinkingtop.kaas.services.model.ExclusiveKey on table ExclusiveKey
+2012-09-12 15:05:20  [ main:2857 ] - [ DEBUG ]  Binding column: Ejb3Column{table=org.hibernate.mapping.Table(ExclusiveKey), mappingColumn=id, insertable=true, updatable=true, unique=false}
+2012-09-12 15:05:20  [ main:2857 ] - [ DEBUG ]  binding property id with lazy=false
+2012-09-12 15:05:20  [ main:2857 ] - [ DEBUG ]  building SimpleValue for id
+2012-09-12 15:05:20  [ main:2857 ] - [ DEBUG ]  Building property id
+2012-09-12 15:05:20  [ main:2857 ] - [ DEBUG ]  Binding column: Ejb3Column{table=org.hibernate.mapping.Table(ExclusiveKey), mappingColumn=activation, insertable=true, updatable=true, unique=false}
+2012-09-12 15:05:20  [ main:2858 ] - [ DEBUG ]  binding property activation with lazy=false
+2012-09-12 15:05:20  [ main:2858 ] - [ DEBUG ]  building SimpleValue for activation
+2012-09-12 15:05:20  [ main:2858 ] - [ DEBUG ]  Building property activation
+2012-09-12 15:05:20  [ main:2858 ] - [ DEBUG ]  Binding column: Ejb3JoinColumn{logicalColumnName='kebsiteid', referencedColumn='', mappedBy=''}
+2012-09-12 15:05:20  [ main:2858 ] - [ DEBUG ]  Binding column: Ejb3Column{table=org.hibernate.mapping.Table(ExclusiveKey), mappingColumn=kebsite, insertable=true, updatable=true, unique=false}
+2012-09-12 15:05:20  [ main:2860 ] - [ DEBUG ]  Building property kebsite
+2012-09-12 15:05:20  [ main:2861 ] - [ DEBUG ]  Binding column: Ejb3Column{table=org.hibernate.mapping.Table(ExclusiveKey), mappingColumn=keyString, insertable=true, updatable=true, unique=false}
+2012-09-12 15:05:20  [ main:2861 ] - [ DEBUG ]  binding property keyString with lazy=false
+2012-09-12 15:05:20  [ main:2861 ] - [ DEBUG ]  building SimpleValue for keyString
+2012-09-12 15:05:20  [ main:2861 ] - [ DEBUG ]  Building property keyString
+2012-09-12 15:05:20  [ main:2862 ] - [ DEBUG ]  Setting SimpleValue typeName for id
+2012-09-12 15:05:20  [ main:2862 ] - [ DEBUG ]  Setting SimpleValue typeName for kebsiteName
+2012-09-12 15:05:20  [ main:2862 ] - [ DEBUG ]  Setting SimpleValue typeName for id
+2012-09-12 15:05:20  [ main:2862 ] - [ DEBUG ]  Setting SimpleValue typeName for activation
+2012-09-12 15:05:20  [ main:2862 ] - [ DEBUG ]  Setting SimpleValue typeName for keyString
+2012-09-12 15:05:20  [ main:2863 ] - [ DEBUG ]  processing fk mappings (*ToOne and JoinedSubclass)
+2012-09-12 15:05:20  [ main:2871 ] - [ DEBUG ]  processing extends queue
+2012-09-12 15:05:20  [ main:2872 ] - [ DEBUG ]  processing extends queue
+2012-09-12 15:05:20  [ main:2872 ] - [ DEBUG ]  processing collection mappings
+2012-09-12 15:05:20  [ main:2873 ] - [ DEBUG ]  Second pass for collection: com.thinkingtop.kaas.services.model.Kebsite.exclusiveKey
+2012-09-12 15:05:20  [ main:2874 ] - [ DEBUG ]  Binding a OneToMany: com.thinkingtop.kaas.services.model.Kebsite.exclusiveKey through a foreign key
+2012-09-12 15:05:20  [ main:2875 ] - [ INFO ]  Mapping collection: com.thinkingtop.kaas.services.model.Kebsite.exclusiveKey -> ExclusiveKey
+2012-09-12 15:05:20  [ main:2877 ] - [ DEBUG ]  Retrieving property com.thinkingtop.kaas.services.model.ExclusiveKey.kebsite
+2012-09-12 15:05:20  [ main:2877 ] - [ DEBUG ]  Mapped collection key: kebsiteid, one-to-many: com.thinkingtop.kaas.services.model.ExclusiveKey
+2012-09-12 15:05:20  [ main:2877 ] - [ DEBUG ]  processing native query and ResultSetMapping mappings
+2012-09-12 15:05:20  [ main:2877 ] - [ DEBUG ]  processing association property references
+2012-09-12 15:05:20  [ main:2877 ] - [ DEBUG ]  processing foreign key constraints
+2012-09-12 15:05:20  [ main:2877 ] - [ DEBUG ]  resolving reference to class: com.thinkingtop.kaas.services.model.Kebsite
+2012-09-12 15:05:20  [ main:2881 ] - [ INFO ]  Hibernate Validator not found: ignoring
+2012-09-12 15:05:20  [ main:2884 ] - [ INFO ]  Building new Hibernate SessionFactory
+2012-09-12 15:05:20  [ main:2886 ] - [ DEBUG ]  Preparing to build session factory with filters : {}
+2012-09-12 15:05:20  [ main:2886 ] - [ DEBUG ]  Processing hbm.xml files
+2012-09-12 15:05:20  [ main:2886 ] - [ DEBUG ]  Process annotated classes
+2012-09-12 15:05:20  [ main:2886 ] - [ DEBUG ]  processing fk mappings (*ToOne and JoinedSubclass)
+2012-09-12 15:05:20  [ main:2886 ] - [ DEBUG ]  processing extends queue
+2012-09-12 15:05:20  [ main:2886 ] - [ DEBUG ]  processing extends queue
+2012-09-12 15:05:20  [ main:2886 ] - [ DEBUG ]  processing collection mappings
+2012-09-12 15:05:20  [ main:2886 ] - [ DEBUG ]  processing native query and ResultSetMapping mappings
+2012-09-12 15:05:20  [ main:2886 ] - [ DEBUG ]  processing association property references
+2012-09-12 15:05:20  [ main:2886 ] - [ DEBUG ]  processing foreign key constraints
+2012-09-12 15:05:20  [ main:2886 ] - [ DEBUG ]  resolving reference to class: com.thinkingtop.kaas.services.model.Kebsite
+2012-09-12 15:05:20  [ main:2888 ] - [ DEBUG ]  Legacy Validator not present in classpath, ignoring event listener registration
+2012-09-12 15:05:20  [ main:2892 ] - [ DEBUG ]  Search not present in classpath, ignoring event listener registration.
+2012-09-12 15:05:20  [ main:2892 ] - [ INFO ]  Unable to find org.hibernate.search.event.FullTextIndexEventListener on the classpath. Hibernate Search is not enabled.
+2012-09-12 15:05:20  [ main:2900 ] - [ INFO ]  Initializing connection provider: org.springframework.orm.hibernate3.LocalDataSourceConnectionProvider
+2012-09-12 15:05:20  [ main:3000 ] - [ DEBUG ]  JDBC URL = jdbc:mysql://localhost:3306/kaasservice, Username = root, partitions = 2, max (per partition) = 0, min (per partition) = 0, helper threads = 3, idle max age = 60 min, idle test period = 240 min
+2012-09-12 15:05:20  [ main:3002 ] - [ WARN ]  Max Connections < 2. Setting to 50
+2012-09-12 15:05:20  [ main:3003 ] - [ WARN ]  Min Connections < 2. Setting to 10
+2012-09-12 15:05:23  [ main:6138 ] - [ INFO ]  Using dialect: org.hibernate.dialect.MySQLDialect
+2012-09-12 15:05:23  [ main:6181 ] - [ INFO ]  Database ->
+       name : MySQL
+    version : 5.1.63-0ubuntu0.11.04.1
+      major : 5
+      minor : 1
+2012-09-12 15:05:23  [ main:6182 ] - [ INFO ]  Driver ->
+       name : MySQL-AB JDBC Driver
+    version : mysql-connector-java-5.1.20 ( Revision: tonci.grgin@oracle.com-20111003110438-qfydx066wsbydkbw )
+      major : 5
+      minor : 1
+2012-09-12 15:05:23  [ main:6183 ] - [ INFO ]  Transaction strategy: org.springframework.orm.hibernate3.SpringTransactionFactory
+2012-09-12 15:05:23  [ main:6185 ] - [ INFO ]  No TransactionManagerLookup configured (in JTA environment, use of read-write or transactional second-level cache is not recommended)
+2012-09-12 15:05:23  [ main:6186 ] - [ INFO ]  Automatic flush during beforeCompletion(): disabled
+2012-09-12 15:05:23  [ main:6187 ] - [ INFO ]  Automatic session close at end of transaction: disabled
+2012-09-12 15:05:23  [ main:6187 ] - [ INFO ]  JDBC batch size: 15
+2012-09-12 15:05:23  [ main:6188 ] - [ INFO ]  JDBC batch updates for versioned data: disabled
+2012-09-12 15:05:23  [ main:6189 ] - [ INFO ]  Scrollable result sets: enabled
+2012-09-12 15:05:23  [ main:6190 ] - [ DEBUG ]  Wrap result sets: disabled
+2012-09-12 15:05:23  [ main:6190 ] - [ INFO ]  JDBC3 getGeneratedKeys(): enabled
+2012-09-12 15:05:23  [ main:6190 ] - [ INFO ]  Connection release mode: auto
+2012-09-12 15:05:23  [ main:6191 ] - [ INFO ]  Maximum outer join fetch depth: 2
+2012-09-12 15:05:23  [ main:6192 ] - [ INFO ]  Default batch fetch size: 1
+2012-09-12 15:05:23  [ main:6193 ] - [ INFO ]  Generate SQL with comments: disabled
+2012-09-12 15:05:23  [ main:6194 ] - [ INFO ]  Order SQL updates by primary key: disabled
+2012-09-12 15:05:23  [ main:6194 ] - [ INFO ]  Order SQL inserts for batching: disabled
+2012-09-12 15:05:23  [ main:6195 ] - [ INFO ]  Query translator: org.hibernate.hql.ast.ASTQueryTranslatorFactory
+2012-09-12 15:05:23  [ main:6197 ] - [ INFO ]  Using ASTQueryTranslatorFactory
+2012-09-12 15:05:23  [ main:6198 ] - [ INFO ]  Query language substitutions: {}
+2012-09-12 15:05:23  [ main:6198 ] - [ INFO ]  JPA-QL strict compliance: disabled
+2012-09-12 15:05:23  [ main:6199 ] - [ INFO ]  Second-level cache: enabled
+2012-09-12 15:05:23  [ main:6203 ] - [ INFO ]  Query cache: disabled
+2012-09-12 15:05:23  [ main:6204 ] - [ INFO ]  Cache region factory : org.hibernate.cache.impl.NoCachingRegionFactory
+2012-09-12 15:05:23  [ main:6205 ] - [ INFO ]  Optimize cache for minimal puts: disabled
+2012-09-12 15:05:23  [ main:6206 ] - [ INFO ]  Structured second-level cache entries: disabled
+2012-09-12 15:05:23  [ main:6210 ] - [ INFO ]  Echoing all SQL to stdout
+2012-09-12 15:05:23  [ main:6211 ] - [ INFO ]  Statistics: disabled
+2012-09-12 15:05:23  [ main:6211 ] - [ INFO ]  Deleted entity synthetic identifier rollback: disabled
+2012-09-12 15:05:23  [ main:6212 ] - [ INFO ]  Default entity-mode: pojo
+2012-09-12 15:05:23  [ main:6212 ] - [ INFO ]  Named query checking : enabled
+2012-09-12 15:05:23  [ main:6213 ] - [ INFO ]  Check Nullability in Core (should be disabled when Bean Validation is on): enabled
+2012-09-12 15:05:24  [ main:6269 ] - [ INFO ]  building session factory
+2012-09-12 15:05:24  [ main:6275 ] - [ DEBUG ]  Statistics initialized [enabled=false]}
+2012-09-12 15:05:24  [ main:6276 ] - [ DEBUG ]  Adding type registration boolean -> org.hibernate.type.BooleanType@52c6b4
+2012-09-12 15:05:24  [ main:6276 ] - [ DEBUG ]  Adding type registration boolean -> org.hibernate.type.BooleanType@52c6b4
+2012-09-12 15:05:24  [ main:6276 ] - [ DEBUG ]  Adding type registration java.lang.Boolean -> org.hibernate.type.BooleanType@52c6b4
+2012-09-12 15:05:24  [ main:6276 ] - [ DEBUG ]  Adding type registration numeric_boolean -> org.hibernate.type.NumericBooleanType@1ad6b4b
+2012-09-12 15:05:24  [ main:6276 ] - [ DEBUG ]  Adding type registration true_false -> org.hibernate.type.TrueFalseType@6214f5
+2012-09-12 15:05:24  [ main:6276 ] - [ DEBUG ]  Adding type registration yes_no -> org.hibernate.type.YesNoType@4d76b4
+2012-09-12 15:05:24  [ main:6276 ] - [ DEBUG ]  Adding type registration byte -> org.hibernate.type.ByteType@e183e9
+2012-09-12 15:05:24  [ main:6276 ] - [ DEBUG ]  Adding type registration byte -> org.hibernate.type.ByteType@e183e9
+2012-09-12 15:05:24  [ main:6276 ] - [ DEBUG ]  Adding type registration java.lang.Byte -> org.hibernate.type.ByteType@e183e9
+2012-09-12 15:05:24  [ main:6276 ] - [ DEBUG ]  Adding type registration character -> org.hibernate.type.CharacterType@30ae41
+2012-09-12 15:05:24  [ main:6276 ] - [ DEBUG ]  Adding type registration char -> org.hibernate.type.CharacterType@30ae41
+2012-09-12 15:05:24  [ main:6276 ] - [ DEBUG ]  Adding type registration java.lang.Character -> org.hibernate.type.CharacterType@30ae41
+2012-09-12 15:05:24  [ main:6276 ] - [ DEBUG ]  Adding type registration short -> org.hibernate.type.ShortType@8b8a47
+2012-09-12 15:05:24  [ main:6276 ] - [ DEBUG ]  Adding type registration short -> org.hibernate.type.ShortType@8b8a47
+2012-09-12 15:05:24  [ main:6276 ] - [ DEBUG ]  Adding type registration java.lang.Short -> org.hibernate.type.ShortType@8b8a47
+2012-09-12 15:05:24  [ main:6276 ] - [ DEBUG ]  Adding type registration integer -> org.hibernate.type.IntegerType@e41bc3
+2012-09-12 15:05:24  [ main:6276 ] - [ DEBUG ]  Adding type registration int -> org.hibernate.type.IntegerType@e41bc3
+2012-09-12 15:05:24  [ main:6276 ] - [ DEBUG ]  Adding type registration java.lang.Integer -> org.hibernate.type.IntegerType@e41bc3
+2012-09-12 15:05:24  [ main:6276 ] - [ DEBUG ]  Adding type registration long -> org.hibernate.type.LongType@5dc994
+2012-09-12 15:05:24  [ main:6276 ] - [ DEBUG ]  Adding type registration long -> org.hibernate.type.LongType@5dc994
+2012-09-12 15:05:24  [ main:6277 ] - [ DEBUG ]  Adding type registration java.lang.Long -> org.hibernate.type.LongType@5dc994
+2012-09-12 15:05:24  [ main:6277 ] - [ DEBUG ]  Adding type registration float -> org.hibernate.type.FloatType@147358f
+2012-09-12 15:05:24  [ main:6277 ] - [ DEBUG ]  Adding type registration float -> org.hibernate.type.FloatType@147358f
+2012-09-12 15:05:24  [ main:6277 ] - [ DEBUG ]  Adding type registration java.lang.Float -> org.hibernate.type.FloatType@147358f
+2012-09-12 15:05:24  [ main:6277 ] - [ DEBUG ]  Adding type registration double -> org.hibernate.type.DoubleType@676e3f
+2012-09-12 15:05:24  [ main:6277 ] - [ DEBUG ]  Adding type registration double -> org.hibernate.type.DoubleType@676e3f
+2012-09-12 15:05:24  [ main:6277 ] - [ DEBUG ]  Adding type registration java.lang.Double -> org.hibernate.type.DoubleType@676e3f
+2012-09-12 15:05:24  [ main:6277 ] - [ DEBUG ]  Adding type registration big_decimal -> org.hibernate.type.BigDecimalType@d58939
+2012-09-12 15:05:24  [ main:6277 ] - [ DEBUG ]  Adding type registration java.math.BigDecimal -> org.hibernate.type.BigDecimalType@d58939
+2012-09-12 15:05:24  [ main:6277 ] - [ DEBUG ]  Adding type registration big_integer -> org.hibernate.type.BigIntegerType@93df2c
+2012-09-12 15:05:24  [ main:6277 ] - [ DEBUG ]  Adding type registration java.math.BigInteger -> org.hibernate.type.BigIntegerType@93df2c
+2012-09-12 15:05:24  [ main:6277 ] - [ DEBUG ]  Adding type registration string -> org.hibernate.type.StringType@3a1834
+2012-09-12 15:05:24  [ main:6277 ] - [ DEBUG ]  Adding type registration java.lang.String -> org.hibernate.type.StringType@3a1834
+2012-09-12 15:05:24  [ main:6277 ] - [ DEBUG ]  Adding type registration url -> org.hibernate.type.UrlType@2f729e
+2012-09-12 15:05:24  [ main:6277 ] - [ DEBUG ]  Adding type registration java.net.URL -> org.hibernate.type.UrlType@2f729e
+2012-09-12 15:05:24  [ main:6277 ] - [ DEBUG ]  Adding type registration date -> org.hibernate.type.DateType@1eb5666
+2012-09-12 15:05:24  [ main:6277 ] - [ DEBUG ]  Adding type registration java.sql.Date -> org.hibernate.type.DateType@1eb5666
+2012-09-12 15:05:24  [ main:6277 ] - [ DEBUG ]  Adding type registration time -> org.hibernate.type.TimeType@2e323
+2012-09-12 15:05:24  [ main:6277 ] - [ DEBUG ]  Adding type registration java.sql.Time -> org.hibernate.type.TimeType@2e323
+2012-09-12 15:05:24  [ main:6277 ] - [ DEBUG ]  Adding type registration timestamp -> org.hibernate.type.TimestampType@d55986
+2012-09-12 15:05:24  [ main:6277 ] - [ DEBUG ]  Adding type registration java.sql.Timestamp -> org.hibernate.type.TimestampType@d55986
+2012-09-12 15:05:24  [ main:6277 ] - [ DEBUG ]  Adding type registration java.util.Date -> org.hibernate.type.TimestampType@d55986
+2012-09-12 15:05:24  [ main:6277 ] - [ DEBUG ]  Adding type registration dbtimestamp -> org.hibernate.type.DbTimestampType@1f99eea
+2012-09-12 15:05:24  [ main:6277 ] - [ DEBUG ]  Adding type registration calendar -> org.hibernate.type.CalendarType@221e9e
+2012-09-12 15:05:24  [ main:6277 ] - [ DEBUG ]  Adding type registration java.util.Calendar -> org.hibernate.type.CalendarType@221e9e
+2012-09-12 15:05:24  [ main:6277 ] - [ DEBUG ]  Adding type registration java.util.GregorianCalendar -> org.hibernate.type.CalendarType@221e9e
+2012-09-12 15:05:24  [ main:6277 ] - [ DEBUG ]  Adding type registration calendar_date -> org.hibernate.type.CalendarDateType@1264eab
+2012-09-12 15:05:24  [ main:6277 ] - [ DEBUG ]  Adding type registration locale -> org.hibernate.type.LocaleType@430b6
+2012-09-12 15:05:24  [ main:6277 ] - [ DEBUG ]  Adding type registration java.util.Locale -> org.hibernate.type.LocaleType@430b6
+2012-09-12 15:05:24  [ main:6277 ] - [ DEBUG ]  Adding type registration currency -> org.hibernate.type.CurrencyType@1f31652
+2012-09-12 15:05:24  [ main:6278 ] - [ DEBUG ]  Adding type registration java.util.Currency -> org.hibernate.type.CurrencyType@1f31652
+2012-09-12 15:05:24  [ main:6278 ] - [ DEBUG ]  Adding type registration timezone -> org.hibernate.type.TimeZoneType@1367e28
+2012-09-12 15:05:24  [ main:6278 ] - [ DEBUG ]  Adding type registration java.util.TimeZone -> org.hibernate.type.TimeZoneType@1367e28
+2012-09-12 15:05:24  [ main:6278 ] - [ DEBUG ]  Adding type registration class -> org.hibernate.type.ClassType@19a0203
+2012-09-12 15:05:24  [ main:6278 ] - [ DEBUG ]  Adding type registration java.lang.Class -> org.hibernate.type.ClassType@19a0203
+2012-09-12 15:05:24  [ main:6278 ] - [ DEBUG ]  Adding type registration uuid-binary -> org.hibernate.type.UUIDBinaryType@7f58ef
+2012-09-12 15:05:24  [ main:6278 ] - [ DEBUG ]  Adding type registration java.util.UUID -> org.hibernate.type.UUIDBinaryType@7f58ef
+2012-09-12 15:05:24  [ main:6278 ] - [ DEBUG ]  Adding type registration uuid-char -> org.hibernate.type.UUIDCharType@acdd02
+2012-09-12 15:05:24  [ main:6278 ] - [ DEBUG ]  Adding type registration pg-uuid -> org.hibernate.type.PostgresUUIDType@f0b4a3
+2012-09-12 15:05:24  [ main:6278 ] - [ DEBUG ]  Adding type registration binary -> org.hibernate.type.BinaryType@46d228
+2012-09-12 15:05:24  [ main:6278 ] - [ DEBUG ]  Adding type registration byte[] -> org.hibernate.type.BinaryType@46d228
+2012-09-12 15:05:24  [ main:6278 ] - [ DEBUG ]  Adding type registration [B -> org.hibernate.type.BinaryType@46d228
+2012-09-12 15:05:24  [ main:6278 ] - [ DEBUG ]  Adding type registration wrapper-binary -> org.hibernate.type.WrapperBinaryType@1980630
+2012-09-12 15:05:24  [ main:6278 ] - [ DEBUG ]  Adding type registration Byte[] -> org.hibernate.type.WrapperBinaryType@1980630
+2012-09-12 15:05:24  [ main:6279 ] - [ DEBUG ]  Adding type registration [Ljava.lang.Byte; -> org.hibernate.type.WrapperBinaryType@1980630
+2012-09-12 15:05:24  [ main:6279 ] - [ DEBUG ]  Adding type registration image -> org.hibernate.type.ImageType@12f1bf0
+2012-09-12 15:05:24  [ main:6279 ] - [ DEBUG ]  Adding type registration characters -> org.hibernate.type.CharArrayType@1347124
+2012-09-12 15:05:24  [ main:6279 ] - [ DEBUG ]  Adding type registration char[] -> org.hibernate.type.CharArrayType@1347124
+2012-09-12 15:05:24  [ main:6279 ] - [ DEBUG ]  Adding type registration [C -> org.hibernate.type.CharArrayType@1347124
+2012-09-12 15:05:24  [ main:6279 ] - [ DEBUG ]  Adding type registration wrapper-characters -> org.hibernate.type.CharacterArrayType@3aff84
+2012-09-12 15:05:24  [ main:6279 ] - [ DEBUG ]  Adding type registration [Ljava.lang.Character; -> org.hibernate.type.CharacterArrayType@3aff84
+2012-09-12 15:05:24  [ main:6279 ] - [ DEBUG ]  Adding type registration Character[] -> org.hibernate.type.CharacterArrayType@3aff84
+2012-09-12 15:05:24  [ main:6279 ] - [ DEBUG ]  Adding type registration text -> org.hibernate.type.TextType@827968
+2012-09-12 15:05:24  [ main:6279 ] - [ DEBUG ]  Adding type registration blob -> org.hibernate.type.BlobType@4cd580
+2012-09-12 15:05:24  [ main:6279 ] - [ DEBUG ]  Adding type registration java.sql.Blob -> org.hibernate.type.BlobType@4cd580
+2012-09-12 15:05:24  [ main:6279 ] - [ DEBUG ]  Adding type registration materialized_blob -> org.hibernate.type.MaterializedBlobType@e576d4
+2012-09-12 15:05:24  [ main:6279 ] - [ DEBUG ]  Adding type registration wrapper_materialized_blob -> org.hibernate.type.WrappedMaterializedBlobType@1db5ec
+2012-09-12 15:05:24  [ main:6279 ] - [ DEBUG ]  Adding type registration clob -> org.hibernate.type.ClobType@1c1ac46
+2012-09-12 15:05:24  [ main:6279 ] - [ DEBUG ]  Adding type registration java.sql.Clob -> org.hibernate.type.ClobType@1c1ac46
+2012-09-12 15:05:24  [ main:6279 ] - [ DEBUG ]  Adding type registration materialized_clob -> org.hibernate.type.MaterializedClobType@1342a67
+2012-09-12 15:05:24  [ main:6279 ] - [ DEBUG ]  Adding type registration wrapper_characters_clob -> org.hibernate.type.CharacterArrayClobType@57ea52
+2012-09-12 15:05:24  [ main:6279 ] - [ DEBUG ]  Adding type registration characters_clob -> org.hibernate.type.PrimitiveCharacterArrayClobType@2d95b3
+2012-09-12 15:05:24  [ main:6279 ] - [ DEBUG ]  Adding type registration serializable -> org.hibernate.type.SerializableType@73305c
+2012-09-12 15:05:24  [ main:6279 ] - [ DEBUG ]  Adding type registration object -> org.hibernate.type.ObjectType@718242
+2012-09-12 15:05:24  [ main:6279 ] - [ DEBUG ]  Adding type registration java.lang.Object -> org.hibernate.type.ObjectType@718242
+2012-09-12 15:05:24  [ main:6279 ] - [ DEBUG ]  Adding type registration imm_date -> org.hibernate.type.AdaptedImmutableType@1e6f0ef
+2012-09-12 15:05:24  [ main:6279 ] - [ DEBUG ]  Adding type registration imm_time -> org.hibernate.type.AdaptedImmutableType@d402dd
+2012-09-12 15:05:24  [ main:6279 ] - [ DEBUG ]  Adding type registration imm_timestamp -> org.hibernate.type.AdaptedImmutableType@1083717
+2012-09-12 15:05:24  [ main:6279 ] - [ DEBUG ]  Adding type registration imm_dbtimestamp -> org.hibernate.type.AdaptedImmutableType@58cca9
+2012-09-12 15:05:24  [ main:6279 ] - [ DEBUG ]  Adding type registration imm_calendar -> org.hibernate.type.AdaptedImmutableType@1e4905a
+2012-09-12 15:05:24  [ main:6279 ] - [ DEBUG ]  Adding type registration imm_calendar_date -> org.hibernate.type.AdaptedImmutableType@c12474
+2012-09-12 15:05:24  [ main:6280 ] - [ DEBUG ]  Adding type registration imm_binary -> org.hibernate.type.AdaptedImmutableType@407166
+2012-09-12 15:05:24  [ main:6280 ] - [ DEBUG ]  Adding type registration imm_serializable -> org.hibernate.type.AdaptedImmutableType@d510e8
+2012-09-12 15:05:24  [ main:6280 ] - [ DEBUG ]  Adding type registration materialized_clob -> org.hibernate.type.MaterializedClobType@83d8be
+2012-09-12 15:05:24  [ main:6280 ] - [ INFO ]  Type registration [materialized_clob] overrides previous : org.hibernate.type.MaterializedClobType@1342a67
+2012-09-12 15:05:24  [ main:6283 ] - [ DEBUG ]  Adding type registration materialized_blob -> org.hibernate.type.MaterializedBlobType@ffeef1
+2012-09-12 15:05:24  [ main:6283 ] - [ INFO ]  Type registration [materialized_blob] overrides previous : org.hibernate.type.MaterializedBlobType@e576d4
+2012-09-12 15:05:24  [ main:6291 ] - [ DEBUG ]  Adding type registration characters_clob -> org.hibernate.type.PrimitiveCharacterArrayClobType@6ef7ba
+2012-09-12 15:05:24  [ main:6291 ] - [ INFO ]  Type registration [characters_clob] overrides previous : org.hibernate.type.PrimitiveCharacterArrayClobType@2d95b3
+2012-09-12 15:05:24  [ main:6291 ] - [ DEBUG ]  Adding type registration blob -> org.hibernate.type.BlobType@181497d
+2012-09-12 15:05:24  [ main:6291 ] - [ INFO ]  Type registration [blob] overrides previous : org.hibernate.type.BlobType@4cd580
+2012-09-12 15:05:24  [ main:6292 ] - [ DEBUG ]  Adding type registration java.sql.Blob -> org.hibernate.type.BlobType@181497d
+2012-09-12 15:05:24  [ main:6292 ] - [ INFO ]  Type registration [java.sql.Blob] overrides previous : org.hibernate.type.BlobType@4cd580
+2012-09-12 15:05:24  [ main:6293 ] - [ DEBUG ]  Adding type registration wrapper_characters_clob -> org.hibernate.type.CharacterArrayClobType@ae1cf
+2012-09-12 15:05:24  [ main:6293 ] - [ INFO ]  Type registration [wrapper_characters_clob] overrides previous : org.hibernate.type.CharacterArrayClobType@57ea52
+2012-09-12 15:05:24  [ main:6296 ] - [ DEBUG ]  Adding type registration clob -> org.hibernate.type.ClobType@aa3518
+2012-09-12 15:05:24  [ main:6296 ] - [ INFO ]  Type registration [clob] overrides previous : org.hibernate.type.ClobType@1c1ac46
+2012-09-12 15:05:24  [ main:6297 ] - [ DEBUG ]  Adding type registration java.sql.Clob -> org.hibernate.type.ClobType@aa3518
+2012-09-12 15:05:24  [ main:6297 ] - [ INFO ]  Type registration [java.sql.Clob] overrides previous : org.hibernate.type.ClobType@1c1ac46
+2012-09-12 15:05:24  [ main:6297 ] - [ DEBUG ]  Adding type registration wrapper_materialized_blob -> org.hibernate.type.WrappedMaterializedBlobType@a010ba
+2012-09-12 15:05:24  [ main:6297 ] - [ INFO ]  Type registration [wrapper_materialized_blob] overrides previous : org.hibernate.type.WrappedMaterializedBlobType@1db5ec
+2012-09-12 15:05:24  [ main:6299 ] - [ DEBUG ]  Session factory constructed with filter configurations : {}
+2012-09-12 15:05:24  [ main:6299 ] - [ DEBUG ]  instantiating session factory with properties: {java.runtime.name=Java(TM) SE Runtime Environment, sun.boot.library.path=/usr/lib/jvm/jdk1.6.0_33/jre/lib/i386, java.vm.version=20.8-b03, java.vm.vendor=Sun Microsystems Inc., java.vendor.url=http://java.sun.com/, path.separator=:, java.vm.name=Java HotSpot(TM) Client VM, file.encoding.pkg=sun.io, user.country=CN, sun.java.launcher=SUN_STANDARD, sun.os.patch.level=unknown, java.vm.specification.name=Java Virtual Machine Specification, user.dir=/home/roadahead/workspace/newarch/kaas/kaas-service, java.runtime.version=1.6.0_33-b04, java.awt.graphicsenv=sun.awt.X11GraphicsEnvironment, hibernate.current_session_context_class=org.springframework.orm.hibernate3.SpringSessionContext, java.endorsed.dirs=/usr/lib/jvm/jdk1.6.0_33/jre/lib/endorsed, os.arch=i386, java.io.tmpdir=/tmp, line.separator=
+, java.vm.specification.vendor=Sun Microsystems Inc., os.name=Linux, sun.jnu.encoding=UTF-8, java.library.path=/usr/lib/jvm/jdk1.6.0_33/jre/lib/i386/client:/usr/lib/jvm/jdk1.6.0_33/jre/lib/i386:/usr/lib/jvm/jdk1.6.0_33/jre/../lib/i386:/usr/lib/jvm/jdk1.6.0_33/jre/lib/i386/client:/usr/lib/jvm/jdk1.6.0_33/jre/lib/i386::/usr/java/packages/lib/i386:/lib:/usr/lib, java.specification.name=Java Platform API Specification, java.class.version=50.0, sun.management.compiler=HotSpot Client Compiler, hibernate.transaction.factory_class=org.springframework.orm.hibernate3.SpringTransactionFactory, os.version=2.6.38-8-generic, user.home=/home/roadahead, user.timezone=Asia/Shanghai, java.awt.printerjob=sun.print.PSPrinterJob, file.encoding=UTF-8, java.specification.version=1.6, java.class.path=/home/roadahead/workspace/newarch/kaas/kaas-service/target/test-classes:/home/roadahead/workspace/newarch/kaas/kaas-service/target/classes:/home/roadahead/programs/maven/repo/junit/junit/4.10/junit-4.10.jar:/home/roadahead/programs/maven/repo/org/hamcrest/hamcrest-core/1.1/hamcrest-core-1.1.jar:/home/roadahead/programs/maven/repo/org/hibernate/javax/persistence/hibernate-jpa-2.0-api/1.0.1.Final/hibernate-jpa-2.0-api-1.0.1.Final.jar:/home/roadahead/programs/maven/repo/org/hibernate/hibernate-core/3.6.10.Final/hibernate-core-3.6.10.Final.jar:/home/roadahead/programs/maven/repo/antlr/antlr/2.7.6/antlr-2.7.6.jar:/home/roadahead/programs/maven/repo/commons-collections/commons-collections/3.1/commons-collections-3.1.jar:/home/roadahead/programs/maven/repo/dom4j/dom4j/1.6.1/dom4j-1.6.1.jar:/home/roadahead/programs/maven/repo/org/hibernate/hibernate-commons-annotations/3.2.0.Final/hibernate-commons-annotations-3.2.0.Final.jar:/home/roadahead/programs/maven/repo/javax/transaction/jta/1.1/jta-1.1.jar:/home/roadahead/programs/maven/repo/org/slf4j/slf4j-api/1.6.1/slf4j-api-1.6.1.jar:/home/roadahead/programs/maven/repo/org/slf4j/slf4j-log4j12/1.6.6/slf4j-log4j12-1.6.6.jar:/home/roadahead/programs/maven/repo/javassist/javassist/3.9.0.GA/javassist-3.9.0.GA.jar:/home/roadahead/programs/maven/repo/org/springframework/spring-test/3.1.1.RELEASE/spring-test-3.1.1.RELEASE.jar:/home/roadahead/programs/maven/repo/org/springframework/spring-core/3.1.1.RELEASE/spring-core-3.1.1.RELEASE.jar:/home/roadahead/programs/maven/repo/org/springframework/spring-asm/3.1.1.RELEASE/spring-asm-3.1.1.RELEASE.jar:/home/roadahead/programs/maven/repo/commons-logging/commons-logging/1.1.1/commons-logging-1.1.1.jar:/home/roadahead/programs/maven/repo/org/springframework/spring-orm/3.1.1.RELEASE/spring-orm-3.1.1.RELEASE.jar:/home/roadahead/programs/maven/repo/org/springframework/spring-jdbc/3.1.1.RELEASE/spring-jdbc-3.1.1.RELEASE.jar:/home/roadahead/programs/maven/repo/org/springframework/spring-tx/3.1.1.RELEASE/spring-tx-3.1.1.RELEASE.jar:/home/roadahead/programs/maven/repo/org/springframework/spring-aop/3.1.1.RELEASE/spring-aop-3.1.1.RELEASE.jar:/home/roadahead/programs/maven/repo/aopalliance/aopalliance/1.0/aopalliance-1.0.jar:/home/roadahead/programs/maven/repo/org/springframework/spring-beans/3.1.1.RELEASE/spring-beans-3.1.1.RELEASE.jar:/home/roadahead/programs/maven/repo/org/springframework/spring-context/3.1.1.RELEASE/spring-context-3.1.1.RELEASE.jar:/home/roadahead/programs/maven/repo/org/springframework/spring-expression/3.1.1.RELEASE/spring-expression-3.1.1.RELEASE.jar:/home/roadahead/programs/maven/repo/org/aspectj/aspectjweaver/1.6.10/aspectjweaver-1.6.10.jar:/home/roadahead/programs/maven/repo/cglib/cglib-nodep/2.1_3/cglib-nodep-2.1_3.jar:/home/roadahead/programs/maven/repo/com/jolbox/bonecp/0.6.7.2/bonecp-0.6.7.2.jar:/home/roadahead/programs/maven/repo/com/google/collections/google-collections/1.0/google-collections-1.0.jar:/home/roadahead/programs/maven/repo/log4j/log4j/1.2.12/log4j-1.2.12.jar:/home/roadahead/programs/maven/repo/mysql/mysql-connector-java/5.1.20/mysql-connector-java-5.1.20.jar:/home/roadahead/programs/maven/repo/org/apache/cxf/cxf-bundle/2.2.6/cxf-bundle-2.2.6.jar:/home/roadahead/programs/maven/repo/org/apache/geronimo/specs/geronimo-annotation_1.0_spec/1.1.1/geronimo-annotation_1.0_spec-1.1.1.jar:/home/roadahead/programs/maven/repo/javax/xml/bind/jaxb-api/2.1/jaxb-api-2.1.jar:/home/roadahead/programs/maven/repo/org/apache/geronimo/specs/geronimo-stax-api_1.0_spec/1.0.1/geronimo-stax-api_1.0_spec-1.0.1.jar:/home/roadahead/programs/maven/repo/wsdl4j/wsdl4j/1.6.2/wsdl4j-1.6.2.jar:/home/roadahead/programs/maven/repo/org/apache/ws/commons/schema/XmlSchema/1.4.5/XmlSchema-1.4.5.jar:/home/roadahead/programs/maven/repo/commons-lang/commons-lang/2.4/commons-lang-2.4.jar:/home/roadahead/programs/maven/repo/org/apache/velocity/velocity/1.6.2/velocity-1.6.2.jar:/home/roadahead/programs/maven/repo/oro/oro/2.0.8/oro-2.0.8.jar:/home/roadahead/programs/maven/repo/com/sun/xml/bind/jaxb-xjc/2.1.12/jaxb-xjc-2.1.12.jar:/home/roadahead/programs/maven/repo/com/sun/xml/bind/jaxb-impl/2.1.12/jaxb-impl-2.1.12.jar:/home/roadahead/programs/maven/repo/javax/xml/soap/saaj-api/1.3/saaj-api-1.3.jar:/home/roadahead/programs/maven/repo/org/apache/geronimo/specs/geronimo-activation_1.1_spec/1.0.2/geronimo-activation_1.1_spec-1.0.2.jar:/home/roadahead/programs/maven/repo/org/codehaus/woodstox/wstx-asl/3.2.9/wstx-asl-3.2.9.jar:/home/roadahead/programs/maven/repo/org/apache/neethi/neethi/2.0.4/neethi-2.0.4.jar:/home/roadahead/programs/maven/repo/org/apache/geronimo/specs/geronimo-javamail_1.4_spec/1.6/geronimo-javamail_1.4_spec-1.6.jar:/home/roadahead/programs/maven/repo/org/apache/geronimo/specs/geronimo-ws-metadata_2.0_spec/1.1.2/geronimo-ws-metadata_2.0_spec-1.1.2.jar:/home/roadahead/programs/maven/repo/org/apache/geronimo/specs/geronimo-jaxws_2.1_spec/1.0/geronimo-jaxws_2.1_spec-1.0.jar:/home/roadahead/programs/maven/repo/xml-resolver/xml-resolver/1.2/xml-resolver-1.2.jar:/home/roadahead/programs/maven/repo/com/sun/xml/messaging/saaj/saaj-impl/1.3.2/saaj-impl-1.3.2.jar:/home/roadahead/programs/maven/repo/org/apache/xmlbeans/xmlbeans/2.4.0/xmlbeans-2.4.0.jar:/home/roadahead/programs/maven/repo/org/springframework/spring-web/2.5.6/spring-web-2.5.6.jar:/home/roadahead/programs/maven/repo/org/mortbay/jetty/jetty/6.1.21/jetty-6.1.21.jar:/home/roadahead/programs/maven/repo/org/mortbay/jetty/jetty-util/6.1.21/jetty-util-6.1.21.jar:/home/roadahead/programs/maven/repo/org/apache/geronimo/specs/geronimo-servlet_2.5_spec/1.2/geronimo-servlet_2.5_spec-1.2.jar:/home/roadahead/programs/maven/repo/org/apache/geronimo/specs/geronimo-jms_1.1_spec/1.1.1/geronimo-jms_1.1_spec-1.1.1.jar:/home/roadahead/programs/maven/repo/commons-pool/commons-pool/1.5.2/commons-pool-1.5.2.jar:/home/roadahead/programs/maven/repo/org/springframework/spring-jms/2.5.6/spring-jms-2.5.6.jar:/home/roadahead/programs/maven/repo/org/springframework/spring-context-support/2.5.6/spring-context-support-2.5.6.jar:/home/roadahead/programs/maven/repo/org/codehaus/jra/jra/1.0-alpha-4/jra-1.0-alpha-4.jar:/home/roadahead/programs/maven/repo/rhino/js/1.7R1/js-1.7R1.jar:/home/roadahead/programs/maven/repo/javax/ws/rs/jsr311-api/1.0/jsr311-api-1.0.jar:/home/roadahead/programs/maven/repo/org/apache/abdera/abdera-core/0.4.0-incubating/abdera-core-0.4.0-incubating.jar:/home/roadahead/programs/maven/repo/org/apache/abdera/abdera-i18n/0.4.0-incubating/abdera-i18n-0.4.0-incubating.jar:/home/roadahead/programs/maven/repo/commons-codec/commons-codec/1.3/commons-codec-1.3.jar:/home/roadahead/programs/maven/repo/org/apache/abdera/abdera-parser/0.4.0-incubating/abdera-parser-0.4.0-incubating.jar:/home/roadahead/programs/maven/repo/org/apache/ws/commons/axiom/axiom-impl/1.2.7/axiom-impl-1.2.7.jar:/home/roadahead/programs/maven/repo/org/apache/ws/commons/axiom/axiom-api/1.2.7/axiom-api-1.2.7.jar:/home/roadahead/programs/maven/repo/jaxen/jaxen/1.1.3/jaxen-1.1.3.jar:/home/roadahead/programs/maven/repo/xml-apis/xml-apis/1.3.02/xml-apis-1.3.02.jar:/home/roadahead/programs/maven/repo/xerces/xercesImpl/2.6.2/xercesImpl-2.6.2.jar:/home/roadahead/programs/maven/repo/xom/xom/1.0/xom-1.0.jar:/home/roadahead/programs/maven/repo/xerces/xmlParserAPIs/2.6.2/xmlParserAPIs-2.6.2.jar:/home/roadahead/programs/maven/repo/com/ibm/icu/icu4j/2.6.1/icu4j-2.6.1.jar:/home/roadahead/programs/maven/repo/org/apache/abdera/abdera-extensions-json/0.4.0-incubating/abdera-extensions-json-0.4.0-incubating.jar:/home/roadahead/programs/maven/repo/org/apache/abdera/abdera-extensions-main/0.4.0-incubating/abdera-extensions-main-0.4.0-incubating.jar:/home/roadahead/programs/maven/repo/org/codehaus/jettison/jettison/1.2/jettison-1.2.jar:/home/roadahead/programs/maven/repo/org/apache/ws/security/wss4j/1.5.8/wss4j-1.5.8.jar:/home/roadahead/programs/maven/repo/org/apache/santuario/xmlsec/1.4.3/xmlsec-1.4.3.jar:/home/roadahead/programs/maven/repo/xalan/xalan/2.7.1/xalan-2.7.1.jar:/home/roadahead/programs/maven/repo/xalan/serializer/2.7.1/serializer-2.7.1.jar:/home/roadahead/programs/maven/repo/org/bouncycastle/bcprov-jdk15/1.43/bcprov-jdk15-1.43.jar:/home/roadahead/programs/eclipse/configuration/org.eclipse.osgi/bundles/327/1/.cp/:/home/roadahead/programs/eclipse/configuration/org.eclipse.osgi/bundles/325/1/.cp/:/home/roadahead/programs/eclipse/configuration/org.eclipse.osgi/bundles/326/1/.cp/, user.name=roadahead, hibernate.bytecode.use_reflection_optimizer=false, hibernate.show_sql=true, java.vm.specification.version=1.0, sun.arch.data.model=32, java.home=/usr/lib/jvm/jdk1.6.0_33/jre, sun.java.command=org.eclipse.jdt.internal.junit.runner.RemoteTestRunner -version 3 -port 35165 -testLoaderClass org.eclipse.jdt.internal.junit4.runner.JUnit4TestLoader -loaderpluginname org.eclipse.jdt.junit4.runtime -classNames com.thinkingtop.kaas.services.tasks.AprioriRunnerTest, hibernate.dialect=org.hibernate.dialect.MySQLDialect, java.specification.vendor=Sun Microsystems Inc., user.language=zh, java.vm.info=mixed mode, sharing, java.version=1.6.0_33, java.ext.dirs=/usr/lib/jvm/jdk1.6.0_33/jre/lib/ext:/usr/java/packages/lib/ext, sun.boot.class.path=/usr/lib/jvm/jdk1.6.0_33/jre/lib/resources.jar:/usr/lib/jvm/jdk1.6.0_33/jre/lib/rt.jar:/usr/lib/jvm/jdk1.6.0_33/jre/lib/sunrsasign.jar:/usr/lib/jvm/jdk1.6.0_33/jre/lib/jsse.jar:/usr/lib/jvm/jdk1.6.0_33/jre/lib/jce.jar:/usr/lib/jvm/jdk1.6.0_33/jre/lib/charsets.jar:/usr/lib/jvm/jdk1.6.0_33/jre/lib/modules/jdk.boot.jar:/usr/lib/jvm/jdk1.6.0_33/jre/classes, java.vendor=Sun Microsystems Inc., file.separator=/, java.vendor.url.bug=http://java.sun.com/cgi-bin/bugreport.cgi, hibernate.hbm2ddl.auto=update, hibernate.connection.provider_class=org.springframework.orm.hibernate3.LocalDataSourceConnectionProvider, sun.cpu.endian=little, sun.io.unicode.encoding=UnicodeLittle, sun.desktop=gnome, sun.cpu.isalist=}
+2012-09-12 15:05:24  [ main:6311 ] - [ DEBUG ]  Setting dialect [org.hibernate.dialect.MySQLDialect]
+2012-09-12 15:05:24  [ main:6312 ] - [ DEBUG ]  Setting dialect [org.hibernate.dialect.MySQLDialect]
+2012-09-12 15:05:24  [ main:6435 ] - [ DEBUG ]  Static SQL for entity: com.thinkingtop.kaas.services.model.ExclusiveKey
+2012-09-12 15:05:24  [ main:6436 ] - [ DEBUG ]   Version select: select id from ExclusiveKey where id =?
+2012-09-12 15:05:24  [ main:6436 ] - [ DEBUG ]   Snapshot select: select exclusivek_.id, exclusivek_.activation as activation1_, exclusivek_.kebsiteid as kebsiteid1_, exclusivek_.keyString as keyString1_ from ExclusiveKey exclusivek_ where exclusivek_.id=?
+2012-09-12 15:05:24  [ main:6436 ] - [ DEBUG ]   Insert 0: insert into ExclusiveKey (activation, kebsiteid, keyString, id) values (?, ?, ?, ?)
+2012-09-12 15:05:24  [ main:6436 ] - [ DEBUG ]   Update 0: update ExclusiveKey set activation=?, kebsiteid=?, keyString=? where id=?
+2012-09-12 15:05:24  [ main:6436 ] - [ DEBUG ]   Delete 0: delete from ExclusiveKey where id=?
+2012-09-12 15:05:24  [ main:6436 ] - [ DEBUG ]   Identity insert: insert into ExclusiveKey (activation, kebsiteid, keyString) values (?, ?, ?)
+2012-09-12 15:05:24  [ main:6441 ] - [ DEBUG ]  Static SQL for entity: com.thinkingtop.kaas.services.model.Kebsite
+2012-09-12 15:05:24  [ main:6441 ] - [ DEBUG ]   Version select: select id from Kebsite where id =?
+2012-09-12 15:05:24  [ main:6441 ] - [ DEBUG ]   Snapshot select: select kebsite_.id, kebsite_.kebsiteName as kebsiteN2_0_ from Kebsite kebsite_ where kebsite_.id=?
+2012-09-12 15:05:24  [ main:6441 ] - [ DEBUG ]   Insert 0: insert into Kebsite (kebsiteName, id) values (?, ?)
+2012-09-12 15:05:24  [ main:6441 ] - [ DEBUG ]   Update 0: update Kebsite set kebsiteName=? where id=?
+2012-09-12 15:05:24  [ main:6441 ] - [ DEBUG ]   Delete 0: delete from Kebsite where id=?
+2012-09-12 15:05:24  [ main:6441 ] - [ DEBUG ]   Identity insert: insert into Kebsite (kebsiteName) values (?)
+2012-09-12 15:05:24  [ main:6450 ] - [ DEBUG ]  Static SQL for collection: com.thinkingtop.kaas.services.model.Kebsite.exclusiveKey
+2012-09-12 15:05:24  [ main:6450 ] - [ DEBUG ]   Row insert: update ExclusiveKey set kebsiteid=? where id=?
+2012-09-12 15:05:24  [ main:6450 ] - [ DEBUG ]   Row delete: update ExclusiveKey set kebsiteid=null where kebsiteid=? and id=?
+2012-09-12 15:05:24  [ main:6450 ] - [ DEBUG ]   One-shot delete: update ExclusiveKey set kebsiteid=null where kebsiteid=?
+2012-09-12 15:05:24  [ main:6481 ] - [ DEBUG ]  Static select for entity com.thinkingtop.kaas.services.model.ExclusiveKey [NONE]: select exclusivek0_.id as id1_1_, exclusivek0_.activation as activation1_1_, exclusivek0_.kebsiteid as kebsiteid1_1_, exclusivek0_.keyString as keyString1_1_, kebsite1_.id as id0_0_, kebsite1_.kebsiteName as kebsiteN2_0_0_ from ExclusiveKey exclusivek0_ left outer join Kebsite kebsite1_ on exclusivek0_.kebsiteid=kebsite1_.id where exclusivek0_.id=?
+2012-09-12 15:05:24  [ main:6481 ] - [ DEBUG ]  Static select for entity com.thinkingtop.kaas.services.model.ExclusiveKey [READ]: select exclusivek0_.id as id1_1_, exclusivek0_.activation as activation1_1_, exclusivek0_.kebsiteid as kebsiteid1_1_, exclusivek0_.keyString as keyString1_1_, kebsite1_.id as id0_0_, kebsite1_.kebsiteName as kebsiteN2_0_0_ from ExclusiveKey exclusivek0_ left outer join Kebsite kebsite1_ on exclusivek0_.kebsiteid=kebsite1_.id where exclusivek0_.id=?
+2012-09-12 15:05:24  [ main:6481 ] - [ DEBUG ]  Static select for entity com.thinkingtop.kaas.services.model.ExclusiveKey [UPGRADE]: select exclusivek0_.id as id1_0_, exclusivek0_.activation as activation1_0_, exclusivek0_.kebsiteid as kebsiteid1_0_, exclusivek0_.keyString as keyString1_0_ from ExclusiveKey exclusivek0_ where exclusivek0_.id=? for update
+2012-09-12 15:05:24  [ main:6481 ] - [ DEBUG ]  Static select for entity com.thinkingtop.kaas.services.model.ExclusiveKey [UPGRADE_NOWAIT]: select exclusivek0_.id as id1_0_, exclusivek0_.activation as activation1_0_, exclusivek0_.kebsiteid as kebsiteid1_0_, exclusivek0_.keyString as keyString1_0_ from ExclusiveKey exclusivek0_ where exclusivek0_.id=? for update
+2012-09-12 15:05:24  [ main:6482 ] - [ DEBUG ]  Static select for entity com.thinkingtop.kaas.services.model.ExclusiveKey [FORCE]: select exclusivek0_.id as id1_0_, exclusivek0_.activation as activation1_0_, exclusivek0_.kebsiteid as kebsiteid1_0_, exclusivek0_.keyString as keyString1_0_ from ExclusiveKey exclusivek0_ where exclusivek0_.id=? for update
+2012-09-12 15:05:24  [ main:6482 ] - [ DEBUG ]  Static select for entity com.thinkingtop.kaas.services.model.ExclusiveKey [PESSIMISTIC_READ]: select exclusivek0_.id as id1_0_, exclusivek0_.activation as activation1_0_, exclusivek0_.kebsiteid as kebsiteid1_0_, exclusivek0_.keyString as keyString1_0_ from ExclusiveKey exclusivek0_ where exclusivek0_.id=? lock in share mode
+2012-09-12 15:05:24  [ main:6482 ] - [ DEBUG ]  Static select for entity com.thinkingtop.kaas.services.model.ExclusiveKey [PESSIMISTIC_WRITE]: select exclusivek0_.id as id1_0_, exclusivek0_.activation as activation1_0_, exclusivek0_.kebsiteid as kebsiteid1_0_, exclusivek0_.keyString as keyString1_0_ from ExclusiveKey exclusivek0_ where exclusivek0_.id=? for update
+2012-09-12 15:05:24  [ main:6482 ] - [ DEBUG ]  Static select for entity com.thinkingtop.kaas.services.model.ExclusiveKey [PESSIMISTIC_FORCE_INCREMENT]: select exclusivek0_.id as id1_0_, exclusivek0_.activation as activation1_0_, exclusivek0_.kebsiteid as kebsiteid1_0_, exclusivek0_.keyString as keyString1_0_ from ExclusiveKey exclusivek0_ where exclusivek0_.id=? for update
+2012-09-12 15:05:24  [ main:6482 ] - [ DEBUG ]  Static select for entity com.thinkingtop.kaas.services.model.ExclusiveKey [OPTIMISTIC]: select exclusivek0_.id as id1_1_, exclusivek0_.activation as activation1_1_, exclusivek0_.kebsiteid as kebsiteid1_1_, exclusivek0_.keyString as keyString1_1_, kebsite1_.id as id0_0_, kebsite1_.kebsiteName as kebsiteN2_0_0_ from ExclusiveKey exclusivek0_ left outer join Kebsite kebsite1_ on exclusivek0_.kebsiteid=kebsite1_.id where exclusivek0_.id=?
+2012-09-12 15:05:24  [ main:6482 ] - [ DEBUG ]  Static select for entity com.thinkingtop.kaas.services.model.ExclusiveKey [OPTIMISTIC_FORCE_INCREMENT]: select exclusivek0_.id as id1_1_, exclusivek0_.activation as activation1_1_, exclusivek0_.kebsiteid as kebsiteid1_1_, exclusivek0_.keyString as keyString1_1_, kebsite1_.id as id0_0_, kebsite1_.kebsiteName as kebsiteN2_0_0_ from ExclusiveKey exclusivek0_ left outer join Kebsite kebsite1_ on exclusivek0_.kebsiteid=kebsite1_.id where exclusivek0_.id=?
+2012-09-12 15:05:24  [ main:6488 ] - [ DEBUG ]  Static select for action ACTION_MERGE on entity com.thinkingtop.kaas.services.model.ExclusiveKey: select exclusivek0_.id as id1_0_, exclusivek0_.activation as activation1_0_, exclusivek0_.kebsiteid as kebsiteid1_0_, exclusivek0_.keyString as keyString1_0_ from ExclusiveKey exclusivek0_ where exclusivek0_.id=?
+2012-09-12 15:05:24  [ main:6488 ] - [ DEBUG ]  Static select for action ACTION_REFRESH on entity com.thinkingtop.kaas.services.model.ExclusiveKey: select exclusivek0_.id as id1_0_, exclusivek0_.activation as activation1_0_, exclusivek0_.kebsiteid as kebsiteid1_0_, exclusivek0_.keyString as keyString1_0_ from ExclusiveKey exclusivek0_ where exclusivek0_.id=?
+2012-09-12 15:05:24  [ main:6490 ] - [ DEBUG ]  Static select for entity com.thinkingtop.kaas.services.model.Kebsite [NONE]: select kebsite0_.id as id0_0_, kebsite0_.kebsiteName as kebsiteN2_0_0_ from Kebsite kebsite0_ where kebsite0_.id=?
+2012-09-12 15:05:24  [ main:6490 ] - [ DEBUG ]  Static select for entity com.thinkingtop.kaas.services.model.Kebsite [READ]: select kebsite0_.id as id0_0_, kebsite0_.kebsiteName as kebsiteN2_0_0_ from Kebsite kebsite0_ where kebsite0_.id=?
+2012-09-12 15:05:24  [ main:6490 ] - [ DEBUG ]  Static select for entity com.thinkingtop.kaas.services.model.Kebsite [UPGRADE]: select kebsite0_.id as id0_0_, kebsite0_.kebsiteName as kebsiteN2_0_0_ from Kebsite kebsite0_ where kebsite0_.id=? for update
+2012-09-12 15:05:24  [ main:6490 ] - [ DEBUG ]  Static select for entity com.thinkingtop.kaas.services.model.Kebsite [UPGRADE_NOWAIT]: select kebsite0_.id as id0_0_, kebsite0_.kebsiteName as kebsiteN2_0_0_ from Kebsite kebsite0_ where kebsite0_.id=? for update
+2012-09-12 15:05:24  [ main:6490 ] - [ DEBUG ]  Static select for entity com.thinkingtop.kaas.services.model.Kebsite [FORCE]: select kebsite0_.id as id0_0_, kebsite0_.kebsiteName as kebsiteN2_0_0_ from Kebsite kebsite0_ where kebsite0_.id=? for update
+2012-09-12 15:05:24  [ main:6490 ] - [ DEBUG ]  Static select for entity com.thinkingtop.kaas.services.model.Kebsite [PESSIMISTIC_READ]: select kebsite0_.id as id0_0_, kebsite0_.kebsiteName as kebsiteN2_0_0_ from Kebsite kebsite0_ where kebsite0_.id=? lock in share mode
+2012-09-12 15:05:24  [ main:6490 ] - [ DEBUG ]  Static select for entity com.thinkingtop.kaas.services.model.Kebsite [PESSIMISTIC_WRITE]: select kebsite0_.id as id0_0_, kebsite0_.kebsiteName as kebsiteN2_0_0_ from Kebsite kebsite0_ where kebsite0_.id=? for update
+2012-09-12 15:05:24  [ main:6490 ] - [ DEBUG ]  Static select for entity com.thinkingtop.kaas.services.model.Kebsite [PESSIMISTIC_FORCE_INCREMENT]: select kebsite0_.id as id0_0_, kebsite0_.kebsiteName as kebsiteN2_0_0_ from Kebsite kebsite0_ where kebsite0_.id=? for update
+2012-09-12 15:05:24  [ main:6490 ] - [ DEBUG ]  Static select for entity com.thinkingtop.kaas.services.model.Kebsite [OPTIMISTIC]: select kebsite0_.id as id0_0_, kebsite0_.kebsiteName as kebsiteN2_0_0_ from Kebsite kebsite0_ where kebsite0_.id=?
+2012-09-12 15:05:24  [ main:6490 ] - [ DEBUG ]  Static select for entity com.thinkingtop.kaas.services.model.Kebsite [OPTIMISTIC_FORCE_INCREMENT]: select kebsite0_.id as id0_0_, kebsite0_.kebsiteName as kebsiteN2_0_0_ from Kebsite kebsite0_ where kebsite0_.id=?
+2012-09-12 15:05:24  [ main:6492 ] - [ DEBUG ]  Static select for action ACTION_MERGE on entity com.thinkingtop.kaas.services.model.Kebsite: select kebsite0_.id as id0_1_, kebsite0_.kebsiteName as kebsiteN2_0_1_, exclusivek1_.kebsiteid as kebsiteid0_3_, exclusivek1_.id as id3_, exclusivek1_.id as id1_0_, exclusivek1_.activation as activation1_0_, exclusivek1_.kebsiteid as kebsiteid1_0_, exclusivek1_.keyString as keyString1_0_ from Kebsite kebsite0_ left outer join ExclusiveKey exclusivek1_ on kebsite0_.id=exclusivek1_.kebsiteid where kebsite0_.id=?
+2012-09-12 15:05:24  [ main:6492 ] - [ DEBUG ]  Static select for action ACTION_REFRESH on entity com.thinkingtop.kaas.services.model.Kebsite: select kebsite0_.id as id0_1_, kebsite0_.kebsiteName as kebsiteN2_0_1_, exclusivek1_.kebsiteid as kebsiteid0_3_, exclusivek1_.id as id3_, exclusivek1_.id as id1_0_, exclusivek1_.activation as activation1_0_, exclusivek1_.kebsiteid as kebsiteid1_0_, exclusivek1_.keyString as keyString1_0_ from Kebsite kebsite0_ left outer join ExclusiveKey exclusivek1_ on kebsite0_.id=exclusivek1_.kebsiteid where kebsite0_.id=?
+2012-09-12 15:05:24  [ main:6495 ] - [ DEBUG ]  Static select for one-to-many com.thinkingtop.kaas.services.model.Kebsite.exclusiveKey: select exclusivek0_.kebsiteid as kebsiteid0_1_, exclusivek0_.id as id1_, exclusivek0_.id as id1_0_, exclusivek0_.activation as activation1_0_, exclusivek0_.kebsiteid as kebsiteid1_0_, exclusivek0_.keyString as keyString1_0_ from ExclusiveKey exclusivek0_ where exclusivek0_.kebsiteid=?
+2012-09-12 15:05:24  [ main:6517 ] - [ DEBUG ]  initializing class SessionFactoryObjectFactory
+2012-09-12 15:05:24  [ main:6518 ] - [ DEBUG ]  registered: 606fec87-ccd4-44bf-b660-b0eb4e9b43f1 (unnamed)
+2012-09-12 15:05:24  [ main:6519 ] - [ INFO ]  Not binding factory to JNDI, no JNDI name configured
+2012-09-12 15:05:24  [ main:6519 ] - [ DEBUG ]  instantiated session factory
+2012-09-12 15:05:24  [ main:6526 ] - [ INFO ]  Running hbm2ddl schema update
+2012-09-12 15:05:24  [ main:6531 ] - [ INFO ]  fetching database metadata
+2012-09-12 15:05:24  [ main:6534 ] - [ INFO ]  updating schema
+2012-09-12 15:05:24  [ main:6535 ] - [ DEBUG ]  Processing hbm.xml files
+2012-09-12 15:05:24  [ main:6535 ] - [ DEBUG ]  Process annotated classes
+2012-09-12 15:05:24  [ main:6535 ] - [ DEBUG ]  processing fk mappings (*ToOne and JoinedSubclass)
+2012-09-12 15:05:24  [ main:6535 ] - [ DEBUG ]  processing extends queue
+2012-09-12 15:05:24  [ main:6535 ] - [ DEBUG ]  processing extends queue
+2012-09-12 15:05:24  [ main:6535 ] - [ DEBUG ]  processing collection mappings
+2012-09-12 15:05:24  [ main:6535 ] - [ DEBUG ]  processing native query and ResultSetMapping mappings
+2012-09-12 15:05:24  [ main:6535 ] - [ DEBUG ]  processing association property references
+2012-09-12 15:05:24  [ main:6535 ] - [ DEBUG ]  processing foreign key constraints
+2012-09-12 15:05:24  [ main:6535 ] - [ DEBUG ]  resolving reference to class: com.thinkingtop.kaas.services.model.Kebsite
+2012-09-12 15:05:24  [ main:6709 ] - [ INFO ]  table found: kaasservice.ExclusiveKey
+2012-09-12 15:05:24  [ main:6710 ] - [ INFO ]  columns: [keystring, id, kebsiteid, activation]
+2012-09-12 15:05:24  [ main:6711 ] - [ INFO ]  foreign keys: []
+2012-09-12 15:05:24  [ main:6711 ] - [ INFO ]  indexes: [primary, fkda8bcf0149afd174]
+2012-09-12 15:05:24  [ main:6782 ] - [ INFO ]  table found: kaasservice.Kebsite
+2012-09-12 15:05:24  [ main:6783 ] - [ INFO ]  columns: [id, kebsitename]
+2012-09-12 15:05:24  [ main:6784 ] - [ INFO ]  foreign keys: []
+2012-09-12 15:05:24  [ main:6784 ] - [ INFO ]  indexes: [primary]
+2012-09-12 15:05:24  [ main:6785 ] - [ DEBUG ]  Setting dialect [org.hibernate.dialect.MySQLDialect]
+2012-09-12 15:05:24  [ main:6785 ] - [ DEBUG ]  Setting dialect [org.hibernate.dialect.MySQLDialect]
+2012-09-12 15:05:24  [ main:6786 ] - [ INFO ]  schema update complete
+2012-09-12 15:05:24  [ main:6789 ] - [ DEBUG ]  Checking 0 named HQL queries
+2012-09-12 15:05:24  [ main:6789 ] - [ DEBUG ]  Checking 0 named SQL queries
+2012-09-12 15:05:24  [ main:6790 ] - [ DEBUG ]  Returning cached instance of singleton bean 'org.springframework.transaction.config.internalTransactionAdvisor'
+2012-09-12 15:05:24  [ main:6790 ] - [ DEBUG ]  Returning cached instance of singleton bean 'org.springframework.aop.support.DefaultBeanFactoryPointcutAdvisor#0'
+2012-09-12 15:05:24  [ main:6790 ] - [ DEBUG ]  Returning cached instance of singleton bean 'org.springframework.transaction.config.internalTransactionAdvisor'
+2012-09-12 15:05:24  [ main:6790 ] - [ DEBUG ]  Returning cached instance of singleton bean 'org.springframework.aop.support.DefaultBeanFactoryPointcutAdvisor#0'
+2012-09-12 15:05:24  [ main:6812 ] - [ DEBUG ]  Finished creating instance of bean 'sessionFactory'
+2012-09-12 15:05:24  [ main:6812 ] - [ DEBUG ]  Returning cached instance of singleton bean 'org.springframework.transaction.config.internalTransactionAdvisor'
+2012-09-12 15:05:24  [ main:6812 ] - [ DEBUG ]  Returning cached instance of singleton bean 'org.springframework.aop.support.DefaultBeanFactoryPointcutAdvisor#0'
+2012-09-12 15:05:24  [ main:6812 ] - [ DEBUG ]  Returning cached instance of singleton bean 'org.springframework.transaction.config.internalTransactionAdvisor'
+2012-09-12 15:05:24  [ main:6812 ] - [ DEBUG ]  Returning cached instance of singleton bean 'org.springframework.aop.support.DefaultBeanFactoryPointcutAdvisor#0'
+2012-09-12 15:05:24  [ main:6848 ] - [ DEBUG ]  Returning cached instance of singleton bean 'org.springframework.transaction.config.internalTransactionAdvisor'
+2012-09-12 15:05:24  [ main:6848 ] - [ DEBUG ]  Returning cached instance of singleton bean 'org.springframework.aop.support.DefaultBeanFactoryPointcutAdvisor#0'
+2012-09-12 15:05:24  [ main:6849 ] - [ DEBUG ]  Returning cached instance of singleton bean 'org.springframework.transaction.config.internalTransactionAdvisor'
+2012-09-12 15:05:24  [ main:6849 ] - [ DEBUG ]  Returning cached instance of singleton bean 'org.springframework.aop.support.DefaultBeanFactoryPointcutAdvisor#0'
+2012-09-12 15:05:24  [ main:6850 ] - [ DEBUG ]  Finished creating instance of bean 'exclusiveKeyDAOImpl'
+2012-09-12 15:05:24  [ main:6851 ] - [ DEBUG ]  Returning cached instance of singleton bean 'org.springframework.transaction.config.internalTransactionAdvisor'
+2012-09-12 15:05:24  [ main:6851 ] - [ DEBUG ]  Returning cached instance of singleton bean 'org.springframework.aop.support.DefaultBeanFactoryPointcutAdvisor#0'
+2012-09-12 15:05:24  [ main:6851 ] - [ DEBUG ]  Returning cached instance of singleton bean 'org.springframework.transaction.config.internalTransactionAdvisor'
+2012-09-12 15:05:24  [ main:6851 ] - [ DEBUG ]  Returning cached instance of singleton bean 'org.springframework.aop.support.DefaultBeanFactoryPointcutAdvisor#0'
+2012-09-12 15:05:24  [ main:6852 ] - [ DEBUG ]  Creating shared instance of singleton bean 'txAdvice'
+2012-09-12 15:05:24  [ main:6852 ] - [ DEBUG ]  Creating instance of bean 'txAdvice'
+2012-09-12 15:05:24  [ main:6855 ] - [ DEBUG ]  Eagerly caching bean 'txAdvice' to allow for resolving potential circular references
+2012-09-12 15:05:24  [ main:6860 ] - [ DEBUG ]  Creating shared instance of singleton bean 'txManager'
+2012-09-12 15:05:24  [ main:6860 ] - [ DEBUG ]  Creating instance of bean 'txManager'
+2012-09-12 15:05:24  [ main:6860 ] - [ DEBUG ]  Returning cached instance of singleton bean 'org.springframework.transaction.config.internalTransactionAdvisor'
+2012-09-12 15:05:24  [ main:6860 ] - [ DEBUG ]  Returning cached instance of singleton bean 'org.springframework.aop.support.DefaultBeanFactoryPointcutAdvisor#0'
+2012-09-12 15:05:24  [ main:6895 ] - [ DEBUG ]  Eagerly caching bean 'txManager' to allow for resolving potential circular references
+2012-09-12 15:05:24  [ main:6904 ] - [ DEBUG ]  Returning cached instance of singleton bean 'sessionFactory'
+2012-09-12 15:05:24  [ main:6904 ] - [ DEBUG ]  Invoking afterPropertiesSet() on bean with name 'txManager'
+2012-09-12 15:05:24  [ main:6937 ] - [ INFO ]  Using DataSource [JDBC URL = jdbc:mysql://localhost:3306/kaasservice, Username = root, partitions = 2, max (per partition) = 50, min (per partition) = 10, helper threads = 3, idle max age = 60 min, idle test period = 240 min] of Hibernate SessionFactory for HibernateTransactionManager
+2012-09-12 15:05:24  [ main:6938 ] - [ DEBUG ]  Returning cached instance of singleton bean 'org.springframework.transaction.config.internalTransactionAdvisor'
+2012-09-12 15:05:24  [ main:6938 ] - [ DEBUG ]  Returning cached instance of singleton bean 'org.springframework.aop.support.DefaultBeanFactoryPointcutAdvisor#0'
+2012-09-12 15:05:24  [ main:6938 ] - [ DEBUG ]  Returning cached instance of singleton bean 'org.springframework.transaction.config.internalTransactionAdvisor'
+2012-09-12 15:05:24  [ main:6938 ] - [ DEBUG ]  Returning cached instance of singleton bean 'org.springframework.aop.support.DefaultBeanFactoryPointcutAdvisor#0'
+2012-09-12 15:05:24  [ main:6949 ] - [ DEBUG ]  Finished creating instance of bean 'txManager'
+2012-09-12 15:05:24  [ main:6950 ] - [ DEBUG ]  Creating instance of bean '(inner bean)'
+2012-09-12 15:05:24  [ main:6950 ] - [ DEBUG ]  Returning cached instance of singleton bean 'org.springframework.transaction.config.internalTransactionAdvisor'
+2012-09-12 15:05:24  [ main:6950 ] - [ DEBUG ]  Returning cached instance of singleton bean 'org.springframework.aop.support.DefaultBeanFactoryPointcutAdvisor#0'
+2012-09-12 15:05:24  [ main:6957 ] - [ DEBUG ]  Adding transactional method [getUser] with attribute [PROPAGATION_REQUIRED,ISOLATION_DEFAULT,readOnly]
+2012-09-12 15:05:24  [ main:6958 ] - [ DEBUG ]  Adding transactional method [add*] with attribute [PROPAGATION_REQUIRED,ISOLATION_DEFAULT]
+2012-09-12 15:05:24  [ main:6958 ] - [ DEBUG ]  Adding transactional method [getLeaveWords] with attribute [PROPAGATION_REQUIRED,ISOLATION_DEFAULT,readOnly]
+2012-09-12 15:05:24  [ main:6958 ] - [ DEBUG ]  Adding transactional method [get*] with attribute [PROPAGATION_REQUIRED,ISOLATION_DEFAULT,readOnly]
+2012-09-12 15:05:24  [ main:6958 ] - [ DEBUG ]  Adding transactional method [getUsers] with attribute [PROPAGATION_REQUIRED,ISOLATION_DEFAULT,readOnly]
+2012-09-12 15:05:24  [ main:6958 ] - [ DEBUG ]  Adding transactional method [isHold] with attribute [PROPAGATION_REQUIRED,ISOLATION_DEFAULT,readOnly]
+2012-09-12 15:05:24  [ main:6958 ] - [ DEBUG ]  Adding transactional method [isActivation] with attribute [PROPAGATION_REQUIRED,ISOLATION_DEFAULT,readOnly]
+2012-09-12 15:05:24  [ main:6958 ] - [ DEBUG ]  Returning cached instance of singleton bean 'org.springframework.transaction.config.internalTransactionAdvisor'
+2012-09-12 15:05:24  [ main:6958 ] - [ DEBUG ]  Returning cached instance of singleton bean 'org.springframework.aop.support.DefaultBeanFactoryPointcutAdvisor#0'
+2012-09-12 15:05:24  [ main:6958 ] - [ DEBUG ]  Returning cached instance of singleton bean 'org.springframework.transaction.config.internalTransactionAdvisor'
+2012-09-12 15:05:24  [ main:6958 ] - [ DEBUG ]  Returning cached instance of singleton bean 'org.springframework.aop.support.DefaultBeanFactoryPointcutAdvisor#0'
+2012-09-12 15:05:24  [ main:6961 ] - [ DEBUG ]  Finished creating instance of bean '(inner bean)'
+2012-09-12 15:05:24  [ main:6962 ] - [ DEBUG ]  Invoking afterPropertiesSet() on bean with name 'txAdvice'
+2012-09-12 15:05:24  [ main:6962 ] - [ DEBUG ]  Finished creating instance of bean 'txAdvice'
+2012-09-12 15:05:24  [ main:6986 ] - [ DEBUG ]  Creating implicit proxy for bean 'exclusiveKeyManage' with 0 common interceptors and 2 specific interceptors
+2012-09-12 15:05:24  [ main:6995 ] - [ DEBUG ]  Creating CGLIB2 proxy: target source is SingletonTargetSource for target object [com.thinkingtop.kaas.services.manage.ExclusiveKeyManage@17d7c7f]
+2012-09-12 15:05:24  [ main:7094 ] - [ DEBUG ]  Unable to apply any optimisations to advised method: public boolean com.thinkingtop.kaas.services.manage.ExclusiveKeyManage.isHold(java.lang.StringBuffer)
+2012-09-12 15:05:24  [ main:7094 ] - [ DEBUG ]  Unable to apply any optimisations to advised method: public boolean com.thinkingtop.kaas.services.manage.ExclusiveKeyManage.isHold(java.lang.String,java.lang.String)
+2012-09-12 15:05:24  [ main:7094 ] - [ DEBUG ]  Unable to apply any optimisations to advised method: public boolean com.thinkingtop.kaas.services.manage.ExclusiveKeyManage.isActivation(java.lang.String)
+2012-09-12 15:05:24  [ main:7095 ] - [ DEBUG ]  Unable to apply any optimisations to advised method: public com.thinkingtop.kaas.services.model.ExclusiveKey com.thinkingtop.kaas.services.manage.ExclusiveKeyManage.getExclusiveKey(long)
+2012-09-12 15:05:24  [ main:7095 ] - [ DEBUG ]  Unable to apply any optimisations to advised method: public com.thinkingtop.kaas.services.dao.ExclusiveKeyDAO com.thinkingtop.kaas.services.manage.ExclusiveKeyManage.getExclusiveKeyDAO()
+2012-09-12 15:05:24  [ main:7095 ] - [ DEBUG ]  Unable to apply any optimisations to advised method: public void com.thinkingtop.kaas.services.manage.ExclusiveKeyManage.setExclusiveKeyDAO(com.thinkingtop.kaas.services.dao.ExclusiveKeyDAO)
+2012-09-12 15:05:24  [ main:7095 ] - [ DEBUG ]  Unable to apply any optimisations to advised method: public boolean com.thinkingtop.kaas.services.manage.ExclusiveKeyManage.add(com.thinkingtop.kaas.services.model.ExclusiveKey)
+2012-09-12 15:05:24  [ main:7095 ] - [ DEBUG ]  Unable to apply any optimisations to advised method: public void com.thinkingtop.kaas.services.manage.ExclusiveKeyManage.add(com.thinkingtop.kaas.services.model.Kebsite,java.lang.StringBuffer)
+2012-09-12 15:05:24  [ main:7095 ] - [ DEBUG ]  Found finalize() method - using NO_OVERRIDE
+2012-09-12 15:05:24  [ main:7095 ] - [ DEBUG ]  Found 'equals' method: public boolean java.lang.Object.equals(java.lang.Object)
+2012-09-12 15:05:24  [ main:7095 ] - [ DEBUG ]  Unable to apply any optimisations to advised method: public java.lang.String java.lang.Object.toString()
+2012-09-12 15:05:24  [ main:7095 ] - [ DEBUG ]  Found 'hashCode' method: public native int java.lang.Object.hashCode()
+2012-09-12 15:05:24  [ main:7096 ] - [ DEBUG ]  Unable to apply any optimisations to advised method: protected native java.lang.Object java.lang.Object.clone() throws java.lang.CloneNotSupportedException
+2012-09-12 15:05:24  [ main:7096 ] - [ DEBUG ]  Method is declared on Advised interface: public abstract boolean org.springframework.aop.framework.Advised.isFrozen()
+2012-09-12 15:05:24  [ main:7096 ] - [ DEBUG ]  Method is declared on Advised interface: public abstract org.springframework.aop.TargetSource org.springframework.aop.framework.Advised.getTargetSource()
+2012-09-12 15:05:24  [ main:7096 ] - [ DEBUG ]  Method is declared on Advised interface: public abstract void org.springframework.aop.framework.Advised.addAdvisor(org.springframework.aop.Advisor) throws org.springframework.aop.framework.AopConfigException
+2012-09-12 15:05:24  [ main:7096 ] - [ DEBUG ]  Method is declared on Advised interface: public abstract void org.springframework.aop.framework.Advised.addAdvisor(int,org.springframework.aop.Advisor) throws org.springframework.aop.framework.AopConfigException
+2012-09-12 15:05:24  [ main:7096 ] - [ DEBUG ]  Method is declared on Advised interface: public abstract void org.springframework.aop.framework.Advised.setTargetSource(org.springframework.aop.TargetSource)
+2012-09-12 15:05:24  [ main:7096 ] - [ DEBUG ]  Method is declared on Advised interface: public abstract void org.springframework.aop.framework.Advised.setPreFiltered(boolean)
+2012-09-12 15:05:24  [ main:7096 ] - [ DEBUG ]  Method is declared on Advised interface: public abstract boolean org.springframework.aop.framework.Advised.isProxyTargetClass()
+2012-09-12 15:05:24  [ main:7096 ] - [ DEBUG ]  Method is declared on Advised interface: public abstract void org.springframework.aop.framework.Advised.setExposeProxy(boolean)
+2012-09-12 15:05:24  [ main:7096 ] - [ DEBUG ]  Method is declared on Advised interface: public abstract boolean org.springframework.aop.framework.Advised.isExposeProxy()
+2012-09-12 15:05:24  [ main:7096 ] - [ DEBUG ]  Method is declared on Advised interface: public abstract org.springframework.aop.Advisor[] org.springframework.aop.framework.Advised.getAdvisors()
+2012-09-12 15:05:24  [ main:7096 ] - [ DEBUG ]  Method is declared on Advised interface: public abstract void org.springframework.aop.framework.Advised.addAdvice(org.aopalliance.aop.Advice) throws org.springframework.aop.framework.AopConfigException
+2012-09-12 15:05:24  [ main:7096 ] - [ DEBUG ]  Method is declared on Advised interface: public abstract void org.springframework.aop.framework.Advised.addAdvice(int,org.aopalliance.aop.Advice) throws org.springframework.aop.framework.AopConfigException
+2012-09-12 15:05:24  [ main:7096 ] - [ DEBUG ]  Method is declared on Advised interface: public abstract boolean org.springframework.aop.framework.Advised.isPreFiltered()
+2012-09-12 15:05:24  [ main:7096 ] - [ DEBUG ]  Method is declared on Advised interface: public abstract java.lang.Class[] org.springframework.aop.framework.Advised.getProxiedInterfaces()
+2012-09-12 15:05:24  [ main:7096 ] - [ DEBUG ]  Method is declared on Advised interface: public abstract boolean org.springframework.aop.framework.Advised.isInterfaceProxied(java.lang.Class)
+2012-09-12 15:05:24  [ main:7096 ] - [ DEBUG ]  Method is declared on Advised interface: public abstract boolean org.springframework.aop.framework.Advised.removeAdvisor(org.springframework.aop.Advisor)
+2012-09-12 15:05:24  [ main:7096 ] - [ DEBUG ]  Method is declared on Advised interface: public abstract void org.springframework.aop.framework.Advised.removeAdvisor(int) throws org.springframework.aop.framework.AopConfigException
+2012-09-12 15:05:24  [ main:7096 ] - [ DEBUG ]  Method is declared on Advised interface: public abstract boolean org.springframework.aop.framework.Advised.replaceAdvisor(org.springframework.aop.Advisor,org.springframework.aop.Advisor) throws org.springframework.aop.framework.AopConfigException
+2012-09-12 15:05:24  [ main:7096 ] - [ DEBUG ]  Method is declared on Advised interface: public abstract boolean org.springframework.aop.framework.Advised.removeAdvice(org.aopalliance.aop.Advice)
+2012-09-12 15:05:24  [ main:7096 ] - [ DEBUG ]  Method is declared on Advised interface: public abstract java.lang.String org.springframework.aop.framework.Advised.toProxyConfigString()
+2012-09-12 15:05:24  [ main:7096 ] - [ DEBUG ]  Method is declared on Advised interface: public abstract int org.springframework.aop.framework.Advised.indexOf(org.springframework.aop.Advisor)
+2012-09-12 15:05:24  [ main:7096 ] - [ DEBUG ]  Method is declared on Advised interface: public abstract int org.springframework.aop.framework.Advised.indexOf(org.aopalliance.aop.Advice)
+2012-09-12 15:05:24  [ main:7096 ] - [ DEBUG ]  Method is declared on Advised interface: public abstract java.lang.Class org.springframework.aop.TargetClassAware.getTargetClass()
+2012-09-12 15:05:24  [ main:7147 ] - [ DEBUG ]  Finished creating instance of bean 'exclusiveKeyManage'
+2012-09-12 15:05:24  [ main:7148 ] - [ DEBUG ]  Processing injected method of bean 'exclusiveKeyServiceImpl': ResourceElement for public void com.thinkingtop.kaas.services.service.ExclusiveKeyServiceImpl.setKebsiteManage(com.thinkingtop.kaas.services.manage.KebsiteManage)
+2012-09-12 15:05:24  [ main:7148 ] - [ DEBUG ]  Creating shared instance of singleton bean 'kebsiteManage'
+2012-09-12 15:05:24  [ main:7148 ] - [ DEBUG ]  Creating instance of bean 'kebsiteManage'
+2012-09-12 15:05:24  [ main:7148 ] - [ DEBUG ]  Returning cached instance of singleton bean 'org.springframework.transaction.config.internalTransactionAdvisor'
+2012-09-12 15:05:24  [ main:7148 ] - [ DEBUG ]  Returning cached instance of singleton bean 'org.springframework.aop.support.DefaultBeanFactoryPointcutAdvisor#0'
+2012-09-12 15:05:24  [ main:7150 ] - [ DEBUG ]  Found injected element on class [com.thinkingtop.kaas.services.manage.KebsiteManage]: ResourceElement for public void com.thinkingtop.kaas.services.manage.KebsiteManage.setKebsiteDAO(com.thinkingtop.kaas.services.dao.KebsiteDAO)
+2012-09-12 15:05:24  [ main:7150 ] - [ DEBUG ]  Eagerly caching bean 'kebsiteManage' to allow for resolving potential circular references
+2012-09-12 15:05:24  [ main:7151 ] - [ DEBUG ]  Processing injected method of bean 'kebsiteManage': ResourceElement for public void com.thinkingtop.kaas.services.manage.KebsiteManage.setKebsiteDAO(com.thinkingtop.kaas.services.dao.KebsiteDAO)
+2012-09-12 15:05:24  [ main:7151 ] - [ DEBUG ]  Creating shared instance of singleton bean 'kebsiteDAOImpl'
+2012-09-12 15:05:24  [ main:7151 ] - [ DEBUG ]  Creating instance of bean 'kebsiteDAOImpl'
+2012-09-12 15:05:24  [ main:7151 ] - [ DEBUG ]  Returning cached instance of singleton bean 'org.springframework.transaction.config.internalTransactionAdvisor'
+2012-09-12 15:05:24  [ main:7151 ] - [ DEBUG ]  Returning cached instance of singleton bean 'org.springframework.aop.support.DefaultBeanFactoryPointcutAdvisor#0'
+2012-09-12 15:05:24  [ main:7154 ] - [ DEBUG ]  Found injected element on class [com.thinkingtop.kaas.services.dao.impl.KebsiteDAOImpl]: ResourceElement for public void com.thinkingtop.kaas.services.dao.impl.KebsiteDAOImpl.setSessionFactory(org.hibernate.SessionFactory)
+2012-09-12 15:05:24  [ main:7155 ] - [ DEBUG ]  Eagerly caching bean 'kebsiteDAOImpl' to allow for resolving potential circular references
+2012-09-12 15:05:24  [ main:7155 ] - [ DEBUG ]  Processing injected method of bean 'kebsiteDAOImpl': ResourceElement for public void com.thinkingtop.kaas.services.dao.impl.KebsiteDAOImpl.setSessionFactory(org.hibernate.SessionFactory)
+2012-09-12 15:05:24  [ main:7155 ] - [ DEBUG ]  Returning cached instance of singleton bean 'sessionFactory'
+2012-09-12 15:05:24  [ main:7155 ] - [ DEBUG ]  Returning cached instance of singleton bean 'org.springframework.transaction.config.internalTransactionAdvisor'
+2012-09-12 15:05:24  [ main:7155 ] - [ DEBUG ]  Returning cached instance of singleton bean 'org.springframework.aop.support.DefaultBeanFactoryPointcutAdvisor#0'
+2012-09-12 15:05:24  [ main:7155 ] - [ DEBUG ]  Returning cached instance of singleton bean 'org.springframework.transaction.config.internalTransactionAdvisor'
+2012-09-12 15:05:24  [ main:7155 ] - [ DEBUG ]  Returning cached instance of singleton bean 'org.springframework.aop.support.DefaultBeanFactoryPointcutAdvisor#0'
+2012-09-12 15:05:24  [ main:7158 ] - [ DEBUG ]  Finished creating instance of bean 'kebsiteDAOImpl'
+2012-09-12 15:05:24  [ main:7158 ] - [ DEBUG ]  Returning cached instance of singleton bean 'org.springframework.transaction.config.internalTransactionAdvisor'
+2012-09-12 15:05:24  [ main:7159 ] - [ DEBUG ]  Returning cached instance of singleton bean 'org.springframework.aop.support.DefaultBeanFactoryPointcutAdvisor#0'
+2012-09-12 15:05:24  [ main:7159 ] - [ DEBUG ]  Returning cached instance of singleton bean 'org.springframework.transaction.config.internalTransactionAdvisor'
+2012-09-12 15:05:24  [ main:7159 ] - [ DEBUG ]  Returning cached instance of singleton bean 'org.springframework.aop.support.DefaultBeanFactoryPointcutAdvisor#0'
+2012-09-12 15:05:24  [ main:7160 ] - [ DEBUG ]  Creating implicit proxy for bean 'kebsiteManage' with 0 common interceptors and 2 specific interceptors
+2012-09-12 15:05:24  [ main:7160 ] - [ DEBUG ]  Creating CGLIB2 proxy: target source is SingletonTargetSource for target object [com.thinkingtop.kaas.services.manage.KebsiteManage@46a55e]
+2012-09-12 15:05:24  [ main:7161 ] - [ DEBUG ]  Unable to apply any optimisations to advised method: public boolean com.thinkingtop.kaas.services.manage.KebsiteManage.isHold(java.lang.String)
+2012-09-12 15:05:24  [ main:7161 ] - [ DEBUG ]  Unable to apply any optimisations to advised method: public com.thinkingtop.kaas.services.model.Kebsite com.thinkingtop.kaas.services.manage.KebsiteManage.getKebsite(long)
+2012-09-12 15:05:24  [ main:7161 ] - [ DEBUG ]  Unable to apply any optimisations to advised method: public com.thinkingtop.kaas.services.model.Kebsite com.thinkingtop.kaas.services.manage.KebsiteManage.getKebsite(java.lang.String)
+2012-09-12 15:05:24  [ main:7162 ] - [ DEBUG ]  Unable to apply any optimisations to advised method: public com.thinkingtop.kaas.services.dao.KebsiteDAO com.thinkingtop.kaas.services.manage.KebsiteManage.getKebsiteDAO()
+2012-09-12 15:05:24  [ main:7162 ] - [ DEBUG ]  Unable to apply any optimisations to advised method: public void com.thinkingtop.kaas.services.manage.KebsiteManage.setKebsiteDAO(com.thinkingtop.kaas.services.dao.KebsiteDAO)
+2012-09-12 15:05:24  [ main:7162 ] - [ DEBUG ]  Unable to apply any optimisations to advised method: public boolean com.thinkingtop.kaas.services.manage.KebsiteManage.add(com.thinkingtop.kaas.services.model.Kebsite)
+2012-09-12 15:05:24  [ main:7162 ] - [ DEBUG ]  Found finalize() method - using NO_OVERRIDE
+2012-09-12 15:05:24  [ main:7162 ] - [ DEBUG ]  Found 'equals' method: public boolean java.lang.Object.equals(java.lang.Object)
+2012-09-12 15:05:24  [ main:7162 ] - [ DEBUG ]  Unable to apply any optimisations to advised method: public java.lang.String java.lang.Object.toString()
+2012-09-12 15:05:24  [ main:7162 ] - [ DEBUG ]  Found 'hashCode' method: public native int java.lang.Object.hashCode()
+2012-09-12 15:05:24  [ main:7162 ] - [ DEBUG ]  Unable to apply any optimisations to advised method: protected native java.lang.Object java.lang.Object.clone() throws java.lang.CloneNotSupportedException
+2012-09-12 15:05:24  [ main:7162 ] - [ DEBUG ]  Method is declared on Advised interface: public abstract boolean org.springframework.aop.framework.Advised.isFrozen()
+2012-09-12 15:05:24  [ main:7162 ] - [ DEBUG ]  Method is declared on Advised interface: public abstract org.springframework.aop.TargetSource org.springframework.aop.framework.Advised.getTargetSource()
+2012-09-12 15:05:24  [ main:7162 ] - [ DEBUG ]  Method is declared on Advised interface: public abstract void org.springframework.aop.framework.Advised.addAdvisor(org.springframework.aop.Advisor) throws org.springframework.aop.framework.AopConfigException
+2012-09-12 15:05:24  [ main:7162 ] - [ DEBUG ]  Method is declared on Advised interface: public abstract void org.springframework.aop.framework.Advised.addAdvisor(int,org.springframework.aop.Advisor) throws org.springframework.aop.framework.AopConfigException
+2012-09-12 15:05:24  [ main:7162 ] - [ DEBUG ]  Method is declared on Advised interface: public abstract void org.springframework.aop.framework.Advised.setTargetSource(org.springframework.aop.TargetSource)
+2012-09-12 15:05:24  [ main:7162 ] - [ DEBUG ]  Method is declared on Advised interface: public abstract void org.springframework.aop.framework.Advised.setPreFiltered(boolean)
+2012-09-12 15:05:24  [ main:7162 ] - [ DEBUG ]  Method is declared on Advised interface: public abstract boolean org.springframework.aop.framework.Advised.isProxyTargetClass()
+2012-09-12 15:05:24  [ main:7162 ] - [ DEBUG ]  Method is declared on Advised interface: public abstract void org.springframework.aop.framework.Advised.setExposeProxy(boolean)
+2012-09-12 15:05:24  [ main:7162 ] - [ DEBUG ]  Method is declared on Advised interface: public abstract boolean org.springframework.aop.framework.Advised.isExposeProxy()
+2012-09-12 15:05:24  [ main:7162 ] - [ DEBUG ]  Method is declared on Advised interface: public abstract org.springframework.aop.Advisor[] org.springframework.aop.framework.Advised.getAdvisors()
+2012-09-12 15:05:24  [ main:7162 ] - [ DEBUG ]  Method is declared on Advised interface: public abstract void org.springframework.aop.framework.Advised.addAdvice(org.aopalliance.aop.Advice) throws org.springframework.aop.framework.AopConfigException
+2012-09-12 15:05:24  [ main:7162 ] - [ DEBUG ]  Method is declared on Advised interface: public abstract void org.springframework.aop.framework.Advised.addAdvice(int,org.aopalliance.aop.Advice) throws org.springframework.aop.framework.AopConfigException
+2012-09-12 15:05:24  [ main:7163 ] - [ DEBUG ]  Method is declared on Advised interface: public abstract boolean org.springframework.aop.framework.Advised.isPreFiltered()
+2012-09-12 15:05:24  [ main:7163 ] - [ DEBUG ]  Method is declared on Advised interface: public abstract java.lang.Class[] org.springframework.aop.framework.Advised.getProxiedInterfaces()
+2012-09-12 15:05:24  [ main:7163 ] - [ DEBUG ]  Method is declared on Advised interface: public abstract boolean org.springframework.aop.framework.Advised.isInterfaceProxied(java.lang.Class)
+2012-09-12 15:05:24  [ main:7163 ] - [ DEBUG ]  Method is declared on Advised interface: public abstract boolean org.springframework.aop.framework.Advised.removeAdvisor(org.springframework.aop.Advisor)
+2012-09-12 15:05:24  [ main:7163 ] - [ DEBUG ]  Method is declared on Advised interface: public abstract void org.springframework.aop.framework.Advised.removeAdvisor(int) throws org.springframework.aop.framework.AopConfigException
+2012-09-12 15:05:24  [ main:7163 ] - [ DEBUG ]  Method is declared on Advised interface: public abstract boolean org.springframework.aop.framework.Advised.replaceAdvisor(org.springframework.aop.Advisor,org.springframework.aop.Advisor) throws org.springframework.aop.framework.AopConfigException
+2012-09-12 15:05:24  [ main:7163 ] - [ DEBUG ]  Method is declared on Advised interface: public abstract boolean org.springframework.aop.framework.Advised.removeAdvice(org.aopalliance.aop.Advice)
+2012-09-12 15:05:24  [ main:7163 ] - [ DEBUG ]  Method is declared on Advised interface: public abstract java.lang.String org.springframework.aop.framework.Advised.toProxyConfigString()
+2012-09-12 15:05:24  [ main:7163 ] - [ DEBUG ]  Method is declared on Advised interface: public abstract int org.springframework.aop.framework.Advised.indexOf(org.springframework.aop.Advisor)
+2012-09-12 15:05:24  [ main:7163 ] - [ DEBUG ]  Method is declared on Advised interface: public abstract int org.springframework.aop.framework.Advised.indexOf(org.aopalliance.aop.Advice)
+2012-09-12 15:05:24  [ main:7163 ] - [ DEBUG ]  Method is declared on Advised interface: public abstract java.lang.Class org.springframework.aop.TargetClassAware.getTargetClass()
+2012-09-12 15:05:24  [ main:7195 ] - [ DEBUG ]  Finished creating instance of bean 'kebsiteManage'
+2012-09-12 15:05:24  [ main:7195 ] - [ DEBUG ]  Processing injected method of bean 'exclusiveKeyServiceImpl': ResourceElement for public void com.thinkingtop.kaas.services.service.ExclusiveKeyServiceImpl.setAprioriRunner(com.thinkingtop.kaas.services.tasks.AprioriRunner)
+2012-09-12 15:05:24  [ main:7195 ] - [ DEBUG ]  Creating shared instance of singleton bean 'aprioriRunner'
+2012-09-12 15:05:24  [ main:7195 ] - [ DEBUG ]  Creating instance of bean 'aprioriRunner'
+2012-09-12 15:05:24  [ main:7195 ] - [ DEBUG ]  Returning cached instance of singleton bean 'org.springframework.transaction.config.internalTransactionAdvisor'
+2012-09-12 15:05:24  [ main:7195 ] - [ DEBUG ]  Returning cached instance of singleton bean 'org.springframework.aop.support.DefaultBeanFactoryPointcutAdvisor#0'
+2012-09-12 15:05:24  [ main:7196 ] - [ DEBUG ]  Eagerly caching bean 'aprioriRunner' to allow for resolving potential circular references
+2012-09-12 15:05:24  [ main:7200 ] - [ DEBUG ]  Creating shared instance of singleton bean 'threadPoolTaskExecutor'
+2012-09-12 15:05:24  [ main:7201 ] - [ DEBUG ]  Creating instance of bean 'threadPoolTaskExecutor'
+2012-09-12 15:05:24  [ main:7201 ] - [ DEBUG ]  Returning cached instance of singleton bean 'org.springframework.transaction.config.internalTransactionAdvisor'
+2012-09-12 15:05:24  [ main:7201 ] - [ DEBUG ]  Returning cached instance of singleton bean 'org.springframework.aop.support.DefaultBeanFactoryPointcutAdvisor#0'
+2012-09-12 15:05:24  [ main:7205 ] - [ DEBUG ]  Eagerly caching bean 'threadPoolTaskExecutor' to allow for resolving potential circular references
+2012-09-12 15:05:25  [ main:7280 ] - [ DEBUG ]  Initializing new StandardEnvironment
+2012-09-12 15:05:25  [ main:7280 ] - [ DEBUG ]  Adding [systemProperties] PropertySource with lowest search precedence
+2012-09-12 15:05:25  [ main:7280 ] - [ DEBUG ]  Adding [systemEnvironment] PropertySource with lowest search precedence
+2012-09-12 15:05:25  [ main:7280 ] - [ DEBUG ]  Initialized StandardEnvironment with PropertySources [systemProperties,systemEnvironment]
+2012-09-12 15:05:25  [ main:7280 ] - [ DEBUG ]  Initializing new StandardEnvironment
+2012-09-12 15:05:25  [ main:7281 ] - [ DEBUG ]  Adding [systemProperties] PropertySource with lowest search precedence
+2012-09-12 15:05:25  [ main:7281 ] - [ DEBUG ]  Adding [systemEnvironment] PropertySource with lowest search precedence
+2012-09-12 15:05:25  [ main:7281 ] - [ DEBUG ]  Initialized StandardEnvironment with PropertySources [systemProperties,systemEnvironment]
+2012-09-12 15:05:25  [ main:7281 ] - [ DEBUG ]  Initializing new StandardEnvironment
+2012-09-12 15:05:25  [ main:7281 ] - [ DEBUG ]  Adding [systemProperties] PropertySource with lowest search precedence
+2012-09-12 15:05:25  [ main:7281 ] - [ DEBUG ]  Adding [systemEnvironment] PropertySource with lowest search precedence
+2012-09-12 15:05:25  [ main:7281 ] - [ DEBUG ]  Initialized StandardEnvironment with PropertySources [systemProperties,systemEnvironment]
+2012-09-12 15:05:25  [ main:7281 ] - [ DEBUG ]  Initializing new StandardEnvironment
+2012-09-12 15:05:25  [ main:7282 ] - [ DEBUG ]  Adding [systemProperties] PropertySource with lowest search precedence
+2012-09-12 15:05:25  [ main:7282 ] - [ DEBUG ]  Adding [systemEnvironment] PropertySource with lowest search precedence
+2012-09-12 15:05:25  [ main:7282 ] - [ DEBUG ]  Initialized StandardEnvironment with PropertySources [systemProperties,systemEnvironment]
+2012-09-12 15:05:25  [ main:7282 ] - [ DEBUG ]  Initializing new StandardEnvironment
+2012-09-12 15:05:25  [ main:7282 ] - [ DEBUG ]  Adding [systemProperties] PropertySource with lowest search precedence
+2012-09-12 15:05:25  [ main:7282 ] - [ DEBUG ]  Adding [systemEnvironment] PropertySource with lowest search precedence
+2012-09-12 15:05:25  [ main:7282 ] - [ DEBUG ]  Initialized StandardEnvironment with PropertySources [systemProperties,systemEnvironment]
+2012-09-12 15:05:25  [ main:7284 ] - [ DEBUG ]  Invoking afterPropertiesSet() on bean with name 'threadPoolTaskExecutor'
+2012-09-12 15:05:25  [ main:7284 ] - [ INFO ]  Initializing ExecutorService  'threadPoolTaskExecutor'
+2012-09-12 15:05:25  [ main:7285 ] - [ DEBUG ]  Returning cached instance of singleton bean 'org.springframework.transaction.config.internalTransactionAdvisor'
+2012-09-12 15:05:25  [ main:7285 ] - [ DEBUG ]  Returning cached instance of singleton bean 'org.springframework.aop.support.DefaultBeanFactoryPointcutAdvisor#0'
+2012-09-12 15:05:25  [ main:7285 ] - [ DEBUG ]  Returning cached instance of singleton bean 'org.springframework.transaction.config.internalTransactionAdvisor'
+2012-09-12 15:05:25  [ main:7285 ] - [ DEBUG ]  Returning cached instance of singleton bean 'org.springframework.aop.support.DefaultBeanFactoryPointcutAdvisor#0'
+2012-09-12 15:05:25  [ main:7299 ] - [ DEBUG ]  Finished creating instance of bean 'threadPoolTaskExecutor'
+2012-09-12 15:05:25  [ main:7299 ] - [ DEBUG ]  Creating shared instance of singleton bean 'fileHistoryDAOFileImpl'
+2012-09-12 15:05:25  [ main:7299 ] - [ DEBUG ]  Creating instance of bean 'fileHistoryDAOFileImpl'
+2012-09-12 15:05:25  [ main:7300 ] - [ DEBUG ]  Returning cached instance of singleton bean 'org.springframework.transaction.config.internalTransactionAdvisor'
+2012-09-12 15:05:25  [ main:7300 ] - [ DEBUG ]  Returning cached instance of singleton bean 'org.springframework.aop.support.DefaultBeanFactoryPointcutAdvisor#0'
+2012-09-12 15:05:25  [ main:7306 ] - [ DEBUG ]  Found injected element on class [com.thinkingtop.kaas.services.dao.implfile.FileHistoryDAOFileImpl]: AutowiredMethodElement for public void com.thinkingtop.kaas.services.dao.implfile.FileHistoryDAOFileImpl.setFileString(java.lang.String)
+2012-09-12 15:05:25  [ main:7306 ] - [ DEBUG ]  Found injected element on class [com.thinkingtop.kaas.services.dao.implfile.FileHistoryDAOFileImpl]: AutowiredMethodElement for public void com.thinkingtop.kaas.services.dao.implfile.FileHistoryDAOFileImpl.setGoodsDelimiter(java.lang.String)
+2012-09-12 15:05:25  [ main:7306 ] - [ DEBUG ]  Eagerly caching bean 'fileHistoryDAOFileImpl' to allow for resolving potential circular references
+2012-09-12 15:05:25  [ main:7307 ] - [ DEBUG ]  Processing injected method of bean 'fileHistoryDAOFileImpl': AutowiredMethodElement for public void com.thinkingtop.kaas.services.dao.implfile.FileHistoryDAOFileImpl.setFileString(java.lang.String)
+2012-09-12 15:05:25  [ main:7308 ] - [ DEBUG ]  Processing injected method of bean 'fileHistoryDAOFileImpl': AutowiredMethodElement for public void com.thinkingtop.kaas.services.dao.implfile.FileHistoryDAOFileImpl.setGoodsDelimiter(java.lang.String)
+2012-09-12 15:05:25  [ main:7309 ] - [ DEBUG ]  Returning cached instance of singleton bean 'org.springframework.transaction.config.internalTransactionAdvisor'
+2012-09-12 15:05:25  [ main:7309 ] - [ DEBUG ]  Returning cached instance of singleton bean 'org.springframework.aop.support.DefaultBeanFactoryPointcutAdvisor#0'
+2012-09-12 15:05:25  [ main:7309 ] - [ DEBUG ]  Returning cached instance of singleton bean 'org.springframework.transaction.config.internalTransactionAdvisor'
+2012-09-12 15:05:25  [ main:7309 ] - [ DEBUG ]  Returning cached instance of singleton bean 'org.springframework.aop.support.DefaultBeanFactoryPointcutAdvisor#0'
+2012-09-12 15:05:25  [ main:7310 ] - [ DEBUG ]  Finished creating instance of bean 'fileHistoryDAOFileImpl'
+2012-09-12 15:05:25  [ main:7310 ] - [ DEBUG ]  Creating shared instance of singleton bean 'kaasOrderFrequentDAOFileImpl'
+2012-09-12 15:05:25  [ main:7310 ] - [ DEBUG ]  Creating instance of bean 'kaasOrderFrequentDAOFileImpl'
+2012-09-12 15:05:25  [ main:7310 ] - [ DEBUG ]  Returning cached instance of singleton bean 'org.springframework.transaction.config.internalTransactionAdvisor'
+2012-09-12 15:05:25  [ main:7310 ] - [ DEBUG ]  Returning cached instance of singleton bean 'org.springframework.aop.support.DefaultBeanFactoryPointcutAdvisor#0'
+2012-09-12 15:05:25  [ main:7316 ] - [ DEBUG ]  Found injected element on class [com.thinkingtop.kaas.services.dao.implfile.KaasOrderFrequentDAOFileImpl]: AutowiredMethodElement for public void com.thinkingtop.kaas.services.dao.implfile.KaasOrderFrequentDAOFileImpl.setOutFilePath(java.lang.String)
+2012-09-12 15:05:25  [ main:7316 ] - [ DEBUG ]  Eagerly caching bean 'kaasOrderFrequentDAOFileImpl' to allow for resolving potential circular references
+2012-09-12 15:05:25  [ main:7316 ] - [ DEBUG ]  Processing injected method of bean 'kaasOrderFrequentDAOFileImpl': AutowiredMethodElement for public void com.thinkingtop.kaas.services.dao.implfile.KaasOrderFrequentDAOFileImpl.setOutFilePath(java.lang.String)
+2012-09-12 15:05:25  [ main:7317 ] - [ DEBUG ]  Returning cached instance of singleton bean 'org.springframework.transaction.config.internalTransactionAdvisor'
+2012-09-12 15:05:25  [ main:7317 ] - [ DEBUG ]  Returning cached instance of singleton bean 'org.springframework.aop.support.DefaultBeanFactoryPointcutAdvisor#0'
+2012-09-12 15:05:25  [ main:7317 ] - [ DEBUG ]  Returning cached instance of singleton bean 'org.springframework.transaction.config.internalTransactionAdvisor'
+2012-09-12 15:05:25  [ main:7317 ] - [ DEBUG ]  Returning cached instance of singleton bean 'org.springframework.aop.support.DefaultBeanFactoryPointcutAdvisor#0'
+2012-09-12 15:05:25  [ main:7322 ] - [ DEBUG ]  Finished creating instance of bean 'kaasOrderFrequentDAOFileImpl'
+2012-09-12 15:05:25  [ main:7323 ] - [ DEBUG ]  Creating shared instance of singleton bean 'kaasRuleDAOFileImpl'
+2012-09-12 15:05:25  [ main:7323 ] - [ DEBUG ]  Creating instance of bean 'kaasRuleDAOFileImpl'
+2012-09-12 15:05:25  [ main:7323 ] - [ DEBUG ]  Returning cached instance of singleton bean 'org.springframework.transaction.config.internalTransactionAdvisor'
+2012-09-12 15:05:25  [ main:7323 ] - [ DEBUG ]  Returning cached instance of singleton bean 'org.springframework.aop.support.DefaultBeanFactoryPointcutAdvisor#0'
+2012-09-12 15:05:25  [ main:7330 ] - [ DEBUG ]  Found injected element on class [com.thinkingtop.kaas.services.dao.implfile.KaasRuleDAOFileImpl]: AutowiredMethodElement for public void com.thinkingtop.kaas.services.dao.implfile.KaasRuleDAOFileImpl.setGoodsDelimiter(java.lang.String)
+2012-09-12 15:05:25  [ main:7330 ] - [ DEBUG ]  Found injected element on class [com.thinkingtop.kaas.services.dao.implfile.KaasRuleDAOFileImpl]: AutowiredMethodElement for public void com.thinkingtop.kaas.services.dao.implfile.KaasRuleDAOFileImpl.setOutFilePath(java.lang.String)
+2012-09-12 15:05:25  [ main:7330 ] - [ DEBUG ]  Eagerly caching bean 'kaasRuleDAOFileImpl' to allow for resolving potential circular references
+2012-09-12 15:05:25  [ main:7332 ] - [ DEBUG ]  Processing injected method of bean 'kaasRuleDAOFileImpl': AutowiredMethodElement for public void com.thinkingtop.kaas.services.dao.implfile.KaasRuleDAOFileImpl.setGoodsDelimiter(java.lang.String)
+2012-09-12 15:05:25  [ main:7333 ] - [ DEBUG ]  Processing injected method of bean 'kaasRuleDAOFileImpl': AutowiredMethodElement for public void com.thinkingtop.kaas.services.dao.implfile.KaasRuleDAOFileImpl.setOutFilePath(java.lang.String)
+2012-09-12 15:05:25  [ main:7333 ] - [ DEBUG ]  Returning cached instance of singleton bean 'org.springframework.transaction.config.internalTransactionAdvisor'
+2012-09-12 15:05:25  [ main:7333 ] - [ DEBUG ]  Returning cached instance of singleton bean 'org.springframework.aop.support.DefaultBeanFactoryPointcutAdvisor#0'
+2012-09-12 15:05:25  [ main:7333 ] - [ DEBUG ]  Returning cached instance of singleton bean 'org.springframework.transaction.config.internalTransactionAdvisor'
+2012-09-12 15:05:25  [ main:7333 ] - [ DEBUG ]  Returning cached instance of singleton bean 'org.springframework.aop.support.DefaultBeanFactoryPointcutAdvisor#0'
+2012-09-12 15:05:25  [ main:7336 ] - [ DEBUG ]  Finished creating instance of bean 'kaasRuleDAOFileImpl'
+2012-09-12 15:05:25  [ main:7337 ] - [ DEBUG ]  Returning cached instance of singleton bean 'org.springframework.transaction.config.internalTransactionAdvisor'
+2012-09-12 15:05:25  [ main:7338 ] - [ DEBUG ]  Returning cached instance of singleton bean 'org.springframework.aop.support.DefaultBeanFactoryPointcutAdvisor#0'
+2012-09-12 15:05:25  [ main:7338 ] - [ DEBUG ]  Returning cached instance of singleton bean 'org.springframework.transaction.config.internalTransactionAdvisor'
+2012-09-12 15:05:25  [ main:7338 ] - [ DEBUG ]  Returning cached instance of singleton bean 'org.springframework.aop.support.DefaultBeanFactoryPointcutAdvisor#0'
+2012-09-12 15:05:25  [ main:7344 ] - [ DEBUG ]  Finished creating instance of bean 'aprioriRunner'
+2012-09-12 15:05:25  [ main:7345 ] - [ DEBUG ]  Returning cached instance of singleton bean 'org.springframework.transaction.config.internalTransactionAdvisor'
+2012-09-12 15:05:25  [ main:7345 ] - [ DEBUG ]  Returning cached instance of singleton bean 'org.springframework.aop.support.DefaultBeanFactoryPointcutAdvisor#0'
+2012-09-12 15:05:25  [ main:7345 ] - [ DEBUG ]  Returning cached instance of singleton bean 'org.springframework.transaction.config.internalTransactionAdvisor'
+2012-09-12 15:05:25  [ main:7345 ] - [ DEBUG ]  Returning cached instance of singleton bean 'org.springframework.aop.support.DefaultBeanFactoryPointcutAdvisor#0'
+2012-09-12 15:05:25  [ main:7349 ] - [ DEBUG ]  Finished creating instance of bean 'exclusiveKeyServiceImpl'
+2012-09-12 15:05:25  [ main:7349 ] - [ DEBUG ]  Returning cached instance of singleton bean 'exclusiveKeyDAOImpl'
+2012-09-12 15:05:25  [ main:7349 ] - [ DEBUG ]  Returning cached instance of singleton bean 'kebsiteDAOImpl'
+2012-09-12 15:05:25  [ main:7349 ] - [ DEBUG ]  Returning cached instance of singleton bean 'fileHistoryDAOFileImpl'
+2012-09-12 15:05:25  [ main:7349 ] - [ DEBUG ]  Returning cached instance of singleton bean 'kaasRuleDAOFileImpl'
+2012-09-12 15:05:25  [ main:7349 ] - [ DEBUG ]  Returning cached instance of singleton bean 'kaasOrderFrequentDAOFileImpl'
+2012-09-12 15:05:25  [ main:7349 ] - [ DEBUG ]  Returning cached instance of singleton bean 'exclusiveKeyManage'
+2012-09-12 15:05:25  [ main:7349 ] - [ DEBUG ]  Returning cached instance of singleton bean 'kebsiteManage'
+2012-09-12 15:05:25  [ main:7349 ] - [ DEBUG ]  Returning cached instance of singleton bean 'org.springframework.aop.config.internalAutoProxyCreator'
+2012-09-12 15:05:25  [ main:7349 ] - [ DEBUG ]  Returning cached instance of singleton bean 'org.springframework.beans.factory.config.PropertyPlaceholderConfigurer#0'
+2012-09-12 15:05:25  [ main:7349 ] - [ DEBUG ]  Returning cached instance of singleton bean 'dataSource'
+2012-09-12 15:05:25  [ main:7349 ] - [ DEBUG ]  Returning cached instance of singleton bean 'sessionFactory'
+2012-09-12 15:05:25  [ main:7349 ] - [ DEBUG ]  Returning cached instance of singleton bean 'txManager'
+2012-09-12 15:05:25  [ main:7349 ] - [ DEBUG ]  Returning cached instance of singleton bean 'org.springframework.transaction.annotation.AnnotationTransactionAttributeSource#0'
+2012-09-12 15:05:25  [ main:7350 ] - [ DEBUG ]  Creating shared instance of singleton bean 'org.springframework.transaction.interceptor.TransactionInterceptor#0'
+2012-09-12 15:05:25  [ main:7350 ] - [ DEBUG ]  Creating instance of bean 'org.springframework.transaction.interceptor.TransactionInterceptor#0'
+2012-09-12 15:05:25  [ main:7350 ] - [ DEBUG ]  Eagerly caching bean 'org.springframework.transaction.interceptor.TransactionInterceptor#0' to allow for resolving potential circular references
+2012-09-12 15:05:25  [ main:7350 ] - [ DEBUG ]  Returning cached instance of singleton bean 'org.springframework.transaction.annotation.AnnotationTransactionAttributeSource#0'
+2012-09-12 15:05:25  [ main:7350 ] - [ DEBUG ]  Invoking afterPropertiesSet() on bean with name 'org.springframework.transaction.interceptor.TransactionInterceptor#0'
+2012-09-12 15:05:25  [ main:7350 ] - [ DEBUG ]  Finished creating instance of bean 'org.springframework.transaction.interceptor.TransactionInterceptor#0'
+2012-09-12 15:05:25  [ main:7350 ] - [ DEBUG ]  Returning cached instance of singleton bean 'org.springframework.transaction.config.internalTransactionAdvisor'
+2012-09-12 15:05:25  [ main:7350 ] - [ DEBUG ]  Returning cached instance of singleton bean 'org.springframework.aop.support.DefaultBeanFactoryPointcutAdvisor#0'
+2012-09-12 15:05:25  [ main:7350 ] - [ DEBUG ]  Returning cached instance of singleton bean 'txAdvice'
+2012-09-12 15:05:25  [ main:7350 ] - [ DEBUG ]  Returning cached instance of singleton bean 'threadPoolTaskExecutor'
+2012-09-12 15:05:25  [ main:7350 ] - [ DEBUG ]  Returning cached instance of singleton bean 'aprioriRunner'
+2012-09-12 15:05:25  [ main:7350 ] - [ DEBUG ]  Creating shared instance of singleton bean 'aprioriRunnerMultiThread'
+2012-09-12 15:05:25  [ main:7350 ] - [ DEBUG ]  Creating instance of bean 'aprioriRunnerMultiThread'
+2012-09-12 15:05:25  [ main:7350 ] - [ DEBUG ]  Returning cached instance of singleton bean 'org.springframework.transaction.config.internalTransactionAdvisor'
+2012-09-12 15:05:25  [ main:7350 ] - [ DEBUG ]  Returning cached instance of singleton bean 'org.springframework.aop.support.DefaultBeanFactoryPointcutAdvisor#0'
+2012-09-12 15:05:25  [ main:7352 ] - [ DEBUG ]  Eagerly caching bean 'aprioriRunnerMultiThread' to allow for resolving potential circular references
+2012-09-12 15:05:25  [ main:7356 ] - [ DEBUG ]  Returning cached instance of singleton bean 'threadPoolTaskExecutor'
+2012-09-12 15:05:25  [ main:7356 ] - [ DEBUG ]  Returning cached instance of singleton bean 'fileHistoryDAOFileImpl'
+2012-09-12 15:05:25  [ main:7356 ] - [ DEBUG ]  Returning cached instance of singleton bean 'kaasOrderFrequentDAOFileImpl'
+2012-09-12 15:05:25  [ main:7356 ] - [ DEBUG ]  Returning cached instance of singleton bean 'kaasRuleDAOFileImpl'
+2012-09-12 15:05:25  [ main:7357 ] - [ DEBUG ]  Returning cached instance of singleton bean 'org.springframework.transaction.config.internalTransactionAdvisor'
+2012-09-12 15:05:25  [ main:7357 ] - [ DEBUG ]  Returning cached instance of singleton bean 'org.springframework.aop.support.DefaultBeanFactoryPointcutAdvisor#0'
+2012-09-12 15:05:25  [ main:7357 ] - [ DEBUG ]  Returning cached instance of singleton bean 'org.springframework.transaction.config.internalTransactionAdvisor'
+2012-09-12 15:05:25  [ main:7357 ] - [ DEBUG ]  Returning cached instance of singleton bean 'org.springframework.aop.support.DefaultBeanFactoryPointcutAdvisor#0'
+2012-09-12 15:05:25  [ main:7360 ] - [ DEBUG ]  Finished creating instance of bean 'aprioriRunnerMultiThread'
+2012-09-12 15:05:25  [ main:7360 ] - [ DEBUG ]  Returning cached instance of singleton bean 'org.springframework.context.annotation.ConfigurationClassPostProcessor$ImportAwareBeanPostProcessor#0'
+2012-09-12 15:05:25  [ main:7362 ] - [ DEBUG ]  Unable to locate LifecycleProcessor with name 'lifecycleProcessor': using default [org.springframework.context.support.DefaultLifecycleProcessor@1de7497]
+2012-09-12 15:05:25  [ main:7362 ] - [ DEBUG ]  Returning cached instance of singleton bean 'lifecycleProcessor'
+2012-09-12 15:05:25  [ main:7364 ] - [ DEBUG ]  Returning cached instance of singleton bean 'aprioriRunner'
+2012-09-12 15:05:25  [ main:7364 ] - [ INFO ]  Do offline training With 1 Threads!
+2012-09-12 15:05:25  [ threadPoolTaskExecutor-1:7367 ] - [ INFO ]  Current File Name:smb2 | Training Progress:1/1
+2012-09-12 15:05:25  [ threadPoolTaskExecutor-1:7407 ] - [ WARN ]  generate all rules:0 seconds!
+2012-09-12 15:05:25  [ threadPoolTaskExecutor-1:7432 ] - [ WARN ]  save all OF:0 seconds!
+2012-09-12 15:05:25  [ threadPoolTaskExecutor-1:7433 ] - [ WARN ]  save all Rule:0 seconds!
+2012-09-12 15:05:25  [ threadPoolTaskExecutor-1:7433 ] - [ INFO ]  Loop times:0
+2012-09-12 15:05:25  [ threadPoolTaskExecutor-1:7436 ] - [ WARN ]  generate all rules:0 seconds!
+2012-09-12 15:05:25  [ threadPoolTaskExecutor-1:7444 ] - [ WARN ]  save all OF:0 seconds!
+2012-09-12 15:05:25  [ threadPoolTaskExecutor-1:7446 ] - [ WARN ]  save all Rule:0 seconds!
+2012-09-12 15:05:25  [ threadPoolTaskExecutor-1:7446 ] - [ INFO ]  Loop times:1
+2012-09-12 15:05:25  [ threadPoolTaskExecutor-1:7458 ] - [ WARN ]  generate all rules:0 seconds!
+2012-09-12 15:05:25  [ threadPoolTaskExecutor-1:7459 ] - [ WARN ]  save all OF:0 seconds!
+2012-09-12 15:05:25  [ threadPoolTaskExecutor-1:7460 ] - [ WARN ]  save all Rule:0 seconds!
+2012-09-12 15:05:25  [ threadPoolTaskExecutor-1:7460 ] - [ INFO ]  Loop times:2
+2012-09-12 15:05:25  [ threadPoolTaskExecutor-1:7463 ] - [ WARN ]  generate all rules:0 seconds!
+2012-09-12 15:05:25  [ threadPoolTaskExecutor-1:7463 ] - [ WARN ]  save all OF:0 seconds!
+2012-09-12 15:05:25  [ threadPoolTaskExecutor-1:7465 ] - [ WARN ]  save all Rule:0 seconds!
+2012-09-12 15:05:25  [ threadPoolTaskExecutor-1:7465 ] - [ INFO ]  Loop times:3
+2012-09-12 15:05:25  [ threadPoolTaskExecutor-1:7466 ] - [ WARN ]  generate all rules:0 seconds!
+2012-09-12 15:05:25  [ threadPoolTaskExecutor-1:7467 ] - [ WARN ]  save all OF:0 seconds!
+2012-09-12 15:05:25  [ threadPoolTaskExecutor-1:7468 ] - [ WARN ]  save all Rule:0 seconds!
+2012-09-12 15:05:25  [ threadPoolTaskExecutor-1:7469 ] - [ INFO ]  Loop times:4
+2012-09-12 15:05:25  [ main:7567 ] - [ INFO ]  Offline Training Task Finished Once!
+2012-09-12 15:05:25  [ main:7567 ] - [ INFO ]  Closing org.springframework.context.support.ClassPathXmlApplicationContext@e83912: startup date [Wed Sep 12 15:05:17 CST 2012]; root of context hierarchy
+2012-09-12 15:05:25  [ main:7568 ] - [ DEBUG ]  Returning cached instance of singleton bean 'lifecycleProcessor'
+2012-09-12 15:05:25  [ main:7568 ] - [ INFO ]  Destroying singletons in org.springframework.beans.factory.support.DefaultListableBeanFactory@ac6a45: defining beans [org.springframework.context.annotation.internalConfigurationAnnotationProcessor,org.springframework.context.annotation.internalAutowiredAnnotationProcessor,org.springframework.context.annotation.internalRequiredAnnotationProcessor,org.springframework.context.annotation.internalCommonAnnotationProcessor,org.springframework.context.annotation.internalPersistenceAnnotationProcessor,exclusiveKeyServiceImpl,exclusiveKeyDAOImpl,kebsiteDAOImpl,fileHistoryDAOFileImpl,kaasRuleDAOFileImpl,kaasOrderFrequentDAOFileImpl,exclusiveKeyManage,kebsiteManage,org.springframework.aop.config.internalAutoProxyCreator,org.springframework.beans.factory.config.PropertyPlaceholderConfigurer#0,dataSource,sessionFactory,txManager,org.springframework.transaction.annotation.AnnotationTransactionAttributeSource#0,org.springframework.transaction.interceptor.TransactionInterceptor#0,org.springframework.transaction.config.internalTransactionAdvisor,bussinessService,org.springframework.aop.support.DefaultBeanFactoryPointcutAdvisor#0,txAdvice,threadPoolTaskExecutor,aprioriRunner,aprioriRunnerMultiThread,org.springframework.context.annotation.ConfigurationClassPostProcessor$ImportAwareBeanPostProcessor#0]; root of factory hierarchy
+2012-09-12 15:05:25  [ main:7573 ] - [ DEBUG ]  Invoking destroy() on bean with name 'threadPoolTaskExecutor'
+2012-09-12 15:05:25  [ main:7574 ] - [ INFO ]  Shutting down ExecutorService 'threadPoolTaskExecutor'
+2012-09-12 15:05:25  [ main:7576 ] - [ DEBUG ]  Retrieved dependent beans for bean '(inner bean)': [txAdvice]
+2012-09-12 15:05:25  [ main:7576 ] - [ DEBUG ]  Invoking destroy() on bean with name 'sessionFactory'
+2012-09-12 15:05:25  [ main:7576 ] - [ INFO ]  Closing Hibernate SessionFactory
+2012-09-12 15:05:25  [ main:7577 ] - [ INFO ]  closing
+2012-09-12 15:05:25  [ main:7579 ] - [ DEBUG ]  Invoking destroy method 'close' on bean with name 'dataSource'
+2012-09-12 15:05:25  [ main:7579 ] - [ INFO ]  Shutting down connection pool...
+2012-09-12 15:05:25  [ main:7586 ] - [ INFO ]  Connection pool has been shutdown.

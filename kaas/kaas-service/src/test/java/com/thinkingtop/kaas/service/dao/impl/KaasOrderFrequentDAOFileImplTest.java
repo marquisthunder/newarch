@@ -5,23 +5,22 @@ import static org.junit.Assert.*;
 import org.junit.Test;
 
 import com.thinkingtop.kaas.services.dao.KaasOrderFrequentDAO;
+import com.thinkingtop.kaas.services.dao.implfile.KaasOrderFrequentDAOFileImpl;
 import com.thinkingtop.kaas.services.model.KaasOrderFrequent;
 
-public class MarsOrderFrequentDAOFileImplTest {
+public class KaasOrderFrequentDAOFileImplTest {
 
 	@Test
 	public void testSubmit() {
-		/*MarsOrderFrequent of = new MarsOrderFrequent();
+		/*KaasOrderFrequent of = new KaasOrderFrequent();
 		String fs = "12,2,23,1";
         of.setFreqSet(fs);
         of.setSupport(212);
         of.setLevel(fs.split(",").length);
         of.setOfType("all");
-        System.out.println("11111111111111111");
-        MarsOrderFrequentDAO mof = new MarsOrderFrequentDAOFileImpl();
-        System.out.println("22222222222222");
+        KaasOrderFrequentDAO mof = new KaasOrderFrequentDAOFileImpl();
         mof.submit(of);
-        of = new MarsOrderFrequent("1,21,23,2",11,4,"all");
+        of = new KaasOrderFrequent("1,21,23,2",11,4,"all");
         mof.submit(of);
         mof.submit();*/
 	}

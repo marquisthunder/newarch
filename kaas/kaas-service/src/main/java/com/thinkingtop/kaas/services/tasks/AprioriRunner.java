@@ -44,18 +44,12 @@ public class AprioriRunner {
     private String folder;
     private String waitTime;
     private String submitLoopMaxStr;
-    private String freqSetMaxSizeStr;
-    private String supportGateStr;
-    private String goodsDelimiter;
+    private String CombinationMaxSizeStr;
+    private String frequencyLowerLimitStr;
+    private String itemDelimiter;
     private String maxTryCount;
     private int threadEndNum;
 
-    public String getSupportGateStr() {
-        return supportGateStr;
-    }
-    public void setSupportGateStr(String supportGateStr) {
-        this.supportGateStr = supportGateStr;
-    }
     public ThreadPoolTaskExecutor getTaskExecutor() {
         return taskExecutor;
     }
@@ -99,11 +93,11 @@ public class AprioriRunner {
     public void setSubmitLoopMaxStr(String submitLoopMaxStr) {
         this.submitLoopMaxStr = submitLoopMaxStr;
     }
-    public String getFreqSetMaxSizeStr() {
-        return freqSetMaxSizeStr;
+    public String getCombinationMaxSizeStr() {
+        return CombinationMaxSizeStr;
     }
-    public void setFreqSetMaxSizeStr(String freqSetMaxSizeStr) {
-        this.freqSetMaxSizeStr = freqSetMaxSizeStr;
+    public void setCombinationMaxSizeStr(String CombinationMaxSizeStr) {
+        this.CombinationMaxSizeStr = CombinationMaxSizeStr;
     }
     public KaasOrderFrequentDAO getOfdao() {
         return ofdao;
@@ -124,18 +118,18 @@ public class AprioriRunner {
     }
 
     public void println(){
-    	System.out.println("------------------------------------println properties ");
-    	System.out.println("fileHistoryDAO:  "+fileHistoryDAO.getClass());
-    	System.out.println("ofdao:  "+ofdao.getClass());
-    	System.out.println("rdao:  "+rdao.getClass());
-    	System.out.println("threadNum:  "+threadNum);
-    	System.out.println("dataPath:  "+dataPath);
-    	System.out.println("folder:  "+folder);
-    	System.out.println("waitTime:  "+waitTime);
-    	System.out.println("submitLoopMaxStr:  "+submitLoopMaxStr);
-    	System.out.println("freqSetMaxSizeStr:  "+freqSetMaxSizeStr);
-    	System.out.println("supportGateStr:  "+supportGateStr);
-    	System.out.println("------------------------------------println properties end");
+    	logger.info("------------------------------------println properties ");
+    	logger.info("fileHistoryDAO:  "+fileHistoryDAO.getClass());
+    	logger.info("ofdao:  "+ofdao.getClass());
+    	logger.info("rdao:  "+rdao.getClass());
+    	logger.info("threadNum:  "+threadNum);
+    	logger.info("dataPath:  "+dataPath);
+    	logger.info("folder:  "+folder);
+    	logger.info("waitTime:  "+waitTime);
+    	logger.info("submitLoopMaxStr:  "+submitLoopMaxStr);
+    	logger.info("CombinationMaxSizeStr:  "+CombinationMaxSizeStr);
+    	logger.info("frequencyLowerLimitStr:  "+frequencyLowerLimitStr);
+    	logger.info("------------------------------------println properties end");
     }
     
     
@@ -164,8 +158,8 @@ public class AprioriRunner {
             taskExecutor.initialize();
         }
         int submitLoopMax=Integer.parseInt(submitLoopMaxStr);
-        int freqSetMaxSize=Integer.parseInt(freqSetMaxSizeStr);
-        int  supportGate=Integer.parseInt(supportGateStr);
+        int CombinationMaxSize=Integer.parseInt(CombinationMaxSizeStr);
+        int  frequencyLowerLimit=Integer.parseInt(frequencyLowerLimitStr);
         for(int i=0;i<taskN;i++){
             List<String> partOfFiles=new ArrayList<String>();
             int start=i*loop;
@@ -175,7 +169,7 @@ public class AprioriRunner {
                 partOfFiles.add(filelist.get(j));
             }
 
-            MarsAprioriTask marsAprioriTask = new MarsAprioriTask(partOfFiles,submitLoopMax,freqSetMaxSize,supportGate);
+            MarsAprioriTask marsAprioriTask = new MarsAprioriTask(partOfFiles,submitLoopMax,CombinationMaxSize,frequencyLowerLimit);
             taskExecutor.execute(marsAprioriTask);
         }
         int time=Integer.parseInt(waitTime);
@@ -199,30 +193,30 @@ public class AprioriRunner {
         private int submitLoopCur;
         private int submitLoopNum;
         private int submitLoopMax;
-        private int freqSetMaxSize;
-        private int supportGate;
+        private int CombinationMaxSize;
+        private int frequencyLowerLimit;
         
         public void printlnM(){
-        	System.out.println(filelist.size());
-        	System.out.println(submitMap.size());
-        	System.out.println(submitLoopCur);
-        	System.out.println(submitLoopNum);
-        	System.out.println(submitLoopMax);
-        	System.out.println(freqSetMaxSize);
-        	System.out.println(supportGate);
+        	logger.info(filelist.size());
+        	logger.info(submitMap.size());
+        	logger.info(submitLoopCur);
+        	logger.info(submitLoopNum);
+        	logger.info(submitLoopMax);
+        	logger.info(CombinationMaxSize);
+        	logger.info(frequencyLowerLimit);
         }
-        public MarsAprioriTask(List<String> filelist,int submitLoopMax,int freqSetMaxSize,int supportGate) {
+        public MarsAprioriTask(List<String> filelist,int submitLoopMax,int CombinationMaxSize,int frequencyLowerLimit) {
             this.filelist = filelist;
             this.submitLoopMax = submitLoopMax;
             submitLoopCur = 0;
             submitLoopNum = 0;
-            this.freqSetMaxSize = freqSetMaxSize;
-            this.supportGate = supportGate;
+            this.CombinationMaxSize = CombinationMaxSize;
+            this.frequencyLowerLimit = frequencyLowerLimit;
             submitMap = new HashMap<String,Integer>();
         }
 
         public void run() {
-
+//printlnM();
             String[] basePathes = dataPath.split(";");
             String realBase = null;
             boolean smbAddr=false;
@@ -294,7 +288,7 @@ public class AprioriRunner {
             if(line == null || line.length()<=0){
                 return null;
             }
-            String[] ss = line.split(goodsDelimiter);
+            String[] ss = line.split(itemDelimiter);
             if(ss.length <= 1){
                 return null;
             }
@@ -318,7 +312,7 @@ public class AprioriRunner {
             }
 
             CombinationModel cm = new CombinationModel(idlist.toArray(new String[0]),submitMap);
-            cm.genCombinations(freqSetMaxSize);
+            cm.genCombinations(CombinationMaxSize);
             cm=null;
             submitLoopCur++;
             if(submitLoopCur == submitLoopMax){
@@ -341,7 +335,7 @@ public class AprioriRunner {
                 KaasOrderFrequent of = new KaasOrderFrequent();
                 of.setFreqSet(me.getKey());
                 of.setSupport(me.getValue());
-                of.setLevel(me.getKey().split(goodsDelimiter).length);
+                of.setLevel(me.getKey().split(itemDelimiter).length);
                 of.setOfType("all");
                 olist.add(of);
                 int newSup=me.getValue();
@@ -351,7 +345,7 @@ public class AprioriRunner {
                     newSup+=tmp.getSupport();
                 }
                 
-                if(newSup >= supportGate){
+                if(newSup >= frequencyLowerLimit){
                     List<KaasRule> subRlist = genRulesByLine(me.getKey(),newSup);
                     rlist.addAll(subRlist);
                     continue;
@@ -415,7 +409,7 @@ public class AprioriRunner {
 
             Map<String,Integer> rulemap = null;
             //generate all rules
-            String[] lineArr=line.split(goodsDelimiter);
+            String[] lineArr=line.split(itemDelimiter);
             CombinationModel cm = new CombinationModel(lineArr);
             rulemap = cm.genRuleCombinations();
             cm = null;
@@ -456,10 +450,10 @@ public class AprioriRunner {
         	List<KaasRule> rlist= new ArrayList<KaasRule>();
         	for (Map.Entry<String, Integer> me: history.entrySet()){
                 String[] tmp = me.getKey().split("\\|");
-                if(submitMap.containsKey(tmp[0]+goodsDelimiter+tmp[1])){
+                if(submitMap.containsKey(tmp[0]+itemDelimiter+tmp[1])){
                 	continue;
                 }
-                KaasOrderFrequent hi = ofdao.findOneByProperty("freqSet", tmp[0]+goodsDelimiter+tmp[1]);
+                KaasOrderFrequent hi = ofdao.findOneByProperty("freqSet", tmp[0]+itemDelimiter+tmp[1]);
                 if(hi==null){
                 	continue;
                 }
@@ -489,17 +483,25 @@ public class AprioriRunner {
 
     }
 
-	public String getGoodsDelimiter() {
-		return goodsDelimiter;
-	}
-	public void setGoodsDelimiter(String goodsDelimiter) {
-		this.goodsDelimiter = goodsDelimiter;
-	}
 	public String getMaxTryCount() {
 		return maxTryCount;
 	}
 	public void setMaxTryCount(String maxTryCount) {
 		this.maxTryCount = maxTryCount;
+	}
+	public String getItemDelimiter() {
+		return itemDelimiter;
+	}
+	public void setItemDelimiter(String itemDelimiter) {
+		this.itemDelimiter = itemDelimiter;
+	}
+
+	public String getfrequencyLowerLimitStr() {
+		return frequencyLowerLimitStr;
+	}
+
+	public void setfrequencyLowerLimitStr(String frequencyLowerLimitStr) {
+		this.frequencyLowerLimitStr = frequencyLowerLimitStr;
 	}
 
 }
