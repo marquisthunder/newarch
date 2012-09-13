@@ -1,4 +1,4 @@
-package com.thinkingtop.kaas.services.tools;
+package com.thinkingtop.kaas.services.combinationutil;
 
 import java.util.HashMap;
 import java.util.Map;

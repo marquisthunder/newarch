@@ -99,7 +99,7 @@
         <property name="queueCapacity" value="1000" />  
     </bean>
     <bean id="aprioriRunner" 
-    	class="com.thinkingtop.kaas.services.tasks.AprioriRunner">
+    	class="com.thinkingtop.kaas.services.apriori.AprioriRunner">
     	<property name="taskExecutor" ref="threadPoolTaskExecutor"/>
     	<property name="fileHistoryDAO" ref="fileHistoryDAOFileImpl"/>
     	<property name="ofdao" ref="kaasOrderFrequentDAOFileImpl"/>
@@ -109,13 +109,13 @@
     	<property name="folder" value="${runner.folder}"/>
     	<property name="waitTime" value="${runner.waitTime}"/>
     	<property name="submitLoopMaxStr" value="${runner.submitLoopMaxStr}"/>
-    	<property name="freqSetMaxSizeStr" value="${runner.freqSetMaxSizeStr}"/>
-    	<property name="supportGateStr" value="${runner.supportGateStr}"/>
-    	<property name="goodsDelimiter" value="${runner.goodsDelimiter}"/>
+    	<property name="combinationMaxSizeStr" value="${runner.combinationMaxSizeStr}"/>
+    	<property name="frequencyLowerLimitStr" value="${runner.frequencyLowerLimitStr}"/>
+    	<property name="itemDelimiter" value="${runner.itemDelimiter}"/>
     	<property name="maxTryCount" value="${runner.maxTryCount}"/>
     </bean>
-        <bean id="aprioriRunnerMultiThread" 
-    	class="com.thinkingtop.kaas.services.tasks.AprioriRunnerMultiThread">
+<!--     <bean id="aprioriRunnerMultiThread" 
+    	class="com.thinkingtop.kaas.services.apriori.AprioriRunnerMultiThread">
     	<property name="taskExecutor" ref="threadPoolTaskExecutor"/>
     	<property name="fileHistoryDAO" ref="fileHistoryDAOFileImpl"/>
     	<property name="ofdao" ref="kaasOrderFrequentDAOFileImpl"/>
@@ -125,9 +125,9 @@
     	<property name="folder" value="${runner.folder}"/>
     	<property name="waitTime" value="${runner.waitTime}"/>
     	<property name="submitLoopMaxStr" value="${runner.submitLoopMaxStr}"/>
-    	<property name="freqSetMaxSizeStr" value="${runner.freqSetMaxSizeStr}"/>
-    	<property name="supportGateStr" value="${runner.supportGateStr}"/>
-    	<property name="goodsDelimiter" value="${runner.goodsDelimiter}"/>
+    	<property name="combinationMaxSizeStr" value="${runner.combinationMaxSizeStr}"/>
+    	<property name="frequencyLowerLimitStr" value="${runner.frequencyLowerLimitStr}"/>
+    	<property name="itemDelimiter" value="${runner.itemDelimiter}"/>
     	<property name="maxTryCount" value="${runner.maxTryCount}"/>
-    </bean>
+    </bean> -->
 </beans>

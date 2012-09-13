@@ -1,4 +1,4 @@
-package com.thinkingtop.kaas.services.tools;
+package com.thinkingtop.kaas.services.combinationutil;
 
 //--------------------------------------
 //Systematically generate combinations.
@@ -12,7 +12,7 @@ import java.util.Set;
 
 import org.apache.log4j.Logger;
 
-import com.thinkingtop.kaas.services.tasks.AprioriRunner;
+import com.thinkingtop.kaas.services.apriori.AprioriRunner;
 
 /**
  * Combination Generator class

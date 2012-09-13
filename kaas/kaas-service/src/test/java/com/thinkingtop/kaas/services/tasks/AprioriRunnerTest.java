@@ -5,7 +5,7 @@ import static org.junit.Assert.*;
 import org.junit.Test;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
-import com.thinkingtop.kaas.services.tasks.AprioriRunner;
+import com.thinkingtop.kaas.services.apriori.AprioriRunner;
 
 public class AprioriRunnerTest {
 

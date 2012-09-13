@@ -11,12 +11,12 @@ import javax.jws.WebService;
 
 import org.springframework.stereotype.Component;
 
+import com.thinkingtop.kaas.services.apriori.AprioriRunner;
 import com.thinkingtop.kaas.services.dao.ExclusiveKeyDAO;
 import com.thinkingtop.kaas.services.manage.ExclusiveKeyManage;
 import com.thinkingtop.kaas.services.manage.KebsiteManage;
 import com.thinkingtop.kaas.services.model.ExclusiveKey;
 import com.thinkingtop.kaas.services.model.Kebsite;
-import com.thinkingtop.kaas.services.tasks.AprioriRunner;
 
 /**
  * This is a ExclusiveKeyService implementation class

@@ -1,4 +1,4 @@
-package com.thinkingtop.kaas.services.tasks;
+package com.thinkingtop.kaas.services.apriori;
 import java.io.BufferedInputStream;
 import java.io.BufferedReader;
 import java.io.DataInputStream;
@@ -23,6 +23,7 @@ import org.apache.log4j.Logger;
 import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
 import org.springframework.stereotype.Component;
 
+import com.thinkingtop.kaas.services.combinationutil.CombinationModel;
 import com.thinkingtop.kaas.services.dao.FileHistoryDAO;
 import com.thinkingtop.kaas.services.dao.KaasOrderFrequentDAO;
 import com.thinkingtop.kaas.services.dao.KaasRuleDAO;
@@ -31,7 +32,6 @@ import com.thinkingtop.kaas.services.dao.implfile.KaasOrderFrequentDAOFileImpl;
 import com.thinkingtop.kaas.services.dao.implfile.KaasRuleDAOFileImpl;
 import com.thinkingtop.kaas.services.model.KaasOrderFrequent;
 import com.thinkingtop.kaas.services.model.KaasRule;
-import com.thinkingtop.kaas.services.tools.CombinationModel;
 
 
 //@Component("myThreadPoolTaskExecutor")

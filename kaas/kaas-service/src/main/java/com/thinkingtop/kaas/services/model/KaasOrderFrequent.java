@@ -21,13 +21,13 @@ public class KaasOrderFrequent {
 		return combination;
 	}
 	public void setCombination(String combination) {
-		combination = combination;
+		this.combination = combination;
 	}
 	public Integer getFrequent() {
 		return frequent;
 	}
 	public void setFrequent(Integer frequent) {
-		frequent = frequent;
+		this.frequent = frequent;
 	}
 	public int getItemNum() {
 		return itemNum;
@@ -41,6 +41,6 @@ public class KaasOrderFrequent {
 	public void setOfType(String ofType) {
 		this.ofType = ofType;
 	}
-	
+
 
 }
