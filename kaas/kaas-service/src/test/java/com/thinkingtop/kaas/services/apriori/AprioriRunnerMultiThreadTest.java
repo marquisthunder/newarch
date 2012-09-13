@@ -1,4 +1,4 @@
-package com.thinkingtop.kaas.services.tasks;
+package com.thinkingtop.kaas.services.apriori;
 
 import static org.junit.Assert.*;
 

@@ -9,6 +9,7 @@ import java.util.Set;
 import javax.annotation.Resource;
 import javax.jws.WebService;
 
+import org.apache.log4j.Logger;
 import org.springframework.stereotype.Component;
 
 import com.thinkingtop.kaas.services.apriori.AprioriRunner;
@@ -27,6 +28,7 @@ import com.thinkingtop.kaas.services.model.Kebsite;
 @Component("exclusiveKeyServiceImpl")
 @WebService(endpointInterface = "com.thinkingtop.kaas.services.service.ExclusiveKeyService")
 public class ExclusiveKeyServiceImpl implements ExclusiveKeyService{
+    static Logger logger=Logger.getLogger(ExclusiveKeyServiceImpl.class);
 	private ExclusiveKeyManage exclusiveKeyManage;
 	private KebsiteManage kebsiteManage;
 	private AprioriRunner aprioriRunner;
@@ -68,7 +70,7 @@ public class ExclusiveKeyServiceImpl implements ExclusiveKeyService{
 		}
 		StringBuffer keyString = getAPIKey();
 		boolean e = exclusiveKeyManage.isHold(keyString);
-		System.out.println(e);
+	logger.info(e);
 		while(exclusiveKeyManage.isHold(keyString)){
 			keyString = getAPIKey();
 		}
@@ -79,8 +81,8 @@ public class ExclusiveKeyServiceImpl implements ExclusiveKeyService{
 	
 	
 	/**
-	 * 创建一个APIKey并返回
-	 * @return StringBuffer 所要返回的APIKey的StringBuffer
+	 * Create a APIKey and returns
+	 * @return StringBuffer:The returned APIKey
 	 */
 	public StringBuffer getAPIKey(){
 		StringBuffer timeString = getTimeString();
@@ -89,14 +91,11 @@ public class ExclusiveKeyServiceImpl implements ExclusiveKeyService{
 		return keyString;
 	} 
 	
-	public static void main(String[] args) {
-		new ExclusiveKeyServiceImpl().getAPIKey();
-	}
 	
 	/**
-	 * 将混乱好的包含时间信息的字符串传进来，然后创建一个包含有时间信息的APIKey
-	 * @param upsetTimeString 包含时间信息的字符串
-	 * @return
+	 * Create a APIKey containing specific information
+	 * @param upsetTimeString:String containing the message
+	 * @return APIKey
 	 */
 	private StringBuffer getKeyString(StringBuffer upsetTimeString) {
 		Random random = new Random();
@@ -112,16 +111,16 @@ public class ExclusiveKeyServiceImpl implements ExclusiveKeyService{
 			}
 			KeyString.append(cKey[random.nextInt(cKey.length)]);
         }
-System.out.println(KeyString.toString());
-System.out.println("APIKey长度："+KeyString.length());
-System.out.println("可选字符长度："+keyS.length());
-System.out.println();
+logger.info(KeyString.toString());
+logger.info("APIKey长度："+KeyString.length());
+logger.info("可选字符长度："+keyS.length());
+logger.info("");
 		return KeyString;
 	}
 
 	/**
-	 * 返回一个跟时间混合混乱排序的39位字符串，
-	 * @param timeString 所要跟时间字符串混合的26位字符串
+	 * Returns a string of 39 mixed with information
+	 * @param timeString A mixture of 26 characters
 	 * @return
 	 */
 	private StringBuffer getUpsetTimeString(StringBuffer timeString) {
@@ -147,13 +146,13 @@ System.out.println();
 				time.deleteCharAt(0);
 			}
 		}
-		System.out.println(upset.toString());
+logger.info(upset.toString());
 		return upset;
 	}
 
 	/**
-	 * 返回一个26位随机产生的字符串
-	 * 所要返回的字符串从"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz#$%^_~-+"中获取
+	 * Returns a 26 bit random string
+	 * Strings on "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz#$%^_~-+"
 	 * @return StringBuffer
 	 */
 	public StringBuffer getTimeString(){
@@ -166,7 +165,7 @@ System.out.println();
 		for( int i = 0; i < 26; i ++) { 
 			timeString.append(timechar[random.nextInt(timechar.length)]);
         }
-		System.out.println(timeString.toString());
+logger.info(timeString.toString());
 		return timeString;
 	}
 
