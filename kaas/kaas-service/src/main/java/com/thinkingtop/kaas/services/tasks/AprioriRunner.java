@@ -169,8 +169,8 @@ public class AprioriRunner {
                 partOfFiles.add(filelist.get(j));
             }
 
-            MarsAprioriTask marsAprioriTask = new MarsAprioriTask(partOfFiles,submitLoopMax,CombinationMaxSize,frequencyLowerLimit);
-            taskExecutor.execute(marsAprioriTask);
+            KaasAprioriTask kaasAprioriTask = new KaasAprioriTask(partOfFiles,submitLoopMax,CombinationMaxSize,frequencyLowerLimit);
+            taskExecutor.execute(kaasAprioriTask);
         }
         int time=Integer.parseInt(waitTime);
         try{
@@ -186,7 +186,7 @@ public class AprioriRunner {
 
     }
 
-    private class MarsAprioriTask implements Runnable {
+    private class KaasAprioriTask implements Runnable {
         private List<String> filelist;
         private Map<String,Integer> submitMap;
 
@@ -205,7 +205,7 @@ public class AprioriRunner {
         	logger.info(CombinationMaxSize);
         	logger.info(frequencyLowerLimit);
         }
-        public MarsAprioriTask(List<String> filelist,int submitLoopMax,int CombinationMaxSize,int frequencyLowerLimit) {
+        public KaasAprioriTask(List<String> filelist,int submitLoopMax,int CombinationMaxSize,int frequencyLowerLimit) {
             this.filelist = filelist;
             this.submitLoopMax = submitLoopMax;
             submitLoopCur = 0;
@@ -221,7 +221,6 @@ public class AprioriRunner {
             String realBase = null;
             boolean smbAddr=false;
             for(String base:basePathes){
-           
                 File tmp=new File(base);
                 if(tmp.isDirectory()){
                     realBase=base;
@@ -306,6 +305,7 @@ public class AprioriRunner {
             }
             return idlist;
         }
+        
         private void executeLine(Set<String> idlist){
             if(idlist == null || idlist.size() == 0){
                 return;
