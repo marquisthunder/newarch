@@ -13,7 +13,7 @@ import com.thinkingtop.kaas.services.model.ExclusiveKey;
 import com.thinkingtop.kaas.services.model.Kebsite;
 
 /**
- * 这是存取APIKey的管理类
+ * This is the APIKey management class
  * @author roadahead
  *
  */
