@@ -266,7 +266,7 @@ public class AprioriRunner {
                             return;
                         }
                         Set<String> idlist = getProductsInOrderLine(line);
-                        executeLine(idlist);
+                        addAIdOrder(idlist);
                     }
                 } catch (IOException e) {
                     e.printStackTrace();
@@ -306,7 +306,7 @@ public class AprioriRunner {
             return idlist;
         }
         
-        private void executeLine(Set<String> idlist){
+        private void addAIdOrder(Set<String> idlist){
             if(idlist == null || idlist.size() == 0){
                 return;
             }
@@ -333,16 +333,16 @@ public class AprioriRunner {
         		}
         		
                 KaasOrderFrequent of = new KaasOrderFrequent();
-                of.setFreqSet(me.getKey());
-                of.setSupport(me.getValue());
-                of.setLevel(me.getKey().split(itemDelimiter).length);
+                of.setCombination(me.getKey());
+                of.setFrequent(me.getValue());
+                of.setItemNum(me.getKey().split(itemDelimiter).length);
                 of.setOfType("all");
                 olist.add(of);
                 int newSup=me.getValue();
                 
                 KaasOrderFrequent tmp = ofdao.findOneByProperty("freqSet", me.getKey());
                 if(tmp != null){
-                    newSup+=tmp.getSupport();
+                    newSup+=tmp.getFrequent();
                 }
                 
                 if(newSup >= frequencyLowerLimit){
@@ -420,7 +420,7 @@ public class AprioriRunner {
                     String[] tmp = me.getKey().split("\\|");
                     KaasOrderFrequent of = ofdao.findOneByProperty("freqSet", tmp[0]);
                     if(of != null || submitMap.containsKey(tmp[0])){
-                        Double downSup = (of == null?0.0:of.getSupport())+submitMap.get(tmp[0]);
+                        Double downSup = (of == null?0.0:of.getFrequent())+submitMap.get(tmp[0]);
                         Double x = (baseSupport*1.0)/downSup;
                         KaasRule r = new KaasRule();
                         r.setProducts(tmp[0]);
@@ -459,8 +459,8 @@ public class AprioriRunner {
                 }
                 KaasOrderFrequent of = ofdao.findOneByProperty("freqSet", tmp[0]);
                 if(of != null || submitMap.containsKey(tmp[0])){
-                    Double downSup = (of == null?0.0:of.getSupport())+submitMap.get(tmp[0]);
-                    Double x = (hi.getSupport()*1.0)/downSup;
+                    Double downSup = (of == null?0.0:of.getFrequent())+submitMap.get(tmp[0]);
+                    Double x = (hi.getFrequent()*1.0)/downSup;
                     KaasRule r = new KaasRule();
                     r.setProducts(tmp[0]);
                     r.setRecommendation(tmp[1]);

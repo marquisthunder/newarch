@@ -317,9 +317,9 @@ public class myThreadPoolTaskExecutor {
             long startTime1 = System.nanoTime();
             for(Map.Entry<String, Integer> me : submitMap.entrySet()){
                 KaasOrderFrequent of = new KaasOrderFrequent();
-                of.setFreqSet(me.getKey());
-                of.setSupport(me.getValue());
-                of.setLevel(me.getKey().split(",").length);
+                of.setCombination(me.getKey());
+                of.setFrequent(me.getValue());
+                of.setItemNum(me.getKey().split(",").length);
                 of.setOfType("all");
                 olist.add(of);
                 int newSup=me.getValue();
@@ -341,7 +341,7 @@ public class myThreadPoolTaskExecutor {
 
                 KaasOrderFrequent tmp = ofdao.findOneByProperty("freqSet", me.getKey());
                 if(tmp != null){
-                    newSup+=tmp.getSupport();
+                    newSup+=tmp.getFrequent();
                     if(newSup >= supportGate){
                         List<KaasRule> subRlist = genRulesByLine(me.getKey(),newSup);
                         rlist.addAll(subRlist);
@@ -428,7 +428,7 @@ public class myThreadPoolTaskExecutor {
 
                     KaasOrderFrequent of = ofdao.findOneByProperty("freqSet", tmp[0]);
                     if(of != null || submitMap.containsKey(tmp[0])){
-                        Double downSup = (of == null?0.0:of.getSupport())+submitMap.get(tmp[0]);
+                        Double downSup = (of == null?0.0:of.getFrequent())+submitMap.get(tmp[0]);
                         Double x = (baseSupport*1.0)/downSup;
                         KaasRule r = new KaasRule();
                         r.setProducts(tmp[0]);

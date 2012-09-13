@@ -32,11 +32,11 @@ public class KaasOrderFrequentDAOFileImpl implements KaasOrderFrequentDAO {
 
 	public int submit(KaasOrderFrequent o) {
 		try{
-			if(fileAll.containsKey(o.getFreqSet())){
-				o.setSupport(fileAll.get(o.getFreqSet()).getSupport()+o.getSupport());
-				fileAll.put(o.getFreqSet(), o);
+			if(fileAll.containsKey(o.getCombination())){
+				o.setFrequent(fileAll.get(o.getCombination()).getFrequent()+o.getFrequent());
+				fileAll.put(o.getCombination(), o);
 			}else{
-				fileAll.put(o.getFreqSet(), o);
+				fileAll.put(o.getCombination(), o);
 			}
 		}catch (Exception e) {
 			return 2;
@@ -55,11 +55,11 @@ public class KaasOrderFrequentDAOFileImpl implements KaasOrderFrequentDAO {
             	String song="";
             	if(one){
             		one = false;
-            		song = o.getFreqSet() + "==" + o.getSupport() + "==" + o.getLevel() + "==" + o.getOfType();
+            		song = o.getCombination() + "==" + o.getFrequent() + "==" + o.getItemNum() + "==" + o.getOfType();
             		fo.write(song.getBytes());
             		fo = new FileOutputStream(outFilePath,true);
             	}else{
-            		song = "\r\n"+o.getFreqSet() + "==" + o.getSupport() + "==" + o.getLevel() + "==" + o.getOfType();
+            		song = "\r\n"+o.getCombination() + "==" + o.getFrequent() + "==" + o.getItemNum() + "==" + o.getOfType();
             		fo.write(song.getBytes());
             	}
             }
