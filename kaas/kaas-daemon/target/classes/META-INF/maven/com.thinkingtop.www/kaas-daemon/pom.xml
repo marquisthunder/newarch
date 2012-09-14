@@ -46,6 +46,15 @@
 				<artifactId>maven-resources-plugin</artifactId>
 			</plugin>
 
+			<!-- skip test -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-surefire-plugin</artifactId>
+				<configuration>
+					<skip>true</skip>
+				</configuration>
+			</plugin>
+
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-assembly-plugin</artifactId>
@@ -54,11 +63,8 @@
 					<descriptorRefs>
 						<descriptorRef>jar-with-dependencies</descriptorRef>
 					</descriptorRefs>
-					<!-- <archive>
-						<manifest>
-							<mainClass>org.hardcode.juf.sample.JUpdateClientSample</mainClass>
-						</manifest>
-					</archive> -->
+					<!-- <archive> <manifest> <mainClass>org.hardcode.juf.sample.JUpdateClientSample</mainClass> 
+						</manifest> </archive> -->
 					<outputDirectory>../dist</outputDirectory>
 				</configuration>
 				<executions>
