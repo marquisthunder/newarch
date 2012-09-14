@@ -49,9 +49,13 @@ public class AprioriRunnerMultiThread {
     private String frequencyLowerLimitStr;
     private String itemDelimiter;
     private String maxTryCount;
+    private int ofThreadNum;
     private int ofThreadEndNum;
+    private int rThreadNum;
     private int rThreadEndNum;
-
+    private long runAllTime;
+    private long runTimeRecord0;
+    
     public ThreadPoolTaskExecutor getTaskExecutor() {
         return taskExecutor;
     }
@@ -122,8 +126,8 @@ public class AprioriRunnerMultiThread {
     	rThreadEndNum++;
     }
     
-    public String getGoods(String basisGoods, int basisSize){
-    	return rdao.getRuleMap(basisGoods,basisSize);
+    public String getRecommend(String basisItems, int basisSize){
+    	return rdao.getRuleMap(basisItems,basisSize);
     }
 
     public void println(){
@@ -143,7 +147,9 @@ public class AprioriRunnerMultiThread {
     
     
     public void runIt(){
-    println();
+    //println();
+    runTimeRecord0 = System.nanoTime();
+    logger.info("of start time :"+runTimeRecord0);
     	ofdao.setFileAll(new HashMap<String, KaasOrderFrequent>());
     	rdao.setMarsRuleAll(new HashMap<String, KaasRule>());
     	ofThreadEndNum=0;
@@ -152,16 +158,16 @@ public class AprioriRunnerMultiThread {
             logger.info("No orders are needed to do offline training!");
             return;
         }
-        int threadN=Integer.parseInt(threadNum);
+        ofThreadNum=Integer.parseInt(threadNum);
         int loop;
         int Remainder;
-        if(threadN<filelist.size()){
-            loop=filelist.size()/threadN;
-            Remainder=filelist.size()%threadN;
+        if(ofThreadNum<filelist.size()){
+            loop=filelist.size()/ofThreadNum;
+            Remainder=filelist.size()%ofThreadNum;
         }else{
             loop=1;
             Remainder=0;
-            threadN = filelist.size();
+            ofThreadNum = filelist.size();
         }
         logger.info("Do offline training With "+Remainder+" Threads!");
         if(taskExecutor.getThreadPoolExecutor().isShutdown()){
@@ -171,7 +177,7 @@ public class AprioriRunnerMultiThread {
         int submitLoopMax=Integer.parseInt(submitLoopMaxStr);
         int combinationMaxSize=Integer.parseInt(combinationMaxSizeStr);
         int  frequencyLowerLimit=Integer.parseInt(frequencyLowerLimitStr);
-        for(int i=0;i<threadN;i++){
+        for(int i=0;i<ofThreadNum;i++){
             List<String> partOfFiles=new ArrayList<String>();
             int start=0;
             int end=0;
@@ -194,13 +200,14 @@ public class AprioriRunnerMultiThread {
         }
         int time=Integer.parseInt(waitTime);
         try{
-        	while(ofThreadEndNum!=threadN){
+        	while(ofThreadEndNum!=ofThreadNum){
         		Thread.sleep(time);
         	}
-        	if(ofThreadEndNum==threadN){
+        	if(ofThreadEndNum==ofThreadNum){
         logger.info("run in R");
         		runR();
         	}
+        logger.info("run all need time: "+runAllTime);
         }catch(Exception e){
             ;
         }
@@ -211,26 +218,28 @@ public class AprioriRunnerMultiThread {
     }
     
     private void runR() {
+    	runTimeRecord0 = System.nanoTime();
+        logger.info("R start time :"+runTimeRecord0);
     	int ofsize = ofdao.size();
     	if(ofsize<=0){
     		return;
     	}
-    	int threadN = Integer.parseInt(threadNum);
+    	rThreadNum = Integer.parseInt(threadNum);
         int loop;
         int Remainder;
-        if(threadN<ofsize){
-            loop = ofsize/threadN;
-            Remainder = ofsize%threadN;
+        if(rThreadNum<ofsize){
+            loop = ofsize/rThreadNum;
+            Remainder = ofsize%rThreadNum;
         }else{
             loop = 1;
             Remainder = 0;
-            threadN = ofsize;
+            rThreadNum = ofsize;
         }
         
         int submitLoopMax=Integer.parseInt(submitLoopMaxStr);
         int combinationMaxSize=Integer.parseInt(combinationMaxSizeStr);
         int  frequencyLowerLimit=Integer.parseInt(frequencyLowerLimitStr);
-        for(int i=0;i<threadN;i++){
+        for(int i=0;i<rThreadNum;i++){
             int start;
             int end;
             if(Remainder>i){
@@ -248,7 +257,7 @@ public class AprioriRunnerMultiThread {
         }
         int time=Integer.parseInt(waitTime);
         try{
-        	while(rThreadEndNum!=threadN){
+        	while(rThreadEndNum!=rThreadNum){
         		Thread.sleep(time);
         	}
         }catch(Exception e){
@@ -298,9 +307,16 @@ public class AprioriRunnerMultiThread {
 		}
         
 		public void run() {
-			if(ofThreadEndNum==Integer.valueOf(threadNum)){
+			if(ofThreadEndNum==ofThreadNum){
 				runAndRules();
 				oneRThreadEnd();
+				if(rThreadEndNum==rThreadNum){
+					rdao.submit();
+	            	long consumingTimeOf = System.nanoTime();
+	            	runAllTime += consumingTimeOf - runTimeRecord0;
+	            	logger.warn("generate all Rules End time:"+ consumingTimeOf +" seconds!");
+	                logger.warn("generate all Rules:"+(consumingTimeOf- runTimeRecord0)+" seconds!");
+	            }
 				return;
 			}
             String[] basePathes = dataPath.split(";");
@@ -368,6 +384,13 @@ public class AprioriRunnerMultiThread {
             }
             genCombinationFromMemory();
             oneOfThreadEnd();
+            if(ofThreadEndNum==ofThreadNum){
+            	ofdao.submit();
+            	long consumingTimeOf = System.nanoTime();
+            	runAllTime += consumingTimeOf - runTimeRecord0;
+            	logger.warn("generate all consuming End time:"+ consumingTimeOf +" seconds!");
+                logger.warn("generate all consuming:"+(consumingTimeOf- runTimeRecord0)+" seconds!");
+            }
         }
         
 
@@ -413,7 +436,6 @@ public class AprioriRunnerMultiThread {
             List<KaasOrderFrequent> olist=new ArrayList<KaasOrderFrequent>();
             List<KaasRule> rlist=new ArrayList<KaasRule>();
 
-            long startTime1 = System.nanoTime();
             for(Map.Entry<String, Integer> me : submitMap.entrySet()){
 
         		
@@ -429,8 +451,6 @@ public class AprioriRunnerMultiThread {
              
             }
         //logger.info(olist.size()+":"+olist.get(0).getCombination()+":"+olist.get(0).getFrequent());
-            long consumingTime0 = System.nanoTime();
-        logger.warn("generate all rules:"+(consumingTime0- startTime1)/1000000000+" seconds!");
 
             submitMap.clear();
             submitLoopCur = 0;
@@ -454,9 +474,7 @@ public class AprioriRunnerMultiThread {
                     }
                 }
             }
-            ofdao.submit();
-            long consumingTime1 = System.nanoTime();
-            logger.warn("save all OF:"+(consumingTime1- consumingTime0)/1000000000+" seconds!");
+            //ofdao.submit();
 
             logger.info("Loop times:"+submitLoopNum++);
             return true;
@@ -545,7 +563,7 @@ public class AprioriRunnerMultiThread {
                     }
                 }
             }
-            rdao.submit();
+            //rdao.submit();
             submitLoopCur = 0;
             rlist.clear();
         	return true;

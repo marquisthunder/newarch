@@ -49,8 +49,11 @@ public class AprioriRunner {
     private String frequencyLowerLimitStr;
     private String itemDelimiter;
     private String maxTryCount;
+    private int actualThreadNum;
     private int threadEndNum;
-
+    private long runAllTime;
+    private long runTimeRecord0;
+    
     public ThreadPoolTaskExecutor getTaskExecutor() {
         return taskExecutor;
     }
@@ -113,9 +116,12 @@ public class AprioriRunner {
         this.rdao = rdao;
     }
     
+    private synchronized void oneThreadEnd(){
+    	threadEndNum++;
+    }
     
-    public String getGoods(String basisGoods, int basisSize){
-    	return rdao.getRuleMap(basisGoods,basisSize);
+    public String getRecommend(String basisItems, int basisSize){
+    	return rdao.getRuleMap(basisItems,basisSize);
     }
 
     public void println(){
@@ -135,7 +141,9 @@ public class AprioriRunner {
     
     
     public void runIt(){
-    println();
+    //println();
+        runTimeRecord0 = System.nanoTime();
+        logger.info("of start time :"+runTimeRecord0);
     	ofdao.setFileAll(new HashMap<String, KaasOrderFrequent>());
     	rdao.setMarsRuleAll(new HashMap<String, KaasRule>());
     	threadEndNum=0;
@@ -144,28 +152,39 @@ public class AprioriRunner {
             logger.info("No orders are needed to do offline training!");
             return;
         }
-        int threadN=Integer.parseInt(threadNum);
+        actualThreadNum=Integer.parseInt(threadNum);
         int loop;
-        int taskN;
-        if(threadN<filelist.size()){
-            loop=filelist.size()/threadN;
-            taskN=filelist.size()%threadN==0?threadN:threadN+1;
+        int Remainder;
+        if(actualThreadNum<filelist.size()){
+            loop=filelist.size()/actualThreadNum;
+            Remainder=filelist.size()%actualThreadNum;
         }else{
             loop=1;
-            taskN=filelist.size();
+            Remainder=0;
+            actualThreadNum = filelist.size();
         }
-        logger.info("Do offline training With "+taskN+" Threads!");
+        logger.info("Do offline training With "+Remainder+" Threads!");
         if(taskExecutor.getThreadPoolExecutor().isShutdown()){
+        	logger.info("this thread isShutdown");
             taskExecutor.initialize();
         }
         int submitLoopMax=Integer.parseInt(submitLoopMaxStr);
         int combinationMaxSize=Integer.parseInt(combinationMaxSizeStr);
         int  frequencyLowerLimit=Integer.parseInt(frequencyLowerLimitStr);
-        for(int i=0;i<taskN;i++){
+        for(int i=0;i<actualThreadNum;i++){
             List<String> partOfFiles=new ArrayList<String>();
-            int start=i*loop;
-            int end=(i+1)*loop<filelist.size()?(i+1)*loop:filelist.size();
-
+            int start=0;
+            int end=0;
+            if(Remainder>i){
+	            start=i*(loop+1);
+	            end = (i+1)*(loop+1);
+	            end=end<filelist.size()?end:filelist.size();
+            }else{
+            	start=Remainder*(loop+1)+(i-Remainder)*loop;
+            	end = Remainder*(loop+1)+(i-Remainder+1)*loop;
+            	end = end<filelist.size()?end:filelist.size();
+            }
+            logger.info("run in of:"+start+"~"+end);
             for(int j=start;j<end;j++){
                 partOfFiles.add(filelist.get(j));
             }
@@ -175,12 +194,14 @@ public class AprioriRunner {
         }
         int time=Integer.parseInt(waitTime);
         try{
-        	while(threadEndNum!=threadN){
-        		Thread.sleep(100);
+        	while(threadEndNum!=actualThreadNum){
+        		Thread.sleep(time);
         	}
         }catch(Exception e){
             ;
         }
+        
+        logger.info("run all need time: "+runAllTime);
         logger.info("Offline Training Task Finished Once!");
 
         return;
@@ -282,8 +303,15 @@ public class AprioriRunner {
                 }
             }
             genRulesFromMemory();
-            threadEndNum++;
-
+            oneThreadEnd();
+            if(threadEndNum==actualThreadNum){
+            	ofdao.submit();
+            	rdao.submit();
+            	long consumingTimeOf = System.nanoTime();
+            	runAllTime += consumingTimeOf - runTimeRecord0;
+            	logger.warn("generate all consuming End time:"+ consumingTimeOf +" seconds!");
+                logger.warn("generate all consuming:"+(consumingTimeOf- runTimeRecord0)+" seconds!");
+            }
         }
         
         private Set<String> getProductsInOrderLine(String line){
@@ -360,8 +388,6 @@ public class AprioriRunner {
                 }
             }
         //logger.info(olist.size()+":"+olist.get(0).getCombination()+":"+olist.get(0).getFrequent());
-            long consumingTime0 = System.nanoTime();
-        logger.warn("generate all rules:"+(consumingTime0- startTime1)/1000000000+" seconds!");
 
             submitMap.clear();
             submitLoopCur = 0;
@@ -385,9 +411,7 @@ public class AprioriRunner {
                     }
                 }
             }
-            ofdao.submit();
-            long consumingTime1 = System.nanoTime();
-            logger.warn("save all OF:"+(consumingTime1- consumingTime0)/1000000000+" seconds!");
+            //ofdao.submit();
             for(KaasRule r: rlist){
                 int rval=0;
                 rdao.submit(r);
@@ -406,9 +430,7 @@ public class AprioriRunner {
                     }
                 }
             }
-            rdao.submit();
-            long consumingTime2 = System.nanoTime();
-            logger.warn("save all Rule:"+(consumingTime2- consumingTime1)/1000000000+" seconds!");
+            //rdao.submit();
 
             logger.info("Loop times:"+submitLoopNum++);
             return true;

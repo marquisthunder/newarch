@@ -20,7 +20,7 @@ import com.thinkingtop.kaas.services.model.KaasOrderFrequent;
 
 @Component("kaasOrderFrequentDAOFileImpl")
 public class KaasOrderFrequentDAOFileImpl implements KaasOrderFrequentDAO {
-	private String outFilePath; 
+	private String outFilePath;
 	private Map<String,KaasOrderFrequent> fileAll;
 	private String[] keys;
 	public KaasOrderFrequentDAOFileImpl() {
