@@ -27,6 +27,7 @@ import com.thinkingtop.kaas.services.dao.KaasOrderFrequentDAO;
 import com.thinkingtop.kaas.services.dao.KaasRuleDAO;
 import com.thinkingtop.kaas.services.model.KaasOrderFrequent;
 import com.thinkingtop.kaas.services.model.KaasRule;
+import com.thinkingtop.kaas.services.util.KaasDataPath;
 
 /**
  * Generation rule class
@@ -42,6 +43,7 @@ public class AprioriRunner {
     private KaasRuleDAO rdao;
     private String threadNum;
     private String dataPath;
+    private KaasDataPath kaasDataPath;
     private String folder;
     private String waitTime;
     private String submitLoopMaxStr;
@@ -239,7 +241,8 @@ public class AprioriRunner {
 
         public void run() {
 //printlnM();
-            String[] basePathes = dataPath.split(";");
+            String[] basePathes = kaasDataPath.getItemDataPath().split(";");
+         logger.info("dataPathes:"+basePathes[0]);
             String realBase = null;
             boolean smbAddr=false;
             for(String base:basePathes){
@@ -267,7 +270,7 @@ public class AprioriRunner {
                 DataInputStream in = null;
                 try {
                     in = new DataInputStream(new BufferedInputStream(
-                            new FileInputStream(realBase + File.separator
+                            new FileInputStream(kaasDataPath.getItemDataPath() + File.separator
                                     + folder + File.separator + fileone)));
                 } catch (FileNotFoundException e) {
                     logger.warn("local offline file may be moved or renamed!");
@@ -287,7 +290,7 @@ public class AprioriRunner {
                             logger.warn("offline training threads interrupted");
                             return;
                         }
-                //logger.info(line.toString());
+                //logger.info(line);
                         Set<String> idlist = getProductsInOrderLine(line);
                 //logger.info(idlist.toString());
                         addAIdOrder(idlist);
@@ -534,5 +537,15 @@ public class AprioriRunner {
 	public void setfrequencyLowerLimitStr(String frequencyLowerLimitStr) {
 		this.frequencyLowerLimitStr = frequencyLowerLimitStr;
 	}
+
+	public KaasDataPath getKaasDataPath() {
+		return kaasDataPath;
+	}
+
+	public void setKaasDataPath(KaasDataPath kaasDataPath) {
+		this.kaasDataPath = kaasDataPath;
+	}
+
+
 
 }

@@ -237,7 +237,6 @@ public class AprioriRunnerMultiThread {
         }
         
         int submitLoopMax=Integer.parseInt(submitLoopMaxStr);
-        int combinationMaxSize=Integer.parseInt(combinationMaxSizeStr);
         int  frequencyLowerLimit=Integer.parseInt(frequencyLowerLimitStr);
         for(int i=0;i<rThreadNum;i++){
             int start;
