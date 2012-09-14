@@ -114,7 +114,7 @@
     	<property name="itemDelimiter" value="${runner.itemDelimiter}"/>
     	<property name="maxTryCount" value="${runner.maxTryCount}"/>
     </bean>
-<!--     <bean id="aprioriRunnerMultiThread" 
+    <bean id="aprioriRunnerMultiThread" 
     	class="com.thinkingtop.kaas.services.apriori.AprioriRunnerMultiThread">
     	<property name="taskExecutor" ref="threadPoolTaskExecutor"/>
     	<property name="fileHistoryDAO" ref="fileHistoryDAOFileImpl"/>
@@ -129,5 +129,5 @@
     	<property name="frequencyLowerLimitStr" value="${runner.frequencyLowerLimitStr}"/>
     	<property name="itemDelimiter" value="${runner.itemDelimiter}"/>
     	<property name="maxTryCount" value="${runner.maxTryCount}"/>
-    </bean> -->
+    </bean>
 </beans>

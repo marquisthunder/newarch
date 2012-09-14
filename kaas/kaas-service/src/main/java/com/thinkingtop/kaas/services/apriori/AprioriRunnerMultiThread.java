@@ -187,6 +187,7 @@ public class AprioriRunnerMultiThread {
         		Thread.sleep(time);
         	}
         	if(ofThreadEndNum==threadN){
+        logger.info("run in R");
         		runR();
         	}
         }catch(Exception e){
@@ -228,8 +229,8 @@ public class AprioriRunnerMultiThread {
             	start=taskN*(loop+1)+(i-taskN)*loop;
             	end = (taskN*(loop+1)+(i-taskN+1)*loop)<ofsize?(taskN*(loop+1)+(i-taskN+1)*loop):ofsize;
             }
-            
-            KaasAprioriTask marsAprioriTask = new KaasAprioriTask(start,end);
+        logger.info("run in R "+start+"~"+end);
+            KaasAprioriTask marsAprioriTask = new KaasAprioriTask(start,end,submitLoopMax,frequencyLowerLimit);
             taskExecutor.execute(marsAprioriTask);
         }
         int time=Integer.parseInt(waitTime);
@@ -275,9 +276,12 @@ public class AprioriRunnerMultiThread {
             submitMap = new HashMap<String,Integer>();
         }
 
-        public KaasAprioriTask(int start, int end) {
+        public KaasAprioriTask(int start, int end,int submitLoopMax,int frequencyLowerLimit) {
         	this.start = start;
         	this.end = end;
+        	submitLoopCur = 0;
+        	this.submitLoopMax = submitLoopMax;
+        	this.frequencyLowerLimit = frequencyLowerLimit;
 		}
         
 		public void run() {
@@ -349,9 +353,8 @@ public class AprioriRunnerMultiThread {
                     e.printStackTrace();
                 }
             }
-            genRulesFromMemory();
+            genCombinationFromMemory();
             oneOfThreadEnd();
-
         }
         
 
@@ -389,11 +392,11 @@ public class AprioriRunnerMultiThread {
         //logger.info("submitMap:"+submitMap.size());
             submitLoopCur++;
             if(submitLoopCur == submitLoopMax){
-                genRulesFromMemory();
+            	genCombinationFromMemory();
             }
         }
 
-        public boolean genRulesFromMemory(){
+        public boolean genCombinationFromMemory(){
             List<KaasOrderFrequent> olist=new ArrayList<KaasOrderFrequent>();
             List<KaasRule> rlist=new ArrayList<KaasRule>();
 
@@ -447,10 +450,26 @@ public class AprioriRunnerMultiThread {
         }
 
         private void runAndRules() {
-			for(int i=start; i<end; ){
+        	List<KaasRule> rlist=new ArrayList<KaasRule>();
+        	submitLoopCur = 0;
+			for(int i=start; i<end; i++){
 				KaasOrderFrequent of = ofdao.getKeyMarsOrderFrequent(i);
-				
+				if(of!=null&&of.getFrequent()>=frequencyLowerLimit){
+					if(of.getCombination().matches(".?")){
+						continue;
+					}
+					List<KaasRule> subRlist = genRulesByLine(of.getCombination(),of.getFrequent());
+					rlist.addAll(subRlist);
+		logger.info("println Combination:"+of.getCombination()+"-Frequent:"+of.getFrequent());
+		logger.info("frequencyLowerLimit:"+frequencyLowerLimit);
+				}
+				submitLoopCur++;
+				if(submitLoopCur == submitLoopMax){
+					genRulesFromMemory(rlist);
+					continue;
+				}
 			}
+			genRulesFromMemory(rlist);
 		}
         
         private List<KaasRule> genRulesByLine(String line,int baseSupport) {
@@ -462,13 +481,13 @@ public class AprioriRunnerMultiThread {
             rulemap = cm.genRuleCombinations();
             cm = null;
             lineArr=null;
-            List<KaasRule> rlist= new ArrayList<KaasRule>();
+            List<KaasRule> rlist = new ArrayList<KaasRule>();
             if(rulemap != null){
                 for (Map.Entry<String, Integer> me: rulemap.entrySet()){
                     String[] tmp = me.getKey().split("\\|");
                     KaasOrderFrequent of = ofdao.findOneByProperty("freqSet", tmp[0]);
-                    if(of != null || submitMap.containsKey(tmp[0])){
-                        Double downSup = (of == null?0.0:of.getFrequent())+submitMap.get(tmp[0]);
+                    if(of != null){
+                        Double downSup = of.getFrequent()*1.0;
                         Double x = (baseSupport*1.0)/downSup;
                         KaasRule r = new KaasRule();
                         r.setProducts(tmp[0]);
@@ -494,39 +513,29 @@ public class AprioriRunnerMultiThread {
             return rlist;
         }
         
-        private List<KaasRule> genMapRulesByLine(Map<String,Integer> history){
-        	List<KaasRule> rlist= new ArrayList<KaasRule>();
-        	for (Map.Entry<String, Integer> me: history.entrySet()){
-                String[] tmp = me.getKey().split("\\|");
-                if(submitMap.containsKey(tmp[0]+itemDelimiter+tmp[1])){
-                	continue;
+        public boolean genRulesFromMemory(List<KaasRule> rlist){
+        	for(KaasRule r: rlist){
+                int rval=0;
+                rdao.submit(r);
+                if(rval !=1){
+                    //all error case
+                    if(rval == 2){
+                        //concurrent case
+                        int maxTryCountNum=Integer.valueOf(maxTryCount);
+                        while(rval == 2 && maxTryCountNum>0){
+                            rval=rdao.submit(r);
+                            maxTryCountNum--;
+                        }
+                        if(rval==2){
+                            logger.warn("exceed maxTryCount of rule submit!");
+                        }
+                    }
                 }
-                KaasOrderFrequent hi = ofdao.findOneByProperty("freqSet", tmp[0]+itemDelimiter+tmp[1]);
-                if(hi==null){
-                	continue;
-                }
-                KaasOrderFrequent of = ofdao.findOneByProperty("freqSet", tmp[0]);
-                if(of != null || submitMap.containsKey(tmp[0])){
-                    Double downSup = (of == null?0.0:of.getFrequent())+submitMap.get(tmp[0]);
-                    Double x = (hi.getFrequent()*1.0)/downSup;
-                    KaasRule r = new KaasRule();
-                    r.setProducts(tmp[0]);
-                    r.setRecommendation(tmp[1]);
-                    r.setConfidence(x);
-                    r.setFlag("general");
-                    ////logger.info(tmp[0]+"->"+tmp[1]+":"+x.toString());
-                    //rdao.submit(r);
-                    rlist.add(r);
-                    tmp=null;
-                    x=null;
-                    r=null;
-                }
-                else{
-                    logger.info("error:"+tmp[0]+" cannot be found!");
-                }
-
             }
-        	return rlist;
+            rdao.submit();
+            submitLoopCur = 0;
+            rlist.clear();
+        	return true;
         }
 
     }
