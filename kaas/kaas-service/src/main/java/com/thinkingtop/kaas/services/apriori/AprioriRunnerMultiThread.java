@@ -154,26 +154,37 @@ public class AprioriRunnerMultiThread {
         }
         int threadN=Integer.parseInt(threadNum);
         int loop;
-        int taskN;
+        int Remainder;
         if(threadN<filelist.size()){
             loop=filelist.size()/threadN;
-            taskN=filelist.size()%threadN==0?threadN:threadN+1;
+            Remainder=filelist.size()%threadN;
         }else{
             loop=1;
-            taskN=filelist.size();
+            Remainder=0;
+            threadN = filelist.size();
         }
-        logger.info("Do offline training With "+taskN+" Threads!");
+        logger.info("Do offline training With "+Remainder+" Threads!");
         if(taskExecutor.getThreadPoolExecutor().isShutdown()){
+        	logger.info("this thread isShutdown");
             taskExecutor.initialize();
         }
         int submitLoopMax=Integer.parseInt(submitLoopMaxStr);
         int combinationMaxSize=Integer.parseInt(combinationMaxSizeStr);
         int  frequencyLowerLimit=Integer.parseInt(frequencyLowerLimitStr);
-        for(int i=0;i<taskN;i++){
+        for(int i=0;i<threadN;i++){
             List<String> partOfFiles=new ArrayList<String>();
-            int start=i*loop;
-            int end=(i+1)*loop<filelist.size()?(i+1)*loop:filelist.size();
-
+            int start=0;
+            int end=0;
+            if(Remainder>i){
+	            start=i*(loop+1);
+	            end = (i+1)*(loop+1);
+	            end=end<filelist.size()?end:filelist.size();
+            }else{
+            	start=Remainder*(loop+1)+(i-Remainder)*loop;
+            	end = Remainder*(loop+1)+(i-Remainder+1)*loop;
+            	end = end<filelist.size()?end:filelist.size();
+            }
+            logger.info("run in of:"+start+"~"+end);
             for(int j=start;j<end;j++){
                 partOfFiles.add(filelist.get(j));
             }
@@ -204,16 +215,16 @@ public class AprioriRunnerMultiThread {
     	if(ofsize<=0){
     		return;
     	}
-    	int threadN=Integer.parseInt(threadNum);
+    	int threadN = Integer.parseInt(threadNum);
         int loop;
-        int taskN;
+        int Remainder;
         if(threadN<ofsize){
-            loop=ofsize/threadN;
-            taskN=(int) (ofsize%threadN);
+            loop = ofsize/threadN;
+            Remainder = ofsize%threadN;
         }else{
-            loop=1;
-            taskN = 0;
-            threadN=(int) ofsize;
+            loop = 1;
+            Remainder = 0;
+            threadN = ofsize;
         }
         
         int submitLoopMax=Integer.parseInt(submitLoopMaxStr);
@@ -222,12 +233,14 @@ public class AprioriRunnerMultiThread {
         for(int i=0;i<threadN;i++){
             int start;
             int end;
-            if(taskN>i){
-	            start=i*(loop+1);
-	            end=(i+1)*(loop+1)<ofsize?(i+1)*(loop+1):ofsize;
+            if(Remainder>i){
+	            start = i*(loop+1);
+	            end = (i+1)*(loop+1);
+	            end = end < ofsize ? end : ofsize;
             }else{
-            	start=taskN*(loop+1)+(i-taskN)*loop;
-            	end = (taskN*(loop+1)+(i-taskN+1)*loop)<ofsize?(taskN*(loop+1)+(i-taskN+1)*loop):ofsize;
+            	start = Remainder*(loop+1)+(i-Remainder)*loop;
+            	end = Remainder*(loop+1)+(i-Remainder+1)*loop;
+            	end = end<ofsize?end:ofsize;
             }
         logger.info("run in R "+start+"~"+end);
             KaasAprioriTask marsAprioriTask = new KaasAprioriTask(start,end,submitLoopMax,frequencyLowerLimit);
@@ -460,8 +473,8 @@ public class AprioriRunnerMultiThread {
 					}
 					List<KaasRule> subRlist = genRulesByLine(of.getCombination(),of.getFrequent());
 					rlist.addAll(subRlist);
-		logger.info("println Combination:"+of.getCombination()+"-Frequent:"+of.getFrequent());
-		logger.info("frequencyLowerLimit:"+frequencyLowerLimit);
+		//logger.info("println Combination:"+of.getCombination()+"-Frequent:"+of.getFrequent());
+		//logger.info("frequencyLowerLimit:"+frequencyLowerLimit);
 				}
 				submitLoopCur++;
 				if(submitLoopCur == submitLoopMax){
