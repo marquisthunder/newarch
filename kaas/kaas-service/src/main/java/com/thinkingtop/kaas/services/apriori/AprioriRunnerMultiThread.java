@@ -1,4 +1,5 @@
 package com.thinkingtop.kaas.services.apriori;
+
 import java.io.BufferedInputStream;
 import java.io.DataInputStream;
 import java.io.File;
@@ -44,19 +45,13 @@ public class AprioriRunnerMultiThread {
     private String folder;
     private String waitTime;
     private String submitLoopMaxStr;
-    private String freqSetMaxSizeStr;
-    private String supportGateStr;
-    private String goodsDelimiter;
+    private String combinationMaxSizeStr;
+    private String frequencyLowerLimitStr;
+    private String itemDelimiter;
     private String maxTryCount;
     private int ofThreadEndNum;
     private int rThreadEndNum;
 
-    public String getSupportGateStr() {
-        return supportGateStr;
-    }
-    public void setSupportGateStr(String supportGateStr) {
-        this.supportGateStr = supportGateStr;
-    }
     public ThreadPoolTaskExecutor getTaskExecutor() {
         return taskExecutor;
     }
@@ -100,11 +95,11 @@ public class AprioriRunnerMultiThread {
     public void setSubmitLoopMaxStr(String submitLoopMaxStr) {
         this.submitLoopMaxStr = submitLoopMaxStr;
     }
-    public String getFreqSetMaxSizeStr() {
-        return freqSetMaxSizeStr;
+    public String getCombinationMaxSizeStr() {
+        return combinationMaxSizeStr;
     }
-    public void setFreqSetMaxSizeStr(String freqSetMaxSizeStr) {
-        this.freqSetMaxSizeStr = freqSetMaxSizeStr;
+    public void setCombinationMaxSizeStr(String combinationMaxSizeStr) {
+        this.combinationMaxSizeStr = combinationMaxSizeStr;
     }
     public KaasOrderFrequentDAO getOfdao() {
         return ofdao;
@@ -132,23 +127,23 @@ public class AprioriRunnerMultiThread {
     }
 
     public void println(){
-    	System.out.println("------------------------------------println properties ");
-    	System.out.println("fileHistoryDAO:  "+fileHistoryDAO.getClass());
-    	System.out.println("ofdao:  "+ofdao.getClass());
-    	System.out.println("rdao:  "+rdao.getClass());
-    	System.out.println("threadNum:  "+threadNum);
-    	System.out.println("dataPath:  "+dataPath);
-    	System.out.println("folder:  "+folder);
-    	System.out.println("waitTime:  "+waitTime);
-    	System.out.println("submitLoopMaxStr:  "+submitLoopMaxStr);
-    	System.out.println("freqSetMaxSizeStr:  "+freqSetMaxSizeStr);
-    	System.out.println("supportGateStr:  "+supportGateStr);
-    	System.out.println("------------------------------------println properties end");
+    	logger.info("------------------------------------println properties ");
+    	logger.info("fileHistoryDAO:  "+fileHistoryDAO.getClass());
+    	logger.info("ofdao:  "+ofdao.getClass());
+    	logger.info("rdao:  "+rdao.getClass());
+    	logger.info("threadNum:  "+threadNum);
+    	logger.info("dataPath:  "+dataPath);
+    	logger.info("folder:  "+folder);
+    	logger.info("waitTime:  "+waitTime);
+    	logger.info("submitLoopMaxStr:  "+submitLoopMaxStr);
+    	logger.info("combinationMaxSizeStr:  "+combinationMaxSizeStr);
+    	logger.info("frequencyLowerLimitStr:  "+frequencyLowerLimitStr);
+    	logger.info("------------------------------------println properties end");
     }
     
     
     public void runIt(){
-    //println();
+    println();
     	ofdao.setFileAll(new HashMap<String, KaasOrderFrequent>());
     	rdao.setMarsRuleAll(new HashMap<String, KaasRule>());
     	ofThreadEndNum=0;
@@ -172,8 +167,8 @@ public class AprioriRunnerMultiThread {
             taskExecutor.initialize();
         }
         int submitLoopMax=Integer.parseInt(submitLoopMaxStr);
-        int freqSetMaxSize=Integer.parseInt(freqSetMaxSizeStr);
-        int  supportGate=Integer.parseInt(supportGateStr);
+        int combinationMaxSize=Integer.parseInt(combinationMaxSizeStr);
+        int  frequencyLowerLimit=Integer.parseInt(frequencyLowerLimitStr);
         for(int i=0;i<taskN;i++){
             List<String> partOfFiles=new ArrayList<String>();
             int start=i*loop;
@@ -183,8 +178,8 @@ public class AprioriRunnerMultiThread {
                 partOfFiles.add(filelist.get(j));
             }
 
-            MarsAprioriTask marsAprioriTask = new MarsAprioriTask(partOfFiles,submitLoopMax,freqSetMaxSize,supportGate);
-            taskExecutor.execute(marsAprioriTask);
+            KaasAprioriTask kaasAprioriTask = new KaasAprioriTask(partOfFiles,submitLoopMax,combinationMaxSize,frequencyLowerLimit);
+            taskExecutor.execute(kaasAprioriTask);
         }
         int time=Integer.parseInt(waitTime);
         try{
@@ -221,8 +216,8 @@ public class AprioriRunnerMultiThread {
         }
         
         int submitLoopMax=Integer.parseInt(submitLoopMaxStr);
-        int freqSetMaxSize=Integer.parseInt(freqSetMaxSizeStr);
-        int  supportGate=Integer.parseInt(supportGateStr);
+        int combinationMaxSize=Integer.parseInt(combinationMaxSizeStr);
+        int  frequencyLowerLimit=Integer.parseInt(frequencyLowerLimitStr);
         for(int i=0;i<threadN;i++){
             int start;
             int end;
@@ -234,7 +229,7 @@ public class AprioriRunnerMultiThread {
             	end = (taskN*(loop+1)+(i-taskN+1)*loop)<ofsize?(taskN*(loop+1)+(i-taskN+1)*loop):ofsize;
             }
             
-            MarsAprioriTask marsAprioriTask = new MarsAprioriTask(start,end);
+            KaasAprioriTask marsAprioriTask = new KaasAprioriTask(start,end);
             taskExecutor.execute(marsAprioriTask);
         }
         int time=Integer.parseInt(waitTime);
@@ -249,38 +244,38 @@ public class AprioriRunnerMultiThread {
 //System.out.println(threadNum);
 	}
 
-    private class MarsAprioriTask implements Runnable {
+    private class KaasAprioriTask implements Runnable {
         private List<String> filelist;
         private Map<String,Integer> submitMap;
 
         private int submitLoopCur;
         private int submitLoopNum;
         private int submitLoopMax;
-        private int freqSetMaxSize;
-        private int supportGate;
+        private int combinationMaxSize;
+        private int frequencyLowerLimit;
         private int start;
         private int end;
         
         public void printlnM(){
-        	System.out.println(filelist.size());
-        	System.out.println(submitMap.size());
-        	System.out.println(submitLoopCur);
-        	System.out.println(submitLoopNum);
-        	System.out.println(submitLoopMax);
-        	System.out.println(freqSetMaxSize);
-        	System.out.println(supportGate);
+        	logger.info(filelist.size());
+        	logger.info(submitMap.size());
+        	logger.info(submitLoopCur);
+        	logger.info(submitLoopNum);
+        	logger.info(submitLoopMax);
+        	logger.info(combinationMaxSize);
+        	logger.info(frequencyLowerLimit);
         }
-        public MarsAprioriTask(List<String> filelist,int submitLoopMax,int freqSetMaxSize,int supportGate) {
+        public KaasAprioriTask(List<String> filelist,int submitLoopMax,int combinationMaxSize,int frequencyLowerLimit) {
             this.filelist = filelist;
             this.submitLoopMax = submitLoopMax;
             submitLoopCur = 0;
             submitLoopNum = 0;
-            this.freqSetMaxSize = freqSetMaxSize;
-            this.supportGate = supportGate;
+            this.combinationMaxSize = combinationMaxSize;
+            this.frequencyLowerLimit = frequencyLowerLimit;
             submitMap = new HashMap<String,Integer>();
         }
 
-        public MarsAprioriTask(int start, int end) {
+        public KaasAprioriTask(int start, int end) {
         	this.start = start;
         	this.end = end;
 		}
@@ -295,7 +290,6 @@ public class AprioriRunnerMultiThread {
             String realBase = null;
             boolean smbAddr=false;
             for(String base:basePathes){
-           
                 File tmp=new File(base);
                 if(tmp.isDirectory()){
                     realBase=base;
@@ -340,8 +334,10 @@ public class AprioriRunnerMultiThread {
                             logger.warn("offline training threads interrupted");
                             return;
                         }
+                //logger.info(line.toString());
                         Set<String> idlist = getProductsInOrderLine(line);
-                        executeLine(idlist);
+                //logger.info(idlist.toString());
+                        addAIdOrder(idlist);
                     }
                 } catch (IOException e) {
                     e.printStackTrace();
@@ -358,14 +354,12 @@ public class AprioriRunnerMultiThread {
 
         }
         
-        private void runAndRules() {
-			
-		}
+
 		private Set<String> getProductsInOrderLine(String line){
             if(line == null || line.length()<=0){
                 return null;
             }
-            String[] ss = line.split(goodsDelimiter);
+            String[] ss = line.split(itemDelimiter);
             if(ss.length <= 1){
                 return null;
             }
@@ -383,14 +377,16 @@ public class AprioriRunnerMultiThread {
             }
             return idlist;
         }
-        private void executeLine(Set<String> idlist){
+        
+        private void addAIdOrder(Set<String> idlist){
             if(idlist == null || idlist.size() == 0){
                 return;
             }
 
             CombinationModel cm = new CombinationModel(idlist.toArray(new String[0]),submitMap);
-            cm.genCombinations(freqSetMaxSize);
+            cm.genCombinations(combinationMaxSize);
             cm=null;
+        //logger.info("submitMap:"+submitMap.size());
             submitLoopCur++;
             if(submitLoopCur == submitLoopMax){
                 genRulesFromMemory();
@@ -403,16 +399,22 @@ public class AprioriRunnerMultiThread {
 
             long startTime1 = System.nanoTime();
             for(Map.Entry<String, Integer> me : submitMap.entrySet()){
+
         		
                 KaasOrderFrequent of = new KaasOrderFrequent();
                 of.setCombination(me.getKey());
                 of.setFrequent(me.getValue());
-                of.setItemNum(me.getKey().split(",").length);
+                of.setItemNum(me.getKey().split(itemDelimiter).length);
                 of.setOfType("all");
+            //logger.info("my key:"+me.getKey());
+            //logger.info(of.getCombination());
                 olist.add(of);
+             //logger.info("olist:"+olist.size());
+             
             }
+        //logger.info(olist.size()+":"+olist.get(0).getCombination()+":"+olist.get(0).getFrequent());
             long consumingTime0 = System.nanoTime();
-            logger.warn("generate all rules:"+(consumingTime0- startTime1)/1000000000+" seconds!");
+        logger.warn("generate all rules:"+(consumingTime0- startTime1)/1000000000+" seconds!");
 
             submitMap.clear();
             submitLoopCur = 0;
@@ -444,11 +446,18 @@ public class AprioriRunnerMultiThread {
             return true;
         }
 
+        private void runAndRules() {
+			for(int i=start; i<end; ){
+				KaasOrderFrequent of = ofdao.getKeyMarsOrderFrequent(i);
+				
+			}
+		}
+        
         private List<KaasRule> genRulesByLine(String line,int baseSupport) {
 
             Map<String,Integer> rulemap = null;
             //generate all rules
-            String[] lineArr=line.split(goodsDelimiter);
+            String[] lineArr=line.split(itemDelimiter);
             CombinationModel cm = new CombinationModel(lineArr);
             rulemap = cm.genRuleCombinations();
             cm = null;
@@ -489,10 +498,10 @@ public class AprioriRunnerMultiThread {
         	List<KaasRule> rlist= new ArrayList<KaasRule>();
         	for (Map.Entry<String, Integer> me: history.entrySet()){
                 String[] tmp = me.getKey().split("\\|");
-                if(submitMap.containsKey(tmp[0]+goodsDelimiter+tmp[1])){
+                if(submitMap.containsKey(tmp[0]+itemDelimiter+tmp[1])){
                 	continue;
                 }
-                KaasOrderFrequent hi = ofdao.findOneByProperty("freqSet", tmp[0]+goodsDelimiter+tmp[1]);
+                KaasOrderFrequent hi = ofdao.findOneByProperty("freqSet", tmp[0]+itemDelimiter+tmp[1]);
                 if(hi==null){
                 	continue;
                 }
@@ -522,17 +531,25 @@ public class AprioriRunnerMultiThread {
 
     }
 
-	public String getGoodsDelimiter() {
-		return goodsDelimiter;
-	}
-	public void setGoodsDelimiter(String goodsDelimiter) {
-		this.goodsDelimiter = goodsDelimiter;
-	}
 	public String getMaxTryCount() {
 		return maxTryCount;
 	}
 	public void setMaxTryCount(String maxTryCount) {
 		this.maxTryCount = maxTryCount;
+	}
+	public String getItemDelimiter() {
+		return itemDelimiter;
+	}
+	public void setItemDelimiter(String itemDelimiter) {
+		this.itemDelimiter = itemDelimiter;
+	}
+
+	public String getfrequencyLowerLimitStr() {
+		return frequencyLowerLimitStr;
+	}
+
+	public void setfrequencyLowerLimitStr(String frequencyLowerLimitStr) {
+		this.frequencyLowerLimitStr = frequencyLowerLimitStr;
 	}
 
 }
