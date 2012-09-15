@@ -23,8 +23,7 @@ import com.thinkingtop.kaas.services.util.KaasDataPath;
 
 @Component("kaasRuleDAOFileImpl")
 public class KaasRuleDAOFileImpl implements KaasRuleDAO {
-	private String goodsDelimiter;
-	private String outFilePath;
+	private String itemDelimiter;
     private KaasDataPath kaasDataPath;
 	private Map<String,KaasRule> marsRuleAll;
 	public KaasRuleDAOFileImpl(){
@@ -70,16 +69,6 @@ public class KaasRuleDAOFileImpl implements KaasRuleDAO {
         }
 		return 1;
 	}
-
-	public String getOutFilePath() {
-		return outFilePath;
-	}
-
-	@Value("${runner.ruleOutPath}")
-	public void setOutFilePath(String outFilePath) {
-		this.outFilePath = outFilePath;
-	}
-
 	public List<KaasRule> getRule(String string) {
 		List<KaasRule> marsRuleList = new ArrayList<KaasRule>();
 		Set<String> mra = marsRuleAll.keySet();
@@ -114,7 +103,7 @@ public class KaasRuleDAOFileImpl implements KaasRuleDAO {
 		TreeMap<Double,String> marsRuleList = new TreeMap<Double,String>();
 		for(Map.Entry<String, KaasRule> me : marsRuleAll.entrySet()){
 			String[] bg = me.getKey().split("\\|");
-			if(bg[0].equals(basisGoods)&&(bg[1].split(goodsDelimiter).length==basisSize)){
+			if(bg[0].equals(basisGoods)&&(bg[1].split(itemDelimiter).length==basisSize)){
 				marsRuleList.put(me.getValue().getConfidence(),bg[1]);
 			}
 		}
@@ -124,14 +113,6 @@ public class KaasRuleDAOFileImpl implements KaasRuleDAO {
 		return null;
 	}
 
-	public String getGoodsDelimiter() {
-		return goodsDelimiter;
-	}
-	
-	@Value("${runner.itemDelimiter}")
-	public void setGoodsDelimiter(String goodsDelimiter) {
-		this.goodsDelimiter = goodsDelimiter;
-	}
 
 	public KaasDataPath getKaasDataPath() {
 		return kaasDataPath;
@@ -140,6 +121,15 @@ public class KaasRuleDAOFileImpl implements KaasRuleDAO {
 	@Resource(name="kaasDataPath")
 	public void setKaasDataPath(KaasDataPath kaasDataPath) {
 		this.kaasDataPath = kaasDataPath;
+	}
+
+	public String getItemDelimiter() {
+		return itemDelimiter;
+	}
+
+	@Value("${runner.itemDelimiter}")
+	public void setItemDelimiter(String itemDelimiter) {
+		this.itemDelimiter = itemDelimiter;
 	}
 
 

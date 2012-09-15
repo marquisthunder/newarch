@@ -105,7 +105,6 @@
     	<property name="ofdao" ref="kaasOrderFrequentDAOFileImpl"/>
     	<property name="rdao" ref="kaasRuleDAOFileImpl"/>
     	<property name="threadNum" value="${runner.threadNum}"/>
-    	<property name="dataPath" value="${runner.dataPath}"/>
     	<property name="kaasDataPath" ref="kaasDataPath"/>
     	<property name="folder" value="${runner.folder}"/>
     	<property name="waitTime" value="${runner.waitTime}"/>
@@ -115,14 +114,14 @@
     	<property name="itemDelimiter" value="${runner.itemDelimiter}"/>
     	<property name="maxTryCount" value="${runner.maxTryCount}"/>
     </bean>
-<!--     <bean id="aprioriRunnerMultiThread" 
+    <bean id="aprioriRunnerMultiThread" 
     	class="com.thinkingtop.kaas.services.apriori.AprioriRunnerMultiThread">
     	<property name="taskExecutor" ref="threadPoolTaskExecutor"/>
     	<property name="fileHistoryDAO" ref="fileHistoryDAOFileImpl"/>
     	<property name="ofdao" ref="kaasOrderFrequentDAOFileImpl"/>
     	<property name="rdao" ref="kaasRuleDAOFileImpl"/>
     	<property name="threadNum" value="${runner.threadNum}"/>
-    	<property name="dataPath" value="${runner.dataPath}"/>
+    	<property name="kaasDataPath" ref="kaasDataPath"/>
     	<property name="itemDataPath" ref="itemDataPath"/>
     	<property name="folder" value="${runner.folder}"/>
     	<property name="waitTime" value="${runner.waitTime}"/>
@@ -131,5 +130,5 @@
     	<property name="frequencyLowerLimitStr" value="${runner.frequencyLowerLimitStr}"/>
     	<property name="itemDelimiter" value="${runner.itemDelimiter}"/>
     	<property name="maxTryCount" value="${runner.maxTryCount}"/>
-    </bean> -->
+    </bean>
 </beans>

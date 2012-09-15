@@ -42,7 +42,6 @@ public class AprioriRunner {
     private KaasOrderFrequentDAO ofdao;
     private KaasRuleDAO rdao;
     private String threadNum;
-    private String dataPath;
     private KaasDataPath kaasDataPath;
     private String folder;
     private String waitTime;
@@ -68,12 +67,6 @@ public class AprioriRunner {
     }
     public void setThreadNum(String threadNum) {
         this.threadNum = threadNum;
-    }
-    public String getDataPath() {
-        return dataPath;
-    }
-    public void setDataPath(String dataPath) {
-        this.dataPath = dataPath;
     }
     public String getFolder() {
         return folder;
@@ -132,7 +125,6 @@ public class AprioriRunner {
     	logger.info("ofdao:  "+ofdao.getClass());
     	logger.info("rdao:  "+rdao.getClass());
     	logger.info("threadNum:  "+threadNum);
-    	logger.info("dataPath:  "+dataPath);
     	logger.info("folder:  "+folder);
     	logger.info("waitTime:  "+waitTime);
     	logger.info("submitLoopMaxStr:  "+submitLoopMaxStr);
