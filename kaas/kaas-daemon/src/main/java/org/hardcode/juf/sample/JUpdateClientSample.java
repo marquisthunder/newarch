@@ -66,7 +66,7 @@ public class JUpdateClientSample {
 			});
 			jf.getContentPane().add(j_exit,java.awt.BorderLayout.SOUTH);
 			jf.setSize(new Dimension(400, 400));
-			//jf.show();//过时了、、
+			//jf.show();//
 			jf.setVisible(true);
 			//System.out.println("==================================");
 			actualizaciones = up.getSelectedUpdates();
