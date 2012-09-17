@@ -23,7 +23,6 @@ import com.thinkingtop.kaas.services.util.KaasDataPath;
 
 @Component("kaasOrderFrequentDAOFileImpl")
 public class KaasOrderFrequentDAOFileImpl implements KaasOrderFrequentDAO {
-	private String outFilePath;
     private KaasDataPath kaasDataPath;
 	private Map<String,KaasOrderFrequent> fileAll;
 	private String[] keys;
@@ -95,14 +94,6 @@ public class KaasOrderFrequentDAOFileImpl implements KaasOrderFrequentDAO {
 	public KaasOrderFrequent getKeyMarsOrderFrequent(int i) {
 		int j = 1000000000;
 		return fileAll.get(keys[i]);
-	}
-	public String getOutFilePath() {
-		return outFilePath;
-	}
-	
-	@Value("${runner.orderFrequentOutPath}")
-	public void setOutFilePath(String outFilePath) {
-		this.outFilePath = outFilePath;
 	}
 	public KaasDataPath getKaasDataPath() {
 		return kaasDataPath;

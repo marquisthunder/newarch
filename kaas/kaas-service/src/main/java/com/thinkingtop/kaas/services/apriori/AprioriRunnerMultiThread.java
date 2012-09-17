@@ -27,6 +27,7 @@ import com.thinkingtop.kaas.services.dao.KaasOrderFrequentDAO;
 import com.thinkingtop.kaas.services.dao.KaasRuleDAO;
 import com.thinkingtop.kaas.services.model.KaasOrderFrequent;
 import com.thinkingtop.kaas.services.model.KaasRule;
+import com.thinkingtop.kaas.services.util.KaasDataPath;
 
 /**
  * Generation rule class
@@ -35,13 +36,13 @@ import com.thinkingtop.kaas.services.model.KaasRule;
  */
 public class AprioriRunnerMultiThread {
 
-    static Logger logger=Logger.getLogger(AprioriRunnerMultiThread.class);
+	static Logger logger=Logger.getLogger(AprioriRunnerMultiThread.class);
     private ThreadPoolTaskExecutor taskExecutor;
     private FileHistoryDAO fileHistoryDAO;
     private KaasOrderFrequentDAO ofdao;
     private KaasRuleDAO rdao;
     private String threadNum;
-    private String dataPath;
+    private KaasDataPath kaasDataPath;
     private String folder;
     private String waitTime;
     private String submitLoopMaxStr;
@@ -68,12 +69,6 @@ public class AprioriRunnerMultiThread {
     }
     public void setThreadNum(String threadNum) {
         this.threadNum = threadNum;
-    }
-    public String getDataPath() {
-        return dataPath;
-    }
-    public void setDataPath(String dataPath) {
-        this.dataPath = dataPath;
     }
     public String getFolder() {
         return folder;
@@ -136,7 +131,6 @@ public class AprioriRunnerMultiThread {
     	logger.info("ofdao:  "+ofdao.getClass());
     	logger.info("rdao:  "+rdao.getClass());
     	logger.info("threadNum:  "+threadNum);
-    	logger.info("dataPath:  "+dataPath);
     	logger.info("folder:  "+folder);
     	logger.info("waitTime:  "+waitTime);
     	logger.info("submitLoopMaxStr:  "+submitLoopMaxStr);
@@ -318,7 +312,7 @@ public class AprioriRunnerMultiThread {
 	            }
 				return;
 			}
-            String[] basePathes = dataPath.split(";");
+			String[] basePathes = kaasDataPath.getItemDataPath().split(";");
             String realBase = null;
             boolean smbAddr=false;
             for(String base:basePathes){
@@ -590,5 +584,14 @@ public class AprioriRunnerMultiThread {
 	public void setfrequencyLowerLimitStr(String frequencyLowerLimitStr) {
 		this.frequencyLowerLimitStr = frequencyLowerLimitStr;
 	}
+
+	public KaasDataPath getKaasDataPath() {
+		return kaasDataPath;
+	}
+
+	public void setKaasDataPath(KaasDataPath kaasDataPath) {
+		this.kaasDataPath = kaasDataPath;
+	}
+
 
 }
