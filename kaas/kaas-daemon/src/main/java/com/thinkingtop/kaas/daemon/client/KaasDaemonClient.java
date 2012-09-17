@@ -26,10 +26,10 @@ import org.hardcode.juf.update.Update;
 /**
  * 
  */
-public class JUpdateClientSample {
+public class KaasDaemonClient {
 
 	public static void main(String[] args) {
-		JUpdateClientSample jus = new JUpdateClientSample();
+		KaasDaemonClient jus = new KaasDaemonClient();
 		jus.run();
 	}
 	
@@ -44,7 +44,7 @@ public class JUpdateClientSample {
 			//otherwise, the program would update the clientUpdateInfo set the urlPrefix with an address. 
 			if (clientUpdateInfo == null) {
 			    clientUpdateInfo = new UpdateInfo();
-			    clientUpdateInfo.setUrlPrefix("http://"+JUpdateIP.getIP()+":8080/kaas/updates.xml");
+			    clientUpdateInfo.setUrlPrefix("http://"+KaasDaemonIP.getIP()+":8080/kaas/updates.xml");
 			}
 		} catch (IOException e) {
 			System.err.println("Could not get the information from the updated");

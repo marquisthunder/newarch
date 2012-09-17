@@ -11,7 +11,7 @@
            http://www.springframework.org/schema/aop/spring-aop-3.0.xsd">
 	
 	<!-- datasource configuration-->
-	<bean id="dataSource" class="com.thinkingtop.kaas.etl.database.MyBoneCPDataSource"  
+	<bean id="dataSource" class="com.thinkingtop.kaas.etl.database.KaasBoneCPDataSource"  
         destroy-method="close">  
         <property name="driverClass" value="" />  
         <property name="jdbcUrl" value="" />  
@@ -30,7 +30,7 @@
 	</bean>
 
 	<!-- dao Bean definition -->
-	<bean id="etlDAO" class="com.thinkingtop.kaas.etl.dao.impl.EtlMysqlImpl">
+	<bean id="etlDAO" class="com.thinkingtop.kaas.etl.dao.impl.EtlDAOImpl">
 		<property name="jdbcTemplate" ref="jdbcTemplate" />
 	</bean>
 	

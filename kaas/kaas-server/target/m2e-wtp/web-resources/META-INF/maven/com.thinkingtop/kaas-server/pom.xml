@@ -13,11 +13,12 @@
 	<name>kaas-server</name>
 	<url>http://www.thinkingtop.com</url>
 	<dependencies>
-	<!-- extends from the parent project -->
+		<!-- extends from the parent project -->
 		<dependency>
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>
 		</dependency>
+
 	</dependencies>
 	<build>
 		<finalName>kaas-server</finalName>
