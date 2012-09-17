@@ -115,8 +115,8 @@ public class AprioriRunner {
     	threadEndNum++;
     }
     
-    public String getRecommend(String inputItems, int outputItemsNum){
-    	return rdao.getRuleMap(inputItems,outputItemsNum);
+    public String[] getRecommend(String inputItems, int outputItemsNum,int outputQuantitye){
+    		return rdao.getRuleMap(inputItems,outputItemsNum,outputQuantitye);
     }
 
     public void println(){

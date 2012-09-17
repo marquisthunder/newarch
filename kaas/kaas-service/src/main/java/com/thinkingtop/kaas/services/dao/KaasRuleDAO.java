@@ -13,5 +13,6 @@ public interface KaasRuleDAO {
 	public List<KaasRule> getRule(String string);
 	public Map<String,Integer> getRuleMap(String Goods);
 	public void setMarsRuleAll(Map<String, KaasRule> marsRuleAll);
-	public String getRuleMap(String basisGoods,int basisSize);
+	public String[] getRuleMap(String inputItems,int outputItemsNum,int outputQuantitye);
+	public String[] getRuleMap(String inputItems, int outputItemsNum);
 }

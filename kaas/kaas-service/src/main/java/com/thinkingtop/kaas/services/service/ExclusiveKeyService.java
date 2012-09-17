@@ -23,7 +23,7 @@ public interface ExclusiveKeyService {
 	
 	@WebMethod(operationName="GetRecommends")
 	@WebResult(name = "result")
-	public String getRecommends(@WebParam(name = "kebsiteName")String kebsiteName,
+	public String[] getRecommends(@WebParam(name = "kebsiteName")String kebsiteName,
 			@WebParam(name = "apiKey")String apiKey,
 			@WebParam(name = "inputItems")String inputItems,
 			@WebParam(name = "outputItemsNum")int outputItemsNum,

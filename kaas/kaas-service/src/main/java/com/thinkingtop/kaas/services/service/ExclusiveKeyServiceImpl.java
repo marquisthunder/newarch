@@ -41,19 +41,22 @@ public class ExclusiveKeyServiceImpl implements ExclusiveKeyService{
 	 * @param BasisGoods: Recommend products origin
 	 * @param BasisSize: To recommend a product
 	 */
-	public String getRecommends(String kebsiteName,String apiKey,String inputItems,int outputItemsNum,int outputQuantitye) {
+	public String[] getRecommends(String kebsiteName,String apiKey,String inputItems,int outputItemsNum,int outputQuantitye) {
 		if(!kebsiteManage.isHold(kebsiteName)){
-	logger.info("The user does not exist");
+			logger.info("The user does not exist");
 			return null;
 		}
 		if(!exclusiveKeyManage.isHold(kebsiteName,apiKey)){
-	logger.info("The user does not have the APIKey");
+			logger.info("The user does not have the APIKey");
 			return null;
 		}
 		if(exclusiveKeyManage.isActivation(apiKey)){
 			aprioriRunner.runIt();
-			String mapGoods = aprioriRunner.getRecommend(inputItems,outputItemsNum);
-			return mapGoods;
+	logger.info("inputItems:"+inputItems);
+	logger.info("outputItemsNum"+outputItemsNum);
+	logger.info("outputQuantitye:"+outputQuantitye);
+			String[] mapItems = aprioriRunner.getRecommend(inputItems,outputItemsNum,outputQuantitye);
+			return mapItems;
 		}
 		return null;
 	}

@@ -3,6 +3,8 @@ package com.thinkingtop.kaas.services.dao.implfile;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -10,6 +12,7 @@ import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Set;
 import java.util.TreeMap;
+import java.util.logging.Logger;
 
 import javax.annotation.Resource;
 
@@ -99,20 +102,72 @@ public class KaasRuleDAOFileImpl implements KaasRuleDAO {
 		this.marsRuleAll = marsRuleAll;
 	}
 
-	public String getRuleMap(String basisGoods, int basisSize) {
-		TreeMap<Double,String> marsRuleList = new TreeMap<Double,String>();
-		for(Map.Entry<String, KaasRule> me : marsRuleAll.entrySet()){
-			String[] bg = me.getKey().split("\\|");
-			if(bg[0].equals(basisGoods)&&(bg[1].split(itemDelimiter).length==basisSize)){
-				marsRuleList.put(me.getValue().getConfidence(),bg[1]);
+	public String[] getRuleMap(String inputItems, int outputItemsNum,int outputQuantitye) {
+		HashMap<String,Double> marsRuleList = new HashMap<String,Double>();
+		if(outputQuantitye<=0){
+			if(outputItemsNum<=0){
+				outputItemsNum = 1;
+			}
+			outputQuantitye=1;
+			for(Map.Entry<String, KaasRule> me : marsRuleAll.entrySet()){
+				String[] bg = me.getKey().split("\\|");
+				if(bg[0].equals(inputItems)&&(bg[1].split(itemDelimiter).length==outputItemsNum)){
+					marsRuleList.put(bg[1],me.getValue().getConfidence());
+				}
+			}
+			
+		}else{
+			if(outputItemsNum<=0){
+				for(Map.Entry<String, KaasRule> me : marsRuleAll.entrySet()){
+					String[] bg = me.getKey().split("\\|");
+					if(bg[0].equals(inputItems)){
+						marsRuleList.put(bg[1],me.getValue().getConfidence());
+					}
+				}
+			}else{
+				for(Map.Entry<String, KaasRule> me : marsRuleAll.entrySet()){
+					String[] bg = me.getKey().split("\\|");
+					if(bg[0].equals(inputItems)&&(bg[1].split(itemDelimiter).length==outputItemsNum)){
+						marsRuleList.put(bg[1],me.getValue().getConfidence());
+					}
+				}
 			}
 		}
-		if(marsRuleList.size()>0){
-			return marsRuleList.get(marsRuleList.lastKey());
+		ArrayList<Map.Entry<String, Double>> list = sortMap(marsRuleList);
+		String[] item = new String[outputQuantitye];
+		for(int i=0;i<outputQuantitye&&i<list.size();i++){
+			item[i] = list.get(i).getKey();
 		}
-		return null;
+		return item;
 	}
-
+	public String[] getRuleMap(String inputItems, int outputItemsNum) {
+		HashMap<String,Double> marsRuleList = new HashMap<String,Double>();
+		for(Map.Entry<String, KaasRule> me : marsRuleAll.entrySet()){
+			String[] bg = me.getKey().split("\\|");
+			if(bg[0].equals(inputItems)&&(bg[1].split(itemDelimiter).length==outputItemsNum)){
+				marsRuleList.put(bg[1],me.getValue().getConfidence());
+			}
+		}
+		ArrayList<Map.Entry<String, Double>> list = sortMap(marsRuleList);
+		String[] item = {list.get(0).getKey()};
+		return item;
+	}
+	
+	public ArrayList<Map.Entry<String, Double>> sortMap(Map map){
+		 ArrayList<Map.Entry<String, Double>> list = new ArrayList<Map.Entry<String,Double>>(map.entrySet());
+		 Collections.sort(list,new Comparator<Map.Entry<String, Double>>(){
+			 public int compare(Entry<java.lang.String, Double> arg0,
+			 Entry<java.lang.String, Double> arg1) {
+				 double o1 = arg0.getValue();
+				 double o2 = arg1.getValue();
+				 if(o1<o2) return 1;
+					else if(o1==o2) return 0;
+					else return -1;
+			 }
+		 });
+		 return list;
+	}
+	
 
 	public KaasDataPath getKaasDataPath() {
 		return kaasDataPath;
@@ -131,6 +186,7 @@ public class KaasRuleDAOFileImpl implements KaasRuleDAO {
 	public void setItemDelimiter(String itemDelimiter) {
 		this.itemDelimiter = itemDelimiter;
 	}
+
 
 
 
