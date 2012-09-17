@@ -9,11 +9,12 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 public class AprioriRunnerTest {
 
 	@Test
-	public void test() {
+	public void aprioriOfflineTest() {
 		ClassPathXmlApplicationContext ctx = new ClassPathXmlApplicationContext("beans.xml");
-		AprioriRunner service = (AprioriRunner)ctx.getBean("aprioriRunner");
-		System.out.println(service.getClass());
-		service.runIt();
+		AprioriRunner aprioriService = (AprioriRunner)ctx.getBean("aprioriRunner");
+		aprioriService.runIt();
+		/*aprioriService.process(folderName);
+		assert.*/
 		ctx.destroy();
 	}
 

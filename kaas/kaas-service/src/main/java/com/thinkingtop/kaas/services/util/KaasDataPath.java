@@ -22,7 +22,6 @@ public class KaasDataPath {
 	}
 	public String getKassDataPath(){
 		String dataP = Thread.currentThread().getContextClassLoader().getResource("").getPath();
-		dataP += "../../src/main/resources/";
 		return dataP;
 	}
 	public String getDataPath() {
