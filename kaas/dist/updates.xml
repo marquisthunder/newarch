@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<updates>
+	<update component-name="sample" version="1">
+		<installer class-name="SampleUpdate"
+			jar-url="http://localhost:8080/juf/kaas-etl-1.0.jar" />
+		<feature>I am content</feature>
+	</update>
+</updates>
