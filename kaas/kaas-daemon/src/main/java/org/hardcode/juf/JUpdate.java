@@ -148,8 +148,43 @@ public class JUpdate {
     */
     public Update[] checkUpdates(String name, UpdateInfo clientUpdateInfo, ProgressListener listener)
         throws DownloadException, ClientStatusException, IOException {
-
+        
         Updates serverStatus = getUpdate(clientUpdateInfo, listener);
+        //for example, use the address "http://localhost:8080/kaas/updates.xml" to parse the xml.
+        //the sample of updates.xml
+        /*
+         * <updates>
+			<update component-name="sample" version="1">
+			<installer class-name="SampleUpdate" jar-url="http://localhost:8080/kaas/kaas-etl-1.0.jar"/>
+			<feature>I am content</feature>
+			</update>
+			<update component-name="sample-component" version="1">
+			<installer class-name="SampleUpdate" jar-url="http://localhost:8080/kaas/kaas-etl-2.0.jar"/>
+			<feature>I am content</feature>
+			</update>
+		</updates>
+         */
+        //clientUpdateInfo has several components, for example. only one . see below:
+        /*
+         * <?xml version="1.0" encoding="UTF-8"?>
+				<update-info url-prefix="http://127.0.0.1:8080/kaas/updates.xml">
+				<status component-name="sample-component" version="3"/>
+				</update-info>
+         */
+        //it has one component "sample-component", version ==3.
+        //so........
+        //1)compare the first component of "updates.xml" named "sample", the clientUpdateInfo did not have this kind of component, 
+        //add it to update list..
+        //2)compare the first component of "updates.xml" named "sample-component",the clientUpdateInfo have it. then compare their version.
+        //if the version on "updates.xml" is newer, add it to update list. otherwise, ignore it.
+        //another sample of "sample.xml" with two components
+        /*
+         * <?xml version="1.0" encoding="UTF-8"?>
+			<update-info url-prefix="http://127.0.0.1:8080/kaas/updates.xml">
+				<status component-name="sample-component" version="3"/>
+				<status component-name="sample" version="3"/>
+			</update-info>
+         */
         Update[] todas = serverStatus.getUpdate();
         ArrayList updates = new ArrayList();
 

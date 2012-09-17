@@ -5,6 +5,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
+import java.io.File;
 import java.io.IOException;
 
 import javax.swing.JButton;
@@ -36,10 +37,14 @@ public class JUpdateClientSample {
 		JUpdate update = new JUpdate();
 		UpdateInfo clientUpdateInfo = null;
 		try {
+			//sample is the name of update component..in this case,the name is specified.
 			clientUpdateInfo = update.getClientUpdateInformation("sample");
+			//if clientUpdateInfo is not null, 
+			//means the File(System.getProperty("user.home") + File.separator +"juf/org.hardcode.juf.JUpdate." + updateName + ".xml" is existed.  
+			//otherwise, the program would update the clientUpdateInfo set the urlPrefix with an address. 
 			if (clientUpdateInfo == null) {
 			    clientUpdateInfo = new UpdateInfo();
-			    clientUpdateInfo.setUrlPrefix("http://"+JUpdateIP.getIP()+":8080/juf/updates.xml");
+			    clientUpdateInfo.setUrlPrefix("http://"+JUpdateIP.getIP()+":8080/kaas/updates.xml");
 			}
 		} catch (IOException e) {
 			System.err.println("Could not get the information from the updated");
@@ -48,6 +53,20 @@ public class JUpdateClientSample {
 		
 		Update[] actualizaciones = null;
 		try {
+			// the function checkUpdates will use the UrlPrefix to download a xml file...
+			//the sample od this xml looks like:
+			/*
+			 * <?xml version="1.0" encoding="UTF-8" ?> 
+				 <updates>
+				 <update component-name="sample" version="1">
+				  <installer class-name="SampleUpdate" jar-url="http://localhost:8080/juf/kaas-etl-1.0.jar" /> 
+				  <feature>I am content</feature> 
+				  </update>
+				  </updates>
+			 */
+			//then the program display all the informations in the dialog..   
+			//the user could download the jar and install it(after choose it.)...
+			//go into the function checkUpdates to find more information..
 			actualizaciones = update.checkUpdates("sample", clientUpdateInfo, null);
 			UpdatePanel up = new UpdatePanel();
 			up.setModel(actualizaciones);

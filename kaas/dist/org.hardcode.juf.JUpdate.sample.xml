@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<update-info url-prefix="http://127.0.0.1:8080/kaas/updates.xml">
+	<status component-name="sample-component" version="3"/>
+</update-info>
