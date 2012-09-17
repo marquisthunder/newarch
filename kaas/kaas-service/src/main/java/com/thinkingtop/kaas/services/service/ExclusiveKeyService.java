@@ -21,10 +21,11 @@ public interface ExclusiveKeyService {
 	@WebResult(name = "result")
 	public String getAPIKey(@WebParam(name = "kebsiteName")String kebsiteName);
 	
-	@WebMethod(operationName="GetGoods")
+	@WebMethod(operationName="GetRecommends")
 	@WebResult(name = "result")
-	public String getGoods(@WebParam(name = "kebsiteName")String kebsiteName,
-			@WebParam(name = "APIKey")String APIKey,
-			@WebParam(name = "BasisItems")String BasisItems,
-			@WebParam(name = "BasisSize")int BasisSize);
+	public String getRecommends(@WebParam(name = "kebsiteName")String kebsiteName,
+			@WebParam(name = "apiKey")String apiKey,
+			@WebParam(name = "inputItems")String inputItems,
+			@WebParam(name = "outputItemsNum")int outputItemsNum,
+			@WebParam(name = "outputQuantitye")int outputQuantitye);
 }
