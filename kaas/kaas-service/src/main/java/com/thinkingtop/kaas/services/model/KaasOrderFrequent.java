@@ -6,34 +6,34 @@ package com.thinkingtop.kaas.services.model;
  *
  */
 public class KaasOrderFrequent {
-	private String freqSet;
-	private Integer support;
-	private int level;
+	private String combination;
+	private Integer frequent;
+	private int itemNum;
 	private String ofType;
 	public KaasOrderFrequent(){}
 	public KaasOrderFrequent(String freqSet,Integer support,int level,String ofType){
-		this.freqSet = freqSet;
-		this.support = support;
-		this.level = level;
+		this.combination = freqSet;
+		this.frequent = support;
+		this.itemNum = level;
 		this.ofType = ofType;
 	}
-	public String getFreqSet() {
-		return freqSet;
+	public String getCombination() {
+		return combination;
 	}
-	public void setFreqSet(String freqSet) {
-		this.freqSet = freqSet;
+	public void setCombination(String combination) {
+		this.combination = combination;
 	}
-	public Integer getSupport() {
-		return support;
+	public Integer getFrequent() {
+		return frequent;
 	}
-	public void setSupport(Integer support) {
-		this.support = support;
+	public void setFrequent(Integer frequent) {
+		this.frequent = frequent;
 	}
-	public int getLevel() {
-		return level;
+	public int getItemNum() {
+		return itemNum;
 	}
-	public void setLevel(int level) {
-		this.level = level;
+	public void setItemNum(int itemNum) {
+		this.itemNum = itemNum;
 	}
 	public String getOfType() {
 		return ofType;
@@ -41,5 +41,6 @@ public class KaasOrderFrequent {
 	public void setOfType(String ofType) {
 		this.ofType = ofType;
 	}
+
 
 }

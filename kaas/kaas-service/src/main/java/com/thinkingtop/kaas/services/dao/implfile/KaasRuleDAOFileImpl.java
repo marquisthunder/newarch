@@ -11,17 +11,21 @@ import java.util.Map.Entry;
 import java.util.Set;
 import java.util.TreeMap;
 
+import javax.annotation.Resource;
+
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
 import com.thinkingtop.kaas.services.dao.KaasRuleDAO;
 import com.thinkingtop.kaas.services.model.KaasOrderFrequent;
 import com.thinkingtop.kaas.services.model.KaasRule;
+import com.thinkingtop.kaas.services.util.KaasDataPath;
 
 @Component("kaasRuleDAOFileImpl")
 public class KaasRuleDAOFileImpl implements KaasRuleDAO {
 	private String goodsDelimiter;
-	private String outFilePath; 
+	private String outFilePath;
+    private KaasDataPath kaasDataPath;
 	private Map<String,KaasRule> marsRuleAll;
 	public KaasRuleDAOFileImpl(){
 		marsRuleAll = new HashMap<String, KaasRule>();
@@ -39,7 +43,7 @@ public class KaasRuleDAOFileImpl implements KaasRuleDAO {
 	public int submit() {
 		FileOutputStream fo = null;
 		try {
-            fo = new FileOutputStream(outFilePath,false);
+            fo = new FileOutputStream(kaasDataPath.getRDataPath(),false);
             boolean one =true;
             for(Entry<String, KaasRule> me: marsRuleAll.entrySet()){
             	KaasRule o = me.getValue();
@@ -48,7 +52,7 @@ public class KaasRuleDAOFileImpl implements KaasRuleDAO {
             		one = false;
             		song = o.getProducts() + "==" + o.getRecommendation() + "==" + o.getConfidence() + "==" + o.getFlag();
             		fo.write(song.getBytes());
-            		fo = new FileOutputStream(outFilePath,true);
+            		fo = new FileOutputStream(kaasDataPath.getRDataPath(),true);
             	}else{
             		song = "\r\n" + o.getProducts() + "==" + o.getRecommendation() + "==" + o.getConfidence() + "==" + o.getFlag();
             		fo.write(song.getBytes());
@@ -124,9 +128,20 @@ public class KaasRuleDAOFileImpl implements KaasRuleDAO {
 		return goodsDelimiter;
 	}
 	
-	@Value("${runner.goodsDelimiter}")
+	@Value("${runner.itemDelimiter}")
 	public void setGoodsDelimiter(String goodsDelimiter) {
 		this.goodsDelimiter = goodsDelimiter;
 	}
+
+	public KaasDataPath getKaasDataPath() {
+		return kaasDataPath;
+	}
+
+	@Resource(name="kaasDataPath")
+	public void setKaasDataPath(KaasDataPath kaasDataPath) {
+		this.kaasDataPath = kaasDataPath;
+	}
+
+
 
 }

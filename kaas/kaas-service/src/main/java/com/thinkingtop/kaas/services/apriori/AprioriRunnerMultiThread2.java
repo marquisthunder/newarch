@@ -1,4 +1,4 @@
-package com.thinkingtop.kaas.services.tasks;
+package com.thinkingtop.kaas.services.apriori;
 import java.io.BufferedInputStream;
 import java.io.DataInputStream;
 import java.io.File;
@@ -20,21 +20,21 @@ import org.apache.log4j.Logger;
 import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
 import org.springframework.stereotype.Component;
 
+import com.thinkingtop.kaas.services.combinationutil.CombinationModel;
 import com.thinkingtop.kaas.services.dao.FileHistoryDAO;
 import com.thinkingtop.kaas.services.dao.KaasOrderFrequentDAO;
 import com.thinkingtop.kaas.services.dao.KaasRuleDAO;
 import com.thinkingtop.kaas.services.model.KaasOrderFrequent;
 import com.thinkingtop.kaas.services.model.KaasRule;
-import com.thinkingtop.kaas.services.tools.CombinationModel;
 
 /**
  * Generation rule class
  * @author roadahead
  *
  */
-public class AprioriRunnerMultiThread {
+public class AprioriRunnerMultiThread2 {
 
-    static Logger logger=Logger.getLogger(AprioriRunnerMultiThread.class);
+    static Logger logger=Logger.getLogger(AprioriRunnerMultiThread2.class);
     private ThreadPoolTaskExecutor taskExecutor;
     private FileHistoryDAO fileHistoryDAO;
     private KaasOrderFrequentDAO ofdao;
@@ -405,9 +405,9 @@ public class AprioriRunnerMultiThread {
             for(Map.Entry<String, Integer> me : submitMap.entrySet()){
         		
                 KaasOrderFrequent of = new KaasOrderFrequent();
-                of.setFreqSet(me.getKey());
-                of.setSupport(me.getValue());
-                of.setLevel(me.getKey().split(goodsDelimiter).length);
+                of.setCombination(me.getKey());
+                of.setFrequent(me.getValue());
+                of.setItemNum(me.getKey().split(",").length);
                 of.setOfType("all");
                 olist.add(of);
             }
@@ -459,7 +459,7 @@ public class AprioriRunnerMultiThread {
                     String[] tmp = me.getKey().split("\\|");
                     KaasOrderFrequent of = ofdao.findOneByProperty("freqSet", tmp[0]);
                     if(of != null || submitMap.containsKey(tmp[0])){
-                        Double downSup = (of == null?0.0:of.getSupport())+submitMap.get(tmp[0]);
+                        Double downSup = (of == null?0.0:of.getFrequent())+submitMap.get(tmp[0]);
                         Double x = (baseSupport*1.0)/downSup;
                         KaasRule r = new KaasRule();
                         r.setProducts(tmp[0]);
@@ -498,8 +498,8 @@ public class AprioriRunnerMultiThread {
                 }
                 KaasOrderFrequent of = ofdao.findOneByProperty("freqSet", tmp[0]);
                 if(of != null || submitMap.containsKey(tmp[0])){
-                    Double downSup = (of == null?0.0:of.getSupport())+submitMap.get(tmp[0]);
-                    Double x = (hi.getSupport()*1.0)/downSup;
+                    Double downSup = (of == null?0.0:of.getFrequent())+submitMap.get(tmp[0]);
+                    Double x = (hi.getFrequent()*1.0)/downSup;
                     KaasRule r = new KaasRule();
                     r.setProducts(tmp[0]);
                     r.setRecommendation(tmp[1]);

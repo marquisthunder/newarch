@@ -1,4 +1,4 @@
-package com.thinkingtop.kaas.services.tasks;
+package com.thinkingtop.kaas.services.apriori;
 import java.io.BufferedInputStream;
 import java.io.DataInputStream;
 import java.io.File;
@@ -18,12 +18,12 @@ import java.util.TreeSet;
 import org.apache.log4j.Logger;
 import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
 
+import com.thinkingtop.kaas.services.combinationutil.CombinationModel;
 import com.thinkingtop.kaas.services.dao.FileHistoryDAO;
 import com.thinkingtop.kaas.services.dao.KaasOrderFrequentDAO;
 import com.thinkingtop.kaas.services.dao.KaasRuleDAO;
 import com.thinkingtop.kaas.services.model.KaasOrderFrequent;
 import com.thinkingtop.kaas.services.model.KaasRule;
-import com.thinkingtop.kaas.services.tools.CombinationModel;
 
 
 public class MarsAprioriJobRunner {
@@ -231,7 +231,7 @@ public class MarsAprioriJobRunner {
 
                     KaasOrderFrequent of = ofdao.findOneByProperty("freqSet", tmp[1]);
                     if(of != null || submitMap.containsKey(tmp[1])){
-                        Double downSup = (of == null?0.0:of.getSupport())+submitMap.get(tmp[1]);
+                        Double downSup = (of == null?0.0:of.getFrequent())+submitMap.get(tmp[1]);
                         Double x = (baseSupport*1.0)/downSup;
                         KaasRule r = new KaasRule();
                         r.setProducts(tmp[0]);
@@ -264,9 +264,9 @@ public class MarsAprioriJobRunner {
             long startTime1 = System.nanoTime();
             for(Map.Entry<String, Integer> me : submitMap.entrySet()){
                 KaasOrderFrequent of = new KaasOrderFrequent();
-                of.setFreqSet(me.getKey());
-                of.setSupport(me.getValue());
-                of.setLevel(me.getKey().split(",").length);
+                of.setCombination(me.getKey());
+                of.setFrequent(me.getValue());
+                of.setItemNum(me.getKey().split(",").length);
                 of.setOfType("all");
                 olist.add(of);
                 int newSup=me.getValue();
@@ -278,7 +278,7 @@ public class MarsAprioriJobRunner {
 
                 KaasOrderFrequent tmp = ofdao.findOneByProperty("freqSet", me.getKey());
                 if(tmp != null){
-                    newSup+=tmp.getSupport();
+                    newSup+=tmp.getFrequent();
                     if(newSup >= supportGate){
                         List<KaasRule> subRlist = genRulesByLine(me.getKey(),newSup);
                         rlist.addAll(subRlist);

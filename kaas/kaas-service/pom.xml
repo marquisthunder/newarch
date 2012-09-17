@@ -116,32 +116,22 @@
 
 	</dependencies>
 	<build>
+	<finalName>kaas-service</finalName>
 		<plugins>
 			<plugin>
-				<artifactId>maven-assembly-plugin</artifactId>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-war-plugin</artifactId> 
 				<configuration>
 					<appendAssemblyId>false</appendAssemblyId>
-                    <descriptors>
-                        <descriptor>src/main/resources/package.xml</descriptor>
-                    </descriptors>
-					<!-- <archive>
-						<manifest>
-							<mainClass>org.hardcode.juf.sample.JUpdateClientSample</mainClass>
-						</manifest>
-					</archive> -->
 					<outputDirectory>../dist</outputDirectory>
 				</configuration>
 				<executions>
 					<execution>
 						<id>make-assembly</id>
 						<phase>package</phase>
-						<goals>
-							<goal>single</goal>
-						</goals>
 					</execution>
 				</executions>
 			</plugin>
-
-		</plugins>
+	</plugins>
 	</build>
 </project>

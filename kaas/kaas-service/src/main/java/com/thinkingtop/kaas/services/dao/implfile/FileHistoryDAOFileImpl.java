@@ -46,7 +46,7 @@ public class FileHistoryDAOFileImpl implements FileHistoryDAO {
 	}
 
 
-	@Value("${runner.goodsDelimiter}")
+	@Value("${runner.itemDelimiter}")
 	public void setGoodsDelimiter(String goodsDelimiter) {
 		this.goodsDelimiter = goodsDelimiter;
 	}

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<testsuite failures="0" time="10.605" errors="0" skipped="0" tests="1" name="com.thinkingtop.kaas.etl.test.ResultTest">
+<testsuite failures="0" time="2.843" errors="0" skipped="0" tests="1" name="com.thinkingtop.kaas.etl.test.ResultTest">
   <properties>
     <property name="java.runtime.name" value="Java(TM) SE Runtime Environment"/>
     <property name="sun.boot.library.path" value="E:\JDK\jre\bin"/>
@@ -19,7 +19,7 @@
     <property name="basedir" value="F:\lab\github_local_repository2\newarch\kaas\kaas-etl"/>
     <property name="java.endorsed.dirs" value="E:\JDK\jre\lib\endorsed"/>
     <property name="os.arch" value="x86"/>
-    <property name="surefire.real.class.path" value="F:\lab\github_local_repository2\newarch\kaas\kaas-etl\target\surefire\surefirebooter635429838576958490.jar"/>
+    <property name="surefire.real.class.path" value="F:\lab\github_local_repository2\newarch\kaas\kaas-etl\target\surefire\surefirebooter7653939536941835502.jar"/>
     <property name="java.io.tmpdir" value="C:\Users\ADMINI~1\AppData\Local\Temp\"/>
     <property name="line.separator" value="
 "/>
@@ -59,5 +59,5 @@
     <property name="sun.desktop" value="windows"/>
     <property name="sun.cpu.isalist" value=""/>
   </properties>
-  <testcase time="10.563" classname="com.thinkingtop.kaas.etl.test.ResultTest" name="testGetResult"/>
+  <testcase time="2.795" classname="com.thinkingtop.kaas.etl.test.ResultTest" name="testGetResult"/>
 </testsuite>

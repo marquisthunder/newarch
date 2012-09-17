@@ -25,6 +25,6 @@ public interface ExclusiveKeyService {
 	@WebResult(name = "result")
 	public String getGoods(@WebParam(name = "kebsiteName")String kebsiteName,
 			@WebParam(name = "APIKey")String APIKey,
-			@WebParam(name = "BasisGoods")String BasisGoods,
+			@WebParam(name = "BasisItems")String BasisItems,
 			@WebParam(name = "BasisSize")int BasisSize);
 }

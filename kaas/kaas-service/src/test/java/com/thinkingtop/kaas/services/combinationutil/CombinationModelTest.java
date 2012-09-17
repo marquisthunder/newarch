@@ -1,4 +1,4 @@
-package com.thinkingtop.kaas.service.tools;
+package com.thinkingtop.kaas.services.combinationutil;
 
 import static org.junit.Assert.*;
 

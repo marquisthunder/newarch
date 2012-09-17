@@ -1,16 +1,16 @@
-package com.thinkingtop.kaas.services.tasks;
+package com.thinkingtop.kaas.services.apriori;
 
 import static org.junit.Assert.*;
 
 import org.junit.Test;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
-public class AprioriRunnerMultiThreadTest {
+public class myThreadPoolTaskExecutorTest {
 
 	@Test
-	public void test() {
+	public void testRunIt() {
 		/*ClassPathXmlApplicationContext ctx = new ClassPathXmlApplicationContext("beans.xml");
-		AprioriRunnerMultiThread service = (AprioriRunnerMultiThread)ctx.getBean("aprioriRunnerMultiThread");
+		myThreadPoolTaskExecutor service = (myThreadPoolTaskExecutor)ctx.getBean("myThreadPoolTaskExecutor");
 		System.out.println(service.getClass());
 		service.runIt();
 		ctx.destroy();*/

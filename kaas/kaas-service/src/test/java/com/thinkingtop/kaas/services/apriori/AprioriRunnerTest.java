@@ -1,11 +1,10 @@
-package com.thinkingtop.kaas.services.tasks;
+package com.thinkingtop.kaas.services.apriori;
 
 import static org.junit.Assert.*;
 
 import org.junit.Test;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
-import com.thinkingtop.kaas.services.tasks.AprioriRunner;
 
 public class AprioriRunnerTest {
 
