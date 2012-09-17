@@ -5,7 +5,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<parent>
 		<artifactId>kaas</artifactId>
-		<groupId>com.thinkingtop.www</groupId>
+		<groupId>com.thinkingtop</groupId>
 		<version>0.0.1-SNAPSHOT</version>
 	</parent>
 	<artifactId>kaas-server</artifactId>
