@@ -116,8 +116,6 @@ public class ExclusiveKeyServiceImpl implements ExclusiveKeyService{
 			KeyString.append(cKey[random.nextInt(cKey.length)]);
         }
 logger.info(KeyString.toString());
-logger.info("APIKey长度："+KeyString.length());
-logger.info("可选字符长度："+keyS.length());
 logger.info("");
 		return KeyString;
 	}

@@ -1,4 +1,4 @@
-package com.thinkingtop.kaas.daemon.client;
+package com.thinkingtop.kaas.daemon.client.test;
 
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
@@ -10,6 +10,8 @@ import org.mortbay.http.SocketListener;
 import org.mortbay.http.handler.ResourceHandler;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import com.thinkingtop.kaas.daemon.client.KaasDaemonClient;
 
 /**
  * Unit test for simple App.
@@ -57,10 +59,8 @@ public class KaasDaemonClientTest {
 
 	@Test
 	public void testkaasDaemonClient() {
-		logger.info("1");
-		logger.info("1");
-		logger.info("1");
-		logger.info("1");
+		KaasDaemonClient jus = new KaasDaemonClient();
+		jus.run();
 	}
 
 }

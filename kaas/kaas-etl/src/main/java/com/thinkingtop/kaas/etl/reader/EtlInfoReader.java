@@ -19,7 +19,7 @@ import com.thinkingtop.kaas.etl.validator.ValidateXML;
 public class EtlInfoReader {
 
 	private static final Logger logger = LoggerFactory.getLogger(ValidateXML.class.getName());
-	static final String fileName = "mid.xml";// the name of the target file
+	static final String fileName = new PropertiesReader().getProperty("xml")+".xml";;// the name of the target file
 	private static Element root;
 	private static EtlInfoReader reader = null;
 	
