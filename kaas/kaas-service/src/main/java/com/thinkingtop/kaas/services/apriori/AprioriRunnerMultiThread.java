@@ -121,8 +121,8 @@ public class AprioriRunnerMultiThread {
     	rThreadEndNum++;
     }
     
-    public String getRecommend(String basisItems, int basisSize){
-    	return rdao.getRuleMap(basisItems,basisSize);
+    public String[] getRecommend(String inputItems, int outputItemsNum,int outputQuantitye){
+    	return rdao.getRuleMap(inputItems,outputItemsNum,outputQuantitye);
     }
 
     public void println(){

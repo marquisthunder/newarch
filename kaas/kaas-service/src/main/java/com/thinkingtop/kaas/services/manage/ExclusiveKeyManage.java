@@ -22,8 +22,8 @@ public class ExclusiveKeyManage{
 	private ExclusiveKeyDAO exclusiveKeyDAO;
 
 	/**
-	 * 向数据库中存储一条APIKey数据
-	 * @param exclusiveKey 所要存储的APIKey的实体类
+	 * Put a APIKey data stored in the database
+	 * @param exclusiveKey:APIKey implementation class, storage object
 	 * @return
 	 */
 	public boolean add(ExclusiveKey exclusiveKey) {
@@ -32,8 +32,8 @@ public class ExclusiveKeyManage{
 	}
 	
 	/**
-	 * 返回一个APIKey实体类
-	 * @param id 所要返回的实体类的ID
+	 * Returns a APIKey entity class
+	 * @param id:Entity class ID
 	 * @return
 	 */
 	public ExclusiveKey getExclusiveKey(long id){
@@ -52,18 +52,18 @@ public class ExclusiveKeyManage{
 	}
 
 	/**
-	 * 判断数据库中是否存在这样的一条APIKey数据
-	 * @param keyString 所要检查的APIKey的数据
-	 * @return
+	 * Judge whether they exist in the database so that a APIKey data
+	 * @param keyString:The APIKey string
+	 * @return If the database of the existence of such APIKey ture is returned return false
 	 */
 	public boolean isHold(StringBuffer keyString) {
 		return exclusiveKeyDAO.isHold(keyString.toString());
 	}
 
 	/**
-	 * 向数据库中存储一条数据
-	 * @param kebsite 所要存储的数据的所属的用户
-	 * @param keyString 所要存储的数据的APIKey的字符串
+	 * A data storage
+	 * @param kebsite:user name
+	 * @param keyString:user APIKey
 	 */
 	public void add(Kebsite kebsite, StringBuffer keyString) {
 		ExclusiveKey ek = new ExclusiveKey();
@@ -71,6 +71,12 @@ public class ExclusiveKeyManage{
 		ek.setKeyString(keyString.toString());
 		exclusiveKeyDAO.save(ek);
 	}
+	/**
+	 * Judge whether they exist in the database so that a data
+	 * @param kebsiteName:user name
+	 * @param APIKey:user APIKey
+	 * @return
+	 */
 	public boolean isHold(String kebsiteName, String APIKey) {
 		ExclusiveKey exclusiveKey = exclusiveKeyDAO.getExclusiveKey(APIKey);
 		if(exclusiveKey!=null&&exclusiveKey.getKebsite().getKebsiteName().equals(kebsiteName)){
@@ -79,6 +85,11 @@ public class ExclusiveKeyManage{
 		return false;
 	}
 
+	/**
+	 * Judge whether have the authority
+	 * @param APIKey:Ownership of the APIKey
+	 * @return
+	 */
 	public boolean isActivation(String APIKey) {
 		ExclusiveKey exclusiveKey = exclusiveKeyDAO.getExclusiveKey(APIKey);
 		if(exclusiveKey!=null&&exclusiveKey.isActivation()){

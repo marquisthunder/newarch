@@ -7,7 +7,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 /**
- * 这是与数据库对应的存储APIKey数据的实体类
+ * It is with the database corresponding to the stored APIKey data entity class
  * @author roadahead
  */
 @Entity

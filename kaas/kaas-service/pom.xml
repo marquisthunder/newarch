@@ -1,11 +1,11 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 	<modelVersion>4.0.0</modelVersion>
-		<parent>
-	    <groupId>com.thinkingtop</groupId>
-	    <artifactId>kaas</artifactId>
-	    <version>0.0.1-SNAPSHOT</version>
-  	</parent>
+	<parent>
+		<groupId>com.thinkingtop</groupId>
+		<artifactId>kaas</artifactId>
+		<version>0.0.1-SNAPSHOT</version>
+	</parent>
 	<artifactId>kaas-service</artifactId>
 	<packaging>war</packaging>
 	<name>Kaas-Service Maven Webapp</name>
@@ -44,7 +44,7 @@
 			<version>3.9.0.GA</version>
 		</dependency>
 		<!-- hibernate end -->
-		
+
 		<!-- spring starts -->
 		<dependency>
 			<groupId>org.springframework</groupId>
@@ -88,13 +88,13 @@
 		</dependency>
 		<!-- spring ends -->
 		<dependency>
-				<groupId>com.jolbox</groupId>
-				<artifactId>bonecp</artifactId>
-			</dependency>
-			<dependency>
-				<groupId>log4j</groupId>
-				<artifactId>log4j</artifactId>
-			</dependency>
+			<groupId>com.jolbox</groupId>
+			<artifactId>bonecp</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>log4j</groupId>
+			<artifactId>log4j</artifactId>
+		</dependency>
 		<dependency>
 			<groupId>mysql</groupId>
 			<artifactId>mysql-connector-java</artifactId>
@@ -114,11 +114,11 @@
 
 	</dependencies>
 	<build>
-	<finalName>kaas-service</finalName>
+		<finalName>kaas-service</finalName>
 		<plugins>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-war-plugin</artifactId> 
+				<artifactId>maven-war-plugin</artifactId>
 				<configuration>
 					<appendAssemblyId>false</appendAssemblyId>
 					<outputDirectory>../dist</outputDirectory>
@@ -130,6 +130,6 @@
 					</execution>
 				</executions>
 			</plugin>
-	</plugins>
+		</plugins>
 	</build>
 </project>

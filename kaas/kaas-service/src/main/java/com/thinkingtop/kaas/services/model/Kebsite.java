@@ -10,7 +10,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 /**
- * 这是与数据库对应的存储用户信息数据的实体类
+ * It is with the database corresponding to the stored user information data entity class
  * @author roadahead
  */
 @Entity
