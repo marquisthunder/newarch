@@ -39,11 +39,14 @@
 				<artifactId>jetty-maven-plugin</artifactId>
 				<configuration>
 					<scanIntervalSeconds>2000</scanIntervalSeconds>
-					<webAppSourceDirectory>../dist</webAppSourceDirectory>
-					<warSourceDirectory>../dist</warSourceDirectory>
-					<webApp>
+					<!-- <webAppSourceDirectory>../dist</webAppSourceDirectory>
+					<warSourceDirectory>../dist</warSourceDirectory> -->
+					<webAppConfig>
 						<contextPath>/kaas</contextPath>
-					</webApp>
+						<baseResource implementation="org.eclipse.jetty.util.resource.ResourceCollection">
+							<resourcesAsCSV>src/main/webapp,../dist</resourcesAsCSV>
+						</baseResource>
+					</webAppConfig>
 					<connectors>
 						<connector implementation="org.eclipse.jetty.server.nio.SelectChannelConnector">
 							<port>8080</port>
