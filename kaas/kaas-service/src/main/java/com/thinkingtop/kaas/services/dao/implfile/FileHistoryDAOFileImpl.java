@@ -14,11 +14,11 @@ import com.thinkingtop.kaas.services.dao.FileHistoryDAO;
 
 @Component("fileHistoryDAOFileImpl")
 public class FileHistoryDAOFileImpl implements FileHistoryDAO {
-	private String goodsDelimiter;
+	private String itemsDelimiter;
 	private String fileString;
 	public List<String> getFileList() {
 		List<String> fileLiest = new ArrayList<String>();
-		String[] files = fileString.split(goodsDelimiter);
+		String[] files = fileString.split(itemsDelimiter);
 		for(String file : files){
 			if(file==null&&file.equals("")){
 				return null;
@@ -27,8 +27,6 @@ public class FileHistoryDAOFileImpl implements FileHistoryDAO {
 		}
 		return fileLiest;
 	}
-
-
 
 	public String getFileString() {
 		return fileString;
@@ -39,16 +37,13 @@ public class FileHistoryDAOFileImpl implements FileHistoryDAO {
 		this.fileString = fileString;
 	}
 
-
-
-	public String getGoodsDelimiter() {
-		return goodsDelimiter;
+	public String getItemsDelimiter() {
+		return itemsDelimiter;
 	}
-
-
+	
 	@Value("${runner.itemDelimiter}")
-	public void setGoodsDelimiter(String goodsDelimiter) {
-		this.goodsDelimiter = goodsDelimiter;
+	public void setItemsDelimiter(String itemsDelimiter) {
+		this.itemsDelimiter = itemsDelimiter;
 	}
 
 }

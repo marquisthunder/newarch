@@ -30,7 +30,6 @@ public class CombinationModel {
 	          combination = new StringBuffer ();
 	          indices = x.getNext ();
 	          for (int i = 0; i < indices.length; i++) {
-	        	//System.out.println(indices[i]);
 	            combination.append (lineArr[indices[i]]);
 	            combination.append (",");
 	          }
@@ -43,8 +42,6 @@ public class CombinationModel {
 	          }else{
 	        	  submitMap.put(combination.toString (),1);
 	          }
-	          //System.out.println(rulemap.size());
-	          //System.out.println (combination.toString ()+"=>"+combination2.toString ());
 	        }
 		}
 	}
@@ -62,7 +59,6 @@ public class CombinationModel {
 	          indices = x.getNext ();
 	          String[] elements2 = new String[lineArr.length];
 	          for (int i = 0; i < indices.length; i++) {
-	     //System.out.println(indices[i]);
 	        	elements2[indices[i]]="1";
 	            combination.append (lineArr[indices[i]]);
 	            combination.append (",");
@@ -81,8 +77,6 @@ public class CombinationModel {
 	          }
 	          
 	          rulemap.put(combination.toString ()+"|"+combination2.toString (),null);
-	          //System.out.println(rulemap.size());
-	          //System.out.println (combination.toString ()+"=>"+combination2.toString ());
 	        }
 		}
 		return rulemap;

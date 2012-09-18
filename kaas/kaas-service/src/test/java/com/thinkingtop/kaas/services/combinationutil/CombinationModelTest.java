@@ -7,27 +7,28 @@ import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 
+import org.apache.log4j.Logger;
 import org.junit.Test;
 
-public class CombinationModelTest {
 
+public class CombinationModelTest {
+    static Logger logger=Logger.getLogger(CombinationModelTest.class);
 	@Test
 	public void testGenRuleCombinations() {
-		/*String[] lineArr = {"1","2","13","15"};
+		String[] lineArr = {"1","2","13","15"};
 		CombinationModel cm = new CombinationModel(lineArr);
 		Map<String,Integer> rulemap = null;
 		rulemap = cm.genRuleCombinations();
         cm = null;
         for (Map.Entry<String, Integer> me: rulemap.entrySet()){
         	String[] tmp = me.getKey().split("\\|");
-        	//System.out.println(me.getKey());
-        	System.out.println(tmp[0]+"=>"+tmp[1]);
-        }*/
+        	//logger.info(tmp[0]+"=>"+tmp[1]);
+        }
 	}
 	
 	@Test
 	public void testGenCombinations() {
-		/*int freqSetMaxSize = 10;
+		int freqSetMaxSize = 10;
 		Set<String> idlist = new HashSet<String>();
         idlist.add("a");
         idlist.add("b");
@@ -36,7 +37,6 @@ public class CombinationModelTest {
         Map<String,Integer> submitMap = new HashMap<String, Integer>();
 		CombinationModel cm = new CombinationModel(idlist.toArray(new String[0]),submitMap);
         cm.genCombinations(freqSetMaxSize);
-        //sset=null;
         cm=null;
         
         Set<String> idlist2 = new HashSet<String>();
@@ -45,12 +45,11 @@ public class CombinationModelTest {
         idlist2.add("d");
 		cm = new CombinationModel(idlist2.toArray(new String[0]),submitMap);
         cm.genCombinations(freqSetMaxSize);
-        //sset=null;
         cm=null;
         
         for (Map.Entry<String, Integer> me: submitMap.entrySet()){
-        	System.out.println(me.getKey()+":"+me.getValue());
-        }*/
+        	//logger.info(me.getKey()+":"+me.getValue());
+        }
 	}
 
 }

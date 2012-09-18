@@ -23,7 +23,6 @@ import com.thinkingtop.kaas.services.model.Kebsite;
  * This is a ExclusiveKeyService implementation class
  * External exposure method, allows users to call
  * @author roadahead
- *
  */
 @Component("exclusiveKeyServiceImpl")
 @WebService(endpointInterface = "com.thinkingtop.kaas.services.service.ExclusiveKeyService")
@@ -116,6 +115,8 @@ public class ExclusiveKeyServiceImpl implements ExclusiveKeyService{
 			KeyString.append(cKey[random.nextInt(cKey.length)]);
         }
 logger.info(KeyString.toString());
+logger.info("APIKey长度："+KeyString.length());
+logger.info("可选字符长度："+keyS.length());
 logger.info("");
 		return KeyString;
 	}
