@@ -14,7 +14,7 @@ import com.thinkingtop.kaas.services.model.ExclusiveKey;
 import com.thinkingtop.kaas.services.model.Kebsite;
 
 /**
- * APIKey数据库访问实现类
+ * Realizing of APIKey database access class
  * @author roadahead
  *
  */
@@ -31,32 +31,30 @@ public class ExclusiveKeyDAOImpl implements ExclusiveKeyDAO {
 	}
 	
 	/**
-	 * 返回一个APIKey实体类
-	 * @param id 所要返回的实体类的ID
+	 * Returns a APIKey entity class
+	 * @param id:Entity class ID
 	 * @return
 	 */
 	public ExclusiveKey getExclusiveKey(Long id) {
 		ExclusiveKey exclusiveKey = null;
 		Session session = sessionFactory.getCurrentSession();
-		//System.out.println("111111111111111111111111111");
 		exclusiveKey = (ExclusiveKey)session.get(ExclusiveKey.class,id);
 		return exclusiveKey;
 	}
 
 	/**
-	 * 向数据库中存储一条APIKey数据
-	 * @param exclusiveKey 所要存储的APIKey的实体类
+	 * Put a APIKey data stored in the database
+	 * @param exclusiveKey:APIKey implementation class, storage object
 	 * @return
 	 */
 	public boolean save(ExclusiveKey exclusiveKey) {
 		Session session = sessionFactory.getCurrentSession();
-		//System.out.println("222222222222222222222");
 		session.save(exclusiveKey);
 		return true;
 	}
 	/**
-	 * 判断数据库中是否存在这样的一条APIKey数据
-	 * @param APIKey 所要检查的APIKey
+	 * Judge whether they exist in the database so that a APIKey data
+	 * @param APIKey:The APIKey string
 	 * @return
 	 */
 	public boolean isHold(String APIKey) {

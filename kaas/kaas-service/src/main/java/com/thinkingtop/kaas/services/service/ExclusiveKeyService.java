@@ -15,12 +15,22 @@ import com.thinkingtop.kaas.services.model.ExclusiveKey;
 @WebService
 public interface ExclusiveKeyService {
 	/**
-	 * 对外暴露的方法，创建并返回一个APIKey，同时将其存进数据库中
+	 * External exposure method, creates and returns a APIKey, and put it into the database
+	 * @param kebsiteName:Request APIKey username
 	 */
 	@WebMethod(operationName="GetAPIKey")
 	@WebResult(name = "result")
 	public String getAPIKey(@WebParam(name = "kebsiteName")String kebsiteName);
 	
+	/**
+	 * External exposure method, user request recommendation
+	 * @param kebsiteName:The requesting user name
+	 * @param apiKey:The requesting APIKey
+	 * @param inputItems:User input commodity
+	 * @param outputItemsNum:Recommended Items number
+	 * @param outputQuantitye:Recommended Items Quantitye
+	 * @return If kebsiteName or apiKey or inputItems is empty,or apiKey without permission, return null
+	 */
 	@WebMethod(operationName="GetRecommends")
 	@WebResult(name = "result")
 	public String[] getRecommends(@WebParam(name = "kebsiteName")String kebsiteName,

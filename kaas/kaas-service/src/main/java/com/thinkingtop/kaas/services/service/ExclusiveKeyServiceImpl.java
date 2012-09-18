@@ -34,12 +34,13 @@ public class ExclusiveKeyServiceImpl implements ExclusiveKeyService{
 	private AprioriRunner aprioriRunner;
 
 	/**
-	 * External exposure method, verification of account and password,
-	 * and then give the user the recommended products
-	 * @param kebsiteName: User address or username 
-	 * @param APIKey: User APIKey
-	 * @param BasisGoods: Recommend products origin
-	 * @param BasisSize: To recommend a product
+	 * External exposure method, user request recommendation
+	 * @param kebsiteName:The requesting user name
+	 * @param apiKey:The requesting APIKey
+	 * @param inputItems:User input commodity
+	 * @param outputItemsNum:Recommended Items number
+	 * @param outputQuantitye:Recommended Items Quantitye
+	 * @return If kebsiteName or apiKey or inputItems is empty,or apiKey without permission, return null
 	 */
 	public String[] getRecommends(String kebsiteName,String apiKey,String inputItems,int outputItemsNum,int outputQuantitye) {
 		if(!kebsiteManage.isHold(kebsiteName)){
@@ -161,7 +162,6 @@ logger.info(upset.toString());
 	public StringBuffer getTimeString(){
 		Random random = new Random();
 		
-		//System.out.println(time.toString());
 		String timecharacter = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz#$%^_~-+";
 		char[] timechar = timecharacter.toCharArray();
 		StringBuffer timeString = new StringBuffer();

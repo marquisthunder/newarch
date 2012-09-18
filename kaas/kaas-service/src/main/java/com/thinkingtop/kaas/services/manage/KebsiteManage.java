@@ -8,7 +8,7 @@ import com.thinkingtop.kaas.services.dao.KebsiteDAO;
 import com.thinkingtop.kaas.services.model.Kebsite;
 
 /**
- * 这是存取用户信息的管理类
+ * This is the access of user information management
  * @author roadahead
  *
  */
@@ -17,8 +17,8 @@ public class KebsiteManage{
 	KebsiteDAO kebsiteDAO;
 	
 	/**
-	 * 向数据库中存储一条用户信息数据
-	 * @param kebsite 所要存储的用户的实体类
+	 * To the database stored in a user information recording
+	 * @param kebsite:The stored user information
 	 * @return
 	 */
 	public boolean add(Kebsite kebsite) {
@@ -26,22 +26,20 @@ public class KebsiteManage{
 		return true;
 	}
 	/**
-	 * 返回一个用户信息实体类
-	 * @param id 所要返回的实体类的ID
+	 * Return a user information recording
+	 * @param id:The user ID
 	 * @return
 	 */
 	public Kebsite getKebsite(long id){
-		System.out.println(id);
 		return kebsiteDAO.getKebsite(id);
 	}
 	
 	/**
-	 * 返回一条用户信息数据
-	 * @param KebsiteName 所要返回的用户信息的用户名
+	 * Return a user information recording
+	 * @param KebsiteName:The user name
 	 * @return
 	 */
 	public Kebsite getKebsite(String KebsiteName){
-System.out.println(KebsiteName);
 		return kebsiteDAO.getKebsite(KebsiteName);
 	}
 	
