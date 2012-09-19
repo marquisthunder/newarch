@@ -46,6 +46,19 @@ public class KebsiteManageTest {
 	}
 	
 	@Test
+	public void testAdd2() {
+		boolean isThrough = false;
+		try{
+			Kebsite kebsite = new Kebsite();
+			kebsite.setKebsiteName("jingdong");
+			kebsiteManage.add(kebsite);
+		}catch(Exception e){
+			isThrough = true;
+		}
+		Assert.assertEquals(true, isThrough);
+	}
+	
+	@Test
 	public void testGetKebsite() {
 		Kebsite kebsite = kebsiteManage.getKebsite(1);
 		Assert.assertEquals("jingdong", kebsite.getKebsiteName());

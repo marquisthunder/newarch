@@ -1,7 +1,8 @@
 CREATE TABLE `Kebsite` (
   `id` bigint(20) NOT NULL AUTO_INCREMENT,
   `kebsiteName` varchar(255) NOT NULL,
-  PRIMARY KEY (`id`)
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `kebsiteName` (`kebsiteName`)
 );
 insert into Kebsite (kebsiteName) values ('jingdong');
 
@@ -11,6 +12,7 @@ CREATE TABLE `ExclusiveKey` (
   `keyString` varchar(255) NOT NULL,
   `kebsiteid` bigint(20) DEFAULT NULL,
   PRIMARY KEY (`id`),
+  UNIQUE KEY `keyString` (`keyString`),
   KEY `FKDA8BCF0149AFD174` (`kebsiteid`)
 );
 

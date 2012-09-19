@@ -26,7 +26,7 @@ public class Kebsite {
 	public void setId(Long id) {
 		this.id = id;
 	}
-	@Column(nullable=false)
+	@Column(nullable=false,unique=true)
 	public String getKebsiteName() {
 		return kebsiteName;
 	}
