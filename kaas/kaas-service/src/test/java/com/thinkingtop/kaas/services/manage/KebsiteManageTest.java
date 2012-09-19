@@ -2,37 +2,57 @@ package com.thinkingtop.kaas.services.manage;
 
 import static org.junit.Assert.*;
 
-import org.junit.Test;
-import org.springframework.context.support.ClassPathXmlApplicationContext;
+import java.io.IOException;
+import java.sql.Connection;
+import java.sql.SQLException;
+import java.sql.Statement;
 
+import org.junit.Assert;
+import org.junit.Before;
+import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
+import org.springframework.core.io.DefaultResourceLoader;
+import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+
+import com.jolbox.bonecp.BoneCPDataSource;
+import com.thinkingtop.kaas.service.util.BeforeTest;
 import com.thinkingtop.kaas.services.manage.KebsiteManage;
 import com.thinkingtop.kaas.services.model.ExclusiveKey;
 import com.thinkingtop.kaas.services.model.Kebsite;
 import com.thinkingtop.kaas.services.service.ExclusiveKeyServiceImpl;
 
+@RunWith(SpringJUnit4ClassRunner.class)
+@ContextConfiguration(locations = "classpath:beans.xml")
 public class KebsiteManageTest {
-
+	@Autowired
+	private KebsiteManage kebsiteManage;
+	
+    @Before
+    public void init() {
+    	BeforeTest.init();
+    }
+	
 	@Test
 	public void testAdd() {
-		/*ClassPathXmlApplicationContext ctx = new ClassPathXmlApplicationContext("beans.xml");
-		KebsiteManage service = (KebsiteManage)ctx.getBean("kebsiteManage");
-		System.out.println(service.getClass());
 		Kebsite kebsite = new Kebsite();
-		kebsite.setKebsiteName("jingdong");
-		service.add(kebsite);
-		ctx.destroy();*/
+		kebsite.setKebsiteName("taobao");
+		kebsiteManage.add(kebsite);
+		
+		Kebsite kebsite2 = kebsiteManage.getKebsite(2);
+		Assert.assertEquals("taobao", kebsite2.getKebsiteName());
 	}
 	
 	@Test
 	public void testGetKebsite() {
-		/*ClassPathXmlApplicationContext ctx = new ClassPathXmlApplicationContext("beans.xml");
-		KebsiteManage service = (KebsiteManage)ctx.getBean("kebsiteManage");
-		System.out.println(service.getClass());
-		Kebsite kebsite = service.getKebsite(1);
-		System.out.println(kebsite.getKebsiteName());
-		kebsite = service.getKebsite("京东");
-		System.out.println(kebsite.getId());
-		ctx.destroy();*/
+		Kebsite kebsite = kebsiteManage.getKebsite(1);
+		Assert.assertEquals("jingdong", kebsite.getKebsiteName());
+		
+		kebsite = kebsiteManage.getKebsite("jingdong");
+		long kebsiteId = kebsite.getId();
+		Assert.assertEquals(1, kebsiteId);
 	}
 
 }

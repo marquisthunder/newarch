@@ -2,64 +2,70 @@ package com.thinkingtop.kaas.services.manage;
 
 import static org.junit.Assert.*;
 
+import org.junit.Assert;
+import org.junit.Before;
 import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
+import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
+import com.thinkingtop.kaas.service.util.BeforeTest;
 import com.thinkingtop.kaas.services.model.ExclusiveKey;
 import com.thinkingtop.kaas.services.model.Kebsite;
 import com.thinkingtop.kaas.services.service.ExclusiveKeyServiceImpl;
 
-
+@RunWith(SpringJUnit4ClassRunner.class)
+@ContextConfiguration(locations = "classpath:beans.xml")
 public class ExclusiveKeyManageTest {
-
+	@Autowired
+	private ExclusiveKeyManage exclusiveKeyManage;
+	
+	@Autowired
+	private KebsiteManage kebsiteManage;
+	
+	@Autowired
+	private ExclusiveKeyServiceImpl exclusiveKeyServiceImpl;
+	
+    @Before
+    public void init() {
+    	BeforeTest.init();
+    }
 	@Test
 	public void teatAdd(){
-		/*ClassPathXmlApplicationContext ctx = new ClassPathXmlApplicationContext("beans.xml");
-		ExclusiveKeyManage service = (ExclusiveKeyManage)ctx.getBean("exclusiveKeyManage");
-		KebsiteManage serviceKebsiteManage = (KebsiteManage)ctx.getBean("kebsiteManage");
-		ExclusiveKeyServiceImpl eksi = (ExclusiveKeyServiceImpl)ctx.getBean("exclusiveKeyServiceImpl");
-		System.out.println(service.getClass());
 		ExclusiveKey ek = new ExclusiveKey();
 		ek.setActivation(true);
-		String str = eksi.getAPIKey().toString();
-		System.out.println(str);
+		String str = exclusiveKeyServiceImpl.getAPIKey().toString();
 		ek.setKeyString(str);
-		Kebsite kebsite = serviceKebsiteManage.getKebsite("jingdong");
+		Kebsite kebsite = kebsiteManage.getKebsite("jingdong");
 		ek.setKebsite(kebsite);
-		service.add(ek);
-		ctx.destroy();*/
+		exclusiveKeyManage.add(ek);
+		
+		ExclusiveKey ek1 = exclusiveKeyManage.getExclusiveKey(2);
+		Assert.assertEquals(str, ek1.getKeyString());
 	}
 	
 	@Test
 	public void testIsHold() {
-
-		
-		/*ClassPathXmlApplicationContext ctx = new ClassPathXmlApplicationContext("beans.xml");
-		ExclusiveKeyManage service = (ExclusiveKeyManage)ctx.getBean("exclusiveKeyManage");
-		System.out.println(service.getClass());
-		boolean ish = service.isHold(new StringBuffer("NOk4OPyDZ8vNrJa1FlO3#46l0scN4SgKcLaf39UT6R_48U_rAhr8i3gEJ6nm8k7Qm9rtQ_B4TKcjpYy"));
-		System.out.println(ish);
-		ctx.destroy();*/
+		boolean ish = exclusiveKeyManage.isHold(new StringBuffer("an2mZW9iLtGdQ~aobA13+V46_vy$2^D4%8+0mQ17nysq6NPC+2uiJnS$v256t$o4MY_2w1b%%tYNdxQ"));
+		Assert.assertEquals(true, ish);
+		boolean ish2 = exclusiveKeyManage.isHold(new StringBuffer("NOk4OPyDZ8vNrJa1FlO3#46l0scN4SgKcLaf39UT6R_48U_rAhr8i3gEJ6nm8k7Qm9rtQ_B4TKcjpYy"));
+		Assert.assertEquals(false, ish2);
 	}
 	
 	@Test
 	public void testIsHold2() {
-		/*ClassPathXmlApplicationContext ctx = new ClassPathXmlApplicationContext("beans.xml");
-		ExclusiveKeyManage service = (ExclusiveKeyManage)ctx.getBean("exclusiveKeyManage");
-		System.out.println(service.getClass());
-		boolean ish = service.isHold("京东","NOk4OPyDZ8vNrJa1FlO3#46l0scN4SgKcLaf39UT6R_48U_rAhr8i3gEJ6nm8k7Qm9rtQ_B4TKcjpYy");
-		System.out.println(ish);
-		ctx.destroy();*/
+		boolean ish = exclusiveKeyManage.isHold("jingdong","an2mZW9iLtGdQ~aobA13+V46_vy$2^D4%8+0mQ17nysq6NPC+2uiJnS$v256t$o4MY_2w1b%%tYNdxQ");
+		Assert.assertEquals(true, ish);
+		boolean ish2 = exclusiveKeyManage.isHold("jingdong","NOk4OPyDZ8vNrJa1FlO3#46l0scN4SgKcLaf39UT6R_48U_rAhr8i3gEJ6nm8k7Qm9rtQ_B4TKcjpYy");
+		Assert.assertEquals(false, ish2);
 	}
 	
 	@Test
 	public void testIsActivation() {
-		/*ClassPathXmlApplicationContext ctx = new ClassPathXmlApplicationContext("beans.xml");
-		ExclusiveKeyManage service = (ExclusiveKeyManage)ctx.getBean("exclusiveKeyManage");
-		System.out.println(service.getClass());
-		boolean ish = service.isActivation("NOk4OPyDZ8vNrJa1FlO3#46l0scN4SgKcLaf39UT6R_48U_rAhr8i3gEJ6nm8k7Qm9rtQ_B4TKcjpYy");
-		System.out.println(ish);
-		ctx.destroy();*/
+		boolean ish = exclusiveKeyManage.isActivation("an2mZW9iLtGdQ~aobA13+V46_vy$2^D4%8+0mQ17nysq6NPC+2uiJnS$v256t$o4MY_2w1b%%tYNdxQ");
+		Assert.assertEquals(true, ish);
 	}
 
 }

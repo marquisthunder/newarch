@@ -122,7 +122,6 @@
     	<property name="rdao" ref="kaasRuleDAOFileImpl"/>
     	<property name="threadNum" value="${runner.threadNum}"/>
     	<property name="kaasDataPath" ref="kaasDataPath"/>
-    	<property name="itemDataPath" ref="itemDataPath"/>
     	<property name="folder" value="${runner.folder}"/>
     	<property name="waitTime" value="${runner.waitTime}"/>
     	<property name="submitLoopMaxStr" value="${runner.submitLoopMaxStr}"/>

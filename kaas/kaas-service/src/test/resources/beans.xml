@@ -31,10 +31,8 @@
 	<bean id="dataSource" destroy-method="close"
 		class="com.jolbox.bonecp.BoneCPDataSource">
 		<property name="driverClass"
-			value="${jdbc.driverClassName}" />
-		<property name="jdbcUrl" value="${jdbc.url}" />
-		<property name="username" value="${jdbc.username}" />
-		<property name="password" value="${jdbc.password}" />
+			value="org.h2.Driver" />
+		<property name="jdbcUrl" value="jdbc:h2:mem:kaasservice;MODE=MYSQL;DB_CLOSE_DELAY=-1" />
 	</bean>
 
 	<bean id="sessionFactory"

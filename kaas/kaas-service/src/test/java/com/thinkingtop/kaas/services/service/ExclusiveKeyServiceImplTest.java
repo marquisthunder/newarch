@@ -4,20 +4,38 @@ import static org.junit.Assert.*;
 
 
 import org.apache.log4j.Logger;
+import org.junit.Assert;
+import org.junit.Before;
 import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
+import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
+import com.thinkingtop.kaas.service.util.BeforeTest;
+
+@RunWith(SpringJUnit4ClassRunner.class)
+@ContextConfiguration(locations = "classpath:beans.xml")
 public class ExclusiveKeyServiceImplTest {
+	@Autowired
+	private ExclusiveKeyServiceImpl exclusiveKeyServiceImpl;
     static Logger logger=Logger.getLogger(ExclusiveKeyServiceImplTest.class);
+    
+    @Before
+    public void init() {
+    	BeforeTest.init();
+    }
+    
 	@Test
-	public void testGetGoods() {
-		/*ClassPathXmlApplicationContext ctx = new ClassPathXmlApplicationContext("beans.xml");
-		ExclusiveKeyServiceImpl service = (ExclusiveKeyServiceImpl)ctx.getBean("exclusiveKeyServiceImpl");
-		System.out.println(service.getClass());
-		String[] ss = service.getRecommends("jingdong", "7gwIgipv1iCXk13-4X70oO030eJAeKh$0t~~Y82f6gwqt8UyLbfhua~yRG_UE4TDg28itxhRij#bGOt", "1,2", 2, 1);
+	public void testRecommends() {
+		int outputItemsNum = 2;
+		int outputQuantitye = 9;
+		String[] ss = exclusiveKeyServiceImpl.getRecommends("jingdong", "an2mZW9iLtGdQ~aobA13+V46_vy$2^D4%8+0mQ17nysq6NPC+2uiJnS$v256t$o4MY_2w1b%%tYNdxQ", "1", outputItemsNum, outputQuantitye);
 		for(String s : ss)
-		logger.info("Pick of the month:  "+s);
-		ctx.destroy();*/
+			if(s!=null)
+			Assert.assertEquals(outputItemsNum*2-1, s.length());
+		Assert.assertEquals(true,ss.length<=outputQuantitye);
 	}
 
 }

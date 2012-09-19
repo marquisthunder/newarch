@@ -10,11 +10,11 @@ public class testRTest {
 
 	@Test
 	public void testRunIt() {
-		ClassPathXmlApplicationContext ctx = new ClassPathXmlApplicationContext("beans.xml");
+		/*ClassPathXmlApplicationContext ctx = new ClassPathXmlApplicationContext("beans.xml");
 		testR service = (testR)ctx.getBean("testR");
 		System.out.println(service.getClass());
 		service.runIt();
-		ctx.destroy();
+		ctx.destroy();*/
 	}
 
 }

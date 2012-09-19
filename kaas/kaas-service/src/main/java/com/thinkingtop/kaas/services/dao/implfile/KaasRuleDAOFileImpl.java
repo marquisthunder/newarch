@@ -12,20 +12,22 @@ import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Set;
 import java.util.TreeMap;
-import java.util.logging.Logger;
 
 import javax.annotation.Resource;
 
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
 import com.thinkingtop.kaas.services.dao.KaasRuleDAO;
 import com.thinkingtop.kaas.services.model.KaasOrderFrequent;
 import com.thinkingtop.kaas.services.model.KaasRule;
+import com.thinkingtop.kaas.services.service.ExclusiveKeyServiceImplTest;
 import com.thinkingtop.kaas.services.util.KaasDataPath;
 
 @Component("kaasRuleDAOFileImpl")
 public class KaasRuleDAOFileImpl implements KaasRuleDAO {
+    static Logger logger=Logger.getLogger(KaasRuleDAOFileImpl.class);
 	private String itemDelimiter;
     private KaasDataPath kaasDataPath;
 	private Map<String,KaasRule> marsRuleAll;
@@ -46,6 +48,7 @@ public class KaasRuleDAOFileImpl implements KaasRuleDAO {
 		FileOutputStream fo = null;
 		try {
             fo = new FileOutputStream(kaasDataPath.getRDataPath(),false);
+            logger.info("kaasDataOutPath:-"+ kaasDataPath.getRDataPath());
             boolean one =true;
             for(Entry<String, KaasRule> me: marsRuleAll.entrySet()){
             	KaasRule o = me.getValue();
@@ -59,6 +62,7 @@ public class KaasRuleDAOFileImpl implements KaasRuleDAO {
             		song = "\r\n" + o.getProducts() + "==" + o.getRecommendation() + "==" + o.getConfidence() + "==" + o.getFlag();
             		fo.write(song.getBytes());
             	}
+            	//logger.info("FileOutputStream:-"+ song);
             }
         } catch (Exception h) {
         	return 2;

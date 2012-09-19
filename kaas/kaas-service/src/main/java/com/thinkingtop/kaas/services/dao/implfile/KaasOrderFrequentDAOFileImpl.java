@@ -92,7 +92,6 @@ public class KaasOrderFrequentDAOFileImpl implements KaasOrderFrequentDAO {
 		return fileAll.size();
 	}
 	public KaasOrderFrequent getKeyMarsOrderFrequent(int i) {
-		int j = 1000000000;
 		return fileAll.get(keys[i]);
 	}
 	public KaasDataPath getKaasDataPath() {

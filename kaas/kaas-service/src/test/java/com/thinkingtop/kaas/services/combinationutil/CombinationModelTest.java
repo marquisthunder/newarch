@@ -8,6 +8,7 @@ import java.util.Map;
 import java.util.Set;
 
 import org.apache.log4j.Logger;
+import org.junit.Assert;
 import org.junit.Test;
 
 
@@ -21,9 +22,10 @@ public class CombinationModelTest {
 		rulemap = cm.genRuleCombinations();
         cm = null;
         for (Map.Entry<String, Integer> me: rulemap.entrySet()){
-        	String[] tmp = me.getKey().split("\\|");
-        	//logger.info(tmp[0]+"=>"+tmp[1]);
+        	//logger.info(me.getKey());
+        	Assert.assertEquals(true, me.getKey().matches(".+[\\|].+"));
         }
+        Assert.assertEquals(14, rulemap.size());
 	}
 	
 	@Test
@@ -47,8 +49,10 @@ public class CombinationModelTest {
         cm.genCombinations(freqSetMaxSize);
         cm=null;
         
+        Assert.assertEquals(15, submitMap.size());
         for (Map.Entry<String, Integer> me: submitMap.entrySet()){
-        	//logger.info(me.getKey()+":"+me.getValue());
+        	Assert.assertEquals(true, me.getKey().length()<=(idlist.size()*2-1));
+        	Assert.assertEquals(true,me.getValue()<=2);
         }
 	}
 

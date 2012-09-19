@@ -22,7 +22,7 @@ public class KaasOrderFrequentDAOFileImplTest {
         mof.submit(of);
         of = new KaasOrderFrequent("1,21,23,2",11,4,"all");
         mof.submit(of);
-        mof.submit();
+        //mof.submit();
 		
 	}
 
