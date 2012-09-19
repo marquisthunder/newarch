@@ -60,15 +60,10 @@ public class ExclusiveKeyDAOImpl implements ExclusiveKeyDAO {
 	public boolean isHold(String APIKey) {
 		boolean exclusiveKey = false;
 		Session session = sessionFactory.getCurrentSession();
-		SQLQuery q = session.createSQLQuery("select * from ExclusiveKey exclusiveKey " + " where exclusiveKey.keyString like '"+APIKey+"'").addEntity(ExclusiveKey.class);
+		SQLQuery q = session.createSQLQuery("select * from ExclusiveKey exclusiveKey " + " where exclusiveKey.keyString = '"+APIKey+"'").addEntity(ExclusiveKey.class);
 		List<ExclusiveKey> exclusiveKeys = (List<ExclusiveKey>)q.list();
 		if(!exclusiveKeys.isEmpty()){
-			for(ExclusiveKey e : exclusiveKeys){
-				if(e.getKeyString().equals(APIKey)){
-					exclusiveKey = true;
-					return exclusiveKey;
-				}
-			}
+			exclusiveKey = true;
 		}
 		return exclusiveKey;
 	}

@@ -62,15 +62,10 @@ public class KebsiteDAOImpl implements KebsiteDAO {
 	public Kebsite getKebsite(String kebsiteName) {
 		Kebsite kebsite = null;
 		Session session = sessionFactory.getCurrentSession();
-		SQLQuery q = session.createSQLQuery("select * from Kebsite kebsite " + " where kebsite.kebsiteName like '"+kebsiteName+"'").addEntity(Kebsite.class);
+		SQLQuery q = session.createSQLQuery("select * from Kebsite kebsite " + " where kebsite.kebsiteName = '"+kebsiteName+"'").addEntity(Kebsite.class);
 		List<Kebsite> kebsites = (List<Kebsite>)q.list();
 		if(!kebsites.isEmpty()){
-			for(Kebsite k : kebsites){
-				if(k.getKebsiteName().equals(kebsiteName)){
-					kebsite = k;
-					return kebsite;
-				}
-			}
+			kebsite = kebsites.get(0);
 		}
 		return kebsite;
 	}
