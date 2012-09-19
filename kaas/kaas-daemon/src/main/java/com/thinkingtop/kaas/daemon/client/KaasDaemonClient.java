@@ -44,7 +44,7 @@ public class KaasDaemonClient {
 			//otherwise, the program would update the clientUpdateInfo set the urlPrefix with an address. 
 			if (clientUpdateInfo == null) {
 			    clientUpdateInfo = new UpdateInfo();
-			    clientUpdateInfo.setUrlPrefix("http://"+KaasDaemonIP.getIP()+":8080/kaas/updates.xml");
+			    clientUpdateInfo.setUrlPrefix("http://"+KaasDaemonPropertiesReader.getInstance().getProperty("updateServerIp")+":8080/kaas/updates.xml");
 			}
 		} catch (IOException e) {
 			System.err.println("Could not get the information from the updated");
