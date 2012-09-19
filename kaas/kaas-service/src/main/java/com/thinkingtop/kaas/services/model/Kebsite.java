@@ -1,5 +1,6 @@
 package com.thinkingtop.kaas.services.model;
 
+import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -16,6 +17,7 @@ import javax.persistence.OneToMany;
 @Entity
 public class Kebsite {
 	private Long id;
+	private Date createData = new Date();
 	private String kebsiteName;
 	private Set<ExclusiveKey> exclusiveKey = new HashSet<ExclusiveKey>();
 	@Id
@@ -41,5 +43,12 @@ public class Kebsite {
 	}
 	public void setExclusiveKey(Set<ExclusiveKey> exclusiveKey) {
 		this.exclusiveKey = exclusiveKey;
+	}
+	@Column(nullable=false,unique=true)
+	public Date getCreateData() {
+		return createData;
+	}
+	public void setCreateData(Date createData) {
+		this.createData = createData;
 	}
 }
