@@ -32,6 +32,20 @@ public class ExclusiveKeyManage{
 	}
 	
 	/**
+	 * A data storage
+	 * @param kebsite:user name
+	 * @param keyString:user APIKey
+	 */
+	public void add(Kebsite kebsite, StringBuffer keyString) {
+		ExclusiveKey ek = new ExclusiveKey();
+		ek.setKebsite(kebsite);
+		ek.setKeyString(keyString.toString());
+		exclusiveKeyDAO.save(ek);
+	}
+	
+	
+	
+	/**
 	 * Returns a APIKey entity class
 	 * @param id:Entity class ID
 	 * @return
@@ -45,32 +59,20 @@ public class ExclusiveKeyManage{
 	public ExclusiveKeyDAO getExclusiveKeyDAO() {
 		return exclusiveKeyDAO;
 	}
-	
-	@Resource(name="exclusiveKeyDAOImpl")
-	public void setExclusiveKeyDAO(ExclusiveKeyDAO exclusiveKeyDAO) {
-		this.exclusiveKeyDAO = exclusiveKeyDAO;
-	}
 
 	/**
-	 * Judge whether they exist in the database so that a APIKey data
-	 * @param keyString:The APIKey string
-	 * @return If the database of the existence of such APIKey ture is returned return false
+	 * Judge whether have the authority
+	 * @param APIKey:Ownership of the APIKey
+	 * @return
 	 */
-	public boolean isHold(StringBuffer keyString) {
-		return exclusiveKeyDAO.isHold(keyString.toString());
+	public boolean isActivation(String APIKey) {
+		ExclusiveKey exclusiveKey = exclusiveKeyDAO.getExclusiveKey(APIKey);
+		if(exclusiveKey!=null&&exclusiveKey.getState()==2){
+			return true;
+		}
+		return false;
 	}
 
-	/**
-	 * A data storage
-	 * @param kebsite:user name
-	 * @param keyString:user APIKey
-	 */
-	public void add(Kebsite kebsite, StringBuffer keyString) {
-		ExclusiveKey ek = new ExclusiveKey();
-		ek.setKebsite(kebsite);
-		ek.setKeyString(keyString.toString());
-		exclusiveKeyDAO.save(ek);
-	}
 	/**
 	 * Judge whether they exist in the database so that a data
 	 * @param kebsiteName:user name
@@ -84,18 +86,27 @@ public class ExclusiveKeyManage{
 		}
 		return false;
 	}
+	/**
+	 * Judge whether they exist in the database so that a APIKey data
+	 * @param keyString:The APIKey string
+	 * @return If the database of the existence of such APIKey ture is returned return false
+	 */
+	public boolean isHold(StringBuffer keyString) {
+		return exclusiveKeyDAO.isHold(keyString.toString());
+	}
+
+	@Resource(name="exclusiveKeyDAOImpl")
+	public void setExclusiveKeyDAO(ExclusiveKeyDAO exclusiveKeyDAO) {
+		this.exclusiveKeyDAO = exclusiveKeyDAO;
+	}
 
 	/**
-	 * Judge whether have the authority
-	 * @param APIKey:Ownership of the APIKey
+	 * Returns a APIKey entity class
+	 * @param aPIKey:The returned APIKey string
 	 * @return
 	 */
-	public boolean isActivation(String APIKey) {
-		ExclusiveKey exclusiveKey = exclusiveKeyDAO.getExclusiveKey(APIKey);
-		if(exclusiveKey!=null&&exclusiveKey.getState()==2){
-			return true;
-		}
-		return false;
+	public ExclusiveKey getExclusiveKey(String keyString) {
+		return exclusiveKeyDAO.getExclusiveKey(keyString);
 	}
 	
 }

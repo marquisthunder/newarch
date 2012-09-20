@@ -68,6 +68,11 @@ public class ExclusiveKeyDAOImpl implements ExclusiveKeyDAO {
 		return exclusiveKey;
 	}
 
+	/**
+	 * Returns a APIKey entity class
+	 * @param aPIKey:The returned APIKey string
+	 * @return
+	 */
 	public ExclusiveKey getExclusiveKey(String aPIKey) {
 		ExclusiveKey exclusiveKey = null;
 		Session session = sessionFactory.getCurrentSession();

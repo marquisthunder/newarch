@@ -38,4 +38,14 @@ public class ExclusiveKeyServiceImplTest {
 		Assert.assertEquals(true,ss.length<=outputQuantitye);
 	}
 
+	@Test
+	public void testGetAPIKeyState() {
+		int state = 0;
+		state = exclusiveKeyServiceImpl.getAPIKeyState(null, "an2mZW9iLtGdQ~aobA13+V46_vy$2^D4%8+0mQ17nysq6NPC+2uiJnS$v256t$o4MY_2w1b%%tYNdxQ");
+		Assert.assertEquals(-1,state);
+		state = exclusiveKeyServiceImpl.getAPIKeyState("jingdong", "an2mZtGdQ~aobA13+V46_vy$2^D4%8+0mQ17nysq6NPC+2uiJnS$v256t$o4MY_2w1b%%tYNdxQ");
+		Assert.assertEquals(-2,state);
+		state = exclusiveKeyServiceImpl.getAPIKeyState("jingdong", "an2mZW9iLtGdQ~aobA13+V46_vy$2^D4%8+0mQ17nysq6NPC+2uiJnS$v256t$o4MY_2w1b%%tYNdxQ");
+		Assert.assertEquals(2,state);
+	}
 }

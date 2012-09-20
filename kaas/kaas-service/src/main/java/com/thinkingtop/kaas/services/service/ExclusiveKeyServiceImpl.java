@@ -18,6 +18,7 @@ import com.thinkingtop.kaas.services.manage.ExclusiveKeyManage;
 import com.thinkingtop.kaas.services.manage.KebsiteManage;
 import com.thinkingtop.kaas.services.model.ExclusiveKey;
 import com.thinkingtop.kaas.services.model.Kebsite;
+import com.thinkingtop.kaas.services.util.APIKey;
 
 /**
  * This is a ExclusiveKeyService implementation class
@@ -31,6 +32,7 @@ public class ExclusiveKeyServiceImpl implements ExclusiveKeyService{
 	private ExclusiveKeyManage exclusiveKeyManage;
 	private KebsiteManage kebsiteManage;
 	private AprioriRunner aprioriRunner;
+	private APIKey apiKey;
 
 	/**
 	 * External exposure method, user request recommendation
@@ -71,104 +73,37 @@ public class ExclusiveKeyServiceImpl implements ExclusiveKeyService{
 		if(kebsite==null){
 			return "User does not exist!";
 		}
-		StringBuffer keyString = getAPIKey();
+		StringBuffer keyString = apiKey.getAPIKey();
 		boolean e = exclusiveKeyManage.isHold(keyString);
 	logger.info(e);
 		while(exclusiveKeyManage.isHold(keyString)){
-			keyString = getAPIKey();
+			keyString = apiKey.getAPIKey();
 		}
 		exclusiveKeyManage.add(kebsite,keyString);
 		return keyString.toString();
 	}
 	
-	
-	
 	/**
-	 * Create a APIKey and returns
-	 * @return StringBuffer:The returned APIKey
+	 * External exposure method,the return of the user's APIKey state
+	 * @param kebsiteName:The requesting user name
+	 * @param apiKey:The requesting APIKey
+	 * @return If the user does not exist then return to -1,if the user does not have the APIKey returns -2,
+	 * 		If APIKey does not activate the return 1,If the APIKey is activated and can use return 2,
+	 * 		If the APIKey is out of date return 3,If APIKey are forbidden to use return 4
 	 */
-	public StringBuffer getAPIKey(){
-		StringBuffer timeString = getTimeString();
-		StringBuffer upsetTimeString = getUpsetTimeString(timeString);
-		StringBuffer keyString = getKeyString(upsetTimeString);
-		return keyString;
-	} 
-	
-	
-	/**
-	 * Create a APIKey containing specific information
-	 * @param upsetTimeString:String containing the message
-	 * @return APIKey
-	 */
-	private StringBuffer getKeyString(StringBuffer upsetTimeString) {
-		Random random = new Random();
-		String keyS = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789#$%^_~-+";
-		char[] cKey = keyS.toCharArray();
-		StringBuffer KeyString = new StringBuffer();
-		for( int i = 0; i < 40; i ++) { 
-			if((i==10||i==20||i==30)&&upsetTimeString.length()>0){
-				System.out.println(upsetTimeString.substring(0, 13));
-				KeyString.append(upsetTimeString.substring(0, 13));
-				upsetTimeString.delete(0, 13);
-				System.out.println(upsetTimeString.length());
-			}
-			KeyString.append(cKey[random.nextInt(cKey.length)]);
-        }
-logger.info(KeyString.toString());
-logger.info("");
-		return KeyString;
-	}
-
-	/**
-	 * Returns a string of 39 mixed with information
-	 * @param timeString A mixture of 26 characters
-	 * @return
-	 */
-	private StringBuffer getUpsetTimeString(StringBuffer timeString) {
-		Random random = new Random();
-		StringBuffer time = new StringBuffer();
-		time.append(new Date().getTime());
-		System.out.println(time.toString());
-		StringBuffer upset = new StringBuffer();
-		String[] str = new String[39];
-		for(int i=0;i<13;i++){
-			int j = random.nextInt(str.length);
-			while(str[j]!=null){
-				j = random.nextInt(str.length);
-			}
-			str[j]="yes";
+	public int getAPIKeyState(String kebsiteName, String keyString) {
+		Kebsite kebsite =kebsiteManage.getKebsite(kebsiteName);
+		if(kebsite==null){
+			logger.info("The user does not exist");
+			return -1;
 		}
-		for(int i=0;i<str.length;i++){
-			if(str[i]==null){
-				upset.append(timeString.charAt(0));
-				timeString.deleteCharAt(0);
-			}else{
-				upset.append(time.charAt(0));
-				time.deleteCharAt(0);
-			}
+		ExclusiveKey ek = exclusiveKeyManage.getExclusiveKey(keyString);
+		if(ek==null){
+			return -2;
 		}
-logger.info(upset.toString());
-		return upset;
+		return ek.getState();
 	}
-
-	/**
-	 * Returns a 26 bit random string
-	 * Strings on "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz#$%^_~-+"
-	 * @return StringBuffer
-	 */
-	public StringBuffer getTimeString(){
-		Random random = new Random();
-		
-		String timecharacter = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz#$%^_~-+";
-		char[] timechar = timecharacter.toCharArray();
-		StringBuffer timeString = new StringBuffer();
-		for( int i = 0; i < 26; i ++) { 
-			timeString.append(timechar[random.nextInt(timechar.length)]);
-        }
-logger.info(timeString.toString());
-		return timeString;
-	}
-
+	
 	public ExclusiveKeyManage getExclusiveKeyManage() {
 		return exclusiveKeyManage;
 	}
@@ -193,5 +128,15 @@ logger.info(timeString.toString());
 	public void setAprioriRunner(AprioriRunner aprioriRunner) {
 		this.aprioriRunner = aprioriRunner;
 	}
+
+	public APIKey getApiKey() {
+		return apiKey;
+	}
+	@Resource(name="apiKey")
+	public void setApiKey(APIKey apiKey) {
+		this.apiKey = apiKey;
+	}
+
+
 
 }
