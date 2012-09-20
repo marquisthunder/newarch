@@ -2,6 +2,7 @@ package com.thinkingtop.kaas.services.model;
 
 import java.util.Date;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -35,8 +36,8 @@ public class ExclusiveKey {
 	public void setKeyString(String keyString) {
 		this.keyString = keyString;
 	}
-	@ManyToOne
-	@JoinColumn(name="kebsiteid")
+	@ManyToOne()
+	@JoinColumn(name="kebsiteid",nullable=false)
 	public Kebsite getKebsite() {
 		return kebsite;
 	}
