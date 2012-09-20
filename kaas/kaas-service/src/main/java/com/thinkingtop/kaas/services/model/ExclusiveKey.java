@@ -19,7 +19,7 @@ public class ExclusiveKey {
 	private String keyString;
 	private Kebsite kebsite;
 	private Date createData = new Date();
-	private boolean activation;
+	private int state = 1;
 	
 	@Id
 	@GeneratedValue
@@ -41,21 +41,24 @@ public class ExclusiveKey {
 	public Kebsite getKebsite() {
 		return kebsite;
 	}
-	@Column(nullable=false)
-	public boolean isActivation() {
-		return activation;
+	@Column(nullable=false,columnDefinition="int(2) default 1")
+	public int getState() {
+		return state;
 	}
-	public void setActivation(boolean activation) {
-		this.activation = activation;
+	public void setState(int state) {
+		this.state = state;
 	}
+	
+	
 	public void setKebsite(Kebsite kebsite) {
 		this.kebsite = kebsite;
 	}
-	@Column(nullable=false,unique=true)
+	@Column(nullable=false)
 	public Date getCreateData() {
 		return createData;
 	}
 	public void setCreateData(Date createData) {
 		this.createData = createData;
 	}
+	
 }

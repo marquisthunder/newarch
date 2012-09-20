@@ -92,7 +92,7 @@ public class ExclusiveKeyManage{
 	 */
 	public boolean isActivation(String APIKey) {
 		ExclusiveKey exclusiveKey = exclusiveKeyDAO.getExclusiveKey(APIKey);
-		if(exclusiveKey!=null&&exclusiveKey.isActivation()){
+		if(exclusiveKey!=null&&exclusiveKey.getState()==2){
 			return true;
 		}
 		return false;

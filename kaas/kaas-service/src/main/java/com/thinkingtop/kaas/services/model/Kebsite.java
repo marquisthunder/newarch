@@ -48,7 +48,7 @@ public class Kebsite {
 	public void setExclusiveKey(Set<ExclusiveKey> exclusiveKey) {
 		this.exclusiveKey = exclusiveKey;
 	}
-	@Column(nullable=false,unique=true)
+	@Column(nullable=false)
 	public Date getCreateData() {
 		return createData;
 	}

@@ -35,15 +35,14 @@ public class ExclusiveKeyManageTest {
 	@Test
 	public void teatAdd(){
 		ExclusiveKey ek = new ExclusiveKey();
-		ek.setActivation(true);
+		ek.setState(2);
 		String str = exclusiveKeyServiceImpl.getAPIKey().toString();
 		ek.setKeyString(str);
 		Kebsite kebsite = kebsiteManage.getKebsite("jingdong");
 		ek.setKebsite(kebsite);
 		exclusiveKeyManage.add(ek);
 		
-		ExclusiveKey ek1 = exclusiveKeyManage.getExclusiveKey(2);
-		Assert.assertEquals(str, ek1.getKeyString());
+		Assert.assertEquals(true, exclusiveKeyManage.isHold(new StringBuffer(str)));
 	}
 	
 	@Test
