@@ -27,21 +27,21 @@ public class KaasDataPath {
 	public String getDataPath() {
 		return dataPath;
 	}
-	@Value("${runner.dataPath}")
+	@Value("${algorithm.dataPath}")
 	public void setDataPath(String dataPath) {
 		this.dataPath = dataPath;
 	}
 	public String getOfPath() {
 		return ofPath;
 	}
-	@Value("${runner.orderFrequentOutPath}")
+	@Value("${algorithm.orderFrequentOutPath}")
 	public void setOfPath(String ofPath) {
 		this.ofPath = ofPath;
 	}
 	public String getrPath() {
 		return rPath;
 	}
-	@Value("${runner.ruleOutPath}")
+	@Value("${algorithm.ruleOutPath}")
 	public void setrPath(String rPath) {
 		this.rPath = rPath;
 	}

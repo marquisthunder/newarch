@@ -186,7 +186,7 @@ public class KaasRuleDAOFileImpl implements KaasRuleDAO {
 		return itemDelimiter;
 	}
 
-	@Value("${runner.itemDelimiter}")
+	@Value("${algorithm.itemDelimiter}")
 	public void setItemDelimiter(String itemDelimiter) {
 		this.itemDelimiter = itemDelimiter;
 	}

@@ -32,7 +32,7 @@ public class FileHistoryDAOFileImpl implements FileHistoryDAO {
 		return fileString;
 	}
 
-	@Value("${runner.dataFile}")
+	@Value("${algorithm.dataFile}")
 	public void setFileString(String fileString) {
 		this.fileString = fileString;
 	}
@@ -41,7 +41,7 @@ public class FileHistoryDAOFileImpl implements FileHistoryDAO {
 		return itemsDelimiter;
 	}
 	
-	@Value("${runner.itemDelimiter}")
+	@Value("${algorithm.itemDelimiter}")
 	public void setItemsDelimiter(String itemsDelimiter) {
 		this.itemsDelimiter = itemsDelimiter;
 	}

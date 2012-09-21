@@ -8,7 +8,7 @@ import org.apache.log4j.Logger;
 import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
 import org.springframework.stereotype.Component;
 
-import com.thinkingtop.kaas.services.apriori.AprioriRunner;
+import com.thinkingtop.kaas.services.algorithm.AprioriRunner;
 
 @Component("testR")
 public class testR {

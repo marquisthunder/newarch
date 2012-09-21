@@ -1,4 +1,4 @@
-package com.thinkingtop.kaas.services.apriori;
+package com.thinkingtop.kaas.services.algorithm;
 
 import java.io.BufferedInputStream;
 import java.io.DataInputStream;
