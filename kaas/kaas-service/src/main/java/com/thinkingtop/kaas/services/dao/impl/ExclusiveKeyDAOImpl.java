@@ -11,7 +11,7 @@ import org.springframework.stereotype.Component;
 
 import com.thinkingtop.kaas.services.dao.ExclusiveKeyDAO;
 import com.thinkingtop.kaas.services.model.ExclusiveKey;
-import com.thinkingtop.kaas.services.model.Kebsite;
+import com.thinkingtop.kaas.services.model.Website;
 
 /**
  * Realizing of APIKey database access class

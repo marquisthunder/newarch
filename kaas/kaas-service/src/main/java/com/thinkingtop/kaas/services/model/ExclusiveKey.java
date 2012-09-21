@@ -17,7 +17,7 @@ import javax.persistence.ManyToOne;
 public class ExclusiveKey {
 	private Long id;
 	private String keyString;
-	private Kebsite kebsite;
+	private Website website;
 	private Date createData = new Date();
 	private int state = 1;
 	
@@ -37,9 +37,9 @@ public class ExclusiveKey {
 		this.keyString = keyString;
 	}
 	@ManyToOne()
-	@JoinColumn(name="kebsiteid",nullable=false)
-	public Kebsite getKebsite() {
-		return kebsite;
+	@JoinColumn(name="websiteid",nullable=false)
+	public Website getWebsite() {
+		return website;
 	}
 	@Column(nullable=false,columnDefinition="int(2) default 1")
 	public int getState() {
@@ -50,8 +50,8 @@ public class ExclusiveKey {
 	}
 	
 	
-	public void setKebsite(Kebsite kebsite) {
-		this.kebsite = kebsite;
+	public void setWebsite(Website website) {
+		this.website = website;
 	}
 	@Column(nullable=false)
 	public Date getCreateData() {

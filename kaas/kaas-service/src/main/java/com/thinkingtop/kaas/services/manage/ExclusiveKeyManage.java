@@ -10,7 +10,7 @@ import org.springframework.stereotype.Component;
 
 import com.thinkingtop.kaas.services.dao.ExclusiveKeyDAO;
 import com.thinkingtop.kaas.services.model.ExclusiveKey;
-import com.thinkingtop.kaas.services.model.Kebsite;
+import com.thinkingtop.kaas.services.model.Website;
 
 /**
  * This is the APIKey management class
@@ -33,12 +33,12 @@ public class ExclusiveKeyManage{
 	
 	/**
 	 * A data storage
-	 * @param kebsite:user name
+	 * @param website:user name
 	 * @param keyString:user APIKey
 	 */
-	public void add(Kebsite kebsite, StringBuffer keyString) {
+	public void add(Website website, StringBuffer keyString) {
 		ExclusiveKey ek = new ExclusiveKey();
-		ek.setKebsite(kebsite);
+		ek.setWebsite(website);
 		ek.setKeyString(keyString.toString());
 		exclusiveKeyDAO.save(ek);
 	}
@@ -75,13 +75,13 @@ public class ExclusiveKeyManage{
 
 	/**
 	 * Judge whether they exist in the database so that a data
-	 * @param kebsiteName:user name
+	 * @param websiteName:user name
 	 * @param APIKey:user APIKey
 	 * @return
 	 */
-	public boolean isHold(String kebsiteName, String APIKey) {
+	public boolean isHold(String websiteName, String APIKey) {
 		ExclusiveKey exclusiveKey = exclusiveKeyDAO.getExclusiveKey(APIKey);
-		if(exclusiveKey!=null&&exclusiveKey.getKebsite().getKebsiteName().equals(kebsiteName)){
+		if(exclusiveKey!=null&&exclusiveKey.getWebsite().getWebsiteName().equals(websiteName)){
 			return true;
 		}
 		return false;

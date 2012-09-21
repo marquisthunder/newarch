@@ -13,7 +13,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import com.thinkingtop.kaas.service.util.BeforeTest;
 import com.thinkingtop.kaas.services.model.ExclusiveKey;
-import com.thinkingtop.kaas.services.model.Kebsite;
+import com.thinkingtop.kaas.services.model.Website;
 import com.thinkingtop.kaas.services.service.ExclusiveKeyServiceImpl;
 import com.thinkingtop.kaas.services.util.APIKey;
 
@@ -24,7 +24,7 @@ public class ExclusiveKeyManageTest {
 	private ExclusiveKeyManage exclusiveKeyManage;
 	
 	@Autowired
-	private KebsiteManage kebsiteManage;
+	private WebsiteManage websiteManage;
 	
 	@Autowired
 	private ExclusiveKeyServiceImpl exclusiveKeyServiceImpl;
@@ -42,8 +42,8 @@ public class ExclusiveKeyManageTest {
 		ek.setState(2);
 		String str = apiKey.getAPIKey().toString();
 		ek.setKeyString(str);
-		Kebsite kebsite = kebsiteManage.getKebsite("jingdong");
-		ek.setKebsite(kebsite);
+		Website website = websiteManage.getWebsite("jingdong");
+		ek.setWebsite(website);
 		exclusiveKeyManage.add(ek);
 		
 		Assert.assertEquals(true, exclusiveKeyManage.isHold(new StringBuffer(str)));

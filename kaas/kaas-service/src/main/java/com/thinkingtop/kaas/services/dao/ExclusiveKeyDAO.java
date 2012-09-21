@@ -20,7 +20,7 @@ public interface ExclusiveKeyDAO {
 	 * @param exclusiveKey:APIKey implementation class, storage object
 	 * @return
 	 */
-	public boolean save(ExclusiveKey kebsite);
+	public boolean save(ExclusiveKey exclusiveKey);
 	
 	/**
 	 * Judge whether they exist in the database so that a APIKey data
