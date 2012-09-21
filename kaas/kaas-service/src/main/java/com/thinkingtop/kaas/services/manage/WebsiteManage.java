@@ -14,7 +14,7 @@ import com.thinkingtop.kaas.services.model.Website;
  */
 @Component("websiteManage")
 public class WebsiteManage{
-	WebsiteDAO websiteDAO;
+	private WebsiteDAO websiteDAO;
 	
 	/**
 	 * To the database stored in a user information recording

@@ -1,4 +1,4 @@
-package com.thinkingtop.kaas.services.apriori;
+package com.thinkingtop.kaas.services.algorithm;
 
 import static org.junit.Assert.*;
 
@@ -21,6 +21,7 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import com.thinkingtop.kaas.service.util.BeforeTest;
+import com.thinkingtop.kaas.services.algorithm.AlgorithmDefault;
 import com.thinkingtop.kaas.services.algorithm.AprioriRunner;
 import com.thinkingtop.kaas.services.util.KaasDataPath;
 
@@ -33,6 +34,9 @@ public class AprioriRunnerTest {
 	
 	@Autowired
     private KaasDataPath kaasDataPath;
+	
+
+	
     @Before
     public void init() {
     	BeforeTest.init();
@@ -76,5 +80,7 @@ public class AprioriRunnerTest {
 		Assert.assertEquals(86, iR);
 		Assert.assertEquals(62, iOf);
 	}
+	
+
 
 }
