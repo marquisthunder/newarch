@@ -23,7 +23,7 @@
 		<property name="locations">
 			<list>
 				<value>classpath:jdbc.properties</value>
-				<value>classpath:runner.properties</value>
+				<value>classpath:algorithm.properties</value>
 			</list>
 		</property>
 	</bean>
