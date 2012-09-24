@@ -22,7 +22,6 @@ import org.springframework.stereotype.Component;
 import com.thinkingtop.kaas.services.dao.KaasRuleDAO;
 import com.thinkingtop.kaas.services.model.KaasOrderFrequent;
 import com.thinkingtop.kaas.services.model.KaasRule;
-import com.thinkingtop.kaas.services.service.ExclusiveKeyServiceImplTest;
 import com.thinkingtop.kaas.services.util.KaasDataPath;
 
 @Component("kaasRuleDAOFileImpl")

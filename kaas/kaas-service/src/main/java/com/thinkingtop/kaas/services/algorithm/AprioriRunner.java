@@ -18,6 +18,7 @@ import java.util.TreeSet;
 import javax.annotation.Resource;
 
 import org.apache.log4j.Logger;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
 import org.springframework.stereotype.Component;
 
@@ -34,81 +35,39 @@ import com.thinkingtop.kaas.services.util.KaasDataPath;
  * @author roadahead
  *
  */
-public class AprioriRunner {
+@Component("aprioriRunner")
+public class AprioriRunner extends AlgorithmGeneral implements Algorithm{
 
     static Logger logger=Logger.getLogger(AprioriRunner.class);
-    private ThreadPoolTaskExecutor taskExecutor;
-    private FileHistoryDAO fileHistoryDAO;
-    private KaasOrderFrequentDAO ofdao;
-    private KaasRuleDAO rdao;
-    private String threadNum;
-    private KaasDataPath kaasDataPath;
-    private String folder;
-    private String waitTime;
     private String submitLoopMaxStr;
     private String combinationMaxSizeStr;
     private String frequencyLowerLimitStr;
-    private String itemDelimiter;
-    private String maxTryCount;
     private int actualThreadNum;
     private int threadEndNum;
     private long runAllTime;
     private long runTimeRecord0;
-    
-    public ThreadPoolTaskExecutor getTaskExecutor() {
-        return taskExecutor;
-    }
-    
-    public void setTaskExecutor(ThreadPoolTaskExecutor taskExecutor) {
-        this.taskExecutor = taskExecutor;
-    }
-    public String getThreadNum() {
-        return threadNum;
-    }
-    public void setThreadNum(String threadNum) {
-        this.threadNum = threadNum;
-    }
     public String getFolder() {
-        return folder;
-    }
-    public void setFolder(String folder) {
-        this.folder = folder;
-    }
-    public String getWaitTime() {
-        return waitTime;
-    }
-    public void setWaitTime(String waitTime) {
-        this.waitTime = waitTime;
-    }
-    public FileHistoryDAO getFileHistoryDAO() {
-        return fileHistoryDAO;
-    }
-    public void setFileHistoryDAO(FileHistoryDAO fileHistoryDAO) {
-        this.fileHistoryDAO = fileHistoryDAO;
+        return super.getFolder();
     }
     public String getSubmitLoopMaxStr() {
         return submitLoopMaxStr;
     }
+    @Value("${algorithm.submitLoopMaxStr}")
     public void setSubmitLoopMaxStr(String submitLoopMaxStr) {
         this.submitLoopMaxStr = submitLoopMaxStr;
     }
     public String getCombinationMaxSizeStr() {
         return combinationMaxSizeStr;
     }
+    @Value("${algorithm.combinationMaxSizeStr}")
     public void setCombinationMaxSizeStr(String combinationMaxSizeStr) {
         this.combinationMaxSizeStr = combinationMaxSizeStr;
     }
     public KaasOrderFrequentDAO getOfdao() {
-        return ofdao;
-    }
-    public void setOfdao(KaasOrderFrequentDAO ofdao) {
-        this.ofdao = ofdao;
+        return super.getOfdao();
     }
     public KaasRuleDAO getRdao() {
-        return rdao;
-    }
-    public void setRdao(KaasRuleDAO rdao) {
-        this.rdao = rdao;
+        return super.getRdao();
     }
     
     private synchronized void oneThreadEnd(){
@@ -116,17 +75,17 @@ public class AprioriRunner {
     }
     
     public String[] getRecommend(String inputItems, int outputItemsNum,int outputQuantitye){
-    		return rdao.getRuleMap(inputItems,outputItemsNum,outputQuantitye);
+    		return getRdao().getRuleMap(inputItems,outputItemsNum,outputQuantitye);
     }
 
     public void println(){
     	logger.info("------------------------------------println properties ");
-    	logger.info("fileHistoryDAO:  "+fileHistoryDAO.getClass());
-    	logger.info("ofdao:  "+ofdao.getClass());
-    	logger.info("rdao:  "+rdao.getClass());
-    	logger.info("threadNum:  "+threadNum);
-    	logger.info("folder:  "+folder);
-    	logger.info("waitTime:  "+waitTime);
+    	logger.info("fileHistoryDAO:  "+super.getFileHistoryDAO().getClass());
+    	logger.info("ofdao:  "+getOfdao().getClass());
+    	logger.info("rdao:  "+getRdao().getClass());
+    	logger.info("threadNum:  "+super.getThreadNum());
+    	logger.info("folder:  "+getFolder());
+    	logger.info("waitTime:  "+super.getWaitTime());
     	logger.info("submitLoopMaxStr:  "+submitLoopMaxStr);
     	logger.info("combinationMaxSizeStr:  "+combinationMaxSizeStr);
     	logger.info("frequencyLowerLimitStr:  "+frequencyLowerLimitStr);
@@ -138,15 +97,15 @@ public class AprioriRunner {
     //println();
         runTimeRecord0 = System.nanoTime();
         logger.info("of start time :"+runTimeRecord0);
-    	ofdao.setFileAll(new HashMap<String, KaasOrderFrequent>());
-    	rdao.setMarsRuleAll(new HashMap<String, KaasRule>());
+    	getOfdao().setFileAll(new HashMap<String, KaasOrderFrequent>());
+    	getRdao().setMarsRuleAll(new HashMap<String, KaasRule>());
     	threadEndNum=0;
-        List<String> filelist=fileHistoryDAO.getFileList();
+        List<String> filelist=super.getFileHistoryDAO().getFileList();
         if(filelist == null || filelist.size() == 0){
             logger.info("No orders are needed to do offline training!");
             return;
         }
-        actualThreadNum=Integer.parseInt(threadNum);
+        actualThreadNum=Integer.parseInt(super.getThreadNum());
         int loop;
         int Remainder;
         if(actualThreadNum<filelist.size()){
@@ -158,9 +117,9 @@ public class AprioriRunner {
             actualThreadNum = filelist.size();
         }
         logger.info("Do offline training With "+Remainder+" Threads!");
-        if(taskExecutor.getThreadPoolExecutor().isShutdown()){
+        if(super.getTaskExecutor().getThreadPoolExecutor().isShutdown()){
         	logger.info("this thread isShutdown");
-            taskExecutor.initialize();
+        	super.getTaskExecutor().initialize();
         }
         int submitLoopMax=Integer.parseInt(submitLoopMaxStr);
         int combinationMaxSize=Integer.parseInt(combinationMaxSizeStr);
@@ -184,9 +143,9 @@ public class AprioriRunner {
             }
 
             KaasAprioriTask kaasAprioriTask = new KaasAprioriTask(partOfFiles,submitLoopMax,combinationMaxSize,frequencyLowerLimit);
-            taskExecutor.execute(kaasAprioriTask);
+            super.getTaskExecutor().execute(kaasAprioriTask);
         }
-        int time=Integer.parseInt(waitTime);
+        int time=Integer.parseInt(super.getWaitTime());
         try{
         	while(threadEndNum!=actualThreadNum){
         		Thread.sleep(time);
@@ -233,7 +192,7 @@ public class AprioriRunner {
 
         public void run() {
 //printlnM();
-            String[] basePathes = kaasDataPath.getItemDataPath().split(";");
+            String[] basePathes = getKaasDataPath().getItemDataPath().split(";");
          logger.info("dataPathes:"+basePathes[0]);
             String realBase = null;
             boolean smbAddr=false;
@@ -262,8 +221,8 @@ public class AprioriRunner {
                 DataInputStream in = null;
                 try {
                     in = new DataInputStream(new BufferedInputStream(
-                            new FileInputStream(kaasDataPath.getItemDataPath() + File.separator
-                                    + folder + File.separator + fileone)));
+                            new FileInputStream(getKaasDataPath().getItemDataPath() + File.separator
+                                    + getFolder() + File.separator + fileone)));
                 } catch (FileNotFoundException e) {
                     logger.warn("local offline file may be moved or renamed!");
                     continue;
@@ -300,8 +259,8 @@ public class AprioriRunner {
             genRulesFromMemory();
             oneThreadEnd();
             if(threadEndNum==actualThreadNum){
-            	ofdao.submit();
-            	rdao.submit();
+            	getOfdao().submit();
+            	getRdao().submit();
             	long consumingTimeOf = System.nanoTime();
             	runAllTime += consumingTimeOf - runTimeRecord0;
             	logger.warn("generate all consuming End time:"+ consumingTimeOf +" seconds!");
@@ -313,7 +272,7 @@ public class AprioriRunner {
             if(line == null || line.length()<=0){
                 return null;
             }
-            String[] ss = line.split(itemDelimiter);
+            String[] ss = line.split(getItemDelimiter());
             if(ss.length <= 1){
                 return null;
             }
@@ -354,7 +313,7 @@ public class AprioriRunner {
             long startTime1 = System.nanoTime();
             for(Map.Entry<String, Integer> me : submitMap.entrySet()){
             	
-            	Map<String,Integer> histery = rdao.getRuleMap(me.getKey());
+            	Map<String,Integer> histery = getRdao().getRuleMap(me.getKey());
         		if(histery.size()>0){
         			List<KaasRule> subRlist = genMapRulesByLine(histery);
         			rlist.addAll(subRlist);
@@ -363,7 +322,7 @@ public class AprioriRunner {
                 KaasOrderFrequent of = new KaasOrderFrequent();
                 of.setCombination(me.getKey());
                 of.setFrequent(me.getValue());
-                of.setItemNum(me.getKey().split(itemDelimiter).length);
+                of.setItemNum(me.getKey().split(getItemDelimiter()).length);
                 of.setOfType("all");
             //logger.info("my key:"+me.getKey());
             //logger.info(of.getCombination());
@@ -371,7 +330,7 @@ public class AprioriRunner {
              //logger.info("olist:"+olist.size());
                 int newSup=me.getValue();
                 
-                KaasOrderFrequent tmp = ofdao.findOneByProperty("freqSet", me.getKey());
+                KaasOrderFrequent tmp = getOfdao().findOneByProperty("freqSet", me.getKey());
                 if(tmp != null){
                     newSup+=tmp.getFrequent();
                 }
@@ -390,14 +349,14 @@ public class AprioriRunner {
 
             for(KaasOrderFrequent o : olist){
                 int rval=0;
-                rval = ofdao.submit(o);
+                rval = getOfdao().submit(o);
                 if(rval !=1){
                     //all error case
                     if(rval == 2){
                         //concurrent case
-                    	int maxTryCountNum=Integer.valueOf(maxTryCount);
+                    	int maxTryCountNum=Integer.valueOf(getMaxTryCount());
                         while(rval == 2 && maxTryCountNum>0){
-                            rval=ofdao.submit(o);
+                            rval=getOfdao().submit(o);
                             maxTryCountNum--;
                         }
                         if(rval==2){
@@ -406,17 +365,17 @@ public class AprioriRunner {
                     }
                 }
             }
-            //ofdao.submit();
+            //getOfdao().submit();
             for(KaasRule r: rlist){
                 int rval=0;
-                rdao.submit(r);
+                getRdao().submit(r);
                 if(rval !=1){
                     //all error case
                     if(rval == 2){
                         //concurrent case
-                        int maxTryCountNum=Integer.valueOf(maxTryCount);
+                        int maxTryCountNum=Integer.valueOf(getMaxTryCount());
                         while(rval == 2 && maxTryCountNum>0){
-                            rval=rdao.submit(r);
+                            rval=getRdao().submit(r);
                             maxTryCountNum--;
                         }
                         if(rval==2){
@@ -425,7 +384,7 @@ public class AprioriRunner {
                     }
                 }
             }
-            //rdao.submit();
+            //getRdao().submit();
 
             logger.info("Loop times:"+submitLoopNum++);
             return true;
@@ -435,7 +394,7 @@ public class AprioriRunner {
 
             Map<String,Integer> rulemap = null;
             //generate all rules
-            String[] lineArr=line.split(itemDelimiter);
+            String[] lineArr=line.split(getItemDelimiter());
             CombinationModel cm = new CombinationModel(lineArr);
             rulemap = cm.genRuleCombinations();
             cm = null;
@@ -444,7 +403,7 @@ public class AprioriRunner {
             if(rulemap != null){
                 for (Map.Entry<String, Integer> me: rulemap.entrySet()){
                     String[] tmp = me.getKey().split("\\|");
-                    KaasOrderFrequent of = ofdao.findOneByProperty("freqSet", tmp[0]);
+                    KaasOrderFrequent of = getOfdao().findOneByProperty("freqSet", tmp[0]);
                     if(of != null || submitMap.containsKey(tmp[0])){
                         Double downSup = (of == null?0.0:of.getFrequent())+submitMap.get(tmp[0]);
                         Double x = (baseSupport*1.0)/downSup;
@@ -454,7 +413,7 @@ public class AprioriRunner {
                         r.setConfidence(x);
                         r.setFlag("general");
                         ////logger.info(tmp[0]+"->"+tmp[1]+":"+x.toString());
-                        //rdao.submit(r);
+                        //getRdao().submit(r);
                         rlist.add(r);
                         tmp=null;
                         x=null;
@@ -476,14 +435,14 @@ public class AprioriRunner {
         	List<KaasRule> rlist= new ArrayList<KaasRule>();
         	for (Map.Entry<String, Integer> me: history.entrySet()){
                 String[] tmp = me.getKey().split("\\|");
-                if(submitMap.containsKey(tmp[0]+itemDelimiter+tmp[1])){
+                if(submitMap.containsKey(tmp[0]+getItemDelimiter()+tmp[1])){
                 	continue;
                 }
-                KaasOrderFrequent hi = ofdao.findOneByProperty("freqSet", tmp[0]+itemDelimiter+tmp[1]);
+                KaasOrderFrequent hi = getOfdao().findOneByProperty("freqSet", tmp[0]+getItemDelimiter()+tmp[1]);
                 if(hi==null){
                 	continue;
                 }
-                KaasOrderFrequent of = ofdao.findOneByProperty("freqSet", tmp[0]);
+                KaasOrderFrequent of = getOfdao().findOneByProperty("freqSet", tmp[0]);
                 if(of != null || submitMap.containsKey(tmp[0])){
                     Double downSup = (of == null?0.0:of.getFrequent())+submitMap.get(tmp[0]);
                     Double x = (hi.getFrequent()*1.0)/downSup;
@@ -493,7 +452,7 @@ public class AprioriRunner {
                     r.setConfidence(x);
                     r.setFlag("general");
                     ////logger.info(tmp[0]+"->"+tmp[1]+":"+x.toString());
-                    //rdao.submit(r);
+                    //getRdao().submit(r);
                     rlist.add(r);
                     tmp=null;
                     x=null;
@@ -510,32 +469,23 @@ public class AprioriRunner {
     }
 
 	public String getMaxTryCount() {
-		return maxTryCount;
-	}
-	public void setMaxTryCount(String maxTryCount) {
-		this.maxTryCount = maxTryCount;
+		return super.getMaxTryCount();
 	}
 	public String getItemDelimiter() {
-		return itemDelimiter;
-	}
-	public void setItemDelimiter(String itemDelimiter) {
-		this.itemDelimiter = itemDelimiter;
+		return super.getItemDelimiter();
 	}
 
 	public String getfrequencyLowerLimitStr() {
 		return frequencyLowerLimitStr;
 	}
 
+	@Value("${algorithm.frequencyLowerLimitStr}")
 	public void setfrequencyLowerLimitStr(String frequencyLowerLimitStr) {
 		this.frequencyLowerLimitStr = frequencyLowerLimitStr;
 	}
 
 	public KaasDataPath getKaasDataPath() {
-		return kaasDataPath;
-	}
-
-	public void setKaasDataPath(KaasDataPath kaasDataPath) {
-		this.kaasDataPath = kaasDataPath;
+		return super.getKaasDataPath();
 	}
 
 

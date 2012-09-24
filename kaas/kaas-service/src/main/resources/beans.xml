@@ -1,9 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xmlns:context="http://www.springframework.org/schema/context"
-	xmlns:aop="http://www.springframework.org/schema/aop"
-	xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:aop="http://www.springframework.org/schema/aop" xmlns:tx="http://www.springframework.org/schema/tx"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans
            http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
            http://www.springframework.org/schema/context
@@ -29,8 +27,7 @@
 	</bean>
 	<bean id="dataSource" destroy-method="close"
 		class="com.jolbox.bonecp.BoneCPDataSource">
-		<property name="driverClass"
-			value="${jdbc.driverClassName}" />
+		<property name="driverClass" value="${jdbc.driverClassName}" />
 		<property name="jdbcUrl" value="${jdbc.url}" />
 		<property name="username" value="${jdbc.username}" />
 		<property name="password" value="${jdbc.password}" />
@@ -39,15 +36,9 @@
 	<bean id="sessionFactory"
 		class="org.springframework.orm.hibernate3.annotation.AnnotationSessionFactoryBean">
 		<property name="dataSource" ref="dataSource" />
-		<!-- 
-		<property name="annotatedClasses">
-			<list>
-				<value>com.pocoer.model.User</value>
-				<value>com.pocoer.model.Log</value>
-			</list>
-		</property>
-		 -->
-		 <property name="packagesToScan">
+		<!-- <property name="annotatedClasses"> <list> <value>com.pocoer.model.User</value> 
+			<value>com.pocoer.model.Log</value> </list> </property> -->
+		<property name="packagesToScan">
 			<list>
 				<value>com.thinkingtop.kaas.services.model</value>
 			</list>
@@ -69,18 +60,17 @@
 		class="org.springframework.orm.hibernate3.HibernateTransactionManager">
 		<property name="sessionFactory" ref="sessionFactory" />
 	</bean>
-	
-	<tx:annotation-driven transaction-manager="txManager"/>
+
+	<tx:annotation-driven transaction-manager="txManager" />
 	<aop:config>
 		<aop:pointcut id="bussinessService"
 			expression="execution(public * com.thinkingtop.kaas.services.manage..*.*(..))" />
-		<aop:advisor pointcut-ref="bussinessService"
-			advice-ref="txAdvice" />
+		<aop:advisor pointcut-ref="bussinessService" advice-ref="txAdvice" />
 	</aop:config>
 	<tx:advice id="txAdvice" transaction-manager="txManager">
 		<tx:attributes>
 			<tx:method name="getUser" read-only="true" />
-			<tx:method name="add*" propagation="REQUIRED"/>
+			<tx:method name="add*" propagation="REQUIRED" />
 			<tx:method name="getLeaveWords" read-only="true" />
 			<tx:method name="get*" read-only="true" />
 			<tx:method name="getUsers" read-only="true" />
@@ -88,47 +78,38 @@
 			<tx:method name="isActivation" read-only="true" />
 		</tx:attributes>
 	</tx:advice>
-<!--
-	<bean id="hibernateTemplate" class="org.springframework.orm.hibernate3.HibernateTemplate">
-		<property name="sessionFactory" ref="sessionFactory"></property>
+	<!-- <bean id="hibernateTemplate" class="org.springframework.orm.hibernate3.HibernateTemplate"> 
+		<property name="sessionFactory" ref="sessionFactory"></property> </bean> -->
+	<bean id="threadPoolTaskExecutor"
+		class="org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor">
+		<property name="corePoolSize" value="10" />
+		<property name="maxPoolSize" value="15" />
+		<property name="queueCapacity" value="1000" />
 	</bean>
--->
-	    <bean id="threadPoolTaskExecutor"
-        class="org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor">  
-        <property name="corePoolSize" value="10" />  
-        <property name="maxPoolSize" value="15" />  
-        <property name="queueCapacity" value="1000" />  
-    </bean>
-    <bean id="aprioriRunner" 
-    	class="com.thinkingtop.kaas.services.algorithm.AprioriRunner">
-    	<property name="taskExecutor" ref="threadPoolTaskExecutor"/>
-    	<property name="fileHistoryDAO" ref="fileHistoryDAOFileImpl"/>
-    	<property name="ofdao" ref="kaasOrderFrequentDAOFileImpl"/>
-    	<property name="rdao" ref="kaasRuleDAOFileImpl"/>
-    	<property name="threadNum" value="${algorithm.threadNum}"/>
-    	<property name="kaasDataPath" ref="kaasDataPath"/>
-    	<property name="folder" value="${algorithm.folder}"/>
-    	<property name="waitTime" value="${algorithm.waitTime}"/>
-    	<property name="submitLoopMaxStr" value="${algorithm.submitLoopMaxStr}"/>
-    	<property name="combinationMaxSizeStr" value="${algorithm.combinationMaxSizeStr}"/>
-    	<property name="frequencyLowerLimitStr" value="${algorithm.frequencyLowerLimitStr}"/>
-    	<property name="itemDelimiter" value="${algorithm.itemDelimiter}"/>
-    	<property name="maxTryCount" value="${algorithm.maxTryCount}"/>
-    </bean>
-    <bean id="aprioriRunnerMultiThread" 
-    	class="com.thinkingtop.kaas.services.algorithm.AprioriRunnerMultiThread">
-    	<property name="taskExecutor" ref="threadPoolTaskExecutor"/>
-    	<property name="fileHistoryDAO" ref="fileHistoryDAOFileImpl"/>
-    	<property name="ofdao" ref="kaasOrderFrequentDAOFileImpl"/>
-    	<property name="rdao" ref="kaasRuleDAOFileImpl"/>
-    	<property name="threadNum" value="${algorithm.threadNum}"/>
-    	<property name="kaasDataPath" ref="kaasDataPath"/>
-    	<property name="folder" value="${algorithm.folder}"/>
-    	<property name="waitTime" value="${algorithm.waitTime}"/>
-    	<property name="submitLoopMaxStr" value="${algorithm.submitLoopMaxStr}"/>
-    	<property name="combinationMaxSizeStr" value="${algorithm.combinationMaxSizeStr}"/>
-    	<property name="frequencyLowerLimitStr" value="${algorithm.frequencyLowerLimitStr}"/>
-    	<property name="itemDelimiter" value="${algorithm.itemDelimiter}"/>
-    	<property name="maxTryCount" value="${algorithm.maxTryCount}"/>
-    </bean>
+	<bean id="aprioriRunnerMultiThread"
+		class="com.thinkingtop.kaas.services.algorithm.AprioriRunnerMultiThread">
+		<property name="taskExecutor" ref="threadPoolTaskExecutor" />
+		<property name="fileHistoryDAO" ref="fileHistoryDAOFileImpl" />
+		<property name="ofdao" ref="kaasOrderFrequentDAOFileImpl" />
+		<property name="rdao" ref="kaasRuleDAOFileImpl" />
+		<property name="threadNum" value="${algorithm.threadNum}" />
+		<property name="kaasDataPath" ref="kaasDataPath" />
+		<property name="folder" value="${algorithm.folder}" />
+		<property name="waitTime" value="${algorithm.waitTime}" />
+		<property name="submitLoopMaxStr" value="${algorithm.submitLoopMaxStr}" />
+		<property name="combinationMaxSizeStr" value="${algorithm.combinationMaxSizeStr}" />
+		<property name="frequencyLowerLimitStr" value="${algorithm.frequencyLowerLimitStr}" />
+		<property name="itemDelimiter" value="${algorithm.itemDelimiter}" />
+		<property name="maxTryCount" value="${algorithm.maxTryCount}" />
+	</bean>
+
+	<bean id="algorithmManage" class="com.thinkingtop.kaas.services.manage.AlgorithmManage">
+		<property name="myAlgorithm" ref="algorithmDefault" />
+		<property name="algorithms">
+			<map>
+				<entry key="default" value-ref="algorithmDefault" />
+				<entry key="apriori" value-ref="aprioriRunner" />
+			</map>
+		</property>
+	</bean>
 </beans>
