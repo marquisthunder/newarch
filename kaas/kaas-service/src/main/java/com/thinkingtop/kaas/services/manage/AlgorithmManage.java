@@ -2,11 +2,11 @@ package com.thinkingtop.kaas.services.manage;
 
 import java.util.Map;
 
-import javax.annotation.Resource;
 import org.springframework.stereotype.Component;
+
 import com.thinkingtop.kaas.services.algorithm.Algorithm;
 
-public class AlgorithmManage  implements Algorithm{
+public class AlgorithmManage {
 	private Algorithm myAlgorithm;
 	private Map<String,Algorithm> algorithms;
 	

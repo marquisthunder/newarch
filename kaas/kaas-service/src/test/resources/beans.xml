@@ -94,7 +94,7 @@
 		<property name="maxPoolSize" value="15" />
 		<property name="queueCapacity" value="1000" />
 	</bean>
-	<bean id="aprioriRunnerMultiThread"
+<!-- 	<bean id="aprioriRunnerMultiThread"
 		class="com.thinkingtop.kaas.services.algorithm.AprioriRunnerMultiThread">
 		<property name="taskExecutor" ref="threadPoolTaskExecutor" />
 		<property name="fileHistoryDAO" ref="fileHistoryDAOFileImpl" />
@@ -109,7 +109,7 @@
 		<property name="frequencyLowerLimitStr" value="${algorithm.frequencyLowerLimitStr}" />
 		<property name="itemDelimiter" value="${algorithm.itemDelimiter}" />
 		<property name="maxTryCount" value="${algorithm.maxTryCount}" />
-	</bean>
+	</bean> -->
 
 	<bean id="algorithmManage" class="com.thinkingtop.kaas.services.manage.AlgorithmManage">
 		<property name="myAlgorithm" ref="algorithmDefault" />
