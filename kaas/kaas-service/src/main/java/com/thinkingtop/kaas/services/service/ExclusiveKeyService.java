@@ -35,6 +35,7 @@ public interface ExclusiveKeyService {
 	@WebResult(name = "result")
 	public String[] getRecommends(@WebParam(name = "websiteName")String websiteName,
 			@WebParam(name = "KeyString")String keyString,
+			@WebParam(name = "algorithm")String algorithm,
 			@WebParam(name = "inputItems")String inputItems,
 			@WebParam(name = "outputItemsNum")int outputItemsNum,
 			@WebParam(name = "outputQuantitye")int outputQuantitye);

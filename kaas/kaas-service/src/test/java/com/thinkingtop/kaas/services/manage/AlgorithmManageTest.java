@@ -31,6 +31,7 @@ public class AlgorithmManageTest {
 	
 	@Test
 	public void testGetRecommend() {
+		//algorithmManage.process("apriori");
 		algorithmManage.runIt();
 		String[] a = algorithmManage.getRecommend("1,2", 2, 1);
 		Assert.assertEquals("3,6",a[0]);

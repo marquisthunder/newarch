@@ -12,8 +12,8 @@ import javax.jws.WebService;
 import org.apache.log4j.Logger;
 import org.springframework.stereotype.Component;
 
-import com.thinkingtop.kaas.services.algorithm.AprioriRunner;
 import com.thinkingtop.kaas.services.dao.ExclusiveKeyDAO;
+import com.thinkingtop.kaas.services.manage.AlgorithmManage;
 import com.thinkingtop.kaas.services.manage.ExclusiveKeyManage;
 import com.thinkingtop.kaas.services.manage.WebsiteManage;
 import com.thinkingtop.kaas.services.model.ExclusiveKey;
@@ -31,7 +31,7 @@ public class ExclusiveKeyServiceImpl implements ExclusiveKeyService{
     static Logger logger=Logger.getLogger(ExclusiveKeyServiceImpl.class);
 	private ExclusiveKeyManage exclusiveKeyManage;
 	private WebsiteManage websiteManage;
-	private AprioriRunner aprioriRunner;
+	private AlgorithmManage algorithmManage;
 	private APIKey apiKey;
 
 	/**
@@ -43,7 +43,7 @@ public class ExclusiveKeyServiceImpl implements ExclusiveKeyService{
 	 * @param outputQuantitye:Recommended Items Quantitye
 	 * @return If websiteName or apiKey or inputItems is empty,or apiKey without permission, return null
 	 */
-	public String[] getRecommends(String websiteName,String apiKey,String inputItems,int outputItemsNum,int outputQuantitye) {
+	public String[] getRecommends(String websiteName,String apiKey,String algorithm,String inputItems,int outputItemsNum,int outputQuantitye) {
 		if(!websiteManage.isHold(websiteName)){
 			logger.info("The user does not exist");
 			return null;
@@ -53,11 +53,12 @@ public class ExclusiveKeyServiceImpl implements ExclusiveKeyService{
 			return null;
 		}
 		if(exclusiveKeyManage.isActivation(apiKey)){
-			aprioriRunner.runIt();
+			algorithmManage.process(algorithm);
+			algorithmManage.runIt();
 	logger.info("inputItems:"+inputItems);
 	logger.info("outputItemsNum"+outputItemsNum);
 	logger.info("outputQuantitye:"+outputQuantitye);
-			String[] mapItems = aprioriRunner.getRecommend(inputItems,outputItemsNum,outputQuantitye);
+			String[] mapItems = algorithmManage.getRecommend(inputItems,outputItemsNum,outputQuantitye);
 			return mapItems;
 		}
 		return null;
@@ -120,14 +121,6 @@ public class ExclusiveKeyServiceImpl implements ExclusiveKeyService{
 		this.websiteManage = websiteManage;
 	}
 
-	public AprioriRunner getAprioriRunner() {
-		return aprioriRunner;
-	}
-
-	@Resource(name="aprioriRunner")
-	public void setAprioriRunner(AprioriRunner aprioriRunner) {
-		this.aprioriRunner = aprioriRunner;
-	}
 
 	public APIKey getApiKey() {
 		return apiKey;
@@ -135,6 +128,15 @@ public class ExclusiveKeyServiceImpl implements ExclusiveKeyService{
 	@Resource(name="apiKey")
 	public void setApiKey(APIKey apiKey) {
 		this.apiKey = apiKey;
+	}
+
+	public AlgorithmManage getAlgorithmManage() {
+		return algorithmManage;
+	}
+
+	@Resource(name="algorithmManage")
+	public void setAlgorithmManage(AlgorithmManage algorithmManage) {
+		this.algorithmManage = algorithmManage;
 	}
 
 
