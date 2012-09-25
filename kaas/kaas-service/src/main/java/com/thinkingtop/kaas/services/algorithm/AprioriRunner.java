@@ -37,7 +37,6 @@ import com.thinkingtop.kaas.services.util.KaasDataPath;
  */
 @Component("aprioriRunner")
 public class AprioriRunner extends AlgorithmGeneral implements Algorithm{
-
     static Logger logger=Logger.getLogger(AprioriRunner.class);
     private String submitLoopMaxStr;
     private String combinationMaxSizeStr;
@@ -478,7 +477,6 @@ public class AprioriRunner extends AlgorithmGeneral implements Algorithm{
 	public String getfrequencyLowerLimitStr() {
 		return frequencyLowerLimitStr;
 	}
-
 	@Value("${algorithm.frequencyLowerLimitStr}")
 	public void setfrequencyLowerLimitStr(String frequencyLowerLimitStr) {
 		this.frequencyLowerLimitStr = frequencyLowerLimitStr;

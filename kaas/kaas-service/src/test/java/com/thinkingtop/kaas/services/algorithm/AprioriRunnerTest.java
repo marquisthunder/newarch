@@ -37,11 +37,6 @@ public class AprioriRunnerTest {
 	
 
 	
-    @Before
-    public void init() {
-    	BeforeTest.init();
-    }
-    
 	@Test
 	public void aprioriOfflineTest() {
 		aprioriRunner.runIt();

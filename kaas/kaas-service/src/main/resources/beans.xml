@@ -86,23 +86,6 @@
 		<property name="maxPoolSize" value="15" />
 		<property name="queueCapacity" value="1000" />
 	</bean>
-<!-- 	<bean id="aprioriRunnerMultiThread"
-		class="com.thinkingtop.kaas.services.algorithm.AprioriRunnerMultiThread">
-		<property name="taskExecutor" ref="threadPoolTaskExecutor" />
-		<property name="fileHistoryDAO" ref="fileHistoryDAOFileImpl" />
-		<property name="ofdao" ref="kaasOrderFrequentDAOFileImpl" />
-		<property name="rdao" ref="kaasRuleDAOFileImpl" />
-		<property name="threadNum" value="${algorithm.threadNum}" />
-		<property name="kaasDataPath" ref="kaasDataPath" />
-		<property name="folder" value="${algorithm.folder}" />
-		<property name="waitTime" value="${algorithm.waitTime}" />
-		<property name="submitLoopMaxStr" value="${algorithm.submitLoopMaxStr}" />
-		<property name="combinationMaxSizeStr" value="${algorithm.combinationMaxSizeStr}" />
-		<property name="frequencyLowerLimitStr" value="${algorithm.frequencyLowerLimitStr}" />
-		<property name="itemDelimiter" value="${algorithm.itemDelimiter}" />
-		<property name="maxTryCount" value="${algorithm.maxTryCount}" />
-	</bean> -->
-
 	<bean id="algorithmManage" class="com.thinkingtop.kaas.services.manage.AlgorithmManage">
 		<property name="myAlgorithm" ref="algorithmDefault" />
 		<property name="algorithms">
