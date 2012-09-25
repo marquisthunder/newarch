@@ -20,14 +20,15 @@ import org.springframework.stereotype.Component;
 import com.thinkingtop.kaas.services.dao.KaasOrderFrequentDAO;
 import com.thinkingtop.kaas.services.model.KaasOrderFrequent;
 import com.thinkingtop.kaas.services.util.KaasDataPath;
+import com.thinkingtop.kaas.services.util.OfConcurrentHashMap;
 
 @Component("kaasOrderFrequentDAOFileImpl")
 public class KaasOrderFrequentDAOFileImpl implements KaasOrderFrequentDAO {
     private KaasDataPath kaasDataPath;
-	private Map<String,KaasOrderFrequent> fileAll;
+	private OfConcurrentHashMap<String,KaasOrderFrequent> fileAll;
 	private String[] keys;
 	public KaasOrderFrequentDAOFileImpl() {
-		fileAll = new HashMap<String, KaasOrderFrequent>();
+		fileAll = new OfConcurrentHashMap<String, KaasOrderFrequent>();
 	}
 	public KaasOrderFrequent findOneByProperty(String freqSet, String myFreqSet) {
 		return fileAll.get(myFreqSet);
@@ -35,12 +36,7 @@ public class KaasOrderFrequentDAOFileImpl implements KaasOrderFrequentDAO {
 
 	public int submit(KaasOrderFrequent o) {
 		try{
-			if(fileAll.containsKey(o.getCombination())){
-				o.setFrequent(fileAll.get(o.getCombination()).getFrequent()+o.getFrequent());
-				fileAll.put(o.getCombination(), o);
-			}else{
-				fileAll.put(o.getCombination(), o);
-			}
+			fileAll.putIfAbsent(o.getCombination(), o);
 		}catch (Exception e) {
 			return 2;
 		}
@@ -78,10 +74,10 @@ public class KaasOrderFrequentDAOFileImpl implements KaasOrderFrequentDAO {
         }
 		return 1;
 	}
-	public Map<String, KaasOrderFrequent> getFileAll() {
+	public OfConcurrentHashMap<String, KaasOrderFrequent> getFileAll() {
 		return fileAll;
 	}
-	public void setFileAll(Map<String, KaasOrderFrequent> fileAll) {
+	public void setFileAll(OfConcurrentHashMap<String, KaasOrderFrequent> fileAll) {
 		this.fileAll = fileAll;
 	}
 	public void getKeys() {

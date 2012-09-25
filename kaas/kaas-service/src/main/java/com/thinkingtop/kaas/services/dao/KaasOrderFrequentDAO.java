@@ -3,6 +3,7 @@ package com.thinkingtop.kaas.services.dao;
 import java.util.Map;
 
 import com.thinkingtop.kaas.services.model.KaasOrderFrequent;
+import com.thinkingtop.kaas.services.util.OfConcurrentHashMap;
 
 public interface KaasOrderFrequentDAO {
 	public int submit(KaasOrderFrequent of);
@@ -11,5 +12,5 @@ public interface KaasOrderFrequentDAO {
 	public void getKeys();
 	public int size();
 	public KaasOrderFrequent getKeyMarsOrderFrequent(int i);
-	public void setFileAll(Map<String, KaasOrderFrequent> fileAll);
+	public void setFileAll(OfConcurrentHashMap<String, KaasOrderFrequent> fileAll);
 }

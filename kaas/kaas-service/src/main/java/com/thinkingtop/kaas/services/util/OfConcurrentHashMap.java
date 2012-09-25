@@ -15,6 +15,8 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 
+import com.thinkingtop.kaas.services.model.KaasOrderFrequent;
+
 /**
  * A hash table supporting full concurrency of retrievals and
  * adjustable expected concurrency for updates. This class obeys the
@@ -430,12 +432,12 @@ public class OfConcurrentHashMap<K, V> extends AbstractMap<K, V>
 
                 V oldValue;
                 if (e != null) {
-                    Integer aaa = Integer.valueOf(e.value.toString()) +Integer.valueOf(value.toString());
-                    e.value = (V)aaa;
+                	KaasOrderFrequent kof = (KaasOrderFrequent)e.value;
+                	kof.setFrequent(kof.getFrequent()+1);
+                    e.value = (V)kof;
                     oldValue = e.value;
                     if (!onlyIfAbsent){
                         e.value = value;
-                    System.out.println("ConcurrentHashMap:441 : "+ oldValue);
                     }
                 }
                 else {

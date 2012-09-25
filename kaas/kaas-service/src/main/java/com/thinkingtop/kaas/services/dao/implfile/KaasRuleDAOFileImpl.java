@@ -12,6 +12,7 @@ import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Set;
 import java.util.TreeMap;
+import java.util.concurrent.ConcurrentHashMap;
 
 import javax.annotation.Resource;
 
@@ -31,7 +32,7 @@ public class KaasRuleDAOFileImpl implements KaasRuleDAO {
     private KaasDataPath kaasDataPath;
 	private Map<String,KaasRule> marsRuleAll;
 	public KaasRuleDAOFileImpl(){
-		marsRuleAll = new HashMap<String, KaasRule>();
+		marsRuleAll = new ConcurrentHashMap<String, KaasRule>();
 	}
 	
 	public int submit(KaasRule r) {

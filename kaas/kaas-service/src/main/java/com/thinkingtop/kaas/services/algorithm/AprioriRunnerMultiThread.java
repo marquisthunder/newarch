@@ -29,6 +29,7 @@ import com.thinkingtop.kaas.services.dao.KaasRuleDAO;
 import com.thinkingtop.kaas.services.model.KaasOrderFrequent;
 import com.thinkingtop.kaas.services.model.KaasRule;
 import com.thinkingtop.kaas.services.util.KaasDataPath;
+import com.thinkingtop.kaas.services.util.OfConcurrentHashMap;
 
 /**
  * Generation rule class
@@ -104,7 +105,7 @@ public class AprioriRunnerMultiThread  extends AlgorithmGeneral implements Algor
     //println();
     runTimeRecord0 = System.nanoTime();
     logger.info("of start time :"+runTimeRecord0);
-    getOfdao().setFileAll(new HashMap<String, KaasOrderFrequent>());
+    getOfdao().setFileAll(new OfConcurrentHashMap<String, KaasOrderFrequent>());
     getRdao().setMarsRuleAll(new HashMap<String, KaasRule>());
     	ofThreadEndNum=0;
         List<String> filelist=super.getFileHistoryDAO().getFileList();
