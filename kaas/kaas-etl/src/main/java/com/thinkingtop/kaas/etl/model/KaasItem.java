@@ -8,9 +8,7 @@ public class KaasItem {
 
 	private String itemId;
 	private String itemName;
-	private int itemNumber;// item bar code
-	private float marketPrice;
-	private float shopPrice;
+	private String itemNumber;// item bar code
 
 	public String getItemId() {
 		return itemId;
@@ -20,16 +18,8 @@ public class KaasItem {
 		return itemName;
 	}
 
-	public int getItemNumber() {
+	public String getItemNumber() {
 		return itemNumber;
-	}
-
-	public float getMarketPrice() {
-		return marketPrice;
-	}
-
-	public float getShopPrice() {
-		return shopPrice;
 	}
 
 	public void setItemId(String itemId) {
@@ -40,15 +30,8 @@ public class KaasItem {
 		this.itemName = itemName;
 	}
 
-	public void setItemNumber(int itemNumber) {
+	public void setItemNumber(String itemNumber) {
 		this.itemNumber = itemNumber;
 	}
 
-	public void setMarketPrice(float marketPrice) {
-		this.marketPrice = marketPrice;
-	}
-
-	public void setShopPrice(float shopPrice) {
-		this.shopPrice = shopPrice;
-	}
 }

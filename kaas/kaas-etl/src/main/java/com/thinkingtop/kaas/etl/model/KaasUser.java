@@ -6,13 +6,13 @@ package com.thinkingtop.kaas.etl.model;
  */
 public class KaasUser {
 
-	private String address;
+	/*private String address;
 	private String email;
-	private String region;
+	private String region;*/
 	private String userId;// primary key
 	private String userName;
 
-	public String getAddress() {
+	/*public String getAddress() {
 		return address;
 	}
 
@@ -22,7 +22,7 @@ public class KaasUser {
 
 	public String getRegion() {
 		return region;
-	}
+	}*/
 
 	public String getUserId() {
 		return userId;
@@ -31,7 +31,7 @@ public class KaasUser {
 	public String getUserName() {
 		return userName;
 	}
-
+/*
 	public void setAddress(String address) {
 		this.address = address;
 	}
@@ -42,7 +42,7 @@ public class KaasUser {
 
 	public void setRegion(String region) {
 		this.region = region;
-	}
+	}*/
 
 	public void setUserId(String userId) {
 		this.userId = userId;

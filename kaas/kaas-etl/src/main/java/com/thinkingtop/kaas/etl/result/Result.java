@@ -1,5 +1,7 @@
 package com.thinkingtop.kaas.etl.result;
 
+import java.util.HashMap;
+import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Map;
 
@@ -16,18 +18,20 @@ public class Result{
 
 	private static final Logger logger = LoggerFactory.getLogger(ValidateXML.class.getName());
 	
-	public void getResult() {
+	public Map<String,LinkedHashSet<String>> getResult() {
 		ValidateXML v = new ValidateXML();
 		//validate the xml with xsd first...
 		if(!v.validate()) {
-			return;
+			return null;
 		}
 		ApplicationContext ac = new ClassPathXmlApplicationContext("applicationContext.xml");
 		EtlService etlService = (EtlService) ac.getBean("etlService");
-		getItemsList(etlService);
+		return getItemsList(etlService);
+		
 	}
 	
-	public List<String> getItemsList(EtlService etlService) {
+	public Map<String,LinkedHashSet<String>> getItemsList(EtlService etlService) {
+		Map<String,LinkedHashSet<String>> resultMap = new HashMap<String, LinkedHashSet<String>>();
 		EtlInfoReader reader = EtlInfoReader.getInstance();
 		Map<String, String> map = (Map<String, String>)reader.getMappings();
 		logger.info("{}",map);
@@ -51,7 +55,9 @@ public class Result{
 			//transformerService.getOrderListByFieldName(name)
 			for(int i=0;i<list.size();i++) {
 				logger.info("order_"+list.get(i)+"'s goods list::");
-				logger.info(" {} ",etlService.getItemIdGroup(list.get(i), mappingTableName, itemIdName, orderIdName));
+				LinkedHashSet<String> set = etlService.getItemIdGroup(list.get(i), mappingTableName, itemIdName, orderIdName);
+				logger.info(" {} ",set);
+				resultMap.put(list.get(i), set);
 			}
 		}
 		else {
@@ -76,7 +82,9 @@ public class Result{
 				logger.info("order::"+list);
 				for(int i=0;i<list.size();i++) {
 					logger.info("order_"+list.get(i)+"'s goods list::");
-					logger.info(" {} ",etlService.getItemIdGroup(list.get(i), mappingTableName, itemListName, mappingTableId, separator));
+					LinkedHashSet<String> set = etlService.getItemIdGroup(list.get(i), mappingTableName, itemListName, mappingTableId, separator);
+					logger.info(" {} ",set);
+					resultMap.put(list.get(i), set);
 				}
 			}
 			else {
@@ -102,12 +110,14 @@ public class Result{
 				logger.info("result:::::::::::::::::::::::::");
 				for(int i=0;i<list.size();i++) {
 					logger.info("order_"+list.get(i)+"'s goods list::");
-					logger.info(" {} ",etlService.getItemIdGroup(list.get(i), mappingTableName, mappingTableId, prefix, startId, columnCount));
+					LinkedHashSet<String> set = etlService.getItemIdGroup(list.get(i), mappingTableName, mappingTableId, prefix, startId, columnCount);
+					logger.info(" {} ",set);
+					resultMap.put(list.get(i), set);
 				}
 				
 			}
 		}
-		return null;
+		return resultMap;
 	}
 	
 }

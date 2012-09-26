@@ -34,13 +34,9 @@ public class BeforeTest {
             st.execute("runscript from '" + new File(new DefaultResourceLoader().getResource("schema.sql").getURL().toURI()).getPath() + "'");
             st.close();
             conn.close();
-        } catch (SQLException e) {
+        } catch (Exception e) {
             e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-        } catch (URISyntaxException e) {
-			e.printStackTrace();
-		}
+        } 
 	}
 
 }
