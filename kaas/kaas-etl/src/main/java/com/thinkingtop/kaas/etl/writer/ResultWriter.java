@@ -97,7 +97,7 @@ public class ResultWriter {
 		xmlOutput.setFormat(Format.getPrettyFormat());
 
 		try {
-			FileWriter fr = new FileWriter("src/main/resources/result.xml");
+			FileWriter fr = new FileWriter("../dist/result.xml");
 			xmlOutput.output(des, fr);
 			fr.close();
 			des = null;
