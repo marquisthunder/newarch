@@ -9,8 +9,8 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.stereotype.Component;
 
-import com.thinkingtop.kaas.services.dao.WebsiteDAO;
-import com.thinkingtop.kaas.services.model.Website;
+import com.thinkingtop.kaas.services.dao.ECommerceDAO;
+import com.thinkingtop.kaas.services.model.ECommerce;
 
 
 /**
@@ -18,8 +18,8 @@ import com.thinkingtop.kaas.services.model.Website;
  * @author roadahead
  *
  */
-@Component("websiteDAOImpl")
-public class WebsiteDAOImpl implements WebsiteDAO {
+@Component("ecommerceDAOImpl")
+public class ECommerceDAOImpl implements ECommerceDAO {
 	
 	private SessionFactory sessionFactory;
 	public SessionFactory getSessionFactory() {
@@ -36,38 +36,38 @@ public class WebsiteDAOImpl implements WebsiteDAO {
 	 * @param id:The user ID
 	 * @return
 	 */
-	public Website getWebsite(Long id) {
-		Website website = null;
+	public ECommerce getECommerce(Long id) {
+		ECommerce ecommerce = null;
 		Session session = sessionFactory.getCurrentSession();
-		website = (Website)session.get(Website.class,id);
-		return website;
+		ecommerce = (ECommerce)session.get(ECommerce.class,id);
+		return ecommerce;
 	}
 	
 	/**
 	 * To the database stored in a user information recording
-	 * @param website:The stored user information
+	 * @param ecommerce:The stored user information
 	 * @return
 	 */
-	public boolean save(Website website) {
+	public boolean save(ECommerce ecommerce) {
 		Session session = sessionFactory.getCurrentSession();
-		session.save(website);
+		session.save(ecommerce);
 		return true;
 	}
 	
 	/**
 	 * Return a user information recording
-	 * @param websiteName:The user name
+	 * @param ecommerceName:The user name
 	 * @return
 	 */
-	public Website getWebsite(String websiteName) {
-		Website website = null;
+	public ECommerce getECommerce(String ecommerceName) {
+		ECommerce ecommerce = null;
 		Session session = sessionFactory.getCurrentSession();
-		SQLQuery q = session.createSQLQuery("select * from Website website " + " where website.websiteName = '"+websiteName+"'").addEntity(Website.class);
-		List<Website> websites = (List<Website>)q.list();
-		if(!websites.isEmpty()){
-			website = websites.get(0);
+		SQLQuery q = session.createSQLQuery("select * from ECommerce ecommerce " + " where ecommerce.ecommerceName = '"+ecommerceName+"'").addEntity(ECommerce.class);
+		List<ECommerce> ecommerces = (List<ECommerce>)q.list();
+		if(!ecommerces.isEmpty()){
+			ecommerce = ecommerces.get(0);
 		}
-		return website;
+		return ecommerce;
 	}
 
 }

@@ -1,31 +1,31 @@
 package com.thinkingtop.kaas.services.dao;
 
-import com.thinkingtop.kaas.services.model.Website;
+import com.thinkingtop.kaas.services.model.ECommerce;
 
 /**
  * The user information database access abstract class
  * @author roadahead
  *
  */
-public interface WebsiteDAO {
+public interface ECommerceDAO {
 	/**
 	 * Return a user information recording
 	 * @param id:The user ID
 	 * @return
 	 */
-	public Website getWebsite(Long id);
+	public ECommerce getECommerce(Long id);
 	
 	/**
 	 * Return a user information recording
-	 * @param websiteName:The user name
+	 * @param ecommerceName:The user name
 	 * @return
 	 */
-	public Website getWebsite(String websiteName);
+	public ECommerce getECommerce(String ecommerceName);
 	
 	/**
 	 * To the database stored in a user information recording
-	 * @param website:The stored user information
+	 * @param ecommerce:The stored user information
 	 * @return
 	 */
-	public boolean save(Website website);
+	public boolean save(ECommerce ecommerce);
 }

@@ -15,9 +15,9 @@ import org.springframework.stereotype.Component;
 import com.thinkingtop.kaas.services.dao.ExclusiveKeyDAO;
 import com.thinkingtop.kaas.services.manage.AlgorithmManage;
 import com.thinkingtop.kaas.services.manage.ExclusiveKeyManage;
-import com.thinkingtop.kaas.services.manage.WebsiteManage;
+import com.thinkingtop.kaas.services.manage.ECommerceManage;
 import com.thinkingtop.kaas.services.model.ExclusiveKey;
-import com.thinkingtop.kaas.services.model.Website;
+import com.thinkingtop.kaas.services.model.ECommerce;
 import com.thinkingtop.kaas.services.util.APIKey;
 
 /**
@@ -30,25 +30,25 @@ import com.thinkingtop.kaas.services.util.APIKey;
 public class ExclusiveKeyServiceImpl implements ExclusiveKeyService{
     static Logger logger=Logger.getLogger(ExclusiveKeyServiceImpl.class);
 	private ExclusiveKeyManage exclusiveKeyManage;
-	private WebsiteManage websiteManage;
+	private ECommerceManage ecommerceManage;
 	private AlgorithmManage algorithmManage;
 	private APIKey apiKey;
 
 	/**
 	 * External exposure method, user request recommendation
-	 * @param websiteName:The requesting user name
+	 * @param ecommerceName:The requesting user name
 	 * @param apiKey:The requesting APIKey
 	 * @param inputItems:User input commodity
 	 * @param outputItemsNum:Recommended Items number
 	 * @param outputQuantitye:Recommended Items Quantitye
-	 * @return If websiteName or apiKey or inputItems is empty,or apiKey without permission, return null
+	 * @return If ecommerceName or apiKey or inputItems is empty,or apiKey without permission, return null
 	 */
-	public String[] getRecommends(String websiteName,String apiKey,String algorithm,String inputItems,int outputItemsNum,int outputQuantitye) {
-		if(!websiteManage.isHold(websiteName)){
+	public String[] getRecommends(String ecommerceName,String apiKey,String algorithm,String inputItems,int outputItemsNum,int outputQuantitye) {
+		if(!ecommerceManage.isHold(ecommerceName)){
 			logger.info("The user does not exist");
 			return null;
 		}
-		if(!exclusiveKeyManage.isHold(websiteName,apiKey)){
+		if(!exclusiveKeyManage.isHold(ecommerceName,apiKey)){
 			logger.info("The user does not have the APIKey");
 			return null;
 		}
@@ -67,11 +67,11 @@ public class ExclusiveKeyServiceImpl implements ExclusiveKeyService{
 	/**
 	 * External exposure method, the user request and returns a APIKey,
 	 * and put it into the database
-	 * @param websiteName: User address or username
+	 * @param websecommerce: User address or username
 	 */
-	public String getAPIKey(String websiteName) {
-		Website website =websiteManage.getWebsite(websiteName);
-		if(website==null){
+	public String getAPIKey(String ecommerceName) {
+		ECommerce ecommerce =ecommerceManage.getECommerce(ecommerceName);
+		if(ecommerce==null){
 			return "User does not exist!";
 		}
 		StringBuffer keyString = apiKey.getAPIKey();
@@ -80,21 +80,21 @@ public class ExclusiveKeyServiceImpl implements ExclusiveKeyService{
 		while(exclusiveKeyManage.isHold(keyString)){
 			keyString = apiKey.getAPIKey();
 		}
-		exclusiveKeyManage.add(website,keyString);
+		exclusiveKeyManage.add(ecommerce,keyString);
 		return keyString.toString();
 	}
 	
 	/**
 	 * External exposure method,the return of the user's APIKey state
-	 * @param websiteName:The requesting user name
+	 * @param ecommerceName:The requesting user name
 	 * @param apiKey:The requesting APIKey
 	 * @return If the user does not exist then return to -1,if the user does not have the APIKey returns -2,
 	 * 		If APIKey does not activate the return 1,If the APIKey is activated and can use return 2,
 	 * 		If the APIKey is out of date return 3,If APIKey are forbidden to use return 4
 	 */
-	public int getAPIKeyState(String websiteName, String keyString) {
-		Website website =websiteManage.getWebsite(websiteName);
-		if(website==null){
+	public int getAPIKeyState(String ecommerceName, String keyString) {
+		ECommerce ecommerce =ecommerceManage.getECommerce(ecommerceName);
+		if(ecommerce==null){
 			logger.info("The user does not exist");
 			return -1;
 		}
@@ -113,12 +113,12 @@ public class ExclusiveKeyServiceImpl implements ExclusiveKeyService{
 		this.exclusiveKeyManage = exclusiveKeyManage;
 	}
 
-	public WebsiteManage getWebsiteManage() {
-		return websiteManage;
+	public ECommerceManage getECommerceManage() {
+		return ecommerceManage;
 	}
-	@Resource(name="websiteManage")
-	public void setWebsiteManage(WebsiteManage websiteManage) {
-		this.websiteManage = websiteManage;
+	@Resource(name="ecommerceManage")
+	public void setECommerceManage(ECommerceManage ecommerceManage) {
+		this.ecommerceManage = ecommerceManage;
 	}
 
 

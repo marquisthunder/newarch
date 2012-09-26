@@ -17,7 +17,7 @@ import javax.persistence.ManyToOne;
 public class ExclusiveKey {
 	private Long id;
 	private String keyString;
-	private Website website;
+	private ECommerce ecommerce;
 	private Date createData = new Date();
 	private int state = 1;
 	
@@ -36,11 +36,6 @@ public class ExclusiveKey {
 	public void setKeyString(String keyString) {
 		this.keyString = keyString;
 	}
-	@ManyToOne()
-	@JoinColumn(name="websiteid",nullable=false)
-	public Website getWebsite() {
-		return website;
-	}
 	@Column(nullable=false,columnDefinition="int(2) default 1")
 	public int getState() {
 		return state;
@@ -48,17 +43,20 @@ public class ExclusiveKey {
 	public void setState(int state) {
 		this.state = state;
 	}
-	
-	
-	public void setWebsite(Website website) {
-		this.website = website;
-	}
 	@Column(nullable=false)
 	public Date getCreateData() {
 		return createData;
 	}
 	public void setCreateData(Date createData) {
 		this.createData = createData;
+	}
+	@ManyToOne()
+	@JoinColumn(name="ecommerceid",nullable=false)
+	public ECommerce getEcommerce() {
+		return ecommerce;
+	}
+	public void setEcommerce(ECommerce ecommerce) {
+		this.ecommerce = ecommerce;
 	}
 	
 }

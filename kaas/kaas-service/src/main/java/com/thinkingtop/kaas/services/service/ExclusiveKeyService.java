@@ -16,24 +16,24 @@ import com.thinkingtop.kaas.services.model.ExclusiveKey;
 public interface ExclusiveKeyService {
 	/**
 	 * External exposure method, creates and returns a APIKey, and put it into the database
-	 * @param websiteName:Request APIKey username
+	 * @param ecommerceName:Request APIKey username
 	 */
 	@WebMethod(operationName="GetAPIKey")
 	@WebResult(name = "result")
-	public String getAPIKey(@WebParam(name = "websiteName")String websiteName);
+	public String getAPIKey(@WebParam(name = "ecommerceName")String ecommerceName);
 	
 	/**
 	 * External exposure method, user request recommendation
-	 * @param websiteName:The requesting user name
+	 * @param ecommerceName:The requesting user name
 	 * @param keyString:The requesting APIKey
 	 * @param inputItems:User input commodity
 	 * @param outputItemsNum:Recommended Items number
 	 * @param outputQuantitye:Recommended Items Quantitye
-	 * @return If websiteName or apiKey or inputItems is empty,or apiKey without permission, return null
+	 * @return If ecommerceName or apiKey or inputItems is empty,or apiKey without permission, return null
 	 */
 	@WebMethod(operationName="GetRecommends")
 	@WebResult(name = "result")
-	public String[] getRecommends(@WebParam(name = "websiteName")String websiteName,
+	public String[] getRecommends(@WebParam(name = "ecommerceName")String ecommerceName,
 			@WebParam(name = "KeyString")String keyString,
 			@WebParam(name = "algorithm")String algorithm,
 			@WebParam(name = "inputItems")String inputItems,
@@ -42,7 +42,7 @@ public interface ExclusiveKeyService {
 	
 	/**
 	 * External exposure method,the return of the user's APIKey state
-	 * @param websiteName:The requesting user name
+	 * @param ecommerceName:The requesting user name
 	 * @param keyString:The requesting APIKey
 	 * @return If the user does not exist then return to -1,if the user does not have the APIKey returns -2,
 	 * 		If APIKey does not activate the return 1,If the APIKey is activated and can use return 2,
@@ -50,6 +50,6 @@ public interface ExclusiveKeyService {
 	 */
 	@WebMethod(operationName="GetAPIKeyState")
 	@WebResult(name = "result")
-	public int getAPIKeyState(@WebParam(name = "websiteName")String websiteName,
+	public int getAPIKeyState(@WebParam(name = "ecommerceName")String ecommerceName,
 			@WebParam(name = "KeyString")String keyString);
 }

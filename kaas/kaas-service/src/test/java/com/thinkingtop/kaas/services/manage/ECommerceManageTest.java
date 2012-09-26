@@ -19,16 +19,16 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import com.jolbox.bonecp.BoneCPDataSource;
 import com.thinkingtop.kaas.service.util.BeforeTest;
-import com.thinkingtop.kaas.services.manage.WebsiteManage;
+import com.thinkingtop.kaas.services.manage.ECommerceManage;
 import com.thinkingtop.kaas.services.model.ExclusiveKey;
-import com.thinkingtop.kaas.services.model.Website;
+import com.thinkingtop.kaas.services.model.ECommerce;
 import com.thinkingtop.kaas.services.service.ExclusiveKeyServiceImpl;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = "classpath:beans.xml")
-public class WebsiteManageTest {
+public class ECommerceManageTest {
 	@Autowired
-	private WebsiteManage websiteManage;
+	private ECommerceManage ecommerceManage;
 	
     @Before
     public void init() {
@@ -37,21 +37,21 @@ public class WebsiteManageTest {
 	
 	@Test
 	public void testAdd() {
-		Website website = new Website();
-		website.setWebsiteName("taobao");
-		websiteManage.add(website);
+		ECommerce ecommerce = new ECommerce();
+		ecommerce.setEcommerceName("taobao");
+		ecommerceManage.add(ecommerce);
 		
-		Website website2 = websiteManage.getWebsite(2);
-		Assert.assertEquals("taobao", website2.getWebsiteName());
+		ECommerce ecommerce2 = ecommerceManage.getECommerce(2);
+		Assert.assertEquals("taobao", ecommerce2.getEcommerceName());
 	}
 	
 	@Test
 	public void testAdd2() {
 		boolean isThrough = false;
 		try{
-			Website website = new Website();
-			website.setWebsiteName("jingdong");
-			websiteManage.add(website);
+			ECommerce ecommerce = new ECommerce();
+			ecommerce.setEcommerceName("jingdong");
+			ecommerceManage.add(ecommerce);
 		}catch(Exception e){
 			isThrough = true;
 		}
@@ -59,13 +59,13 @@ public class WebsiteManageTest {
 	}
 	
 	@Test
-	public void testGetWebsite() {
-		Website website = websiteManage.getWebsite(1);
-		Assert.assertEquals("jingdong", website.getWebsiteName());
+	public void testGetECommerce() {
+		ECommerce ecommerce = ecommerceManage.getECommerce(1);
+		Assert.assertEquals("jingdong", ecommerce.getEcommerceName());
 		
-		website = websiteManage.getWebsite("jingdong");
-		long websiteId = website.getId();
-		Assert.assertEquals(1, websiteId);
+		ecommerce = ecommerceManage.getECommerce("jingdong");
+		long ecommerceId = ecommerce.getId();
+		Assert.assertEquals(1, ecommerceId);
 	}
 
 }

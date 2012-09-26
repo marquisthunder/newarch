@@ -10,7 +10,7 @@ import org.springframework.stereotype.Component;
 
 import com.thinkingtop.kaas.services.dao.ExclusiveKeyDAO;
 import com.thinkingtop.kaas.services.model.ExclusiveKey;
-import com.thinkingtop.kaas.services.model.Website;
+import com.thinkingtop.kaas.services.model.ECommerce;
 
 /**
  * This is the APIKey management class
@@ -33,12 +33,12 @@ public class ExclusiveKeyManage{
 	
 	/**
 	 * A data storage
-	 * @param website:user name
+	 * @param ecommerce:user name
 	 * @param keyString:user APIKey
 	 */
-	public void add(Website website, StringBuffer keyString) {
+	public void add(ECommerce ecommerce, StringBuffer keyString) {
 		ExclusiveKey ek = new ExclusiveKey();
-		ek.setWebsite(website);
+		ek.setEcommerce(ecommerce);
 		ek.setKeyString(keyString.toString());
 		exclusiveKeyDAO.save(ek);
 	}
@@ -75,13 +75,13 @@ public class ExclusiveKeyManage{
 
 	/**
 	 * Judge whether they exist in the database so that a data
-	 * @param websiteName:user name
+	 * @param ecommerceName:user name
 	 * @param APIKey:user APIKey
 	 * @return
 	 */
-	public boolean isHold(String websiteName, String APIKey) {
+	public boolean isHold(String ecommerceName, String APIKey) {
 		ExclusiveKey exclusiveKey = exclusiveKeyDAO.getExclusiveKey(APIKey);
-		if(exclusiveKey!=null&&exclusiveKey.getWebsite().getWebsiteName().equals(websiteName)){
+		if(exclusiveKey!=null&&exclusiveKey.getEcommerce().getEcommerceName().equals(ecommerceName)){
 			return true;
 		}
 		return false;

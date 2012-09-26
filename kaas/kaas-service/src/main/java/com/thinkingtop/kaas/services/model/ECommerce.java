@@ -19,10 +19,10 @@ import org.springframework.core.annotation.Order;
  * @author roadahead
  */
 @Entity
-public class Website {
+public class ECommerce {
 	private Long id;
 	private Date createData = new Date();
-	private String websiteName;
+	private String ecommerceName;
 	private Set<ExclusiveKey> exclusiveKey = new HashSet<ExclusiveKey>();
 	@Id
 	@GeneratedValue
@@ -32,14 +32,8 @@ public class Website {
 	public void setId(Long id) {
 		this.id = id;
 	}
-	@Column(nullable=false,unique=true)
-	public String getWebsiteName() {
-		return websiteName;
-	}
-	public void setWebsiteName(String websiteName) {
-		this.websiteName = websiteName;
-	}
-	@OneToMany(mappedBy="website",
+
+	@OneToMany(mappedBy="ecommerce",
 			cascade={CascadeType.ALL}
 	)
 	public Set<ExclusiveKey> getExclusiveKey() {
@@ -54,5 +48,13 @@ public class Website {
 	}
 	public void setCreateData(Date createData) {
 		this.createData = createData;
+	}
+	
+	@Column(nullable=false,unique=true)
+	public String getEcommerceName() {
+		return ecommerceName;
+	}
+	public void setEcommerceName(String ecommerceName) {
+		this.ecommerceName = ecommerceName;
 	}
 }
