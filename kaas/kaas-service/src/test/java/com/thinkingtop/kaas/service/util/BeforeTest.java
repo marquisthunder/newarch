@@ -16,6 +16,8 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.core.io.DefaultResourceLoader;
 
 import com.jolbox.bonecp.BoneCPDataSource;
+import com.thinkingtop.kaas.services.algorithm.Algorithm;
+import com.thinkingtop.kaas.services.algorithm.AlgorithmDefault;
 
 public class BeforeTest {
     static Logger logger=Logger.getLogger(BeforeTest.class);
@@ -34,9 +36,34 @@ public class BeforeTest {
             st.execute("runscript from '" + new File(new DefaultResourceLoader().getResource("schema.sql").getURL().toURI()).getPath() + "'");
             st.close();
             conn.close();
-        } catch (Exception e) {
+        } catch (SQLException e) {
             e.printStackTrace();
-        } 
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (URISyntaxException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	@Test
+	public void iiii(){
+		try {
+			Class<?> a = Class.forName("com.thinkingtop.kaas.services.algorithm.AlgorithmDefault");
+			Algorithm aa;
+			try {
+				aa = (Algorithm)a.newInstance();
+				logger.info("Algorithm.class.getClassLoader():--   "+Thread.currentThread().getContextClassLoader().getResource(""));
+				logger.info("class.forname:--   "+aa.getRecommend(null, 0, 0)[0]);
+			} catch (InstantiationException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (IllegalAccessException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+		}
 	}
 
 }

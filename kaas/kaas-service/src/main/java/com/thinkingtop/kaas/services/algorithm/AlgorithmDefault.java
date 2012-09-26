@@ -58,6 +58,7 @@ public class AlgorithmDefault extends AlgorithmGeneral implements Algorithm{
 	public String[] getRecommend(String inputItems, int outputItemsNum,
 			int outputQuantitye) {
 		// TODO Auto-generated method stub
-		return null;
+		String[] a = {"test"};
+		return a;
 	}
 }

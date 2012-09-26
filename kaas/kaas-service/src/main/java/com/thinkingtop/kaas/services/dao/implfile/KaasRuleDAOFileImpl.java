@@ -49,6 +49,7 @@ public class KaasRuleDAOFileImpl implements KaasRuleDAO {
 		try {
             fo = new FileOutputStream(kaasDataPath.getRDataPath(),false);
             logger.info("kaasDataOutPath:-"+ kaasDataPath.getRDataPath());
+            logger.info("marsRuleAll.size:" + marsRuleAll.size());
             boolean one =true;
             for(Entry<String, KaasRule> me: marsRuleAll.entrySet()){
             	KaasRule o = me.getValue();
