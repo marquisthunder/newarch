@@ -14,6 +14,7 @@ import java.util.Map.Entry;
 
 import javax.annotation.Resource;
 
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
@@ -24,6 +25,7 @@ import com.thinkingtop.kaas.services.util.OfConcurrentHashMap;
 
 @Component("kaasOrderFrequentDAOFileImpl")
 public class KaasOrderFrequentDAOFileImpl implements KaasOrderFrequentDAO {
+    static Logger logger=Logger.getLogger(KaasOrderFrequentDAOFileImpl.class);
     private KaasDataPath kaasDataPath;
 	private OfConcurrentHashMap<String,KaasOrderFrequent> fileAll;
 	private String[] keys;
@@ -46,6 +48,7 @@ public class KaasOrderFrequentDAOFileImpl implements KaasOrderFrequentDAO {
 	
 	public int submit(){
 		FileOutputStream fo = null;
+		logger.info("fileAll.size : "+fileAll.size());
 		try {
             fo = new FileOutputStream(kaasDataPath.getofDataPath(),false);
             boolean one =true;

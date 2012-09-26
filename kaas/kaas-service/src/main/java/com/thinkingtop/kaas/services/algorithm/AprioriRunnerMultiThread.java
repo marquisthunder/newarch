@@ -445,9 +445,10 @@ public class AprioriRunnerMultiThread  extends AlgorithmGeneral implements Algor
 					}
 					List<KaasRule> subRlist = genRulesByLine(of.getCombination(),of.getFrequent());
 					rlist.addAll(subRlist);
-		//logger.info("println Combination:"+of.getCombination()+"-Frequent:"+of.getFrequent());
-		//logger.info("frequencyLowerLimit:"+frequencyLowerLimit);
+		logger.info("println Combination:"+of.getCombination()+"-Frequent:"+of.getFrequent());
+		logger.info("frequencyLowerLimit:"+frequencyLowerLimit);
 				}
+				logger.info("submitLoopCur : "+submitLoopCur+" : "+i);
 				submitLoopCur++;
 				if(submitLoopCur == submitLoopMax){
 					genRulesFromMemory(rlist);
