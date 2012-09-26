@@ -8,7 +8,7 @@
 <h1>desplay all the jar packages in the directory "dist"</h1>
 
 <%
-String webapp = request.getServletContext().getRealPath("/d");
+String webapp = request.getRealPath("/d");
 File[] fs;
 
 fs = new File(webapp).getParentFile().listFiles();
