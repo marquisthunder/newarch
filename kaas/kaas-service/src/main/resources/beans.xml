@@ -86,13 +86,10 @@
 		<property name="maxPoolSize" value="15" />
 		<property name="queueCapacity" value="1000" />
 	</bean>
-	<bean id="algorithmManage" class="com.thinkingtop.kaas.services.manage.AlgorithmManage">
+	<!-- <bean id="algorithmManage" class="com.thinkingtop.kaas.services.manage.AlgorithmManage">
 		<property name="myAlgorithm" ref="algorithmDefault" />
 		<property name="algorithms">
-			<map>
-				<entry key="default" value-ref="algorithmDefault" />
-				<entry key="apriori" value-ref="aprioriRunner" />
-			</map>
+			<map/>
 		</property>
-	</bean>
+	</bean> -->
 </beans>
