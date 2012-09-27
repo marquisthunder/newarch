@@ -18,7 +18,7 @@ public class ExclusiveKey {
 	private Long id;
 	private String keyString;
 	private ECommerce ecommerce;
-	private Date createData = new Date();
+	private Date createDate = new Date();
 	private int state = 1;
 	
 	@Id
@@ -44,11 +44,11 @@ public class ExclusiveKey {
 		this.state = state;
 	}
 	@Column(nullable=false)
-	public Date getCreateData() {
-		return createData;
+	public Date getCreateDate() {
+		return createDate;
 	}
-	public void setCreateData(Date createData) {
-		this.createData = createData;
+	public void setCreateDate(Date createDate) {
+		this.createDate = createDate;
 	}
 	@ManyToOne()
 	@JoinColumn(name="ecommerceid",nullable=false)

@@ -21,7 +21,7 @@ import org.springframework.core.annotation.Order;
 @Entity
 public class ECommerce {
 	private Long id;
-	private Date createData = new Date();
+	private Date createDate = new Date();
 	private String ecommerceName;
 	private Set<ExclusiveKey> exclusiveKey = new HashSet<ExclusiveKey>();
 	@Id
@@ -43,11 +43,11 @@ public class ECommerce {
 		this.exclusiveKey = exclusiveKey;
 	}
 	@Column(nullable=false)
-	public Date getCreateData() {
-		return createData;
+	public Date getCreateDate() {
+		return createDate;
 	}
-	public void setCreateData(Date createData) {
-		this.createData = createData;
+	public void setCreateDate(Date createDate) {
+		this.createDate = createDate;
 	}
 	
 	@Column(nullable=false,unique=true)
