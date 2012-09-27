@@ -17,7 +17,7 @@ import org.springframework.core.io.DefaultResourceLoader;
 
 import com.jolbox.bonecp.BoneCPDataSource;
 import com.thinkingtop.kaas.services.algorithm.Algorithm;
-import com.thinkingtop.kaas.services.algorithm.AlgorithmDefault;
+import com.thinkingtop.kaas.services.algorithm.impl.AlgorithmDefault;
 
 public class BeforeTest {
     static Logger logger=Logger.getLogger(BeforeTest.class);

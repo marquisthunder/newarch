@@ -20,9 +20,8 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-import com.thinkingtop.kaas.service.util.BeforeTest;
-import com.thinkingtop.kaas.services.algorithm.AlgorithmDefault;
-import com.thinkingtop.kaas.services.algorithm.AprioriRunner;
+import com.thinkingtop.kaas.services.algorithm.impl.AlgorithmDefault;
+import com.thinkingtop.kaas.services.algorithm.impl.AprioriRunner;
 import com.thinkingtop.kaas.services.util.KaasDataPath;
 
 @RunWith(SpringJUnit4ClassRunner.class)

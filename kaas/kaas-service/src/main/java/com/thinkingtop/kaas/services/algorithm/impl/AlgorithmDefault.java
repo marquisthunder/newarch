@@ -1,8 +1,11 @@
-package com.thinkingtop.kaas.services.algorithm;
+package com.thinkingtop.kaas.services.algorithm.impl;
 
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
+
+import com.thinkingtop.kaas.services.algorithm.Algorithm;
+import com.thinkingtop.kaas.services.algorithm.AlgorithmGeneral;
 
 @Component("algorithmDefault")
 public class AlgorithmDefault extends AlgorithmGeneral implements Algorithm{

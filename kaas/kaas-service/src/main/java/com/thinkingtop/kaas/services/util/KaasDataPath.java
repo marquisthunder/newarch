@@ -45,4 +45,20 @@ public class KaasDataPath {
 	public void setrPath(String rPath) {
 		this.rPath = rPath;
 	}
+	
+	public static void getClassName(){
+		KaasDataPath kdp = new KaasDataPath();
+		String classLocation = kdp.getKassDataPath();
+		System.out.println(classLocation);
+		String packageName = "com.thinkingtop.kaas.services.algorithm";
+		String[] classst = ClassUtil.getPackageAllClassName(classLocation, packageName);
+		for(String s : classst){
+			System.out.println(s);
+		}
+	}
+	
+	public static void main(String[] args) {
+		KaasDataPath kdp = new KaasDataPath();
+		kdp.getClassName();
+	}
 }

@@ -1,4 +1,4 @@
-package com.thinkingtop.kaas.services.algorithm;
+package com.thinkingtop.kaas.services.algorithm.impl;
 
 import java.io.BufferedInputStream;
 import java.io.DataInputStream;
@@ -14,7 +14,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import java.util.TreeSet;
-import java.util.concurrent.ConcurrentHashMap;
 
 import javax.annotation.Resource;
 
@@ -23,6 +22,8 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
 import org.springframework.stereotype.Component;
 
+import com.thinkingtop.kaas.services.algorithm.Algorithm;
+import com.thinkingtop.kaas.services.algorithm.AlgorithmGeneral;
 import com.thinkingtop.kaas.services.combinationutil.CombinationModel;
 import com.thinkingtop.kaas.services.dao.FileHistoryDAO;
 import com.thinkingtop.kaas.services.dao.KaasOrderFrequentDAO;
@@ -37,16 +38,20 @@ import com.thinkingtop.kaas.services.util.OfConcurrentHashMap;
  * @author roadahead
  *
  */
-@Component("aprioriRunner")
-public class AprioriRunner extends AlgorithmGeneral implements Algorithm{
-    static Logger logger=Logger.getLogger(AprioriRunner.class);
+@Component("aprioriRunnerMultiThread")
+public class AprioriRunnerMultiThread  extends AlgorithmGeneral implements Algorithm{
+
+	static Logger logger=Logger.getLogger(AprioriRunnerMultiThread.class);
     private String submitLoopMaxStr;
     private String combinationMaxSizeStr;
     private String frequencyLowerLimitStr;
-    private int actualThreadNum;
-    private int threadEndNum;
+    private int ofThreadNum;
+    private int ofThreadEndNum;
+    private int rThreadNum;
+    private int rThreadEndNum;
     private long runAllTime;
     private long runTimeRecord0;
+    
     public String getFolder() {
         return super.getFolder();
     }
@@ -71,12 +76,16 @@ public class AprioriRunner extends AlgorithmGeneral implements Algorithm{
         return super.getRdao();
     }
     
-    private synchronized void oneThreadEnd(){
-    	threadEndNum++;
+    private synchronized void oneOfThreadEnd(){
+    	ofThreadEndNum++;
+    }
+    
+    private synchronized void oneRThreadEnd(){
+    	rThreadEndNum++;
     }
     
     public String[] getRecommend(String inputItems, int outputItemsNum,int outputQuantitye){
-    		return getRdao().getRuleMap(inputItems,outputItemsNum,outputQuantitye);
+    	return getRdao().getRuleMap(inputItems,outputItemsNum,outputQuantitye);
     }
 
     public void println(){
@@ -96,26 +105,26 @@ public class AprioriRunner extends AlgorithmGeneral implements Algorithm{
     
     public void runIt(){
     //println();
-        runTimeRecord0 = System.nanoTime();
-        logger.info("of start time :"+runTimeRecord0);
-    	getOfdao().setFileAll(new OfConcurrentHashMap<String, KaasOrderFrequent>());
-    	getRdao().setMarsRuleAll(new ConcurrentHashMap<String, KaasRule>());
-    	threadEndNum=0;
+    runTimeRecord0 = System.nanoTime();
+    logger.info("of start time :"+runTimeRecord0);
+    getOfdao().setFileAll(new OfConcurrentHashMap<String, KaasOrderFrequent>());
+    getRdao().setMarsRuleAll(new HashMap<String, KaasRule>());
+    	ofThreadEndNum=0;
         List<String> filelist=super.getFileHistoryDAO().getFileList();
         if(filelist == null || filelist.size() == 0){
             logger.info("No orders are needed to do offline training!");
             return;
         }
-        actualThreadNum=Integer.parseInt(super.getThreadNum());
+        ofThreadNum=Integer.parseInt(super.getThreadNum());
         int loop;
         int Remainder;
-        if(actualThreadNum<filelist.size()){
-            loop=filelist.size()/actualThreadNum;
-            Remainder=filelist.size()%actualThreadNum;
+        if(ofThreadNum<filelist.size()){
+            loop=filelist.size()/ofThreadNum;
+            Remainder=filelist.size()%ofThreadNum;
         }else{
             loop=1;
             Remainder=0;
-            actualThreadNum = filelist.size();
+            ofThreadNum = filelist.size();
         }
         logger.info("Do offline training With "+Remainder+" Threads!");
         if(super.getTaskExecutor().getThreadPoolExecutor().isShutdown()){
@@ -125,7 +134,7 @@ public class AprioriRunner extends AlgorithmGeneral implements Algorithm{
         int submitLoopMax=Integer.parseInt(submitLoopMaxStr);
         int combinationMaxSize=Integer.parseInt(combinationMaxSizeStr);
         int  frequencyLowerLimit=Integer.parseInt(frequencyLowerLimitStr);
-        for(int i=0;i<actualThreadNum;i++){
+        for(int i=0;i<ofThreadNum;i++){
             List<String> partOfFiles=new ArrayList<String>();
             int start=0;
             int end=0;
@@ -148,19 +157,71 @@ public class AprioriRunner extends AlgorithmGeneral implements Algorithm{
         }
         int time=Integer.parseInt(super.getWaitTime());
         try{
-        	while(threadEndNum!=actualThreadNum){
+        	while(ofThreadEndNum!=ofThreadNum){
         		Thread.sleep(time);
         	}
+        	if(ofThreadEndNum==ofThreadNum){
+        logger.info("run in R");
+        		runR();
+        	}
+        logger.info("run all need time: "+runAllTime);
         }catch(Exception e){
             ;
         }
-        
-        logger.info("run all need time: "+runAllTime);
         logger.info("Offline Training Task Finished Once!");
 
         return;
 
     }
+    
+    private void runR() {
+    	runTimeRecord0 = System.nanoTime();
+        logger.info("R start time :"+runTimeRecord0);
+    	int ofsize = getOfdao().size();
+    	if(ofsize<=0){
+    		return;
+    	}
+    	rThreadNum = Integer.parseInt(super.getThreadNum());
+        int loop;
+        int Remainder;
+        if(rThreadNum<ofsize){
+            loop = ofsize/rThreadNum;
+            Remainder = ofsize%rThreadNum;
+        }else{
+            loop = 1;
+            Remainder = 0;
+            rThreadNum = ofsize;
+        }
+        
+        int submitLoopMax=Integer.parseInt(submitLoopMaxStr);
+        int  frequencyLowerLimit=Integer.parseInt(frequencyLowerLimitStr);
+        for(int i=0;i<rThreadNum;i++){
+            int start;
+            int end;
+            if(Remainder>i){
+	            start = i*(loop+1);
+	            end = (i+1)*(loop+1);
+	            end = end < ofsize ? end : ofsize;
+            }else{
+            	start = Remainder*(loop+1)+(i-Remainder)*loop;
+            	end = Remainder*(loop+1)+(i-Remainder+1)*loop;
+            	end = end<ofsize?end:ofsize;
+            }
+        logger.info("run in R "+start+"~"+end);
+            KaasAprioriTask marsAprioriTask = new KaasAprioriTask(start,end,submitLoopMax,frequencyLowerLimit);
+            super.getTaskExecutor().execute(marsAprioriTask);
+        }
+        int time=Integer.parseInt(super.getWaitTime());
+        try{
+        	while(rThreadEndNum!=rThreadNum){
+        		Thread.sleep(time);
+        	}
+        }catch(Exception e){
+            ;
+        }
+        logger.info("Offline Training Task Finished Once!");
+//System.out.println(threadNum);
+	}
 
     private class KaasAprioriTask implements Runnable {
         private List<String> filelist;
@@ -171,6 +232,8 @@ public class AprioriRunner extends AlgorithmGeneral implements Algorithm{
         private int submitLoopMax;
         private int combinationMaxSize;
         private int frequencyLowerLimit;
+        private int start;
+        private int end;
         
         public void printlnM(){
         	logger.info(filelist.size());
@@ -191,10 +254,28 @@ public class AprioriRunner extends AlgorithmGeneral implements Algorithm{
             submitMap = new HashMap<String,Integer>();
         }
 
-        public void run() {
-//printlnM();
-            String[] basePathes = getKaasDataPath().getItemDataPath().split(";");
-         logger.info("dataPathes:"+basePathes[0]);
+        public KaasAprioriTask(int start, int end,int submitLoopMax,int frequencyLowerLimit) {
+        	this.start = start;
+        	this.end = end;
+        	submitLoopCur = 0;
+        	this.submitLoopMax = submitLoopMax;
+        	this.frequencyLowerLimit = frequencyLowerLimit;
+		}
+        
+		public void run() {
+			if(ofThreadEndNum==ofThreadNum){
+				runAndRules();
+				oneRThreadEnd();
+				if(rThreadEndNum==rThreadNum){
+					getRdao().submit();
+	            	long consumingTimeOf = System.nanoTime();
+	            	runAllTime += consumingTimeOf - runTimeRecord0;
+	            	logger.warn("generate all Rules End time:"+ consumingTimeOf +" seconds!");
+	                logger.warn("generate all Rules:"+(consumingTimeOf- runTimeRecord0)+" seconds!");
+	            }
+				return;
+			}
+			String[] basePathes = getKaasDataPath().getItemDataPath().split(";");
             String realBase = null;
             boolean smbAddr=false;
             for(String base:basePathes){
@@ -222,7 +303,7 @@ public class AprioriRunner extends AlgorithmGeneral implements Algorithm{
                 DataInputStream in = null;
                 try {
                     in = new DataInputStream(new BufferedInputStream(
-                            new FileInputStream(getKaasDataPath().getItemDataPath() + File.separator
+                            new FileInputStream(realBase + File.separator
                                     + getFolder() + File.separator + fileone)));
                 } catch (FileNotFoundException e) {
                     logger.warn("local offline file may be moved or renamed!");
@@ -242,7 +323,7 @@ public class AprioriRunner extends AlgorithmGeneral implements Algorithm{
                             logger.warn("offline training threads interrupted");
                             return;
                         }
-                //logger.info(line);
+                //logger.info(line.toString());
                         Set<String> idlist = getProductsInOrderLine(line);
                 //logger.info(idlist.toString());
                         addAIdOrder(idlist);
@@ -257,11 +338,10 @@ public class AprioriRunner extends AlgorithmGeneral implements Algorithm{
                     e.printStackTrace();
                 }
             }
-            genRulesFromMemory();
-            oneThreadEnd();
-            if(threadEndNum==actualThreadNum){
+            genCombinationFromMemory();
+            oneOfThreadEnd();
+            if(ofThreadEndNum==ofThreadNum){
             	getOfdao().submit();
-            	getRdao().submit();
             	long consumingTimeOf = System.nanoTime();
             	runAllTime += consumingTimeOf - runTimeRecord0;
             	logger.warn("generate all consuming End time:"+ consumingTimeOf +" seconds!");
@@ -269,7 +349,8 @@ public class AprioriRunner extends AlgorithmGeneral implements Algorithm{
             }
         }
         
-        private Set<String> getProductsInOrderLine(String line){
+
+		private Set<String> getProductsInOrderLine(String line){
             if(line == null || line.length()<=0){
                 return null;
             }
@@ -303,22 +384,16 @@ public class AprioriRunner extends AlgorithmGeneral implements Algorithm{
         //logger.info("submitMap:"+submitMap.size());
             submitLoopCur++;
             if(submitLoopCur == submitLoopMax){
-                genRulesFromMemory();
+            	genCombinationFromMemory();
             }
         }
 
-        public boolean genRulesFromMemory(){
+        public boolean genCombinationFromMemory(){
             List<KaasOrderFrequent> olist=new ArrayList<KaasOrderFrequent>();
             List<KaasRule> rlist=new ArrayList<KaasRule>();
 
-            long startTime1 = System.nanoTime();
             for(Map.Entry<String, Integer> me : submitMap.entrySet()){
-            	
-            	Map<String,Integer> histery = getRdao().getRuleMap(me.getKey());
-        		if(histery.size()>0){
-        			List<KaasRule> subRlist = genMapRulesByLine(histery);
-        			rlist.addAll(subRlist);
-        		}
+
         		
                 KaasOrderFrequent of = new KaasOrderFrequent();
                 of.setCombination(me.getKey());
@@ -329,18 +404,7 @@ public class AprioriRunner extends AlgorithmGeneral implements Algorithm{
             //logger.info(of.getCombination());
                 olist.add(of);
              //logger.info("olist:"+olist.size());
-                int newSup=me.getValue();
-                
-                KaasOrderFrequent tmp = getOfdao().findOneByProperty("freqSet", me.getKey());
-                if(tmp != null){
-                    newSup+=tmp.getFrequent();
-                }
-                
-                if(newSup >= frequencyLowerLimit){
-                    List<KaasRule> subRlist = genRulesByLine(me.getKey(),newSup);
-                    rlist.addAll(subRlist);
-                    continue;
-                }
+             
             }
         //logger.info(olist.size()+":"+olist.get(0).getCombination()+":"+olist.get(0).getFrequent());
 
@@ -366,31 +430,36 @@ public class AprioriRunner extends AlgorithmGeneral implements Algorithm{
                     }
                 }
             }
-            //getOfdao().submit();
-            for(KaasRule r: rlist){
-                int rval=0;
-                getRdao().submit(r);
-                if(rval !=1){
-                    //all error case
-                    if(rval == 2){
-                        //concurrent case
-                        int maxTryCountNum=Integer.valueOf(getMaxTryCount());
-                        while(rval == 2 && maxTryCountNum>0){
-                            rval=getRdao().submit(r);
-                            maxTryCountNum--;
-                        }
-                        if(rval==2){
-                            logger.warn("exceed maxTryCount of rule submit!");
-                        }
-                    }
-                }
-            }
-            //getRdao().submit();
+            //ofdao.submit();
 
             logger.info("Loop times:"+submitLoopNum++);
             return true;
         }
 
+        private void runAndRules() {
+        	List<KaasRule> rlist=new ArrayList<KaasRule>();
+        	submitLoopCur = 0;
+			for(int i=start; i<end; i++){
+				KaasOrderFrequent of = getOfdao().getKeyMarsOrderFrequent(i);
+				if(of!=null&&of.getFrequent()>=frequencyLowerLimit){
+					if(of.getCombination().matches(".?")){
+						continue;
+					}
+					List<KaasRule> subRlist = genRulesByLine(of.getCombination(),of.getFrequent());
+					rlist.addAll(subRlist);
+		logger.info("println Combination:"+of.getCombination()+"-Frequent:"+of.getFrequent());
+		logger.info("frequencyLowerLimit:"+frequencyLowerLimit);
+				}
+				logger.info("submitLoopCur : "+submitLoopCur+" : "+i);
+				submitLoopCur++;
+				if(submitLoopCur == submitLoopMax){
+					genRulesFromMemory(rlist);
+					continue;
+				}
+			}
+			genRulesFromMemory(rlist);
+		}
+        
         private List<KaasRule> genRulesByLine(String line,int baseSupport) {
 
             Map<String,Integer> rulemap = null;
@@ -400,13 +469,13 @@ public class AprioriRunner extends AlgorithmGeneral implements Algorithm{
             rulemap = cm.genRuleCombinations();
             cm = null;
             lineArr=null;
-            List<KaasRule> rlist= new ArrayList<KaasRule>();
+            List<KaasRule> rlist = new ArrayList<KaasRule>();
             if(rulemap != null){
                 for (Map.Entry<String, Integer> me: rulemap.entrySet()){
                     String[] tmp = me.getKey().split("\\|");
                     KaasOrderFrequent of = getOfdao().findOneByProperty("freqSet", tmp[0]);
-                    if(of != null || submitMap.containsKey(tmp[0])){
-                        Double downSup = (of == null?0.0:of.getFrequent())+submitMap.get(tmp[0]);
+                    if(of != null){
+                        Double downSup = of.getFrequent()*1.0;
                         Double x = (baseSupport*1.0)/downSup;
                         KaasRule r = new KaasRule();
                         r.setProducts(tmp[0]);
@@ -414,7 +483,7 @@ public class AprioriRunner extends AlgorithmGeneral implements Algorithm{
                         r.setConfidence(x);
                         r.setFlag("general");
                         ////logger.info(tmp[0]+"->"+tmp[1]+":"+x.toString());
-                        //getRdao().submit(r);
+                        //rdao.submit(r);
                         rlist.add(r);
                         tmp=null;
                         x=null;
@@ -432,39 +501,29 @@ public class AprioriRunner extends AlgorithmGeneral implements Algorithm{
             return rlist;
         }
         
-        private List<KaasRule> genMapRulesByLine(Map<String,Integer> history){
-        	List<KaasRule> rlist= new ArrayList<KaasRule>();
-        	for (Map.Entry<String, Integer> me: history.entrySet()){
-                String[] tmp = me.getKey().split("\\|");
-                if(submitMap.containsKey(tmp[0]+getItemDelimiter()+tmp[1])){
-                	continue;
+        public boolean genRulesFromMemory(List<KaasRule> rlist){
+        	for(KaasRule r: rlist){
+                int rval=0;
+                getRdao().submit(r);
+                if(rval !=1){
+                    //all error case
+                    if(rval == 2){
+                        //concurrent case
+                        int maxTryCountNum=Integer.valueOf(getMaxTryCount());
+                        while(rval == 2 && maxTryCountNum>0){
+                            rval=getRdao().submit(r);
+                            maxTryCountNum--;
+                        }
+                        if(rval==2){
+                            logger.warn("exceed maxTryCount of rule submit!");
+                        }
+                    }
                 }
-                KaasOrderFrequent hi = getOfdao().findOneByProperty("freqSet", tmp[0]+getItemDelimiter()+tmp[1]);
-                if(hi==null){
-                	continue;
-                }
-                KaasOrderFrequent of = getOfdao().findOneByProperty("freqSet", tmp[0]);
-                if(of != null || submitMap.containsKey(tmp[0])){
-                    Double downSup = (of == null?0.0:of.getFrequent())+submitMap.get(tmp[0]);
-                    Double x = (hi.getFrequent()*1.0)/downSup;
-                    KaasRule r = new KaasRule();
-                    r.setProducts(tmp[0]);
-                    r.setRecommendation(tmp[1]);
-                    r.setConfidence(x);
-                    r.setFlag("general");
-                    ////logger.info(tmp[0]+"->"+tmp[1]+":"+x.toString());
-                    //getRdao().submit(r);
-                    rlist.add(r);
-                    tmp=null;
-                    x=null;
-                    r=null;
-                }
-                else{
-                    logger.info("error:"+tmp[0]+" cannot be found!");
-                }
-
             }
-        	return rlist;
+            //rdao.submit();
+            submitLoopCur = 0;
+            rlist.clear();
+        	return true;
         }
 
     }
@@ -487,7 +546,5 @@ public class AprioriRunner extends AlgorithmGeneral implements Algorithm{
 	public KaasDataPath getKaasDataPath() {
 		return super.getKaasDataPath();
 	}
-
-
 
 }

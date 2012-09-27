@@ -12,7 +12,7 @@ import java.util.Set;
 
 import org.apache.log4j.Logger;
 
-import com.thinkingtop.kaas.services.algorithm.AprioriRunner;
+import com.thinkingtop.kaas.services.algorithm.impl.AprioriRunner;
 
 /**
  * Combination Generator class

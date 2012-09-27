@@ -1,10 +1,13 @@
 package com.thinkingtop.kaas.services.manage;
 
 import java.util.Map;
+import java.util.Set;
 
 import org.springframework.stereotype.Component;
 
 import com.thinkingtop.kaas.services.algorithm.Algorithm;
+import com.thinkingtop.kaas.services.algorithm.impl.AlgorithmDefault;
+import com.thinkingtop.kaas.services.util.ClassUtil;
 
 public class AlgorithmManage {
 	private Algorithm myAlgorithm;
@@ -22,6 +25,7 @@ public class AlgorithmManage {
 	
 	public void setMyAlgorithm(Algorithm myAlgorithm) {
 		this.myAlgorithm = myAlgorithm;
+		
 	}
 	
 	public String process(String algorithmName){
