@@ -28,7 +28,7 @@ import com.thinkingtop.kaas.services.util.APIKey;
 @Component("exclusiveKeyServiceImpl")
 @WebService(endpointInterface = "com.thinkingtop.kaas.services.service.ExclusiveKeyService")
 public class ExclusiveKeyServiceImpl implements ExclusiveKeyService{
-    static Logger logger=Logger.getLogger(ExclusiveKeyServiceImpl.class);
+    static Logger logger=Logger.getLogger(ExclusiveKeyServiceImpl.class);                     
 	private ExclusiveKeyManage exclusiveKeyManage;
 	private ECommerceManage ecommerceManage;
 	private AlgorithmManage algorithmManage;
