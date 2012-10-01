@@ -1,4 +1,4 @@
-package com.thinkingtop.kaas.server.listener;
+package com.thinkingtop.kaas.server.webapps.monitor;
 
 import java.io.IOException;
 
@@ -7,7 +7,7 @@ import javax.servlet.ServletContextListener;
 
 import net.contentobjects.jnotify.JNotify;
 
-public class DirectoryListener implements ServletContextListener{
+public class JNotifyMonitor implements ServletContextListener{
 
 	public void contextDestroyed(ServletContextEvent arg0) {
 		// TODO Auto-generated method stub

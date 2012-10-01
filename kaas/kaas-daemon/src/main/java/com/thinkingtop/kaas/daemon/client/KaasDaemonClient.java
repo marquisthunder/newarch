@@ -24,14 +24,28 @@ import org.hardcode.juf.JUpdate;
 import org.hardcode.juf.status.UpdateInfo;
 import org.hardcode.juf.ui.UpdatePanel;
 import org.hardcode.juf.update.Update;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import com.thinkingtop.kaas.daemon.client.test.KaasDaemonClientTest;
 
 /** 
  * 
  */
 public class KaasDaemonClient {
-
+	private static final Logger logger = LoggerFactory.getLogger(KaasDaemonClientTest.class.getName());
+	
 	public static void main(String[] args) {
-
+		KaasDeamonAPIKeyValidator validator = KaasDeamonAPIKeyValidator.newInstance();
+		int result = validator.getAPIKeyState("jingdong", "1");
+		if(result!=2) {
+			logger.info("not illegal");
+		}
+		else {
+			
+		}
+		
+		
 		
 
 		// KaasDaemonClient jus = new KaasDaemonClient();
@@ -135,5 +149,9 @@ public class KaasDaemonClient {
 		js.setSize(400, 400);
 		js.setVisible(true);
 		// System.exit(0);
+	}
+
+	private static void p(Object o) {
+		System.out.println(o);
 	}
 }

@@ -10,6 +10,9 @@ import java.util.Properties;
 public class KaasDaemonPropertiesReader {
 	private static KaasDaemonPropertiesReader reader = null;
 	private static Map<String,String> map = new HashMap<String, String>();
+	private KaasDaemonPropertiesReader() {
+		
+	}
 	public static KaasDaemonPropertiesReader getInstance() {
 		// use the getInstance to initialize the single instance
 		if(reader == null) {
