@@ -1,18 +1,23 @@
 package com.thinkingtop.kaas.server.webapps.monitor;
 //choose this method
+import java.io.File;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardWatchEventKinds;
 import java.nio.file.WatchEvent;
 import java.nio.file.WatchKey;
 import java.nio.file.WatchService;
+import java.util.Date;
+
+import com.thinkingtop.kaas.server.jar.maintenance.Maintenance;
+import com.thinkingtop.kaas.server.jar.reader.PropertiesReader;
 
 public class WatchServiceMonitor {
 
     public static void main(String[] args) {
 
         //define a folder root
-        Path myDir = Paths.get("D:/");       
+        Path myDir = Paths.get(PropertiesReader.getProp("directory"));       
 
         try {
            WatchService watcher = myDir.getFileSystem().newWatchService();
@@ -38,6 +43,14 @@ public class WatchServiceMonitor {
                            break;
                        case "ENTRY_CREATE":
                     	   System.out.println("Create: "+event.context());
+                    	   File f = new File(PropertiesReader.getProp("directory")+event.context().toString());
+                    	   //f.setLastModified(System.currentTimeMillis());
+                    	   
+                    	   
+                    	   System.out.println("Create: "+new Date(f.lastModified()));
+                    	   Date d = new Date(f.lastModified());
+                    	   Maintenance.newInstance().addJarInfo(d, f.getName());
+                    	   
                            break;
                    }
                }
