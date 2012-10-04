@@ -433,7 +433,8 @@ public class OfConcurrentHashMap<K, V> extends AbstractMap<K, V>
                 V oldValue;
                 if (e != null) {
                 	KaasOrderFrequent kof = (KaasOrderFrequent)e.value;
-                	kof.setFrequent(kof.getFrequent()+1);
+                	KaasOrderFrequent vkof = (KaasOrderFrequent)value;
+                	kof.setFrequent(kof.getFrequent()+vkof.getFrequent());
                     e.value = (V)kof;
                     oldValue = e.value;
                     if (!onlyIfAbsent){

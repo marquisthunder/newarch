@@ -65,7 +65,7 @@ public class AprioriRunnerMultiThreadTest {
         	}
         }
         
-		//Assert.assertEquals(86, iR);
+		Assert.assertEquals(86, iR);
 		Assert.assertEquals(62, iOf);
 	}
 
