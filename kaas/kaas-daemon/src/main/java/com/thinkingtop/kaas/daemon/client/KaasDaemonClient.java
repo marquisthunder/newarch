@@ -7,6 +7,9 @@ import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.io.File;
 import java.io.IOException;
+import java.lang.reflect.Method;
+import java.net.URL;
+import java.net.URLClassLoader;
 
 import javax.swing.JButton;
 import javax.swing.JDialog;
@@ -36,23 +39,21 @@ public class KaasDaemonClient {
 	private static final Logger logger = LoggerFactory.getLogger(KaasDaemonClientTest.class.getName());
 	
 	public static void main(String[] args) {
-		KaasDeamonAPIKeyValidator validator = KaasDeamonAPIKeyValidator.newInstance();
+		/*KaasDeamonAPIKeyValidator validator = KaasDeamonAPIKeyValidator.newInstance();
 		int result = validator.getAPIKeyState("jingdong", "1");
 		if(result!=2) {
 			logger.info("not illegal");
 		}
 		else {
-			
-		}
-		
-		
-		
-
-		// KaasDaemonClient jus = new KaasDaemonClient();
-		// jus.run();
+			KaasDaemonClient jus = new KaasDaemonClient();
+			jus.run();
+		}*/
+		KaasDaemonClient jus = new KaasDaemonClient();
+		jus.run();
 	}
 
 	public void run() {
+		
 		JUpdate update = new JUpdate();
 		UpdateInfo clientUpdateInfo = null;
 		try {
@@ -67,9 +68,7 @@ public class KaasDaemonClient {
 			// urlPrefix with an address.
 			if (clientUpdateInfo == null) {
 				clientUpdateInfo = new UpdateInfo();
-				clientUpdateInfo.setUrlPrefix("http://"
-						+ KaasDaemonPropertiesReader.getInstance().getProperty(
-								"updateServerIp") + ":8080/kaas/updates.xml");
+				clientUpdateInfo.setUrlPrefix("http://"+ KaasDaemonPropertiesReader.getInstance().getProperty("updateServerIp") + ":8080/kaas/updates.xml");
 			}
 		} catch (IOException e) {
 			System.err
@@ -93,8 +92,7 @@ public class KaasDaemonClient {
 			// the user could download the jar and install it(after choose
 			// it.)...
 			// go into the function checkUpdates to find more information..
-			actualizaciones = update.checkUpdates("sample", clientUpdateInfo,
-					null);
+			actualizaciones = update.checkUpdates("sample", clientUpdateInfo,null);
 			UpdatePanel up = new UpdatePanel();
 			up.setModel(actualizaciones);
 			final JDialog jf = new JDialog();
@@ -128,11 +126,23 @@ public class KaasDaemonClient {
 			e1.printStackTrace();
 		}
 
+		
 		try {
 			for (int i = 0; i < actualizaciones.length; i++) {
-
-				update.doUpdate(null, clientUpdateInfo, "sample",
-						actualizaciones[i], null);
+				/*
+				 * load the url jar into memory..
+				 * do it in this way...we donot need to modify the code of "juf" framework
+				 */
+				URLClassLoader classLoader = (URLClassLoader) ClassLoader.getSystemClassLoader();
+				Method add;
+				try {
+					add = URLClassLoader.class.getDeclaredMethod("addURL", new Class[]{URL.class});
+					add.setAccessible(true);
+					add.invoke(classLoader, new Object[] {new URL(actualizaciones[i].getInstaller().getJarUrl())});
+				}catch (Exception e) {
+					// TODO: handle exception
+				}
+				update.doUpdate(null, clientUpdateInfo, "sample",actualizaciones[i], null);
 			}
 		} catch (BadConfigurationException e2) {
 			e2.printStackTrace();

@@ -24,7 +24,11 @@ public class Result{
 		if(!v.validate()) {
 			return null;
 		}
+		/*
+		 * 
+		 */
 		ApplicationContext ac = new ClassPathXmlApplicationContext("applicationContext.xml");
+		new ClassPathXmlApplicationContext();
 		EtlService etlService = (EtlService) ac.getBean("etlService");
 		return getItemsList(etlService);
 		

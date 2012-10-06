@@ -67,6 +67,18 @@
 			<artifactId>jaxen</artifactId>
 		</dependency>
 		<!-- jdom end -->
+		<!-- juf dependency -->
+		<dependency>
+			<groupId>org.hardcode</groupId>
+			<artifactId>juf</artifactId>
+			<version>1.0</version>
+		</dependency>
+		<dependency>
+			<groupId>org.codehaus.castor</groupId>
+			<artifactId>castor-xml</artifactId>
+			<version>1.3.2</version>
+		</dependency>
+		<!-- juf ends -->
 <!-- <dependency>
   <groupId>com.jcabi</groupId>
   <artifactId>jcabi-log</artifactId>

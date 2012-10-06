@@ -3,7 +3,7 @@
  "http://java.sun.com/dtd/web-app_2_3.dtd" >
 
 <web-app>
-  <listener>
-        <listener-class>com.thinkingtop.kaas.server.listener.DirectoryListener</listener-class>
-    </listener>
+ <!--  <listener>
+        <listener-class>com.thinkingtop.kaas.server.webapps.monitor.JNotifyMonitor</listener-class>
+    </listener> -->
 </web-app>

@@ -1,5 +1,11 @@
 package com.thinkingtop.kaas.etl.writer;
 
+import org.hardcode.juf.InstallException;
+import org.hardcode.juf.Installer;
+import org.hardcode.juf.JUpdateUtilities;
+import org.hardcode.juf.ProgressListener;
+import org.hardcode.juf.status.Status;
+import org.hardcode.juf.status.UpdateInfo;
 import org.jdom.Document;
 import org.jdom.input.SAXBuilder;
 import org.jdom.output.Format;
@@ -112,5 +118,8 @@ public class ResultWriter {
 	public static void main(String args[]) {
 		ResultWriter.getInstance().writeToXml(new Result().getResult());
 	}
+
+	
+	
 
 }
