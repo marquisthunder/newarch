@@ -2,6 +2,10 @@ package com.thinkingtop.kaas.etl.reader;
 
 import org.jdom.Document;
 import org.jdom.input.SAXBuilder;
+
+import java.io.File;
+import java.io.InputStream;
+import java.net.URL;
 import java.util.*;
 import org.jdom.Element;
 import org.jdom.JDOMException;
@@ -9,17 +13,18 @@ import org.jdom.xpath.XPath;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.thinkingtop.kaas.etl.stream.StreamUtil;
 import com.thinkingtop.kaas.etl.validator.ValidateXML;
 
 /**
  * 
- * @author Xiaojie Liang at 2012.01.20
+ * @author Xiaojie Liang at 2012.09.20
  *  
  */
 public class EtlInfoReader {
 
 	private static final Logger logger = LoggerFactory.getLogger(ValidateXML.class.getName());
-	static final String fileName = PropertiesReader.getInstance().getProperty("in")+".xml";;// the name of the target file
+	//static final String fileName = PropertiesReader.getInstance().getProperty("in")+".xml";;// the name of the target file
 	private static Element root;
 	private static EtlInfoReader reader = null;
 	
@@ -30,7 +35,8 @@ public class EtlInfoReader {
 			reader = new EtlInfoReader();
 			SAXBuilder sb = new SAXBuilder();
 			try {
-				Document doc = sb.build(Thread.currentThread().getContextClassLoader().getResourceAsStream(fileName));
+				InputStream isXML = StreamUtil.getEtlXMLStream();
+				Document doc = sb.build(isXML);
 				// the class of Document is inside the packet org.jdom;
 				root = doc.getRootElement();
 				logger.info(root.getName()+" has been initialized");

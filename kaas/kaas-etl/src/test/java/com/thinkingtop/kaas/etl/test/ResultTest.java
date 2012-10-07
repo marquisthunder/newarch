@@ -15,5 +15,4 @@ public class ResultTest extends TestCase{
 		r.getResult();
 	}
 	
-	
 }

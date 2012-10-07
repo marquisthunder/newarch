@@ -1,8 +1,6 @@
 package com.thinkingtop.kaas.server.jar.manager;
 
-import java.io.File;
 import java.util.Date;
-import java.util.Map;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -42,7 +40,7 @@ public class TimerOperator {
     		this.m=m;
     	}
         public void run() {
-            System.out.println("到点啦！"+(i++));
+            System.out.println("it is up "+(i++));
            	System.out.println("file:"+m.getFirstJarInfo().getJarName());
             
            	m.popJarInfo();
@@ -55,7 +53,7 @@ public class TimerOperator {
     private class KaasTimerTask2 extends TimerTask {
     	
         public void run() {
-            System.out.println("到点啦2！"+(i++));
+            System.out.println("it is up2！"+(i++));
         }
     }
 }

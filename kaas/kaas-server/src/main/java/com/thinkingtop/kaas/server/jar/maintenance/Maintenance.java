@@ -26,7 +26,7 @@ public class Maintenance {
 	
 	private static SortedMap<Date, String> map = new TreeMap<Date, String>();
 	
-	public static void main(String args[]) {
+	/*public static void main(String args[]) {
 		SortedMap<Date, String> map = null;
 		map = new TreeMap<Date, String>();
 		Date date = new Date();
@@ -34,15 +34,15 @@ public class Maintenance {
 		map.put(date, "www.mldn.cn");
 		map.put(new Date(date.getTime() + 2000), "www.zhinangtuan.net.cn");
 		map.put(new Date(date.getTime() - 1000), "www.mldnjava.cn");
-		System.out.print("第一个元素的内容的key：" + map.firstKey());
-		System.out.println("：对应的值：" + map.get(map.firstKey()));
-		System.out.print("最后一个元素的内容的key：" + map.lastKey());
-		System.out.println("：对应的值：" + map.get(map.lastKey()));
-		System.out.print("second元素的内容的key：" + date);
-		System.out.println("：对应的值：" + map.get(date));
+		System.out.print("first key：" + map.firstKey());
+		System.out.println("value：" + map.get(map.firstKey()));
+		System.out.print("last key：" + map.lastKey());
+		System.out.println("value ：" + map.get(map.lastKey()));
+		System.out.print("second key：" + date);
+		System.out.println("value：" + map.get(date));
 		System.out.println(map.size());
 	}
-
+*/
 	public void addJarInfo(Date date, String jarName) {
 		if(map.size()==0) {
 			map.put(date, jarName);

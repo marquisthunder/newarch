@@ -17,8 +17,7 @@ private PropertiesReader() {}
 			reader = new PropertiesReader();
 			Properties props = new Properties();
 			try {
-				InputStream in = Thread.currentThread().getContextClassLoader()
-						.getResourceAsStream("runner.properties");
+				InputStream in = Thread.currentThread().getContextClassLoader().getResourceAsStream("runner.properties");
 				props.load(in);
 				Enumeration<?> en = props.propertyNames();
 				while (en.hasMoreElements()) {

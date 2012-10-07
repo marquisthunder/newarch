@@ -17,8 +17,6 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-import org.apache.cxf.endpoint.Client;
-import org.apache.cxf.jaxws.endpoint.dynamic.JaxWsDynamicClientFactory;
 import org.hardcode.juf.BadConfigurationException;
 import org.hardcode.juf.ClientStatusException;
 import org.hardcode.juf.DownloadException;
@@ -30,15 +28,17 @@ import org.hardcode.juf.update.Update;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.thinkingtop.kaas.daemon.client.test.KaasDaemonClientTest;
 
 /** 
  * 
  */
 public class KaasDaemonClient {
-	private static final Logger logger = LoggerFactory.getLogger(KaasDaemonClientTest.class.getName());
+	private static final Logger logger = LoggerFactory.getLogger(KaasDaemonClient.class.getName());
 	
 	public static void main(String[] args) {
+		/*
+		 * for web service validate
+		 */
 		/*KaasDeamonAPIKeyValidator validator = KaasDeamonAPIKeyValidator.newInstance();
 		int result = validator.getAPIKeyState("jingdong", "1");
 		if(result!=2) {
@@ -71,8 +71,7 @@ public class KaasDaemonClient {
 				clientUpdateInfo.setUrlPrefix("http://"+ KaasDaemonPropertiesReader.getInstance().getProperty("updateServerIp") + ":8080/kaas/updates.xml");
 			}
 		} catch (IOException e) {
-			System.err
-					.println("Could not get the information from the updated");
+			logger.info("Could not get the information from the updated");
 			System.exit(-1);
 		}
 
@@ -161,7 +160,7 @@ public class KaasDaemonClient {
 		// System.exit(0);
 	}
 
-	private static void p(Object o) {
+	/*private static void p(Object o) {
 		System.out.println(o);
-	}
+	}*/
 }

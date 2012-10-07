@@ -34,7 +34,7 @@ import com.thinkingtop.kaas.etl.result.Result;
 public class ResultWriter {
 
 	private static Logger logger = LoggerFactory.getLogger(ResultWriter.class.getName()); 
-	static final String fileName = PropertiesReader.getInstance().getProperty("out")+ ".xml";// the name of the target file
+	static final String fileName = PropertiesReader.getInstance().getProperty("out");// the name of the target file
 	private static Element root;
 	private static ResultWriter reader = null;
 
@@ -45,14 +45,14 @@ public class ResultWriter {
 												// initialize the target file
 		if (reader == null) {
 			reader = new ResultWriter();
-			try {
+			/*try {
 				File f = new File("src/main/resources/"+fileName);
 				if(!f.exists()) {
 					//f.createNewFile();
 				}
 			} catch (Exception e) {
 				e.printStackTrace();
-			}
+			}*/
 		}
 		return reader;
 	}
@@ -103,7 +103,8 @@ public class ResultWriter {
 		xmlOutput.setFormat(Format.getPrettyFormat());
 
 		try {
-			FileWriter fr = new FileWriter("../dist/result.xml");
+			FileWriter fr = new FileWriter(fileName);
+			//fileName = "../dist/result.xml"
 			xmlOutput.output(des, fr);
 			fr.close();
 			des = null;
@@ -115,9 +116,9 @@ public class ResultWriter {
 		
 	}
 	
-	public static void main(String args[]) {
+	/*public static void main(String args[]) {
 		ResultWriter.getInstance().writeToXml(new Result().getResult());
-	}
+	}*/
 
 	
 	

@@ -31,7 +31,7 @@ public class PropertiesReader {
 	}
 
 	
-	public static void main(String args[]) {
+	/*public static void main(String args[]) {
 		System.out.println(PropertiesReader.getProp("directory"));
-	}
+	}*/
 }
