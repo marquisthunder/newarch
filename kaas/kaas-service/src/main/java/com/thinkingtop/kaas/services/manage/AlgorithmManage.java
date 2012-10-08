@@ -28,22 +28,7 @@ public class AlgorithmManage {
 			logger.info("algorithm:-- "+a);
 		}
 		this.algorithms = algorithms;
-		/*Set<Class<?>> classstr = ClassUtil.getClasses(AlgorithmDefault.class.getPackage());
-		for(Class<?> c : classstr){
-			String algorithmClassName = c.getName();
-			if(algorithmClassName.matches(".+\\.[\\w]+$")){
-				try {
-					int i = algorithmClassName.lastIndexOf(".");
-					String name = algorithmClassName.substring(i+1);
-					Algorithm a = (Algorithm)c.newInstance();
-					this.algorithms.put(name, a);
-				} catch (InstantiationException e) {
-					e.printStackTrace();
-				} catch (IllegalAccessException e) {
-					e.printStackTrace();
-				}
-			}
-		}*/
+		/**/
 	}
 	public Algorithm getMyAlgorithm() {
 		return myAlgorithm;

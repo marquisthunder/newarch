@@ -10,6 +10,7 @@ import java.net.MalformedURLException;
 import java.net.UnknownHostException;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -19,6 +20,8 @@ import java.util.concurrent.ConcurrentHashMap;
 import javax.annotation.Resource;
 
 import org.apache.log4j.Logger;
+import org.dom4j.Attribute;
+import org.dom4j.Element;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
 import org.springframework.stereotype.Component;
@@ -195,19 +198,12 @@ public class AprioriRunner extends AlgorithmGeneral implements Algorithm{
 
         public void run() {
 //printlnM();
-            String[] basePathes = getKaasDataPath().getItemDataPath().split(";");
-         logger.info("dataPathes:"+basePathes[0]);
+            String basePathes = getKaasDataPath().getItemDataPath();
             String realBase = null;
-            boolean smbAddr=false;
-            for(String base:basePathes){
-                File tmp=new File(base);
-                if(tmp.isDirectory()){
-                    realBase=base;
-                    smbAddr=false;
-                    break;
-                }
+            File tmp=new File(basePathes);
+            if(tmp.isDirectory()){
+                realBase=basePathes;
             }
-            
             if (realBase == null) {
                 logger.info("No valide order folders");
                 return;
@@ -221,13 +217,9 @@ public class AprioriRunner extends AlgorithmGeneral implements Algorithm{
             for (String fileone : filelist) {
                 indexFile++;
 
-                DataInputStream in = null;
-                try {
-                    in = new DataInputStream(new BufferedInputStream(
-                            new FileInputStream(getKaasDataPath().getItemDataPath() + File.separator
-                                    + getFolder() + File.separator + fileone)));
-                } catch (FileNotFoundException e) {
-                    logger.warn("local offline file may be moved or renamed!");
+                Iterator<Element> kaasOrders = getKaasDataPath().getKaasOrders(getFolder()+"/"+fileone);
+                if(kaasOrders==null){
+                	logger.warn("local offline file may be moved or renamed!");
                     continue;
                 }
                 
@@ -235,29 +227,26 @@ public class AprioriRunner extends AlgorithmGeneral implements Algorithm{
                 logger.info("Current File Name:" + fileone
                         + " | Training Progress:" + indexFile + "/"
                         + totalFiles);
-
+                
                 String line = null;
-                try {
-                    while ((line = in.readLine()) != null) {
-                        if(Thread.currentThread().isInterrupted()){
-                            in.close();
-                            logger.warn("offline training threads interrupted");
-                            return;
-                        }
-                //logger.info(line);
-                        Set<String> idlist = getProductsInOrderLine(line);
-                //logger.info(idlist.toString());
-                        addAIdOrder(idlist);
-                    }
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
+                while (kaasOrders.hasNext()) {
+					Element kaasOrder = kaasOrders.next();
+					/*Attribute leaderAttr =kaasOrder.attribute("id");
+					logger.info("kaasOrder ID :"+leaderAttr.getValue());*/
+					//logger.info("kaasOrder Name : "+kaasOrder.getName());
+					line = kaasOrder.getText();
+					if(line==null){
+						continue;
+					}
+					if(line.endsWith(",")){
+						line = line.substring(0, line.length()-1);
+					}
+					//logger.info(line);
+				    Set<String> idlist = getProductsInOrderLine(line);
+            //logger.info(idlist.toString());
+				    addAIdOrder(idlist);
+				}
 
-                try {
-                    in.close();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
             }
             genRulesFromMemory();
             oneThreadEnd();

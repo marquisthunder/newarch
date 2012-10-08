@@ -1,29 +1,62 @@
 package com.thinkingtop.kaas.services.util;
 
+import java.io.File;
+import java.util.Iterator;
+
+import org.apache.log4j.Logger;
+import org.dom4j.Attribute;
+import org.dom4j.Document;
+import org.dom4j.DocumentException;
+import org.dom4j.Element;
+import org.dom4j.io.SAXReader;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
 @Component("kaasDataPath")
 public class KaasDataPath {
+	static Logger logger=Logger.getLogger(KaasDataPath.class);
+	private String myKaasdataPath;
 	private String dataPath;
 	private String ofPath;
 	private String rPath;
+	
+	public KaasDataPath(){
+		this.myKaasdataPath = new File("").getAbsolutePath()+ "/../dist/";
+	}
+	
 	public String getItemDataPath(){
-		String itemDatap = getKassDataPath() + dataPath;
+		String itemDatap = getMyKaasdataPath() + dataPath;
 		return itemDatap;
 	}
 	public String getofDataPath(){
-		String ofDatap = getKassDataPath() + ofPath;
+		String ofDatap = getMyKaasdataPath() + ofPath;
 		return ofDatap;
 	}
 	public String getRDataPath(){
-		String rDatap = getKassDataPath()+rPath;
+		String rDatap = getMyKaasdataPath()+rPath;
 		return rDatap;
 	}
 	public String getKassDataPath(){
-		String dataP = Thread.currentThread().getContextClassLoader().getResource("").getPath();
+		String dataP = new File("").getAbsolutePath()+ "/../dist/";
 		return dataP;
 	}
+	
+	public Iterator<Element> getKaasOrders(String filePath){
+		SAXReader saxReader = new SAXReader();
+		Document document;
+		try {
+			
+			logger.info("data : ---------"+getItemDataPath()+"/"+filePath);
+			document = saxReader.read(getItemDataPath()+"/"+filePath);
+			Element elements = document.getRootElement();
+			Iterator<Element> applications = elements.elementIterator();
+			return applications;
+		} catch (DocumentException e) {
+			logger.warn("local offline file may be moved or renamed!");
+		}
+		return null;
+	}
+	
 	public String getDataPath() {
 		return dataPath;
 	}
@@ -60,5 +93,11 @@ public class KaasDataPath {
 	public static void main(String[] args) {
 		KaasDataPath kdp = new KaasDataPath();
 		kdp.getClassName();
+	}
+	public String getMyKaasdataPath() {
+		return myKaasdataPath;
+	}
+	public void setMyKaasdataPath(String myKaasdataPath) {
+		this.myKaasdataPath = myKaasdataPath;
 	}
 }

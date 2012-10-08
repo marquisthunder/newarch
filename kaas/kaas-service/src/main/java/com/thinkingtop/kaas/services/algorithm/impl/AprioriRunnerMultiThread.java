@@ -10,6 +10,7 @@ import java.net.MalformedURLException;
 import java.net.UnknownHostException;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -18,6 +19,7 @@ import java.util.TreeSet;
 import javax.annotation.Resource;
 
 import org.apache.log4j.Logger;
+import org.dom4j.Element;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
 import org.springframework.stereotype.Component;
@@ -275,18 +277,12 @@ public class AprioriRunnerMultiThread  extends AlgorithmGeneral implements Algor
 	            }
 				return;
 			}
-			String[] basePathes = getKaasDataPath().getItemDataPath().split(";");
+			String basePathes = getKaasDataPath().getItemDataPath();
             String realBase = null;
-            boolean smbAddr=false;
-            for(String base:basePathes){
-                File tmp=new File(base);
-                if(tmp.isDirectory()){
-                    realBase=base;
-                    smbAddr=false;
-                    break;
-                }
+            File tmp=new File(basePathes);
+            if(tmp.isDirectory()){
+                realBase=basePathes;
             }
-            
             if (realBase == null) {
                 logger.info("No valide order folders");
                 return;
@@ -299,14 +295,12 @@ public class AprioriRunnerMultiThread  extends AlgorithmGeneral implements Algor
 
             for (String fileone : filelist) {
                 indexFile++;
+                
+                indexFile++;
 
-                DataInputStream in = null;
-                try {
-                    in = new DataInputStream(new BufferedInputStream(
-                            new FileInputStream(realBase + File.separator
-                                    + getFolder() + File.separator + fileone)));
-                } catch (FileNotFoundException e) {
-                    logger.warn("local offline file may be moved or renamed!");
+                Iterator<Element> kaasOrders = getKaasDataPath().getKaasOrders(getFolder()+"/"+fileone);
+                if(kaasOrders==null){
+                	logger.warn("local offline file may be moved or renamed!");
                     continue;
                 }
                 
@@ -314,29 +308,25 @@ public class AprioriRunnerMultiThread  extends AlgorithmGeneral implements Algor
                 logger.info("Current File Name:" + fileone
                         + " | Training Progress:" + indexFile + "/"
                         + totalFiles);
-
+                
                 String line = null;
-                try {
-                    while ((line = in.readLine()) != null) {
-                        if(Thread.currentThread().isInterrupted()){
-                            in.close();
-                            logger.warn("offline training threads interrupted");
-                            return;
-                        }
-                //logger.info(line.toString());
-                        Set<String> idlist = getProductsInOrderLine(line);
-                //logger.info(idlist.toString());
-                        addAIdOrder(idlist);
-                    }
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-
-                try {
-                    in.close();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
+                while (kaasOrders.hasNext()) {
+					Element kaasOrder = kaasOrders.next();
+					/*Attribute leaderAttr =kaasOrder.attribute("id");
+					logger.info("kaasOrder ID :"+leaderAttr.getValue());*/
+					//logger.info("kaasOrder Name : "+kaasOrder.getName());
+					line = kaasOrder.getText();
+					if(line==null){
+						continue;
+					}
+					if(line.endsWith(",")){
+						line = line.substring(0, line.length()-1);
+					}
+					//logger.info(line);
+				    Set<String> idlist = getProductsInOrderLine(line);
+            //logger.info(idlist.toString());
+				    addAIdOrder(idlist);
+				}
             }
             genCombinationFromMemory();
             oneOfThreadEnd();
@@ -443,7 +433,6 @@ public class AprioriRunnerMultiThread  extends AlgorithmGeneral implements Algor
 				KaasOrderFrequent of = getOfdao().getKeyMarsOrderFrequent(i);
 				if(of!=null&&of.getFrequent()>=frequencyLowerLimit){
 					if(of.getCombination().matches(".?")){
-						//logger.info("this is one Letter : -----------" + of.getCombination());
 						continue;
 					}
 					List<KaasRule> subRlist = genRulesByLine(of.getCombination(),of.getFrequent());
@@ -451,7 +440,7 @@ public class AprioriRunnerMultiThread  extends AlgorithmGeneral implements Algor
 		//logger.info("println Combination:"+of.getCombination()+"-Frequent:"+of.getFrequent());
 		//logger.info("frequencyLowerLimit:"+frequencyLowerLimit);
 				}
-		//logger.info("submitLoopCur : "+submitLoopCur+" : "+i);
+				//logger.info("submitLoopCur : "+submitLoopCur+" : "+i);
 				submitLoopCur++;
 				if(submitLoopCur == submitLoopMax){
 					genRulesFromMemory(rlist);

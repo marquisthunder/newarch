@@ -27,7 +27,6 @@ import com.thinkingtop.kaas.services.util.KaasDataPath;
 
 @Component("kaasRuleDAOFileImpl")
 public class KaasRuleDAOFileImpl implements KaasRuleDAO {
-	private int mm =0;
     static Logger logger=Logger.getLogger(KaasRuleDAOFileImpl.class);
 	private String itemDelimiter;
     private KaasDataPath kaasDataPath;
@@ -37,8 +36,6 @@ public class KaasRuleDAOFileImpl implements KaasRuleDAO {
 	}
 	
 	public int submit(KaasRule r) {
-		//logger.info("Rule submit nb: -------"+(++mm));
-		//logger.info("Rule submit rpr: -------"+r.getProducts()+"|"+r.getRecommendation());
 		try{
 			String rpr = r.getProducts()+"|"+r.getRecommendation();
 			marsRuleAll.put(rpr, r);
