@@ -10,17 +10,19 @@ import java.util.jar.Manifest;
 
 import javax.annotation.Resource;
 
+import org.apache.log4j.Logger;
 import org.springframework.stereotype.Component;
 
 @Component("packageAlgorithm")
 public class PackageAlgorithm {
 	private KaasDataPath kaasDataPath;
+	static Logger logger=Logger.getLogger(PackageAlgorithm.class);
 	public void jar(String inputFileName, String outputFileName)
 			throws Exception {
 		JarOutputStream out = new JarOutputStream(new FileOutputStream(
 				outputFileName),new Manifest());
-		File f = new File(inputFileName);// 这里应该以那个目录为根目录，jar的根应该是这个目录下的文件
-		jar(out, f, "/"+f.getName());
+		File f = new File(inputFileName);
+		jar(out, f, "com/thinkingtop/kaas/services");
 		out.close();
 	}
 
@@ -48,20 +50,14 @@ public class PackageAlgorithm {
 	
 	public void packageA(){
 
-		/*try {
-			jar("/home/roadahead/myTest/outclassjar/com", "/home/roadahead/myTest/outclassjar/test.jar");
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}*/
 		try {
-			jar("/home/roadahead/myTest/outclassjar/com/algorithm/Algorithm.class", "/home/roadahead/myTest/outclassjar/test2.jar");
+			jar(kaasDataPath.getAlgorithmPath(), kaasDataPath.getMyKaasdataPath()+"/algorithm.jar");
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
-
+	
 	public KaasDataPath getKaasDataPath() {
 		return kaasDataPath;
 	}

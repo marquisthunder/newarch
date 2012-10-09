@@ -1,8 +1,8 @@
-package com.thinkingtop.kaas.services.dao;
+package com.thinkingtop.kaas.services.algorithm.dao;
 
 import java.util.Map;
 
-import com.thinkingtop.kaas.services.model.KaasOrderFrequent;
+import com.thinkingtop.kaas.services.algorithm.model.KaasOrderFrequent;
 import com.thinkingtop.kaas.services.util.OfConcurrentHashMap;
 
 public interface KaasOrderFrequentDAO {

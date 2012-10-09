@@ -1,4 +1,4 @@
-package com.thinkingtop.kaas.services.dao.implfile;
+package com.thinkingtop.kaas.services.algorithm.dao.implfile;
 
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -20,9 +20,9 @@ import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
-import com.thinkingtop.kaas.services.dao.KaasRuleDAO;
-import com.thinkingtop.kaas.services.model.KaasOrderFrequent;
-import com.thinkingtop.kaas.services.model.KaasRule;
+import com.thinkingtop.kaas.services.algorithm.dao.KaasRuleDAO;
+import com.thinkingtop.kaas.services.algorithm.model.KaasOrderFrequent;
+import com.thinkingtop.kaas.services.algorithm.model.KaasRule;
 import com.thinkingtop.kaas.services.util.KaasDataPath;
 
 @Component("kaasRuleDAOFileImpl")

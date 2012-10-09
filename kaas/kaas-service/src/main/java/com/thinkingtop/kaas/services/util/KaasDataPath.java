@@ -12,6 +12,8 @@ import org.dom4j.io.SAXReader;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
+import com.thinkingtop.kaas.services.algorithm.Algorithm;
+
 @Component("kaasDataPath")
 public class KaasDataPath {
 	static Logger logger=Logger.getLogger(KaasDataPath.class);
@@ -22,6 +24,17 @@ public class KaasDataPath {
 	
 	public KaasDataPath(){
 		this.myKaasdataPath = new File("").getAbsolutePath()+ "/../dist/";
+	}
+	
+	public String getAlgorithmPath(){
+		String  algorithmPath = Algorithm.class.getResource("").toString();
+		if(algorithmPath.startsWith("file:")){
+			algorithmPath = algorithmPath.substring("file:".length());
+		}
+		if(algorithmPath.matches(".*target/test-classes/com.*")){
+			algorithmPath = algorithmPath.replaceFirst("target/test-classes/com","target/classes/com");
+		}
+		return algorithmPath;
 	}
 	
 	public String getItemDataPath(){
@@ -35,10 +48,6 @@ public class KaasDataPath {
 	public String getRDataPath(){
 		String rDatap = getMyKaasdataPath()+rPath;
 		return rDatap;
-	}
-	public String getKassDataPath(){
-		String dataP = new File("").getAbsolutePath()+ "/../dist/";
-		return dataP;
 	}
 	
 	public Iterator<Element> getKaasOrders(String filePath){
@@ -81,7 +90,7 @@ public class KaasDataPath {
 	
 	public static void getClassName(){
 		KaasDataPath kdp = new KaasDataPath();
-		String classLocation = kdp.getKassDataPath();
+		String classLocation = kdp.getMyKaasdataPath();
 		System.out.println(classLocation);
 		String packageName = "com.thinkingtop.kaas.services.algorithm";
 		String[] classst = ClassUtil.getPackageAllClassName(classLocation, packageName);

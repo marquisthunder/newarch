@@ -1,4 +1,4 @@
-package com.thinkingtop.kaas.services.model;
+package com.thinkingtop.kaas.services.algorithm.model;
 
 /**
  * Order combination entity class

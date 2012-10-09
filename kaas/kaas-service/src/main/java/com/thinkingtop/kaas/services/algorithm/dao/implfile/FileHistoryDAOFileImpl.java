@@ -1,4 +1,4 @@
-package com.thinkingtop.kaas.services.dao.implfile;
+package com.thinkingtop.kaas.services.algorithm.dao.implfile;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -10,7 +10,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.test.annotation.Repeat;
 import org.springframework.validation.annotation.Validated;
 
-import com.thinkingtop.kaas.services.dao.FileHistoryDAO;
+import com.thinkingtop.kaas.services.algorithm.dao.FileHistoryDAO;
 
 @Component("fileHistoryDAOFileImpl")
 public class FileHistoryDAOFileImpl implements FileHistoryDAO {

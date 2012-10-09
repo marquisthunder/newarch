@@ -5,9 +5,9 @@ import javax.annotation.Resource;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
 
-import com.thinkingtop.kaas.services.dao.FileHistoryDAO;
-import com.thinkingtop.kaas.services.dao.KaasOrderFrequentDAO;
-import com.thinkingtop.kaas.services.dao.KaasRuleDAO;
+import com.thinkingtop.kaas.services.algorithm.dao.FileHistoryDAO;
+import com.thinkingtop.kaas.services.algorithm.dao.KaasOrderFrequentDAO;
+import com.thinkingtop.kaas.services.algorithm.dao.KaasRuleDAO;
 import com.thinkingtop.kaas.services.util.KaasDataPath;
 
 public class AlgorithmGeneral {

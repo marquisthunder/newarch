@@ -93,7 +93,7 @@ public class BeforeTest {
 		Thread.currentThread().getContextClassLoader().getResource(""));
 		logger.info(BeforeTest.class.getClassLoader().getResource(""));
 		logger.info(ClassLoader.getSystemResource(""));
-		logger.info(BeforeTest.class.getResource(""));
+		logger.info(BeforeTest.class.getResource("").toString());
 		logger.info(BeforeTest.class.getResource("/"));
 		logger.info(new File("").getAbsolutePath());
 		logger.info(System.getProperty("user.dir"));

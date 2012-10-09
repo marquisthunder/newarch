@@ -1,10 +1,10 @@
-package com.thinkingtop.kaas.services.dao;
+package com.thinkingtop.kaas.services.algorithm.dao;
 
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
-import com.thinkingtop.kaas.services.model.KaasRule;
+import com.thinkingtop.kaas.services.algorithm.model.KaasRule;
 
 public interface KaasRuleDAO {
 

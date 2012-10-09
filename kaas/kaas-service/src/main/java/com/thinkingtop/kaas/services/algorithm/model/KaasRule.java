@@ -1,4 +1,4 @@
-package com.thinkingtop.kaas.services.model;
+package com.thinkingtop.kaas.services.algorithm.model;
 
 /**
  * Rule of entity classes

@@ -11,6 +11,8 @@ import org.apache.log4j.Logger;
 import org.junit.Assert;
 import org.junit.Test;
 
+import com.thinkingtop.kaas.services.algorithm.combinationutil.CombinationModel;
+
 
 public class CombinationModelTest {
     static Logger logger=Logger.getLogger(CombinationModelTest.class);

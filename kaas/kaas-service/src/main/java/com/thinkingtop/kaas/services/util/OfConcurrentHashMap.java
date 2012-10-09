@@ -15,7 +15,7 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 
-import com.thinkingtop.kaas.services.model.KaasOrderFrequent;
+import com.thinkingtop.kaas.services.algorithm.model.KaasOrderFrequent;
 
 /**
  * A hash table supporting full concurrency of retrievals and

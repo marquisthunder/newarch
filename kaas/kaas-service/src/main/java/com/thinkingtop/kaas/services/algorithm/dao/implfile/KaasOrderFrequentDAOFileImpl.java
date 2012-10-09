@@ -1,4 +1,4 @@
-package com.thinkingtop.kaas.services.dao.implfile;
+package com.thinkingtop.kaas.services.algorithm.dao.implfile;
 
 import java.io.BufferedInputStream;
 import java.io.DataInputStream;
@@ -18,8 +18,8 @@ import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
-import com.thinkingtop.kaas.services.dao.KaasOrderFrequentDAO;
-import com.thinkingtop.kaas.services.model.KaasOrderFrequent;
+import com.thinkingtop.kaas.services.algorithm.dao.KaasOrderFrequentDAO;
+import com.thinkingtop.kaas.services.algorithm.model.KaasOrderFrequent;
 import com.thinkingtop.kaas.services.util.KaasDataPath;
 import com.thinkingtop.kaas.services.util.OfConcurrentHashMap;
 

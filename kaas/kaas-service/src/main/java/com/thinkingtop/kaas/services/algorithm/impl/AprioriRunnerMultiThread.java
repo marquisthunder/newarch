@@ -26,12 +26,12 @@ import org.springframework.stereotype.Component;
 
 import com.thinkingtop.kaas.services.algorithm.Algorithm;
 import com.thinkingtop.kaas.services.algorithm.AlgorithmGeneral;
-import com.thinkingtop.kaas.services.combinationutil.CombinationModel;
-import com.thinkingtop.kaas.services.dao.FileHistoryDAO;
-import com.thinkingtop.kaas.services.dao.KaasOrderFrequentDAO;
-import com.thinkingtop.kaas.services.dao.KaasRuleDAO;
-import com.thinkingtop.kaas.services.model.KaasOrderFrequent;
-import com.thinkingtop.kaas.services.model.KaasRule;
+import com.thinkingtop.kaas.services.algorithm.combinationutil.CombinationModel;
+import com.thinkingtop.kaas.services.algorithm.dao.FileHistoryDAO;
+import com.thinkingtop.kaas.services.algorithm.dao.KaasOrderFrequentDAO;
+import com.thinkingtop.kaas.services.algorithm.dao.KaasRuleDAO;
+import com.thinkingtop.kaas.services.algorithm.model.KaasOrderFrequent;
+import com.thinkingtop.kaas.services.algorithm.model.KaasRule;
 import com.thinkingtop.kaas.services.util.KaasDataPath;
 import com.thinkingtop.kaas.services.util.OfConcurrentHashMap;
 

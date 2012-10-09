@@ -4,9 +4,9 @@ import static org.junit.Assert.*;
 
 import org.junit.Test;
 
-import com.thinkingtop.kaas.services.dao.KaasOrderFrequentDAO;
-import com.thinkingtop.kaas.services.dao.implfile.KaasOrderFrequentDAOFileImpl;
-import com.thinkingtop.kaas.services.model.KaasOrderFrequent;
+import com.thinkingtop.kaas.services.algorithm.dao.KaasOrderFrequentDAO;
+import com.thinkingtop.kaas.services.algorithm.dao.implfile.KaasOrderFrequentDAOFileImpl;
+import com.thinkingtop.kaas.services.algorithm.model.KaasOrderFrequent;
 
 public class KaasOrderFrequentDAOFileImplTest {
 
