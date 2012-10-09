@@ -1,14 +1,20 @@
-package com.thinkingtop.kaas.service.util;
+package com.thinkingtop.kaas.services.util;
 
 import static org.junit.Assert.*;
 
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
+import java.io.UnsupportedEncodingException;
 import java.net.URISyntaxException;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.Iterator;
+import java.util.Properties;
 
 import org.apache.log4j.Logger;
 import org.dom4j.Attribute;
@@ -59,7 +65,7 @@ public class BeforeTest {
 	}
 
 	@Test
-	public void iiii() {
+	public void testGetClass() {
 		try {
 			Class<?> a = Class
 					.forName("com.thinkingtop.kaas.services.algorithm.impl.AlgorithmDefault");
@@ -116,6 +122,53 @@ public class BeforeTest {
 			e.printStackTrace();
 		}
 
+	}
+	
+	@Test
+	public void testProperties(){
+		Properties properties = new Properties();  
+		InputStream inputStream = null;
+        try  
+        {  
+            inputStream = new FileInputStream(new File("").getAbsolutePath()+ "/../dist/data/test.properties");  
+            properties.load(inputStream);  
+             //关闭流  
+        }  
+        catch (IOException e)  
+        {  
+            e.printStackTrace();  
+        }  
+        String username = properties.getProperty("test2");
+        System.out.println(username);  
+        
+        Properties properties2 = new Properties(); 
+        try  
+        {  
+            OutputStream outputStream = new FileOutputStream(new File("").getAbsolutePath()+ "/../dist/data/test.properties");  
+            properties2.setProperty("test2", "myname");  
+            properties2.setProperty("test2", "myname2"); 
+            properties2.store(outputStream, "author: shixing_11@sina.com");  
+            outputStream.close();
+        }  
+        catch (IOException e)  
+        {  
+            e.printStackTrace();  
+        }
+        
+        try {
+			properties.load(inputStream);
+		} catch (IOException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		} 
+        String username2 = properties.getProperty("test2");
+        System.out.println(username2);
+        try {
+			inputStream.close();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 }

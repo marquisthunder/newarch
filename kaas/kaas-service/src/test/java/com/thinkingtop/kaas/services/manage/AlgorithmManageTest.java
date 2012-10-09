@@ -14,9 +14,9 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-import com.thinkingtop.kaas.service.util.BeforeTest;
 import com.thinkingtop.kaas.services.algorithm.Algorithm;
 import com.thinkingtop.kaas.services.algorithm.impl.AprioriRunner;
+import com.thinkingtop.kaas.services.util.BeforeTest;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = "classpath:beans.xml")

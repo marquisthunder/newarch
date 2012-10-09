@@ -8,17 +8,23 @@ import java.util.jar.JarEntry;
 import java.util.jar.JarOutputStream;
 import java.util.jar.Manifest;
 
-public class packageAlgorithm {
-	public static void jar(String inputFileName, String outputFileName)
+import javax.annotation.Resource;
+
+import org.springframework.stereotype.Component;
+
+@Component("packageAlgorithm")
+public class PackageAlgorithm {
+	private KaasDataPath kaasDataPath;
+	public void jar(String inputFileName, String outputFileName)
 			throws Exception {
 		JarOutputStream out = new JarOutputStream(new FileOutputStream(
 				outputFileName),new Manifest());
 		File f = new File(inputFileName);// 这里应该以那个目录为根目录，jar的根应该是这个目录下的文件
-		jar(out, f, "");
+		jar(out, f, "/"+f.getName());
 		out.close();
 	}
 
-	private static void jar(JarOutputStream out, File f, String base)
+	private void jar(JarOutputStream out, File f, String base)
 			throws Exception {
 		if (f.isDirectory()) {
 			File[] fl = f.listFiles();
@@ -39,12 +45,29 @@ public class packageAlgorithm {
 		}
 	}
 
-	public static void main(String[] args) {
-		try {
+	
+	public void packageA(){
+
+		/*try {
 			jar("/home/roadahead/myTest/outclassjar/com", "/home/roadahead/myTest/outclassjar/test.jar");
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+		}*/
+		try {
+			jar("/home/roadahead/myTest/outclassjar/com/algorithm/Algorithm.class", "/home/roadahead/myTest/outclassjar/test2.jar");
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
+	}
+
+	public KaasDataPath getKaasDataPath() {
+		return kaasDataPath;
+	}
+	
+	@Resource(name="kaasDataPath")
+	public void setKaasDataPath(KaasDataPath kaasDataPath) {
+		this.kaasDataPath = kaasDataPath;
 	}
 }
