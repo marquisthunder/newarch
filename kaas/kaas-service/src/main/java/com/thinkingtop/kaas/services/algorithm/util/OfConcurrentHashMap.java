@@ -1,4 +1,4 @@
-package com.thinkingtop.kaas.services.util;
+package com.thinkingtop.kaas.services.algorithm.util;
 
 /*
  * %W% %E%

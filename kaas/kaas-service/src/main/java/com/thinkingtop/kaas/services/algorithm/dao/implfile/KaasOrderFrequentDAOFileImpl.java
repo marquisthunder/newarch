@@ -20,8 +20,8 @@ import org.springframework.stereotype.Component;
 
 import com.thinkingtop.kaas.services.algorithm.dao.KaasOrderFrequentDAO;
 import com.thinkingtop.kaas.services.algorithm.model.KaasOrderFrequent;
+import com.thinkingtop.kaas.services.algorithm.util.OfConcurrentHashMap;
 import com.thinkingtop.kaas.services.util.KaasDataPath;
-import com.thinkingtop.kaas.services.util.OfConcurrentHashMap;
 
 @Component("kaasOrderFrequentDAOFileImpl")
 public class KaasOrderFrequentDAOFileImpl implements KaasOrderFrequentDAO {
