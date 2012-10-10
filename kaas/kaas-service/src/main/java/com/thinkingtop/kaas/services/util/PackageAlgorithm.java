@@ -4,6 +4,7 @@ package com.thinkingtop.kaas.services.util;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
+import java.util.Set;
 import java.util.jar.JarEntry;
 import java.util.jar.JarOutputStream;
 import java.util.jar.Manifest;
@@ -14,6 +15,8 @@ import org.apache.log4j.Logger;
 import org.springframework.stereotype.Component;
 
 import com.thinkingtop.kaas.services.algorithm.util.KaasDataPath;
+import com.thinkingtop.kaas.services.model.ECommerce;
+import com.thinkingtop.kaas.services.model.Scheme;
 
 @Component("packageAlgorithm")
 public class PackageAlgorithm {
@@ -50,13 +53,16 @@ public class PackageAlgorithm {
 	}
 
 	
-	public void packageA(){
-
-		try {
-			jar(kaasDataPath.getAlgorithmPath(), kaasDataPath.getMyKaasdataPath()+"/algorithm.jar");
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+	public void packageA(ECommerce eCommerce){
+		Set<Scheme> schemes = eCommerce.getSchemes();
+		for(Scheme s : schemes.toArray(new Scheme[schemes.size()])){
+			String[] Algorithm = s.getAlgorithmNames().split(",");
+			//logger.info("schemes------------"+s.getAlgorithmNames());
+			try {
+				jar(kaasDataPath.getAlgorithmPath(), kaasDataPath.getMyKaasdataPath()+"/"+s.getSchemeName()+".jar");
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
 		}
 	}
 	

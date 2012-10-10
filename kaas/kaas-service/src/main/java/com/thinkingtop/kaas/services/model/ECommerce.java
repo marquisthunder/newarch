@@ -23,8 +23,8 @@ public class ECommerce {
 	private Long id;
 	private Date createDate = new Date();
 	private String ecommerceName;
-	private Set<ExclusiveKey> exclusiveKey = new HashSet<ExclusiveKey>();
-	private Set<Scheme> scheme = new HashSet<Scheme>();
+	private Set<ExclusiveKey> exclusiveKeys = new HashSet<ExclusiveKey>();
+	private Set<Scheme> schemes = new HashSet<Scheme>();
 	@Id
 	@GeneratedValue
 	public Long getId() {
@@ -37,11 +37,11 @@ public class ECommerce {
 	@OneToMany(mappedBy="ecommerce",
 			cascade={CascadeType.ALL}
 	)
-	public Set<ExclusiveKey> getExclusiveKey() {
-		return exclusiveKey;
+	public Set<ExclusiveKey> getExclusiveKeys() {
+		return exclusiveKeys;
 	}
-	public void setExclusiveKey(Set<ExclusiveKey> exclusiveKey) {
-		this.exclusiveKey = exclusiveKey;
+	public void setExclusiveKeys(Set<ExclusiveKey> exclusiveKeys) {
+		this.exclusiveKeys = exclusiveKeys;
 	}
 	@Column(nullable=false)
 	public Date getCreateDate() {
@@ -61,10 +61,10 @@ public class ECommerce {
 	@OneToMany(mappedBy="ecommerce",
 			cascade={CascadeType.ALL}
 	)
-	public Set<Scheme> getScheme() {
-		return scheme;
+	public Set<Scheme> getSchemes() {
+		return schemes;
 	}
-	public void setScheme(Set<Scheme> scheme) {
-		this.scheme = scheme;
+	public void setSchemes(Set<Scheme> schemes) {
+		this.schemes = schemes;
 	}
 }

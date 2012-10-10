@@ -28,4 +28,6 @@ public interface ECommerceDAO {
 	 * @return
 	 */
 	public boolean save(ECommerce ecommerce);
+
+	public ECommerce getECommerceAndScheme(String ecommerceName);
 }

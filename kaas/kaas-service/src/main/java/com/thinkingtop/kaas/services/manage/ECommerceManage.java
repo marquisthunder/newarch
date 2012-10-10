@@ -43,6 +43,14 @@ public class ECommerceManage{
 		return ecommerceDAO.getECommerce(ecommerceName);
 	}
 	
+	/**
+	 * Return a user information recording
+	 * @param ecommerceName:The user name
+	 * @return
+	 */
+	public ECommerce getECommerceAndScheme(String ecommerceName){
+		return ecommerceDAO.getECommerceAndScheme(ecommerceName);
+	}
 	
 	public ECommerceDAO getECommerceDAO() {
 		return ecommerceDAO;

@@ -6,6 +6,7 @@ import java.io.IOException;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.Set;
 
 import org.junit.Assert;
 import org.junit.Before;
@@ -21,6 +22,7 @@ import com.jolbox.bonecp.BoneCPDataSource;
 import com.thinkingtop.kaas.services.manage.ECommerceManage;
 import com.thinkingtop.kaas.services.model.ExclusiveKey;
 import com.thinkingtop.kaas.services.model.ECommerce;
+import com.thinkingtop.kaas.services.model.Scheme;
 import com.thinkingtop.kaas.services.service.ExclusiveKeyServiceImpl;
 import com.thinkingtop.kaas.services.util.BeforeTest;
 
@@ -65,6 +67,15 @@ public class ECommerceManageTest {
 		
 		ecommerce = ecommerceManage.getECommerce("jingdong");
 		long ecommerceId = ecommerce.getId();
+		Assert.assertEquals(1, ecommerceId);
+	}
+	
+	@Test
+	public void testGetECommerceAndScheme() {
+		ECommerce ecommerce = ecommerceManage.getECommerceAndScheme("jingdong");
+		long ecommerceId = ecommerce.getId();
+		Set<Scheme> schemes = ecommerce.getSchemes();
+		Assert.assertEquals(true, schemes!=null);
 		Assert.assertEquals(1, ecommerceId);
 	}
 

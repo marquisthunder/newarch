@@ -1,6 +1,7 @@
 package com.thinkingtop.kaas.services.dao.impl;
 
 import java.util.List;
+import java.util.Set;
 
 import javax.annotation.Resource;
 
@@ -11,6 +12,7 @@ import org.springframework.stereotype.Component;
 
 import com.thinkingtop.kaas.services.dao.ECommerceDAO;
 import com.thinkingtop.kaas.services.model.ECommerce;
+import com.thinkingtop.kaas.services.model.Scheme;
 
 
 /**
@@ -66,6 +68,23 @@ public class ECommerceDAOImpl implements ECommerceDAO {
 		List<ECommerce> ecommerces = (List<ECommerce>)q.list();
 		if(!ecommerces.isEmpty()){
 			ecommerce = ecommerces.get(0);
+		}
+		return ecommerce;
+	}
+
+	@Override
+	public ECommerce getECommerceAndScheme(String ecommerceName) {
+		ECommerce ecommerce = null;
+		Session session = sessionFactory.getCurrentSession();
+		SQLQuery q = session.createSQLQuery("select * from ECommerce ecommerce " + " where ecommerce.ecommerceName = '"+ecommerceName+"'").addEntity(ECommerce.class);
+		List<ECommerce> ecommerces = (List<ECommerce>)q.list();
+		if(!ecommerces.isEmpty()){
+			ecommerce = ecommerces.get(0);
+			Set<Scheme> schemes = ecommerce.getSchemes();
+			System.out.println(schemes);
+			for(Scheme s : schemes.toArray(new Scheme[schemes.size()])){
+				s.getId();
+			};
 		}
 		return ecommerce;
 	}
