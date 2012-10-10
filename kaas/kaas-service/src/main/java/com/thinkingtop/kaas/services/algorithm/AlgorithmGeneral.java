@@ -8,7 +8,7 @@ import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
 import com.thinkingtop.kaas.services.algorithm.dao.FileHistoryDAO;
 import com.thinkingtop.kaas.services.algorithm.dao.KaasOrderFrequentDAO;
 import com.thinkingtop.kaas.services.algorithm.dao.KaasRuleDAO;
-import com.thinkingtop.kaas.services.util.KaasDataPath;
+import com.thinkingtop.kaas.services.algorithm.util.KaasDataPath;
 
 public class AlgorithmGeneral {
 	private ThreadPoolTaskExecutor taskExecutor;

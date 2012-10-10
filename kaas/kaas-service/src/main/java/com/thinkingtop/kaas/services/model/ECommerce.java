@@ -24,6 +24,7 @@ public class ECommerce {
 	private Date createDate = new Date();
 	private String ecommerceName;
 	private Set<ExclusiveKey> exclusiveKey = new HashSet<ExclusiveKey>();
+	private Set<Scheme> scheme = new HashSet<Scheme>();
 	@Id
 	@GeneratedValue
 	public Long getId() {
@@ -56,5 +57,14 @@ public class ECommerce {
 	}
 	public void setEcommerceName(String ecommerceName) {
 		this.ecommerceName = ecommerceName;
+	}
+	@OneToMany(mappedBy="ecommerce",
+			cascade={CascadeType.ALL}
+	)
+	public Set<Scheme> getScheme() {
+		return scheme;
+	}
+	public void setScheme(Set<Scheme> scheme) {
+		this.scheme = scheme;
 	}
 }

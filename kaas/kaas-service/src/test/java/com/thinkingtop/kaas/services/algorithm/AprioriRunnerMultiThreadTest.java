@@ -21,7 +21,7 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import com.thinkingtop.kaas.services.algorithm.impl.AprioriRunnerMultiThread;
-import com.thinkingtop.kaas.services.util.KaasDataPath;
+import com.thinkingtop.kaas.services.algorithm.util.KaasDataPath;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = "classpath:beans.xml")

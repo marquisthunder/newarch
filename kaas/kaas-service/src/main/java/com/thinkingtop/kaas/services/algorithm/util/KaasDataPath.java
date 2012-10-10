@@ -1,4 +1,4 @@
-package com.thinkingtop.kaas.services.util;
+package com.thinkingtop.kaas.services.algorithm.util;
 
 import java.io.File;
 import java.util.Iterator;
@@ -13,6 +13,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
 import com.thinkingtop.kaas.services.algorithm.Algorithm;
+import com.thinkingtop.kaas.services.util.ClassUtil;
 
 @Component("kaasDataPath")
 public class KaasDataPath {

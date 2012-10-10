@@ -13,6 +13,8 @@ import javax.annotation.Resource;
 import org.apache.log4j.Logger;
 import org.springframework.stereotype.Component;
 
+import com.thinkingtop.kaas.services.algorithm.util.KaasDataPath;
+
 @Component("packageAlgorithm")
 public class PackageAlgorithm {
 	private KaasDataPath kaasDataPath;
