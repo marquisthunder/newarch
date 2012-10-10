@@ -1,4 +1,4 @@
-package com.thinkingtop.kaas.services.algorithm.manage;
+package com.thinkingtop.kaas.services.manage;
 
 import java.util.Map;
 import java.util.Set;

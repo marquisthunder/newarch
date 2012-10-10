@@ -54,8 +54,7 @@ public class AlgorithmDefault extends AlgorithmGeneral implements Algorithm{
 	}
 
 	public void runIt() {
-		// TODO Auto-generated method stub
-		
+		logger.info("runIt Default");
 	}
 
 	public String[] getRecommend(String inputItems, int outputItemsNum,

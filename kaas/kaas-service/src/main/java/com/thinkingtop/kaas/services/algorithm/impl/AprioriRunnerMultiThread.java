@@ -164,16 +164,16 @@ public class AprioriRunnerMultiThread  extends AlgorithmGeneral implements Algor
         	}
         	if(ofThreadEndNum==ofThreadNum){
         logger.info("run in R");
-        		runR();
+        		//runR();
         	}
         logger.info("run all need time: "+runAllTime);
         }catch(Exception e){
             ;
         }
+        super.getTaskExecutor().getThreadPoolExecutor().shutdownNow();
         logger.info("Offline Training Task Finished Once!");
 
         return;
-
     }
     
     private void runR() {

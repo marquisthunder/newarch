@@ -16,7 +16,6 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import com.thinkingtop.kaas.services.algorithm.Algorithm;
 import com.thinkingtop.kaas.services.algorithm.impl.AprioriRunner;
-import com.thinkingtop.kaas.services.algorithm.manage.AlgorithmManage;
 import com.thinkingtop.kaas.services.util.BeforeTest;
 
 @RunWith(SpringJUnit4ClassRunner.class)

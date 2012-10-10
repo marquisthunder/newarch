@@ -159,7 +159,7 @@ public class AprioriRunner extends AlgorithmGeneral implements Algorithm{
         }catch(Exception e){
             ;
         }
-        
+        super.getTaskExecutor().getThreadPoolExecutor().shutdownNow();
         logger.info("run all need time: "+runAllTime);
         logger.info("Offline Training Task Finished Once!");
 

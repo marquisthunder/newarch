@@ -12,8 +12,8 @@ import javax.jws.WebService;
 import org.apache.log4j.Logger;
 import org.springframework.stereotype.Component;
 
-import com.thinkingtop.kaas.services.algorithm.manage.AlgorithmManage;
 import com.thinkingtop.kaas.services.dao.ExclusiveKeyDAO;
+import com.thinkingtop.kaas.services.manage.AlgorithmManage;
 import com.thinkingtop.kaas.services.manage.ExclusiveKeyManage;
 import com.thinkingtop.kaas.services.manage.ECommerceManage;
 import com.thinkingtop.kaas.services.model.ExclusiveKey;
