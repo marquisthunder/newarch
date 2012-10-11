@@ -5,6 +5,7 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.util.Set;
+import java.util.jar.Attributes;
 import java.util.jar.JarEntry;
 import java.util.jar.JarOutputStream;
 import java.util.jar.Manifest;
@@ -24,10 +25,15 @@ public class PackageAlgorithm {
 	static Logger logger=Logger.getLogger(PackageAlgorithm.class);
 	public void jar(String inputFileName, String outputFileName)
 			throws Exception {
+		Manifest m = new Manifest();
+		Attributes a = m.getMainAttributes();
+		a.put(Attributes.Name.MANIFEST_VERSION, "1.0");
+		a.put(Attributes.Name.MAIN_CLASS, "com.thinkingtop.kaas.services.algorithm.entrance.Entrance");
+		
 		JarOutputStream out = new JarOutputStream(new FileOutputStream(
-				outputFileName),new Manifest());
+				outputFileName),m);
 		File f = new File(inputFileName);
-		jar(out, f, "com/thinkingtop/kaas/services");
+		jar(out, f, "com/thinkingtop/kaas/services/algorithm");
 		out.close();
 	}
 
