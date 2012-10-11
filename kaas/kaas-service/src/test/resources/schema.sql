@@ -34,4 +34,4 @@ CREATE TABLE `Scheme` (
 insert into Scheme (algorithmNames, ecommerceid, schemeName) values 
 ('AlgorithmDefault,AprioriRunner', 1, 'scheme1');
 insert into Scheme (algorithmNames, ecommerceid, schemeName) values 
-('AlgorithmDefault,AprioriRunner', 1, 'scheme2');
+('AlgorithmDefault,AprioriRunnerMultiThread', 1, 'scheme2');

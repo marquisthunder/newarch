@@ -23,7 +23,7 @@ import com.thinkingtop.kaas.services.model.Scheme;
 public class PackageAlgorithm {
 	private KaasDataPath kaasDataPath;
 	static Logger logger=Logger.getLogger(PackageAlgorithm.class);
-	public void jar(String inputFileName, String outputFileName)
+	public void jar(String inputFileName, String outputFileName,String[] algorithm)
 			throws Exception {
 		Manifest m = new Manifest();
 		Attributes a = m.getMainAttributes();
@@ -33,17 +33,37 @@ public class PackageAlgorithm {
 		JarOutputStream out = new JarOutputStream(new FileOutputStream(
 				outputFileName),m);
 		File f = new File(inputFileName);
-		jar(out, f, "com/thinkingtop/kaas/services/algorithm");
+		jar(out, f, "com/thinkingtop/kaas/services/algorithm",algorithm);
 		out.close();
 	}
 
-	private void jar(JarOutputStream out, File f, String base)
-			throws Exception {
+	private void jarImpl(JarOutputStream out, File f, String base,
+			String[] algorithm) throws Exception {
 		if (f.isDirectory()) {
 			File[] fl = f.listFiles();
 			base = base.length() == 0 ? "" : base + "/";
 			for (int i = 0; i < fl.length; i++) {
-				jar(out, fl[i], base + fl[i].getName());
+				//logger.info("impl filename:------"+fl[i].getName());
+				for(String alg : algorithm){
+					if(fl[i].getName().equals(alg+".class")){
+						jar(out, fl[i], base + fl[i].getName(),algorithm);
+					}
+				}
+			}
+		}
+	}
+
+	private void jar(JarOutputStream out, File f, String base,String[] algorithm)
+			throws Exception {
+		if (f.isDirectory()) {
+			if(base.equals("com/thinkingtop/kaas/services/algorithm/impl")){
+				jarImpl(out, f, base, algorithm);
+				return;
+			}
+			File[] fl = f.listFiles();
+			base = base.length() == 0 ? "" : base + "/";
+			for (int i = 0; i < fl.length; i++) {
+				jar(out, fl[i], base + fl[i].getName(),algorithm);
 			}
 		} else {
 			out.putNextEntry(new JarEntry(base));
@@ -65,7 +85,7 @@ public class PackageAlgorithm {
 			String[] Algorithm = s.getAlgorithmNames().split(",");
 			//logger.info("schemes------------"+s.getAlgorithmNames());
 			try {
-				jar(kaasDataPath.getAlgorithmPath(), kaasDataPath.getMyKaasdataPath()+"/"+s.getSchemeName()+".jar");
+				jar(kaasDataPath.getAlgorithmPath(), kaasDataPath.getMyKaasdataPath()+"/"+s.getSchemeName()+".jar",Algorithm);
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
