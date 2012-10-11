@@ -11,11 +11,11 @@
            http://www.springframework.org/schema/aop/spring-aop-3.0.xsd">
 	
 	<!-- datasource configuration-->
-	<bean id="dataSource" class="com.thinkingtop.kaas.etl.database.KaasBoneCPDataSource"  
+	<bean id="dataSource" class="com.jolbox.bonecp.BoneCPDataSource"  
         destroy-method="close">  
-        <property name="driverClass" value="" />  
-        <property name="jdbcUrl" value="" />  
-        <property name="username" value="" />  
+        <property name="driverClass" value="com.mysql.jdbc.Driver" />  
+        <property name="jdbcUrl" value="jdbc:mysql://localhost:3306/jar?useUnicode=true&amp;characterEncoding=UTF-8" />  
+        <property name="username" value="root" />  
         <property name="password" value="" /> 
      </bean>
 
@@ -25,18 +25,21 @@
 	</bean>
 
 	<!-- Manager Bean definition -->
-	<bean id="etlService" class="com.thinkingtop.kaas.etl.service.impl.EtlServiceImpl">
-		<property name="etlDAO" ref="etlDAO" />
+	<bean id="jarService" class="com.thinkingtop.kaas.server.service.impl.JarServiceImpl">
+		<property name="jarDAO" ref="jarDAO" />
 	</bean>
 
 	<!-- dao Bean definition -->
-	<bean id="etlDAO" class="com.thinkingtop.kaas.etl.dao.impl.EtlDAOImpl">
+	<bean id="jarDAO" class="com.thinkingtop.kaas.server.dao.impl.JarDAOImpl">
 		<property name="jdbcTemplate" ref="jdbcTemplate" />
 	</bean>
 	
 	<!-- utility Bean definition -->
-	<bean id="extractUtil" class="com.thinkingtop.kaas.etl.util.ExtractUtil">
-		<property name="etlService" ref="etlService" />
+	<bean id="maintenance" class="com.thinkingtop.kaas.server.jar.maintenance.Maintenance">
+		<property name="jarService" ref="jarService" />
 	</bean>
+	
+	
+	<bean class="com.thinkingtop.kaas.server.service.JarBeanFactory" />
 
 </beans>

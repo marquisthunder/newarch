@@ -26,14 +26,42 @@
 			<version>2.4</version>
 			<scope>provided</scope>
 		</dependency>
-		<!-- vfs -->
+		<!-- servlet+jstl+jsp ends -->
+
+		<!-- bonecp dependency -->
 		<dependency>
-			<groupId>commons-vfs</groupId>
-			<artifactId>commons-vfs</artifactId>
-			<version>1.0</version>
+			<groupId>com.jolbox</groupId>
+			<artifactId>bonecp</artifactId>
 		</dependency>
-
-
+		<dependency>
+			<groupId>log4j</groupId>
+			<artifactId>log4j</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-log4j12</artifactId>
+		</dependency>
+		<!-- bonecp dependency ends -->
+		<!-- jdbctemplate start -->
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-jdbc</artifactId>
+			<version>${spring.version}</version>
+		</dependency>
+		<!-- jdbctemplate end -->
+		<!-- spring web context -->
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-web</artifactId>
+			<version>3.1.1.RELEASE</version>
+		</dependency>
+<!-- spring web context end-->
+		<!-- mysql driver -->
+		<dependency>
+			<groupId>mysql</groupId>
+			<artifactId>mysql-connector-java</artifactId>
+		</dependency>
+		<!-- mysql driver ends -->
 	</dependencies>
 	<build>
 		<finalName>kaas-server</finalName>

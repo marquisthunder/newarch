@@ -4,9 +4,15 @@ import java.util.Date;
 import java.util.Timer;
 import java.util.TimerTask;
 
-import com.thinkingtop.kaas.server.jar.maintenance.Maintenance;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
-public class TimerOperator {   
+import com.thinkingtop.kaas.server.jar.maintenance.Maintenance;
+import com.thinkingtop.kaas.server.jar.reader.PropertiesReader;
+
+public class TimerOperator { 
+	private static final Logger logger = LoggerFactory.getLogger(TimerOperator.class.getName());
+
     private static TimerOperator to=null;
 	private TimerOperator (){}
 	public static TimerOperator getInstance() {
@@ -17,43 +23,33 @@ public class TimerOperator {
 		return to;
 	}
 	
-    public static void main(String[] args) { 
+   /* public static void main(String[] args) { 
         TimerOperator tTask=new TimerOperator();
-    }
-    static int i = 1;
+    }*/
+   // static int i = 1;
     static Timer timer = new Timer();
     public void execute(Maintenance m){
     	
     	timer.cancel();
     	timer = new Timer();
-        timer.schedule(new KaasTimerTask(m), new Date(m.getFirstJarInfo().getExpiredDate().getTime()+5000));
+    	Long l = Long.parseLong(PropertiesReader.getProp("priod"));
+        
+    	timer.schedule(new KaasTimerTask(m), new Date(m.getFirstJarInfo().getExpired().getTime()+l));
         //timer.schedule(new KaasTimerTask(), 2000);
-       
     }
     
-    public void cancel() {
-    	timer.cancel();
-    }
     private class KaasTimerTask extends TimerTask {
     	private Maintenance m;
     	public KaasTimerTask(Maintenance m) {
     		this.m=m;
     	}
         public void run() {
-            System.out.println("it is up "+(i++));
-           	System.out.println("file:"+m.getFirstJarInfo().getJarName());
-            
+           	//System.out.println("file:"+m.getFirstJarInfo().getJarName());
+            logger.info("push file:"+m.getFirstJarInfo().getJarName());
            	m.popJarInfo();
             if(m.getFirstJarInfo()!=null) {
-            	
-            	timer.schedule(new KaasTimerTask(m), m.getFirstJarInfo().getExpiredDate());
+            	timer.schedule(new KaasTimerTask(m), m.getFirstJarInfo().getExpired());
             }
-        }
-    }
-    private class KaasTimerTask2 extends TimerTask {
-    	
-        public void run() {
-            System.out.println("it is up2！"+(i++));
         }
     }
 }

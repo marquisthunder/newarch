@@ -29,7 +29,6 @@ public class PropertiesReader {
 	public static String getProp(String key) {
 		return props.getProperty(key);
 	}
-
 	
 	/*public static void main(String args[]) {
 		System.out.println(PropertiesReader.getProp("directory"));

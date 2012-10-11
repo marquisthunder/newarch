@@ -17,7 +17,7 @@ import com.thinkingtop.kaas.etl.validator.ValidateXML;
 
 public class EtlDAOImpl implements EtlDAO {
  
-	private static final Logger logger = LoggerFactory.getLogger(ValidateXML.class.getName());
+	private static final Logger logger = LoggerFactory.getLogger(EtlDAOImpl.class.getName());
 	
 	/*JdbcTemplate*/
 	private JdbcTemplate jdbcTemplate;

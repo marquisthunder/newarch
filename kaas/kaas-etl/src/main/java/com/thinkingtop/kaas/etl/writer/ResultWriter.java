@@ -116,11 +116,8 @@ public class ResultWriter {
 		
 	}
 	
-	/*public static void main(String args[]) {
+	public static void main(String args[]) {
 		ResultWriter.getInstance().writeToXml(new Result().getResult());
-	}*/
-
-	
-	
+	}
 
 }

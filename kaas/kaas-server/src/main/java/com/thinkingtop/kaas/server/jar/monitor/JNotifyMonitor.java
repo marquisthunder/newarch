@@ -1,4 +1,4 @@
-package com.thinkingtop.kaas.server.webapps.monitor;
+package com.thinkingtop.kaas.server.jar.monitor;
 
 import java.io.IOException;
 
@@ -18,10 +18,8 @@ public class JNotifyMonitor implements ServletContextListener{
 		try {
 			new JNotify().startMonitor();
 		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
