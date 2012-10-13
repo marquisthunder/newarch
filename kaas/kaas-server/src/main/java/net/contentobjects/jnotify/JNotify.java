@@ -45,6 +45,7 @@ import org.slf4j.LoggerFactory;
 
 import com.thinkingtop.kaas.server.jar.maintenance.Maintenance;
 import com.thinkingtop.kaas.server.jar.reader.PropertiesReader;
+import com.thinkingtop.kaas.server.model.KaasJarInfo;
 import com.thinkingtop.kaas.server.service.JarBeanFactory;
 
 public class JNotify {
@@ -139,10 +140,17 @@ public class JNotify {
 				//System.out.println("Time: " + new Date(f.lastModified()));
 				logger.info("Time: " + new Date(f.lastModified()));
 				Date d = new Date(f.lastModified());
+				Date d2= new Date(f.lastModified()+5000);
 				System.out.println("hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh");
 				
 				Maintenance m = (Maintenance)JarBeanFactory.newInstance().getBean("maintenance");
-				m.addJarInfo(d, f.getName());
+				KaasJarInfo info = new KaasJarInfo();
+				info.setExpired(d2);
+				info.setLastModified(d);
+				info.setJarName(f.getName());
+				info.setUser("my");
+				
+				m.addJarInfo(info);
 			}
 		});
 

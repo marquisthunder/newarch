@@ -12,7 +12,7 @@ public class JWatchMonitor implements ServletContextListener{
 	}
 
 	public void contextInitialized(ServletContextEvent arg0) {
-		new JWatch().startMonitor();
+		new Thread(new JWatch()).start();
 	}
-      
+    
 }

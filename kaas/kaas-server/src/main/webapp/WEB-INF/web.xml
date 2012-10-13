@@ -15,10 +15,10 @@
 		<param-name>contextConfigLocation</param-name>
 		<param-value>classpath:applicationContext.xml</param-value>
 	</context-param>  
-  <listener>
+<!--   <listener>
         <listener-class>com.thinkingtop.kaas.server.jar.monitor.JNotifyMonitor</listener-class>
-    </listener>
-   <!--  <listener>
+    </listener> -->
+<!--    <listener>
         <listener-class>com.thinkingtop.kaas.server.jar.monitor.JWatchMonitor</listener-class>
     </listener> -->
 </web-app>

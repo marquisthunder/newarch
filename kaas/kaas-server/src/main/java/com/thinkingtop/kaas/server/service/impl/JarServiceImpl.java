@@ -1,5 +1,6 @@
 package com.thinkingtop.kaas.server.service.impl;
 
+import java.util.List;
 import java.util.Set;
 
 import com.thinkingtop.kaas.server.dao.JarDAO;
@@ -39,7 +40,7 @@ public class JarServiceImpl implements JarService {
 	}
 
 	@Override
-	public Set<KaasJarInfo> getFirstJars() {
+	public List<KaasJarInfo> getFirstJars() {
 		return jarDAO.getFirstJars();
 	}
 

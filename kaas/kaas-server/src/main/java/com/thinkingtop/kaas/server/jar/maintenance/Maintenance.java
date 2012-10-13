@@ -1,22 +1,21 @@
 package com.thinkingtop.kaas.server.jar.maintenance;
 
-import java.util.Date;
-import java.util.SortedMap;
-import java.util.TreeMap;
+import java.util.Iterator;
+import java.util.List;
 
-import com.thinkingtop.kaas.server.dao.JarDAO;
-import com.thinkingtop.kaas.server.jar.manager.TimerOperator;
 import com.thinkingtop.kaas.server.model.KaasJarInfo;
 import com.thinkingtop.kaas.server.service.JarService;
 
 /*
  * 1)TreeMap is sorted by key  in ascending order by default.
- * 2)not support duplicate key, new element with his key which has existed will cover the origin element.    
+ * 2)not support duplicate key, new element with his key which has existed will cover the origin element.  
+ * for test, we use TreeMap.. But in real environment, we store data in mysql/   
  */
 public class Maintenance {
 	
-	private JarService jarService;
+	//private static final Logger logger = LoggerFactory.getLogger(Maintenance.class.getName());
 	
+	private JarService jarService;
 
 	public void setJarService(JarService jarService) {
 		this.jarService = jarService;
@@ -53,28 +52,6 @@ public class Maintenance {
 		System.out.println(map.size());
 	}
 */
-	public void addJarInfo(Date date, String jarName) {
-		KaasJarInfo info = new KaasJarInfo();
-		info.setExpired(date);
-		info.setJarName(jarName);
-		jarService.addJarInfo(info);
-		System.out.println("addddddddddddddddddddddddddddddddddddddddddddddddddddddd");
-		
-	/*	if(map.size()==0) {
-			map.put(date, jarName);
-			TimerOperator.getInstance().execute(this);
-		}
-		else {
-			if(this.getFirstJarInfo().getExpiredDate().getTime()>date.getTime()) {
-				map.put(date, jarName);
-				TimerOperator.getInstance().execute(this);
-			}
-			else {
-				map.put(date, jarName);
-			}
-		}*/
-			
-	}
 	
 	public void addJarInfo(KaasJarInfo info) {
 		/*Date date = info.getExpiredDate();
@@ -95,6 +72,15 @@ public class Maintenance {
 		String name = jarService.getFirstJar().getJarName();
 		jarService.deleteJarInfo(name);
 		return info;
+	}
+	
+	public List<KaasJarInfo> popJarInfos() {
+		List<KaasJarInfo> list = jarService.getFirstJars();
+		Iterator<KaasJarInfo> ite = list.iterator();
+		while(ite.hasNext()) {
+			jarService.deleteJarInfo(ite.next().getJarName());
+		}
+		return list;
 	}
 	
 	public KaasJarInfo getFirstJarInfo() {

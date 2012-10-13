@@ -46,7 +46,7 @@ public class TimerOperator {
         public void run() {
            	//System.out.println("file:"+m.getFirstJarInfo().getJarName());
             logger.info("push file:"+m.getFirstJarInfo().getJarName());
-           	m.popJarInfo();
+           	m.popJarInfos();
             if(m.getFirstJarInfo()!=null) {
             	timer.schedule(new KaasTimerTask(m), m.getFirstJarInfo().getExpired());
             }

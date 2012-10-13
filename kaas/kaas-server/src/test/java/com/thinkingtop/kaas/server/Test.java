@@ -1,4 +1,6 @@
 package com.thinkingtop.kaas.server;
+import java.util.Iterator;
+
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
@@ -17,6 +19,10 @@ public class Test {
 		//info.setJarName("name");
 		//jarService.addJarInfo(info);
 		//System.out.println(jarService.getFirstJar());
-		jarService.deleteJarInfo("wo");
+		//jarService.deleteJarInfo("wo");
+		Iterator<KaasJarInfo> ite = jarService.getFirstJars().iterator();
+		while(ite.hasNext()) {
+			System.out.println(ite.next().getJarName());
+		}
 	}
 }

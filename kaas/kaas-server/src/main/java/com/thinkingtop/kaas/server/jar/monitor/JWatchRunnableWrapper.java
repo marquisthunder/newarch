@@ -1,5 +1,4 @@
 package com.thinkingtop.kaas.server.jar.monitor;
-
 import java.io.File;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -17,15 +16,17 @@ import com.thinkingtop.kaas.server.jar.reader.PropertiesReader;
 import com.thinkingtop.kaas.server.model.KaasJarInfo;
 import com.thinkingtop.kaas.server.service.JarBeanFactory;
 
-public class JWatch implements Runnable{
-	private static final Logger logger = LoggerFactory.getLogger(JWatch.class.getName());
+public class JWatchRunnableWrapper implements Runnable { 
+ 
+	private static final Logger logger = LoggerFactory.getLogger(JWatchRunnableWrapper.class.getName());
 
-	public void run() {
-		Path myDir = Paths.get(PropertiesReader.getProp("directory"));
+ 
+    public void run() { 
+    	Path myDir = Paths.get(PropertiesReader.getProp("directory"));
 
 		try {
-			WatchService watcher = myDir.getFileSystem().newWatchService();
-			myDir.register(watcher, StandardWatchEventKinds.ENTRY_CREATE,
+			WatchService watchService = myDir.getFileSystem().newWatchService();
+			myDir.register(watchService, StandardWatchEventKinds.ENTRY_CREATE,
 					StandardWatchEventKinds.ENTRY_DELETE,
 					StandardWatchEventKinds.ENTRY_MODIFY);
 
@@ -33,7 +34,7 @@ public class JWatch implements Runnable{
 			 * Keep polling for events on the watched directory,
 			 */
 			for (;;) {
-				WatchKey watckKey = watcher.poll();
+				WatchKey watckKey = watchService.take();
 
 				// Poll all the events queued for the key
 				for (WatchEvent<?> event : watckKey.pollEvents()) {
@@ -78,5 +79,6 @@ public class JWatch implements Runnable{
 		} catch (Exception e) {
 			System.out.println("Error: " + e.toString());
 		}
-	}
-}
+    } 
+} 
+
