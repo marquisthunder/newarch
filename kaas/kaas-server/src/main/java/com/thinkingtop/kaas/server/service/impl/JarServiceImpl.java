@@ -1,14 +1,13 @@
 package com.thinkingtop.kaas.server.service.impl;
 
 import java.util.List;
-import java.util.Set;
 
 import com.thinkingtop.kaas.server.dao.JarDAO;
 import com.thinkingtop.kaas.server.model.KaasJarInfo;
 import com.thinkingtop.kaas.server.service.JarService;
 
 /**
- * Hello world!
+ * JarServiceImpl
  *
  */
 public class JarServiceImpl implements JarService {

@@ -23,12 +23,10 @@ public class JarBeanFactory implements ApplicationContextAware {
 	@Override
 	public void setApplicationContext(ApplicationContext applicationContext)
 			throws BeansException {
-		System.out.println("ppppppppppppppppppppppppppppppppp");
 		ac = applicationContext;
 	}
 	
 	public Object getBean(String name) {
-		System.out.println(ac.getBean(name)+"?????????????????");
 		return ac.getBean(name);
 	}
 

@@ -17,15 +17,15 @@ import com.thinkingtop.kaas.server.jar.reader.PropertiesReader;
 import com.thinkingtop.kaas.server.model.KaasJarInfo;
 import com.thinkingtop.kaas.server.service.JarBeanFactory;
 
-public class JWatch implements Runnable{
+public class JWatch{
 	private static final Logger logger = LoggerFactory.getLogger(JWatch.class.getName());
 
-	public void run() {
+	public void startMonitor() {
 		Path myDir = Paths.get(PropertiesReader.getProp("directory"));
 
 		try {
-			WatchService watcher = myDir.getFileSystem().newWatchService();
-			myDir.register(watcher, StandardWatchEventKinds.ENTRY_CREATE,
+			WatchService watchService = myDir.getFileSystem().newWatchService();
+			myDir.register(watchService, StandardWatchEventKinds.ENTRY_CREATE,
 					StandardWatchEventKinds.ENTRY_DELETE,
 					StandardWatchEventKinds.ENTRY_MODIFY);
 
@@ -33,7 +33,7 @@ public class JWatch implements Runnable{
 			 * Keep polling for events on the watched directory,
 			 */
 			for (;;) {
-				WatchKey watckKey = watcher.poll();
+				WatchKey watckKey = watchService.take();
 
 				// Poll all the events queued for the key
 				for (WatchEvent<?> event : watckKey.pollEvents()) {
@@ -55,7 +55,7 @@ public class JWatch implements Runnable{
 						Date d = new Date(f.lastModified());
 						Date d2= new Date(f.lastModified()+5000);
 						System.out.println("hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh");
-						
+
 						Maintenance m = (Maintenance)JarBeanFactory.newInstance().getBean("maintenance");
 						KaasJarInfo info = new KaasJarInfo();
 						info.setExpired(d2);
