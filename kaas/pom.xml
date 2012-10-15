@@ -10,6 +10,7 @@
 		<module>kaas-service</module>
 		<module>kaas-daemon</module>
 		<module>kaas-server</module>
+		<module>kaas-package</module>
 	</modules>
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
