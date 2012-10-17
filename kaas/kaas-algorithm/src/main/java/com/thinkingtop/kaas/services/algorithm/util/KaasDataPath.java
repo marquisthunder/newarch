@@ -25,7 +25,7 @@ public class KaasDataPath {
 	public KaasDataPath(){
 		this.myKaasdataPath = new File("").getAbsolutePath();
 		int beginIndex;
-		if(this.myKaasdataPath.endsWith("kaas-algorithm")){
+		if((beginIndex = this.myKaasdataPath.lastIndexOf("dist"))==-1){
 			this.myKaasdataPath = this.myKaasdataPath + "/../dist/";
 		}else if((beginIndex = this.myKaasdataPath.lastIndexOf("dist"))!=-1){
 			this.myKaasdataPath = this.myKaasdataPath.substring(0,beginIndex)+"dist/";
