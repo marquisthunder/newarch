@@ -10,7 +10,7 @@ public class StreamUtil {
 	public static InputStream getEtlXMLStream() {
 		PropertiesReader reader = PropertiesReader.getInstance();
 		String type = reader.getProperty("inType");
-		if(type.equals("native")) {
+		if(type.equals("native")) { 
 			try {
 			URL xmlUrl =  new File(reader.getProperty("in")).toURI().toURL();
 			InputStream isXML = xmlUrl.openStream();

@@ -15,7 +15,7 @@
 		class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
 		<property name="locations">
 			<list>
-				<value>classpath*:/algorithm.properties</value>
+				<value>algorithm.properties</value>
 			</list>
 		</property>
 	</bean>

@@ -66,7 +66,7 @@ CREATE TABLE `jarinfo` (
 	@SuppressWarnings({ "unchecked", "rawtypes" })
 	@Override
 	public KaasJarInfo getFirstJar() {
-		return jdbcTemplate.queryForObject("select * from jarinfo order by expired limit 1",  new RowMapper() {
+		return (KaasJarInfo)jdbcTemplate.queryForObject("select * from jarinfo order by expired limit 1",  new RowMapper() {
 			public Object mapRow(ResultSet rs, int rowNum) {
 				KaasJarInfo info = new KaasJarInfo();
 				try {
