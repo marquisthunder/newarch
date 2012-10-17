@@ -12,7 +12,6 @@ import java.util.Set;
 
 import org.apache.log4j.Logger;
 
-import com.thinkingtop.kaas.services.algorithm.impl.AprioriRunner;
 
 /**
  * Combination Generator class
@@ -166,7 +165,7 @@ public class CombinationGenerator {
         }
         size *= (i-1);
         System.out.println(size);*/
-        Logger logger=Logger.getLogger(AprioriRunner.class);        
+        //Logger logger=Logger.getLogger(AprioriRunner.class);        
     }
     
     public static void genc(String[] idliststr,Map<String, Integer> submitMap){

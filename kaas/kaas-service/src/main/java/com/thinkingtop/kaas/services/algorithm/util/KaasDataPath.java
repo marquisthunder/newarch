@@ -13,7 +13,6 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
 import com.thinkingtop.kaas.services.algorithm.Algorithm;
-import com.thinkingtop.kaas.services.util.ClassUtil;
 
 @Component("kaasDataPath")
 public class KaasDataPath {
@@ -96,14 +95,14 @@ public class KaasDataPath {
 	}
 	
 	public static void getClassName(){
-		KaasDataPath kdp = new KaasDataPath();
+		/*KaasDataPath kdp = new KaasDataPath();
 		String classLocation = kdp.getMyKaasdataPath();
 		System.out.println(classLocation);
 		String packageName = "com.thinkingtop.kaas.services.algorithm";
 		String[] classst = ClassUtil.getPackageAllClassName(classLocation, packageName);
 		for(String s : classst){
 			System.out.println(s);
-		}
+		}*/
 	}
 	
 	public static void main(String[] args) {

@@ -23,12 +23,13 @@ import org.springframework.stereotype.Component;
 import com.thinkingtop.kaas.services.algorithm.dao.KaasRuleDAO;
 import com.thinkingtop.kaas.services.algorithm.model.KaasOrderFrequent;
 import com.thinkingtop.kaas.services.algorithm.model.KaasRule;
+import com.thinkingtop.kaas.services.algorithm.util.AlgorithmProperties;
 import com.thinkingtop.kaas.services.algorithm.util.KaasDataPath;
 
 @Component("kaasRuleDAOFileImpl")
 public class KaasRuleDAOFileImpl implements KaasRuleDAO {
     static Logger logger=Logger.getLogger(KaasRuleDAOFileImpl.class);
-	private String itemDelimiter;
+    private  AlgorithmProperties algorithmProperties;
     private KaasDataPath kaasDataPath;
 	private Map<String,KaasRule> marsRuleAll;
 	public KaasRuleDAOFileImpl(){
@@ -116,7 +117,7 @@ public class KaasRuleDAOFileImpl implements KaasRuleDAO {
 			outputQuantitye=1;
 			for(Map.Entry<String, KaasRule> me : marsRuleAll.entrySet()){
 				String[] bg = me.getKey().split("\\|");
-				if(bg[0].equals(inputItems)&&(bg[1].split(itemDelimiter).length==outputItemsNum)){
+				if(bg[0].equals(inputItems)&&(bg[1].split(getItemDelimiter()).length==outputItemsNum)){
 					marsRuleList.put(bg[1],me.getValue().getConfidence());
 				}
 			}
@@ -132,7 +133,7 @@ public class KaasRuleDAOFileImpl implements KaasRuleDAO {
 			}else{
 				for(Map.Entry<String, KaasRule> me : marsRuleAll.entrySet()){
 					String[] bg = me.getKey().split("\\|");
-					if(bg[0].equals(inputItems)&&(bg[1].split(itemDelimiter).length==outputItemsNum)){
+					if(bg[0].equals(inputItems)&&(bg[1].split(getItemDelimiter()).length==outputItemsNum)){
 						marsRuleList.put(bg[1],me.getValue().getConfidence());
 					}
 				}
@@ -149,7 +150,7 @@ public class KaasRuleDAOFileImpl implements KaasRuleDAO {
 		HashMap<String,Double> marsRuleList = new HashMap<String,Double>();
 		for(Map.Entry<String, KaasRule> me : marsRuleAll.entrySet()){
 			String[] bg = me.getKey().split("\\|");
-			if(bg[0].equals(inputItems)&&(bg[1].split(itemDelimiter).length==outputItemsNum)){
+			if(bg[0].equals(inputItems)&&(bg[1].split(getItemDelimiter()).length==outputItemsNum)){
 				marsRuleList.put(bg[1],me.getValue().getConfidence());
 			}
 		}
@@ -184,13 +185,17 @@ public class KaasRuleDAOFileImpl implements KaasRuleDAO {
 	}
 
 	public String getItemDelimiter() {
-		return itemDelimiter;
+		return algorithmProperties.getItemDelimiter();
 	}
 
-	@Value("${algorithm.itemDelimiter}")
-	public void setItemDelimiter(String itemDelimiter) {
-		this.itemDelimiter = itemDelimiter;
+	public AlgorithmProperties getAlgorithmProperties() {
+		return algorithmProperties;
 	}
+
+	public void setAlgorithmProperties(AlgorithmProperties algorithmProperties) {
+		this.algorithmProperties = algorithmProperties;
+	}
+
 
 
 

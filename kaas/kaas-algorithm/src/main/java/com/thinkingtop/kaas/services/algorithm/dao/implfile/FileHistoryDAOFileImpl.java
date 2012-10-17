@@ -10,14 +10,20 @@ import org.springframework.stereotype.Component;
 import org.springframework.validation.annotation.Validated;
 
 import com.thinkingtop.kaas.services.algorithm.dao.FileHistoryDAO;
+import com.thinkingtop.kaas.services.algorithm.util.AlgorithmProperties;
 
 @Component("fileHistoryDAOFileImpl")
 public class FileHistoryDAOFileImpl implements FileHistoryDAO {
-	private String itemsDelimiter;
-	private String fileString;
+	private  AlgorithmProperties algorithmProperties;
+	
+	@Resource(name="algorithmProperties")
+	public void setAlgorithmProperties(AlgorithmProperties algorithmProperties) {
+		this.algorithmProperties = algorithmProperties;
+	}
+	
 	public List<String> getFileList() {
 		List<String> fileLiest = new ArrayList<String>();
-		String[] files = fileString.split(itemsDelimiter);
+		String[] files = getFileString().split(getItemsDelimiter());
 		for(String file : files){
 			if(file==null&&file.equals("")){
 				return null;
@@ -28,21 +34,16 @@ public class FileHistoryDAOFileImpl implements FileHistoryDAO {
 	}
 
 	public String getFileString() {
-		return fileString;
-	}
-
-	@Value("${algorithm.dataFile}")
-	public void setFileString(String fileString) {
-		this.fileString = fileString;
+		return algorithmProperties.getDataFile();
 	}
 
 	public String getItemsDelimiter() {
-		return itemsDelimiter;
+		return algorithmProperties.getItemDelimiter();
+	}
+
+	public AlgorithmProperties getAlgorithmProperties() {
+		return algorithmProperties;
 	}
 	
-	@Value("${algorithm.itemDelimiter}")
-	public void setItemsDelimiter(String itemsDelimiter) {
-		this.itemsDelimiter = itemsDelimiter;
-	}
 
 }

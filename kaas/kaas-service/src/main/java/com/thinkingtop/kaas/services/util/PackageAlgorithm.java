@@ -29,11 +29,20 @@ public class PackageAlgorithm {
 		Attributes a = m.getMainAttributes();
 		a.put(Attributes.Name.MANIFEST_VERSION, "1.0");
 		a.put(Attributes.Name.MAIN_CLASS, "com.thinkingtop.kaas.services.algorithm.entrance.Entrance");
+		a.put(Attributes.Name.CLASS_PATH, "lib/kaas-algorithm-jar-with-dependencies.jar");
 		
 		JarOutputStream out = new JarOutputStream(new FileOutputStream(
 				outputFileName),m);
 		File f = new File(inputFileName);
 		jar(out, f, "com/thinkingtop/kaas/services/algorithm",algorithm);
+		
+		String classpath = PackageAlgorithm.class.getResource("/").toString().substring("file:".length());
+		f = new File(classpath+"algorithm.properties");
+		jar(out, f, "/algorithm.properties",algorithm);
+		f = new File(classpath+"algorithmbeans.xml");
+		jar(out, f, "/algorithmbeans.xml",algorithm);
+		f = new File(classpath+"log4j.properties");
+		jar(out, f, "/log4j.properties",algorithm);
 		out.close();
 	}
 
@@ -45,7 +54,7 @@ public class PackageAlgorithm {
 			for (int i = 0; i < fl.length; i++) {
 				//logger.info("impl filename:------"+fl[i].getName());
 				for(String alg : algorithm){
-					if(fl[i].getName().equals(alg+".class")){
+					if(fl[i].getName().equals(alg+".class")||fl[i].getName().equals(alg+"$KaasAprioriTask.class")){
 						jar(out, fl[i], base + fl[i].getName(),algorithm);
 					}
 				}
@@ -85,7 +94,7 @@ public class PackageAlgorithm {
 			String[] Algorithm = s.getAlgorithmNames().split(",");
 			//logger.info("schemes------------"+s.getAlgorithmNames());
 			try {
-				jar(kaasDataPath.getAlgorithmPath(), kaasDataPath.getMyKaasdataPath()+"/"+s.getSchemeName()+".jar",Algorithm);
+				jar(kaasDataPath.getAlgorithmPath(), kaasDataPath.getMyKaasdataPath()+"/algorithm/"+s.getSchemeName()+".jar",Algorithm);
 			} catch (Exception e) {
 				e.printStackTrace();
 			}

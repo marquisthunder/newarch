@@ -84,7 +84,30 @@
 	<build>
 		<finalName>kaas-algorithm</finalName>
 		<plugins>
-			
+			<!-- compiler plugin -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+			</plugin>
+			<!-- resources plugin -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-resources-plugin</artifactId>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-jar-plugin</artifactId>
+				<configuration>
+					<outputDirectory>../dist/algorithm</outputDirectory>
+					<archive>
+						<manifest>
+							<addClasspath>true</addClasspath>
+							<classpathPrefix>lib/kaas-algorithm-jar-with-dependencies.jar</classpathPrefix>
+							<mainClass>com.thinkingtop.kaas.services.algorithm.entrance.Entrance</mainClass>
+						</manifest>
+					</archive>
+				</configuration>
+			</plugin>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-assembly-plugin</artifactId>
@@ -97,7 +120,7 @@
 					<archive>
 						<manifest>
 							<addClasspath>true</addClasspath>
-							<mainClass>community.flickr.patch.App</mainClass>
+							<mainClass>com.thinkingtop.kaas.services.algorithm.entrance.Entrance</mainClass>
 						</manifest>
 					</archive>
 				</configuration>

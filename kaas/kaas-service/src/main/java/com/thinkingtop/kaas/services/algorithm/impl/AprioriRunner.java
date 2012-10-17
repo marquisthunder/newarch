@@ -201,6 +201,7 @@ public class AprioriRunner extends AlgorithmGeneral implements Algorithm{
             String basePathes = getKaasDataPath().getItemDataPath();
             String realBase = null;
             File tmp=new File(basePathes);
+            logger.info("tmp.tustong ----"+tmp.toString());
             if(tmp.isDirectory()){
                 realBase=basePathes;
             }

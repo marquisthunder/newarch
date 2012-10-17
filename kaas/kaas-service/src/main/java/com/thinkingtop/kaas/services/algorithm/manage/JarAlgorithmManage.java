@@ -12,7 +12,6 @@ import org.springframework.stereotype.Component;
 
 import com.thinkingtop.kaas.services.algorithm.Algorithm;
 import com.thinkingtop.kaas.services.algorithm.impl.AlgorithmDefault;
-import com.thinkingtop.kaas.services.util.ClassUtil;
 
 @Component("jarAlgorithmManage")
 public class JarAlgorithmManage {
@@ -20,7 +19,7 @@ public class JarAlgorithmManage {
 	private Map<String,Algorithm> algorithms;
 	
 	public static JarAlgorithmManage getJarAlgorithmManage(){
-		ClassPathXmlApplicationContext acx = new ClassPathXmlApplicationContext("beans.xml");
+		ClassPathXmlApplicationContext acx = new ClassPathXmlApplicationContext("classpath*:/algorithmbeans.xml");
 		JarAlgorithmManage algorithmManage = (JarAlgorithmManage) acx.getBean("jarAlgorithmManage");
 		acx.destroy();
 		return algorithmManage;

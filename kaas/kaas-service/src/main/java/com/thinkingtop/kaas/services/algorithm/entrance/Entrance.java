@@ -15,7 +15,6 @@ public class Entrance  implements Installer{
 		algorithmManage.runIt();
 	}
 
-	@Override
 	public UpdateInfo install(HashMap clientStatus, UpdateInfo status,
 			ProgressListener listener) throws InstallException {
 		JarAlgorithmManage algorithmManage = JarAlgorithmManage.getJarAlgorithmManage();

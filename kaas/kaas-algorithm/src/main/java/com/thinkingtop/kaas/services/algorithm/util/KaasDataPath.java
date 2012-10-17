@@ -3,6 +3,8 @@ package com.thinkingtop.kaas.services.algorithm.util;
 import java.io.File;
 import java.util.Iterator;
 
+import javax.annotation.Resource;
+
 import org.apache.log4j.Logger;
 import org.dom4j.Attribute;
 import org.dom4j.Document;
@@ -18,9 +20,7 @@ import com.thinkingtop.kaas.services.algorithm.Algorithm;
 public class KaasDataPath {
 	static Logger logger=Logger.getLogger(KaasDataPath.class);
 	private String myKaasdataPath;
-	private String dataPath;
-	private String ofPath;
-	private String rPath;
+	private AlgorithmProperties algorithmProperties;
 	
 	public KaasDataPath(){
 		this.myKaasdataPath = new File("").getAbsolutePath();
@@ -44,15 +44,15 @@ public class KaasDataPath {
 	}
 	
 	public String getItemDataPath(){
-		String itemDatap = getMyKaasdataPath() + dataPath;
+		String itemDatap = getMyKaasdataPath() + getDataPath();
 		return itemDatap;
 	}
 	public String getofDataPath(){
-		String ofDatap = getMyKaasdataPath() + ofPath;
+		String ofDatap = getMyKaasdataPath() + getOfPath();
 		return ofDatap;
 	}
 	public String getRDataPath(){
-		String rDatap = getMyKaasdataPath()+rPath;
+		String rDatap = getMyKaasdataPath()+getrPath();
 		return rDatap;
 	}
 	
@@ -73,25 +73,13 @@ public class KaasDataPath {
 	}
 	
 	public String getDataPath() {
-		return dataPath;
-	}
-	@Value("${algorithm.dataPath}")
-	public void setDataPath(String dataPath) {
-		this.dataPath = dataPath;
+		return algorithmProperties.getDataPath();
 	}
 	public String getOfPath() {
-		return ofPath;
-	}
-	@Value("${algorithm.orderFrequentOutPath}")
-	public void setOfPath(String ofPath) {
-		this.ofPath = ofPath;
+		return algorithmProperties.getOrderFrequentOutPath();
 	}
 	public String getrPath() {
-		return rPath;
-	}
-	@Value("${algorithm.ruleOutPath}")
-	public void setrPath(String rPath) {
-		this.rPath = rPath;
+		return algorithmProperties.getRuleOutPath();
 	}
 	
 	public static void getClassName(){
@@ -114,5 +102,14 @@ public class KaasDataPath {
 	}
 	public void setMyKaasdataPath(String myKaasdataPath) {
 		this.myKaasdataPath = myKaasdataPath;
+	}
+
+	public AlgorithmProperties getAlgorithmProperties() {
+		return algorithmProperties;
+	}
+
+	@Resource(name="algorithmProperties")
+	public void setAlgorithmProperties(AlgorithmProperties algorithmProperties) {
+		this.algorithmProperties = algorithmProperties;
 	}
 }
