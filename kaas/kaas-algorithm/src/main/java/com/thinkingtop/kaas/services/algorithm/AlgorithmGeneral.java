@@ -10,7 +10,7 @@ import com.thinkingtop.kaas.services.algorithm.dao.KaasOrderFrequentDAO;
 import com.thinkingtop.kaas.services.algorithm.dao.KaasRuleDAO;
 import com.thinkingtop.kaas.services.algorithm.util.AlgorithmProperties;
 import com.thinkingtop.kaas.services.algorithm.util.KaasDataPath;
-
+ 
 
 public class AlgorithmGeneral {
 	private  AlgorithmProperties algorithmProperties;
