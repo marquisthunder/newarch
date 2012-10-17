@@ -4,7 +4,9 @@ import java.util.HashMap;
 
 import org.hardcode.juf.InstallException;
 import org.hardcode.juf.Installer;
+import org.hardcode.juf.JUpdateUtilities;
 import org.hardcode.juf.ProgressListener;
+import org.hardcode.juf.status.Status;
 import org.hardcode.juf.status.UpdateInfo;
 
 import com.thinkingtop.kaas.services.algorithm.manage.JarAlgorithmManage;
@@ -19,6 +21,19 @@ public class Entrance  implements Installer{
 			ProgressListener listener) throws InstallException {
 		JarAlgorithmManage algorithmManage = JarAlgorithmManage.getJarAlgorithmManage();
 		algorithmManage.runIt();
-		return null;
+		
+		
+		JUpdateUtilities jup = new JUpdateUtilities();
+		Status componentStatus = jup.getComponentStatus(status, "kaas-algorithm");
+
+		if (componentStatus == null){
+		componentStatus = new Status();
+		componentStatus.setComponentName("kaas-algorithm");
+		componentStatus.setVersion(new Long("1"));
+		status.addStatus(componentStatus);
+		}else{
+		componentStatus.setVersion(componentStatus.getVersion() + 1);
+		} 
+		return status;
 	}
 }

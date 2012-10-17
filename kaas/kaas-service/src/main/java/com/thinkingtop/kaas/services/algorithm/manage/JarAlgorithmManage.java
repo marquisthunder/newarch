@@ -19,7 +19,7 @@ public class JarAlgorithmManage {
 	private Map<String,Algorithm> algorithms;
 	
 	public static JarAlgorithmManage getJarAlgorithmManage(){
-		ClassPathXmlApplicationContext acx = new ClassPathXmlApplicationContext("classpath*:/algorithmbeans.xml");
+		ClassPathXmlApplicationContext acx = new ClassPathXmlApplicationContext("algorithmbeans.xml");
 		JarAlgorithmManage algorithmManage = (JarAlgorithmManage) acx.getBean("jarAlgorithmManage");
 		acx.destroy();
 		return algorithmManage;

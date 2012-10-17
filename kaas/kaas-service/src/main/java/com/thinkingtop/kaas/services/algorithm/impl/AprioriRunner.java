@@ -34,6 +34,7 @@ import com.thinkingtop.kaas.services.algorithm.dao.KaasOrderFrequentDAO;
 import com.thinkingtop.kaas.services.algorithm.dao.KaasRuleDAO;
 import com.thinkingtop.kaas.services.algorithm.model.KaasOrderFrequent;
 import com.thinkingtop.kaas.services.algorithm.model.KaasRule;
+import com.thinkingtop.kaas.services.algorithm.util.AlgorithmProperties;
 import com.thinkingtop.kaas.services.algorithm.util.KaasDataPath;
 import com.thinkingtop.kaas.services.algorithm.util.OfConcurrentHashMap;
 
@@ -45,29 +46,19 @@ import com.thinkingtop.kaas.services.algorithm.util.OfConcurrentHashMap;
 @Component("aprioriRunner")
 public class AprioriRunner extends AlgorithmGeneral implements Algorithm{
     static Logger logger=Logger.getLogger(AprioriRunner.class);
-    private String submitLoopMaxStr;
-    private String combinationMaxSizeStr;
-    private String frequencyLowerLimitStr;
     private int actualThreadNum;
     private int threadEndNum;
     private long runAllTime;
     private long runTimeRecord0;
+    
     public String getFolder() {
         return super.getFolder();
     }
     public String getSubmitLoopMaxStr() {
-        return submitLoopMaxStr;
-    }
-    @Value("${algorithm.submitLoopMaxStr}")
-    public void setSubmitLoopMaxStr(String submitLoopMaxStr) {
-        this.submitLoopMaxStr = submitLoopMaxStr;
+        return super.getAlgorithmProperties().getSubmitLoopMaxStr();
     }
     public String getCombinationMaxSizeStr() {
-        return combinationMaxSizeStr;
-    }
-    @Value("${algorithm.combinationMaxSizeStr}")
-    public void setCombinationMaxSizeStr(String combinationMaxSizeStr) {
-        this.combinationMaxSizeStr = combinationMaxSizeStr;
+        return super.getAlgorithmProperties().getCombinationMaxSizeStr();
     }
     public KaasOrderFrequentDAO getOfdao() {
         return super.getOfdao();
@@ -85,22 +76,22 @@ public class AprioriRunner extends AlgorithmGeneral implements Algorithm{
     }
 
     public void println(){
-    	logger.info("------------------------------------println properties ");
+    	/*logger.info("------------------------------------println properties ");
     	logger.info("fileHistoryDAO:  "+super.getFileHistoryDAO().getClass());
     	logger.info("ofdao:  "+getOfdao().getClass());
     	logger.info("rdao:  "+getRdao().getClass());
     	logger.info("threadNum:  "+super.getThreadNum());
     	logger.info("folder:  "+getFolder());
-    	logger.info("waitTime:  "+super.getWaitTime());
-    	logger.info("submitLoopMaxStr:  "+submitLoopMaxStr);
-    	logger.info("combinationMaxSizeStr:  "+combinationMaxSizeStr);
-    	logger.info("frequencyLowerLimitStr:  "+frequencyLowerLimitStr);
+    	logger.info("waitTime:  "+super.getWaitTime());*/
+    	logger.info("submitLoopMaxStr:  "+getSubmitLoopMaxStr());
+    	logger.info("combinationMaxSizeStr:  "+getCombinationMaxSizeStr());
+    	logger.info("frequencyLowerLimitStr:  "+getfrequencyLowerLimitStr());
     	logger.info("------------------------------------println properties end");
     }
     
     
     public void runIt(){
-    //println();
+    println();
         runTimeRecord0 = System.nanoTime();
         logger.info("of start time :"+runTimeRecord0);
     	getOfdao().setFileAll(new OfConcurrentHashMap<String, KaasOrderFrequent>());
@@ -127,9 +118,9 @@ public class AprioriRunner extends AlgorithmGeneral implements Algorithm{
         	logger.info("this thread isShutdown");
         	super.getTaskExecutor().initialize();
         }
-        int submitLoopMax=Integer.parseInt(submitLoopMaxStr);
-        int combinationMaxSize=Integer.parseInt(combinationMaxSizeStr);
-        int  frequencyLowerLimit=Integer.parseInt(frequencyLowerLimitStr);
+        int submitLoopMax=Integer.parseInt(getSubmitLoopMaxStr());
+        int combinationMaxSize=Integer.parseInt(getCombinationMaxSizeStr());
+        int  frequencyLowerLimit=Integer.parseInt(getfrequencyLowerLimitStr());
         for(int i=0;i<actualThreadNum;i++){
             List<String> partOfFiles=new ArrayList<String>();
             int start=0;
@@ -469,17 +460,11 @@ public class AprioriRunner extends AlgorithmGeneral implements Algorithm{
 	}
 
 	public String getfrequencyLowerLimitStr() {
-		return frequencyLowerLimitStr;
-	}
-	@Value("${algorithm.frequencyLowerLimitStr}")
-	public void setfrequencyLowerLimitStr(String frequencyLowerLimitStr) {
-		this.frequencyLowerLimitStr = frequencyLowerLimitStr;
+		return super.getAlgorithmProperties().getFrequencyLowerLimitStr();
 	}
 
 	public KaasDataPath getKaasDataPath() {
 		return super.getKaasDataPath();
 	}
-
-
 
 }

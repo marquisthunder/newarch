@@ -11,14 +11,6 @@
            ">
 	<context:annotation-config />
 	<context:component-scan base-package="com.thinkingtop.kaas.services.algorithm" />
-	<bean
-		class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
-		<property name="locations">
-			<list>
-				<value>classpath*:/algorithm.properties</value>
-			</list>
-		</property>
-	</bean>
 	<bean id="threadPoolTaskExecutor"
 		class="org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor">
 		<property name="corePoolSize" value="10" />

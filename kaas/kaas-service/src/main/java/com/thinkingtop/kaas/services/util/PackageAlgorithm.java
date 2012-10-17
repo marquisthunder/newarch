@@ -33,16 +33,26 @@ public class PackageAlgorithm {
 		
 		JarOutputStream out = new JarOutputStream(new FileOutputStream(
 				outputFileName),m);
+		String base = "com/thinkingtop/kaas/services";
+		String[] bases = base.split("/");
+		for(int i=0;i<bases.length;i++){
+			String ba = "";
+			for(int j=0;j<=i;j++){
+				ba = ba + bases[j] + "/";
+			}
+			out.putNextEntry(new JarEntry(ba));
+		}
+		
 		File f = new File(inputFileName);
-		jar(out, f, "com/thinkingtop/kaas/services/algorithm",algorithm);
+		jar(out, f, base+"/algorithm",algorithm);
 		
 		String classpath = PackageAlgorithm.class.getResource("/").toString().substring("file:".length());
 		f = new File(classpath+"algorithm.properties");
-		jar(out, f, "/algorithm.properties",algorithm);
+		jar(out, f, "algorithm.properties",algorithm);
 		f = new File(classpath+"algorithmbeans.xml");
-		jar(out, f, "/algorithmbeans.xml",algorithm);
+		jar(out, f, "algorithmbeans.xml",algorithm);
 		f = new File(classpath+"log4j.properties");
-		jar(out, f, "/log4j.properties",algorithm);
+		jar(out, f, "log4j.properties",algorithm);
 		out.close();
 	}
 
@@ -51,6 +61,7 @@ public class PackageAlgorithm {
 		if (f.isDirectory()) {
 			File[] fl = f.listFiles();
 			base = base.length() == 0 ? "" : base + "/";
+			out.putNextEntry(new JarEntry(base));
 			for (int i = 0; i < fl.length; i++) {
 				//logger.info("impl filename:------"+fl[i].getName());
 				for(String alg : algorithm){
@@ -71,6 +82,7 @@ public class PackageAlgorithm {
 			}
 			File[] fl = f.listFiles();
 			base = base.length() == 0 ? "" : base + "/";
+			out.putNextEntry(new JarEntry(base));
 			for (int i = 0; i < fl.length; i++) {
 				jar(out, fl[i], base + fl[i].getName(),algorithm);
 			}

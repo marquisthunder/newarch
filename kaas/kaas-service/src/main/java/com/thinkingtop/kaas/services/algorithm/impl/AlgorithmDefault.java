@@ -1,21 +1,21 @@
 package com.thinkingtop.kaas.services.algorithm.impl;
 
+import javax.annotation.Resource;
+
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
 import com.thinkingtop.kaas.services.algorithm.Algorithm;
 import com.thinkingtop.kaas.services.algorithm.AlgorithmGeneral;
+import com.thinkingtop.kaas.services.algorithm.util.AlgorithmProperties;
 
 @Component("algorithmDefault")
 public class AlgorithmDefault extends AlgorithmGeneral implements Algorithm{
     static Logger logger=Logger.getLogger(AlgorithmDefault.class);
-	private String submitLoopMaxStr;
-	private String combinationMaxSizeStr;
-	private String frequencyLowerLimitStr;
 	
 	public String getSubmitLoopMaxStr() {
-		return submitLoopMaxStr;
+		return super.getAlgorithmProperties().getSubmitLoopMaxStr();
 	}
 	
     public void println(){
@@ -26,32 +26,20 @@ public class AlgorithmDefault extends AlgorithmGeneral implements Algorithm{
     	logger.info("threadNum:  "+super.getThreadNum());
     	logger.info("folder:  "+super.getFolder());
     	logger.info("waitTime:  "+super.getWaitTime());
-    	logger.info("submitLoopMaxStr:  "+submitLoopMaxStr);
-    	logger.info("combinationMaxSizeStr:  "+combinationMaxSizeStr);
-    	logger.info("frequencyLowerLimitStr:  "+frequencyLowerLimitStr);
+    	logger.info("submitLoopMaxStr:  "+super.getAlgorithmProperties().getSubmitLoopMaxStr());
+    	logger.info("combinationMaxSizeStr:  "+super.getAlgorithmProperties().getCombinationMaxSizeStr());
+    	logger.info("frequencyLowerLimitStr:  "+super.getAlgorithmProperties().getFrequencyLowerLimitStr());
     	logger.info("------------------------------------println properties end");
     }
 	
-	@Value("${algorithm.submitLoopMaxStr}")
-	public void setSubmitLoopMaxStr(String submitLoopMaxStr) {
-		this.submitLoopMaxStr = submitLoopMaxStr;
-	}
 	public String getCombinationMaxSizeStr() {
-		return combinationMaxSizeStr;
+		return super.getAlgorithmProperties().getCombinationMaxSizeStr();
 	}
 	
-	@Value("${algorithm.combinationMaxSizeStr}")
-	public void setCombinationMaxSizeStr(String combinationMaxSizeStr) {
-		this.combinationMaxSizeStr = combinationMaxSizeStr;
-	}
 	public String getFrequencyLowerLimitStr() {
-		return frequencyLowerLimitStr;
+		return super.getAlgorithmProperties().getFrequencyLowerLimitStr();
 	}
 	
-	@Value("${algorithm.frequencyLowerLimitStr}")
-	public void setFrequencyLowerLimitStr(String frequencyLowerLimitStr) {
-		this.frequencyLowerLimitStr = frequencyLowerLimitStr;
-	}
 
 	public void runIt() {
 		logger.info("runIt Default");
@@ -63,4 +51,9 @@ public class AlgorithmDefault extends AlgorithmGeneral implements Algorithm{
 		String[] a = {"test"};
 		return a;
 	}
+
+	public AlgorithmProperties getAlgorithmProperties() {
+		return super.getAlgorithmProperties();
+	}
+	
 }
