@@ -18,7 +18,9 @@ import com.thinkingtop.kaas.services.manage.ExclusiveKeyManage;
 import com.thinkingtop.kaas.services.manage.ECommerceManage;
 import com.thinkingtop.kaas.services.model.ExclusiveKey;
 import com.thinkingtop.kaas.services.model.ECommerce;
+import com.thinkingtop.kaas.services.model.Scheme;
 import com.thinkingtop.kaas.services.util.APIKey;
+import com.thinkingtop.kaas.services.util.PackageAlgorithm;
 
 /**
  * This is a ExclusiveKeyService implementation class
@@ -32,6 +34,7 @@ public class ExclusiveKeyServiceImpl implements ExclusiveKeyService{
 	private ExclusiveKeyManage exclusiveKeyManage;
 	private ECommerceManage ecommerceManage;
 	private AlgorithmManage algorithmManage;
+	private PackageAlgorithm packageAlgorithm;
 	private APIKey apiKey;
 
 	/**
@@ -92,17 +95,30 @@ public class ExclusiveKeyServiceImpl implements ExclusiveKeyService{
 	 * 		If APIKey does not activate the return 1,If the APIKey is activated and can use return 2,
 	 * 		If the APIKey is out of date return 3,If APIKey are forbidden to use return 4
 	 */
-	public int getAPIKeyState(String ecommerceName, String keyString) {
-		ECommerce ecommerce =ecommerceManage.getECommerce(ecommerceName);
+	public String[] getAPIKeyState(String ecommerceName, String keyString) {
+		ECommerce ecommerce =ecommerceManage.getECommerceAndScheme(ecommerceName);
+		String[] state = new String[2];
 		if(ecommerce==null){
 			logger.info("The user does not exist");
-			return -1;
+			state[0] = "-1";
+			return state;
 		}
 		ExclusiveKey ek = exclusiveKeyManage.getExclusiveKey(keyString);
 		if(ek==null){
-			return -2;
+			state[0] = "-2";
+			return state;
 		}
-		return ek.getState();
+		state[0] = String.valueOf(ek.getState());
+		if(ek.getState()==2){
+			state[1] = "";
+			Set<Scheme> schemes = ecommerce.getSchemes();
+			for(Scheme s : schemes.toArray(new Scheme[schemes.size()])){
+				state[1] += s.getSchemeName()+",";
+			}
+			packageAlgorithm.packageA(ecommerce);
+		}
+		
+		return state;
 	}
 	
 	public ExclusiveKeyManage getExclusiveKeyManage() {
@@ -137,6 +153,15 @@ public class ExclusiveKeyServiceImpl implements ExclusiveKeyService{
 	@Resource(name="algorithmManage")
 	public void setAlgorithmManage(AlgorithmManage algorithmManage) {
 		this.algorithmManage = algorithmManage;
+	}
+
+	public PackageAlgorithm getPackageAlgorithm() {
+		return packageAlgorithm;
+	}
+
+	@Resource(name="packageAlgorithm")
+	public void setPackageAlgorithm(PackageAlgorithm packageAlgorithm) {
+		this.packageAlgorithm = packageAlgorithm;
 	}
 
 

@@ -21,7 +21,7 @@ import com.thinkingtop.kaas.services.model.Scheme;
 
 @Component("packageAlgorithm")
 public class PackageAlgorithm {
-	private KaasDataPath kaasDataPath;
+	private PackagePath packagePath;
 	static Logger logger=Logger.getLogger(PackageAlgorithm.class);
 	public void jar(String inputFileName, String outputFileName,String[] algorithm)
 			throws Exception {
@@ -106,19 +106,20 @@ public class PackageAlgorithm {
 			String[] Algorithm = s.getAlgorithmNames().split(",");
 			//logger.info("schemes------------"+s.getAlgorithmNames());
 			try {
-				jar(kaasDataPath.getAlgorithmPath(), kaasDataPath.getMyKaasdataPath()+"/algorithm/"+s.getSchemeName()+".jar",Algorithm);
+				jar(packagePath.getAlgorithmPath(), packagePath.getPackagePaths()+"/"+s.getSchemeName()+".jar",Algorithm);
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
 		}
 	}
-	
-	public KaasDataPath getKaasDataPath() {
-		return kaasDataPath;
+
+	public PackagePath getPackagePath() {
+		return packagePath;
 	}
 	
-	@Resource(name="kaasDataPath")
-	public void setKaasDataPath(KaasDataPath kaasDataPath) {
-		this.kaasDataPath = kaasDataPath;
+	@Resource(name="packagePath")
+	public void setPackagePath(PackagePath packagePath) {
+		this.packagePath = packagePath;
 	}
+	
 }

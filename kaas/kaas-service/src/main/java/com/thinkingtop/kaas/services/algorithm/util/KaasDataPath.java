@@ -23,6 +23,14 @@ public class KaasDataPath {
 	private AlgorithmProperties algorithmProperties;
 	
 	public KaasDataPath(){
+		logger.info(
+				Thread.currentThread().getContextClassLoader().getResource(""));
+				logger.info(KaasDataPath.class.getClassLoader().getResource(""));
+				logger.info(ClassLoader.getSystemResource(""));
+				logger.info(KaasDataPath.class.getResource("").toString());
+				logger.info(KaasDataPath.class.getResource("/"));
+				logger.info(new File("").getAbsolutePath());
+				logger.info(System.getProperty("user.dir"));
 		this.myKaasdataPath = new File("").getAbsolutePath();
 		int beginIndex;
 		if((beginIndex = this.myKaasdataPath.lastIndexOf("dist"))==-1){

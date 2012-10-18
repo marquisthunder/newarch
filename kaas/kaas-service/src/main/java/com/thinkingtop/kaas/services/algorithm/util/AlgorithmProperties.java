@@ -14,7 +14,7 @@ public class AlgorithmProperties {
 		try {
 			InputStream inputStream = Thread.currentThread().getContextClassLoader().getResourceAsStream("algorithm.properties");
 			properties.load(inputStream);
-			inputStream.close(); // 关闭流
+			inputStream.close(); 
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
