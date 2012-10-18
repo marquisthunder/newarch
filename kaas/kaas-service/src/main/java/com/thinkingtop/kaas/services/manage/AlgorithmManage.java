@@ -10,12 +10,14 @@ import org.springframework.stereotype.Component;
 
 import com.thinkingtop.kaas.services.algorithm.Algorithm;
 import com.thinkingtop.kaas.services.algorithm.impl.AlgorithmDefault;
+import com.thinkingtop.kaas.services.dao.implfile.RuleDAOFileImpl;
 import com.thinkingtop.kaas.services.util.ClassUtil;
 
 @Component("algorithmManage")
 public class AlgorithmManage {
 	static Logger logger=Logger.getLogger(AlgorithmManage.class);
 	private Algorithm myAlgorithm;
+	private RuleDAOFileImpl ruleDAOFileImpl;
 	private Map<String,Algorithm> algorithms;
 	
 	public Map<String, Algorithm> getAlgorithms() {
@@ -55,6 +57,15 @@ public class AlgorithmManage {
 	}
 	public String[] getRecommend(String inputItems, int outputItemsNum,
 			int outputQuantitye) {
-		return myAlgorithm.getRecommend(inputItems, outputItemsNum, outputQuantitye);
+		return ruleDAOFileImpl.getRecommend(inputItems, outputItemsNum, outputQuantitye);
+	}
+
+	public RuleDAOFileImpl getRuleDAOFileImpl() {
+		return ruleDAOFileImpl;
+	}
+
+	@Resource(name="ruleDAOFileImpl")
+	public void setRuleDAOFileImpl(RuleDAOFileImpl ruleDAOFileImpl) {
+		this.ruleDAOFileImpl = ruleDAOFileImpl;
 	}
 }

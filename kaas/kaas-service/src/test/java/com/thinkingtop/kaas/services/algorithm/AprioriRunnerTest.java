@@ -66,6 +66,7 @@ public class AprioriRunnerTest {
         }finally{
         	try {
         		inR.close();
+        		inOf.close();
         	} catch (IOException e) {
         		e.printStackTrace();
         	}

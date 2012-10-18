@@ -57,9 +57,9 @@ public class ExclusiveKeyServiceImpl implements ExclusiveKeyService{
 		}
 		if(exclusiveKeyManage.isActivation(apiKey)){
 			algorithmManage.process(algorithm);
-			algorithmManage.runIt();
+			//algorithmManage.runIt();
 	logger.info("inputItems:"+inputItems);
-	logger.info("outputItemsNum"+outputItemsNum);
+	logger.info("outputItemsNum:"+outputItemsNum);
 	logger.info("outputQuantitye:"+outputQuantitye);
 			String[] mapItems = algorithmManage.getRecommend(inputItems,outputItemsNum,outputQuantitye);
 			return mapItems;
@@ -91,9 +91,10 @@ public class ExclusiveKeyServiceImpl implements ExclusiveKeyService{
 	 * External exposure method,the return of the user's APIKey state
 	 * @param ecommerceName:The requesting user name
 	 * @param apiKey:The requesting APIKey
-	 * @return If the user does not exist then return to -1,if the user does not have the APIKey returns -2,
+	 * @return string[0]: If the user does not exist then return to -1,if the user does not have the APIKey returns -2,
 	 * 		If APIKey does not activate the return 1,If the APIKey is activated and can use return 2,
 	 * 		If the APIKey is out of date return 3,If APIKey are forbidden to use return 4
+	 * 		String[1]: Return to the user the APIKey subscription algorithm
 	 */
 	public String[] getAPIKeyState(String ecommerceName, String keyString) {
 		ECommerce ecommerce =ecommerceManage.getECommerceAndScheme(ecommerceName);

@@ -20,6 +20,7 @@ import com.thinkingtop.kaas.services.algorithm.Algorithm;
 public class PackagePath {
 	static Logger logger=Logger.getLogger(PackagePath.class);
 	private String packagePaths;
+	private String rPath;
 	private String myKaasdataPath;
 	
 	public PackagePath(){
@@ -62,8 +63,22 @@ public class PackagePath {
 		return packagePaths;
 	}
 
-	@Value(value = "${package.path}")
+	@Value("${package.path}")
 	public void setPackagePaths(String packagePaths) {
 		this.packagePaths = packagePaths;
+	}
+
+	public String getRDataPath() {
+		logger.info("RDataPath:--------------"+packagePaths + "/../" +rPath);
+		return packagePaths + "/../" +rPath;
+	}
+
+	public String getrPath() {
+		return rPath;
+	}
+	
+	@Value("${algorithm.ruleOutPath}")
+	public void setrPath(String rPath) {
+		this.rPath = rPath;
 	}
 }
