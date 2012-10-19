@@ -15,12 +15,14 @@ import javax.annotation.Resource;
 import org.apache.log4j.Logger;
 import org.springframework.stereotype.Component;
 
+import com.thinkingtop.kaas.services.algorithm.util.AlgorithmProperties;
 import com.thinkingtop.kaas.services.algorithm.util.KaasDataPath;
 import com.thinkingtop.kaas.services.model.ECommerce;
 import com.thinkingtop.kaas.services.model.Scheme;
 
 @Component("packageAlgorithm")
 public class PackageAlgorithm {
+	private AlgorithmProperties algorithmProperties;
 	private PackagePath packagePath;
 	static Logger logger=Logger.getLogger(PackageAlgorithm.class);
 	public void jar(String inputFileName, String outputFileName,String[] algorithm)
@@ -49,6 +51,8 @@ public class PackageAlgorithm {
 		String classpath = PackageAlgorithm.class.getResource("/").toString().substring("file:".length());
 		f = new File(classpath+"algorithm.properties");
 		jar(out, f, "algorithm.properties",algorithm);
+		f = new File(classpath+"scheme.properties");
+		jar(out, f, "scheme.properties",algorithm);
 		f = new File(classpath+"algorithmbeans.xml");
 		jar(out, f, "algorithmbeans.xml",algorithm);
 		f = new File(classpath+"log4j.properties");
@@ -103,6 +107,7 @@ public class PackageAlgorithm {
 	public void packageA(ECommerce eCommerce){
 		Set<Scheme> schemes = eCommerce.getSchemes();
 		for(Scheme s : schemes.toArray(new Scheme[schemes.size()])){
+			algorithmProperties.setAlgorithmSequence(s.getAlgorithmNames());
 			String[] Algorithm = s.getAlgorithmNames().split(",");
 			//logger.info("schemes------------"+s.getAlgorithmNames());
 			try {
@@ -120,6 +125,15 @@ public class PackageAlgorithm {
 	@Resource(name="packagePath")
 	public void setPackagePath(PackagePath packagePath) {
 		this.packagePath = packagePath;
+	}
+
+	public AlgorithmProperties getAlgorithmProperties() {
+		return algorithmProperties;
+	}
+
+	@Resource(name="algorithmProperties")
+	public void setAlgorithmProperties(AlgorithmProperties algorithmProperties) {
+		this.algorithmProperties = algorithmProperties;
 	}
 	
 }

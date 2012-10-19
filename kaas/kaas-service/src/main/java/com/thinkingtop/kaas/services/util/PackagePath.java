@@ -24,14 +24,14 @@ public class PackagePath {
 	private String myKaasdataPath;
 	
 	public PackagePath(){
-		logger.info(
+		/*logger.info(
 				Thread.currentThread().getContextClassLoader().getResource(""));
 				logger.info(PackagePath.class.getClassLoader().getResource(""));
 				logger.info(ClassLoader.getSystemResource(""));
 				logger.info(PackagePath.class.getResource("").toString());
 				logger.info(PackagePath.class.getResource("/"));
 				logger.info(new File("").getAbsolutePath());
-				logger.info(System.getProperty("user.dir"));
+				logger.info(System.getProperty("user.dir"));*/
 		this.myKaasdataPath = new File("").getAbsolutePath();
 		int beginIndex;
 		if((beginIndex = this.myKaasdataPath.lastIndexOf("dist"))==-1){

@@ -12,9 +12,11 @@ import org.springframework.stereotype.Component;
 
 import com.thinkingtop.kaas.services.algorithm.Algorithm;
 import com.thinkingtop.kaas.services.algorithm.impl.AlgorithmDefault;
+import com.thinkingtop.kaas.services.algorithm.util.AlgorithmProperties;
 
 @Component("jarAlgorithmManage")
 public class JarAlgorithmManage {
+	private AlgorithmProperties algorithmProperties;
 	static Logger logger=Logger.getLogger(JarAlgorithmManage.class);
 	private Map<String,Algorithm> algorithms;
 	
@@ -35,10 +37,29 @@ public class JarAlgorithmManage {
 	}
 	
 	public void runIt() {
-		for(Map.Entry a : algorithms.entrySet()){
-			logger.info("algorithm:-- "+a);
-			Algorithm myAlgorithm = (Algorithm) a.getValue();
+		String[] algorithmSequence =  algorithmProperties.getSequence().split(algorithmProperties.getItemDelimiter());
+		for(int i=0; i<algorithmSequence.length; i++){
+			if(algorithmSequence[i].equals("")){
+				continue;
+			}
+			String c = algorithmSequence[i].substring(0,1);
+			String lower = c.toLowerCase();
+			String algorithmName = lower + algorithmSequence[i].substring(1,algorithmSequence[i].length());
+			Algorithm myAlgorithm = algorithms.get(algorithmName);
+			if(myAlgorithm==null){
+				logger.warn("Configuration file does not correspond with the algorithm");
+			}
+			logger.info("algorithm:---- "+algorithmName +"="+myAlgorithm);
 			myAlgorithm.runIt();
 		}
+	}
+
+	public AlgorithmProperties getAlgorithmProperties() {
+		return algorithmProperties;
+	}
+
+	@Resource(name="algorithmProperties")
+	public void setAlgorithmProperties(AlgorithmProperties algorithmProperties) {
+		this.algorithmProperties = algorithmProperties;
 	}
 }

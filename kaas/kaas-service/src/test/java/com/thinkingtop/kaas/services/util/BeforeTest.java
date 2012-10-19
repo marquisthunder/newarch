@@ -131,7 +131,7 @@ public class BeforeTest {
         try  
         {  
             inputStream = new FileInputStream(new File("").getAbsolutePath()+ "/../dist/data/test.properties");  
-            properties.load(inputStream);  
+            properties.load(inputStream);
              //关闭流  
         }  
         catch (IOException e)  
@@ -169,6 +169,16 @@ public class BeforeTest {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+	}
+	
+	@Test
+	public void testLower(){
+		String ss = "WSSdFF";
+		String c = ss.substring(0,1);
+		String lower = c.toLowerCase();
+		ss = lower + ss.substring(1,ss.length());
+		System.out.println(ss);
+		
 	}
 
 }

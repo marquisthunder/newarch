@@ -197,7 +197,7 @@ public class AprioriRunner extends AlgorithmGeneral implements Algorithm{
                 realBase=basePathes;
             }
             if (realBase == null) {
-                logger.info("No valide order folders");
+                logger.warn("No valide order folders");
                 return;
             }
 
