@@ -48,6 +48,10 @@ public class AlgorithmProperties {
 	public String getSequence(){
 		return schemeProperties.getProperty("algorithm.Sequence");
 	}
+	
+	public String getDataFolder(){
+		return algorithmProperties.getProperty("algorithm.kaasDataFolder");
+	}
 	public String getThreadNum(){
 		return algorithmProperties.getProperty("algorithm.threadNum");
 	}

@@ -39,7 +39,7 @@ public class PackagePath {
 		String packagePath;
 		for(int i=1;(packagePath = packageProperties.getProperty("package.path"+i))!=null;i++){
 			File f = new File(packagePath);
-			if(f.exists()){
+			if(f.exists()&&f.isDirectory()){
 				this.packagePaths = packagePath;
 				break;
 			}
@@ -47,7 +47,17 @@ public class PackagePath {
 		
 		if(packagePath==null){
 			logger.warn("Path not found");
+		}else{
+			packagePath += packageProperties.getProperty("package.folder");
+			File f = new File(packagePath);
+			if(!f.exists()){
+				f.mkdir();
+			}else if(f.exists()&&!f.isDirectory()){
+				logger.warn("Path not found");
+				packagePath = null;
+			}
 		}
+		this.myKaasdataPath = packagePath;
 		
 	}
 	
@@ -65,17 +75,14 @@ public class PackagePath {
 	public String getMyKaasdataPath() {
 		return myKaasdataPath;
 	}
-	public void setMyKaasdataPath(String myKaasdataPath) {
-		this.myKaasdataPath = myKaasdataPath;
-	}
 
 	public String getPackagePaths() {
 		return packagePaths;
 	}
 
 	public String getRDataPath() {
-		logger.info("RDataPath:--------------"+packagePaths + "/../" +rPath);
-		return packagePaths + "/../" +rPath;
+		logger.info("RDataPath:--------------"+packagePaths +rPath);
+		return packagePaths + rPath;
 	}
 
 	public String getrPath() {

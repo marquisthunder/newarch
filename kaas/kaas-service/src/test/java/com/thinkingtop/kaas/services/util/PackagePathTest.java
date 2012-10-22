@@ -20,7 +20,7 @@ public class PackagePathTest {
 	
 	@Test
 	public void testGetPackagePaths() {
-		logger.info("PackagePath:------" + packagePath.getPackagePaths());
+		logger.info("PackagePath:------" + packagePath.getMyKaasdataPath());
 	}
 
 }
