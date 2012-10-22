@@ -2,17 +2,23 @@
 <updates>
 	<update component-name="sample" version="1">
 		<installer class-name="Samle"
-			jar-url="http://localhost:8080/kaas/kaas-etl.jar" />
+			jar-url="http://localhost:8081/kaas/kaas-etl.jar" />
 		<feature>I am content</feature>
 	</update>
 	<update component-name="sample-component" version="1">
 		<installer class-name="SampleUpdate"
-			jar-url="http://localhost:8080/kaas/kaas-etl-1.0.jar" />
+			jar-url="http://localhost:8081/kaas/kaas-etl-1.0.jar" />
 		<feature>I am content</feature>
 	</update>
 	<update component-name="kaas-algorithm" version="1">
 		<installer class-name="com.thinkingtop.kaas.services.algorithm.entrance.Entrance"
-			jar-url="http://localhost:8080/kaas/algorithm/lib/kaas-algorithm-jar-with-dependencies.jar" />
+			jar-url="http://localhost:8081/kaas/algorithm/lib/kaas-algorithm-jar-with-dependencies.jar" />
 		<feature>I am content</feature>
 	</update>
+	<update component-name="kaas-scheme1" version="1">
+		<installer class-name="com.thinkingtop.kaas.services.algorithm.entrance.Entrance"
+			jar-url="http://localhost:8081/kaas/algorithm/scheme1.jar" />
+		<feature>I am content</feature>
+	</update>
+	
 </updates>

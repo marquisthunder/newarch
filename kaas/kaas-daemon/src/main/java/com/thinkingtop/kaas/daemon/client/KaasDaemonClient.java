@@ -5,17 +5,18 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
-import java.io.File;
 import java.io.IOException;
 import java.lang.reflect.Method;
 import java.net.URL;
 import java.net.URLClassLoader;
+import java.util.List;
 
 import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JPanel;
+import javax.xml.namespace.QName;
+import javax.xml.ws.Service;
 
 import org.hardcode.juf.BadConfigurationException;
 import org.hardcode.juf.ClientStatusException;
@@ -28,6 +29,9 @@ import org.hardcode.juf.update.Update;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.thinkingtop.kaas.services.service.ExclusiveKeyService;
+import com.thinkingtop.kaas.services.service.ExclusiveKeyServiceService;
+
 
 /** 
  * 
@@ -36,20 +40,36 @@ public class KaasDaemonClient {
 	private static final Logger logger = LoggerFactory.getLogger(KaasDaemonClient.class.getName());
 	
 	public static void main(String[] args) {
+	/*	URL wsdlURL;
+		try {
+			wsdlURL = new URL("http://localhost:8080/kaas-service/services/Service?wsdl");
+		
+			QName serviceQName = new QName("http://service.services.kaas.thinkingtop.com/", "ExclusiveKeyServiceService");
+			QName portQName = new QName("http://service.services.kaas.thinkingtop.com/", "ExclusiveKeyServicePort");
+			Service service = Service.create(wsdlURL, serviceQName);
+			ExclusiveKeyService port = (ExclusiveKeyService) service.getPort(portQName, ExclusiveKeyService.class);
+			
+			System.out.println(port.getAPIKeyState("jingdong", "an2mZW9iLtGdQ~aobA13+V46_vy$2^D4%8+0mQ17nysq6NPC+2uiJnS$v256t$o4MY_2w1b%%tYNdxQ").get(1));
+		} catch (Exception e) {
+			e.printStackTrace();
+		}*/
+		System.out.println(getAPIKeyState("jingdong", "an2mZW9iLtGdQ~aobA13+V46_vy$2^D4%8+0mQ17nysq6NPC+2uiJnS$v256t$o4MY_2w1b%%tYNdxQ").get(1));
+		KaasDaemonClient jus = new KaasDaemonClient();
+		jus.run();
 		/*
 		 * for web service validate
 		 */
 		/*KaasDeamonAPIKeyValidator validator = KaasDeamonAPIKeyValidator.newInstance();
-		int result = validator.getAPIKeyState("jingdong", "1");
-		if(result!=2) {
+		List<String> result = validator.getAPIKeyState("jingdong", "an2mZW9iLtGdQ~aobA13+V46_vy$2^D4%8+0mQ17nysq6NPC+2uiJnS$v256t$o4MY_2w1b%%tYNdxQ");
+		if(!result.get(0).equals("2")) {
 			logger.info("not illegal");
 		}
 		else {
 			KaasDaemonClient jus = new KaasDaemonClient();
 			jus.run();
 		}*/
-		KaasDaemonClient jus = new KaasDaemonClient();
-		jus.run();
+//		KaasDaemonClient jus = new KaasDaemonClient();
+//		jus.run();
 	}
 
 	public void run() {
@@ -68,7 +88,7 @@ public class KaasDaemonClient {
 			// urlPrefix with an address.
 			if (clientUpdateInfo == null) {
 				clientUpdateInfo = new UpdateInfo();
-				clientUpdateInfo.setUrlPrefix("http://"+ KaasDaemonPropertiesReader.getInstance().getProperty("updateServerIp") + ":8080/kaas/updates.xml");
+				clientUpdateInfo.setUrlPrefix("http://"+ KaasDaemonPropertiesReader.getInstance().getProperty("updateServerIp") + ":8081/kaas/updates.xml");
 			}
 		} catch (IOException e) {
 			logger.info("Could not get the information from the updated");
@@ -163,4 +183,9 @@ public class KaasDaemonClient {
 	/*private static void p(Object o) {
 		System.out.println(o);
 	}*/
+	 private static List<String> getAPIKeyState(String name, String key) {
+		 ExclusiveKeyServiceService service = new ExclusiveKeyServiceService();
+		 ExclusiveKeyService port = service.getExclusiveKeyServicePort();
+		 return port.getAPIKeyState(name, key);
+	 }
 }

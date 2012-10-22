@@ -98,7 +98,7 @@ public class ExclusiveKeyServiceImpl implements ExclusiveKeyService{
 	 * 		If the APIKey is out of date return 3,If APIKey are forbidden to use return 4
 	 * 		String[1]: Return to the user the APIKey subscription algorithm
 	 */
-	public List getAPIKeyState(String ecommerceName, String keyString) {
+	public List<String> getAPIKeyState(String ecommerceName, String keyString) {
 		ECommerce ecommerce =ecommerceManage.getECommerceAndScheme(ecommerceName);
 		List<String> state = new ArrayList<String>();
 		if(ecommerce==null){
