@@ -1,7 +1,10 @@
 package com.thinkingtop.kaas.services.algorithm.util;
 
 import java.io.File;
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.Iterator;
+import java.util.Properties;
 
 import javax.annotation.Resource;
 
@@ -19,26 +22,7 @@ import com.thinkingtop.kaas.services.algorithm.Algorithm;
 @Component("kaasDataPath")
 public class KaasDataPath {
 	static Logger logger=Logger.getLogger(KaasDataPath.class);
-	private String myKaasdataPath;
 	private AlgorithmProperties algorithmProperties;
-	
-	public KaasDataPath(){
-		/*logger.info(
-				Thread.currentThread().getContextClassLoader().getResource(""));
-				logger.info(KaasDataPath.class.getClassLoader().getResource(""));
-				logger.info(ClassLoader.getSystemResource(""));
-				logger.info(KaasDataPath.class.getResource("").toString());
-				logger.info(KaasDataPath.class.getResource("/"));
-				logger.info(new File("").getAbsolutePath());
-				logger.info(System.getProperty("user.dir"));*/
-		this.myKaasdataPath = new File("").getAbsolutePath();
-		int beginIndex;
-		if((beginIndex = this.myKaasdataPath.lastIndexOf("dist"))==-1){
-			this.myKaasdataPath = this.myKaasdataPath + "/../dist/";
-		}else if((beginIndex = this.myKaasdataPath.lastIndexOf("dist"))!=-1){
-			this.myKaasdataPath = this.myKaasdataPath.substring(0,beginIndex)+"dist/";
-		}
-	}
 	
 	public String getAlgorithmPath(){
 		String  algorithmPath = Algorithm.class.getResource("").toString();
@@ -106,10 +90,16 @@ public class KaasDataPath {
 		kdp.getClassName();
 	}
 	public String getMyKaasdataPath() {
+		
+		String folder = algorithmProperties.getDataFolder();
+		String myKaasdataPath = new File("").getAbsolutePath();
+		int beginIndex;
+		if((beginIndex =  myKaasdataPath.lastIndexOf(folder))==-1){
+			myKaasdataPath = myKaasdataPath + "/../"+folder+"/";
+		}else if((beginIndex = myKaasdataPath.lastIndexOf(folder))!=-1){
+			myKaasdataPath = myKaasdataPath.substring(0,beginIndex) + folder + "/";
+		}
 		return myKaasdataPath;
-	}
-	public void setMyKaasdataPath(String myKaasdataPath) {
-		this.myKaasdataPath = myKaasdataPath;
 	}
 
 	public AlgorithmProperties getAlgorithmProperties() {

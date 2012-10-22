@@ -111,7 +111,7 @@ public class PackageAlgorithm {
 			String[] Algorithm = s.getAlgorithmNames().split(",");
 			//logger.info("schemes------------"+s.getAlgorithmNames());
 			try {
-				jar(packagePath.getAlgorithmPath(), packagePath.getPackagePaths()+"/"+s.getSchemeName()+".jar",Algorithm);
+				jar(packagePath.getAlgorithmPath(), packagePath.getMyKaasdataPath()+"/"+s.getSchemeName()+".jar",Algorithm);
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
