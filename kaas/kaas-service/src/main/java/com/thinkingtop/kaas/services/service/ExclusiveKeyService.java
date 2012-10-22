@@ -1,5 +1,7 @@
 package com.thinkingtop.kaas.services.service;
 
+import java.util.List;
+
 import javax.jws.WebMethod;
 import javax.jws.WebParam;
 import javax.jws.WebResult;
@@ -50,6 +52,6 @@ public interface ExclusiveKeyService {
 	 */
 	@WebMethod(operationName="GetAPIKeyState")
 	@WebResult(name = "result")
-	public String[] getAPIKeyState(@WebParam(name = "ecommerceName")String ecommerceName,
+	public List getAPIKeyState(@WebParam(name = "ecommerceName")String ecommerceName,
 			@WebParam(name = "KeyString")String keyString);
 }

@@ -2,6 +2,8 @@ package com.thinkingtop.kaas.services.service;
 
 import static org.junit.Assert.*;
 
+import java.util.List;
+
 
 import org.apache.log4j.Logger;
 import org.junit.Assert;
@@ -43,12 +45,12 @@ public class ExclusiveKeyServiceImplTest {
 
 	@Test
 	public void testGetAPIKeyState() {
-		String[] state;
+		List<String> state;
 		state = exclusiveKeyServiceImpl.getAPIKeyState(null, "an2mZW9iLtGdQ~aobA13+V46_vy$2^D4%8+0mQ17nysq6NPC+2uiJnS$v256t$o4MY_2w1b%%tYNdxQ");
-		Assert.assertEquals("-1",state[0]);
+		Assert.assertEquals("-1",state.get(0));
 		state = exclusiveKeyServiceImpl.getAPIKeyState("jingdong", "an2mZtGdQ~aobA13+V46_vy$2^D4%8+0mQ17nysq6NPC+2uiJnS$v256t$o4MY_2w1b%%tYNdxQ");
-		Assert.assertEquals("-2",state[0]);
+		Assert.assertEquals("-2",state.get(0));
 		state = exclusiveKeyServiceImpl.getAPIKeyState("jingdong", "an2mZW9iLtGdQ~aobA13+V46_vy$2^D4%8+0mQ17nysq6NPC+2uiJnS$v256t$o4MY_2w1b%%tYNdxQ");
-		Assert.assertEquals("2",state[0]);
+		Assert.assertEquals("2",state.get(0));
 	}
 }

@@ -1,7 +1,10 @@
 package com.thinkingtop.kaas.services.util;
 
 import java.io.File;
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.Iterator;
+import java.util.Properties;
 
 import javax.annotation.Resource;
 
@@ -19,26 +22,33 @@ import com.thinkingtop.kaas.services.algorithm.Algorithm;
 @Component("packagePath")
 public class PackagePath {
 	static Logger logger=Logger.getLogger(PackagePath.class);
+	public  Properties packageProperties = new Properties();
 	private String packagePaths;
 	private String rPath;
 	private String myKaasdataPath;
 	
 	public PackagePath(){
-		/*logger.info(
-				Thread.currentThread().getContextClassLoader().getResource(""));
-				logger.info(PackagePath.class.getClassLoader().getResource(""));
-				logger.info(ClassLoader.getSystemResource(""));
-				logger.info(PackagePath.class.getResource("").toString());
-				logger.info(PackagePath.class.getResource("/"));
-				logger.info(new File("").getAbsolutePath());
-				logger.info(System.getProperty("user.dir"));*/
-		this.myKaasdataPath = new File("").getAbsolutePath();
-		int beginIndex;
-		if((beginIndex = this.myKaasdataPath.lastIndexOf("dist"))==-1){
-			this.myKaasdataPath = this.myKaasdataPath + "/../dist/";
-		}else if((beginIndex = this.myKaasdataPath.lastIndexOf("dist"))!=-1){
-			this.myKaasdataPath = this.myKaasdataPath.substring(0,beginIndex)+"dist/";
+		try {
+			InputStream inputStream = Thread.currentThread().getContextClassLoader().getResourceAsStream("package.properties");
+			packageProperties.load(inputStream);
+			inputStream.close();
+		} catch (IOException e) {
+			e.printStackTrace();
 		}
+		
+		String packagePath;
+		for(int i=1;(packagePath = packageProperties.getProperty("package.path"+i))!=null;i++){
+			File f = new File(packagePath);
+			if(f.exists()){
+				this.packagePaths = packagePath;
+				break;
+			}
+		}
+		
+		if(packagePath==null){
+			logger.warn("Path not found");
+		}
+		
 	}
 	
 	public String getAlgorithmPath(){
@@ -61,11 +71,6 @@ public class PackagePath {
 
 	public String getPackagePaths() {
 		return packagePaths;
-	}
-
-	@Value("${package.path}")
-	public void setPackagePaths(String packagePaths) {
-		this.packagePaths = packagePaths;
 	}
 
 	public String getRDataPath() {

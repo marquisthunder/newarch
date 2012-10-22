@@ -1,7 +1,9 @@
 package com.thinkingtop.kaas.services.service;
 
 import java.math.BigInteger;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import java.util.Map;
 import java.util.Random;
 import java.util.Set;
@@ -96,27 +98,28 @@ public class ExclusiveKeyServiceImpl implements ExclusiveKeyService{
 	 * 		If the APIKey is out of date return 3,If APIKey are forbidden to use return 4
 	 * 		String[1]: Return to the user the APIKey subscription algorithm
 	 */
-	public String[] getAPIKeyState(String ecommerceName, String keyString) {
+	public List getAPIKeyState(String ecommerceName, String keyString) {
 		ECommerce ecommerce =ecommerceManage.getECommerceAndScheme(ecommerceName);
-		String[] state = new String[2];
+		List<String> state = new ArrayList<String>();
 		if(ecommerce==null){
 			logger.info("The user does not exist");
-			state[0] = "-1";
+			state.add("-1");
 			return state;
 		}
 		ExclusiveKey ek = exclusiveKeyManage.getExclusiveKey(keyString);
 		if(ek==null){
-			state[0] = "-2";
+			state.add("-2");
 			return state;
 		}
-		state[0] = String.valueOf(ek.getState());
+		state.add(String.valueOf(ek.getState()));
 		if(ek.getState()==2){
-			state[1] = "";
+			String scheme = "";
 			Set<Scheme> schemes = ecommerce.getSchemes();
 			for(Scheme s : schemes.toArray(new Scheme[schemes.size()])){
-				state[1] += s.getSchemeName()+",";
+				scheme += s.getSchemeName()+",";
 			}
 			packageAlgorithm.packageA(ecommerce);
+			state.add(scheme);
 		}
 		
 		return state;

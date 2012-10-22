@@ -172,13 +172,10 @@ public class BeforeTest {
 	}
 	
 	@Test
-	public void testLower(){
-		String ss = "WSSdFF";
-		String c = ss.substring(0,1);
-		String lower = c.toLowerCase();
-		ss = lower + ss.substring(1,ss.length());
-		System.out.println(ss);
-		
+	public void testFile(){
+		File f = new File("../dist");
+		logger.info("file path:--"+f.getAbsoluteFile().getPath());
+		logger.info("file exists:---"+ f.exists());
 	}
 
 }
