@@ -51,9 +51,9 @@ public class AlgorithmManage {
 		return "This algorithm does not exist";
 	}
 	
-	public void runIt() {
+	public void runIt(int name) {
 		logger.info("myAlgorithm:----"+myAlgorithm);
-		myAlgorithm.runIt();
+		myAlgorithm.runIt(name);
 	}
 	public String[] getRecommend(String inputItems, int outputItemsNum,
 			int outputQuantitye) {

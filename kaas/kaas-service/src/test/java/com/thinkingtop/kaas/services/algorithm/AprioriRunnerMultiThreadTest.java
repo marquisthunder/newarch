@@ -34,13 +34,13 @@ public class AprioriRunnerMultiThreadTest {
 	
 	@Test
 	public void aprioriOfflineTest(){
-		aprioriRunnerMultiThread.runIt();
+		aprioriRunnerMultiThread.runIt(1);
 		
 		DataInputStream inR = null;
 		DataInputStream inOf = null;
         try {
             inR = new DataInputStream(new BufferedInputStream(
-                    new FileInputStream(kaasDataPath.getRDataPath())));
+                    new FileInputStream(kaasDataPath.getRDataPath()+"/date1")));
             inOf = new DataInputStream(new BufferedInputStream(
                     new FileInputStream(kaasDataPath.getofDataPath())));
         } catch (FileNotFoundException e) {

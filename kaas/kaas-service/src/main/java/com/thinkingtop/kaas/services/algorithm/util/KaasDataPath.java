@@ -39,12 +39,19 @@ public class KaasDataPath {
 		String itemDatap = getMyKaasdataPath() + getDataPath();
 		return itemDatap;
 	}
+	
 	public String getofDataPath(){
 		String ofDatap = getMyKaasdataPath() + getOfPath();
 		return ofDatap;
 	}
 	public String getRDataPath(){
-		String rDatap = getMyKaasdataPath()+getrPath();
+		String rDatap = getMyKaasdataPath()+getDataPath()+"/"+getrPath();
+		rDatap = rDatap + "/" +algorithmProperties.getRelationFolder();
+		//logger.info("rDatap----------"+rDatap);
+		File f = new File(rDatap);
+		if(!f.exists()){
+			f.mkdirs();
+		}
 		return rDatap;
 	}
 	

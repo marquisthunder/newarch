@@ -18,13 +18,14 @@ import org.apache.log4j.Logger;
 import org.springframework.stereotype.Component;
 
 import com.thinkingtop.kaas.services.algorithm.util.AlgorithmProperties;
+import com.thinkingtop.kaas.services.algorithm.util.KaasDataPath;
 import com.thinkingtop.kaas.services.dao.RuleDAO;
 import com.thinkingtop.kaas.services.util.PackagePath;
 
 @Component("ruleDAOFileImpl")
 public class RuleDAOFileImpl implements RuleDAO {
 	static Logger logger=Logger.getLogger(RuleDAOFileImpl.class);
-    private PackagePath packagePath;
+    private KaasDataPath kaasDataPath;
     private  AlgorithmProperties algorithmProperties;
 	public String[] getRecommend(String inputItems, int outputItemsNum,
 			int outputQuantitye) {
@@ -38,7 +39,7 @@ public class RuleDAOFileImpl implements RuleDAO {
 		DataInputStream inR = null;
 		try {
             inR = new DataInputStream(new BufferedInputStream(
-                    new FileInputStream(packagePath.getRDataPath())));
+                    new FileInputStream(kaasDataPath.getRDataPath()+"/date1")));
         } catch (FileNotFoundException e) {
             logger.warn("local offline file may be moved or renamed!");
         }
@@ -92,13 +93,14 @@ public class RuleDAOFileImpl implements RuleDAO {
 		this.algorithmProperties = algorithmProperties;
 	}
 
-	public PackagePath getPackagePath() {
-		return packagePath;
+	public KaasDataPath getKaasDataPath() {
+		return kaasDataPath;
 	}
 
-	@Resource(name="packagePath")
-	public void setPackagePath(PackagePath packagePath) {
-		this.packagePath = packagePath;
+	@Resource(name="kaasDataPath")
+	public void setKaasDataPath(KaasDataPath kaasDataPath) {
+		this.kaasDataPath = kaasDataPath;
 	}
+
 
 }

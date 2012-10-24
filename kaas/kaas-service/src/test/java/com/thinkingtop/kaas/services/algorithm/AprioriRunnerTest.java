@@ -38,7 +38,7 @@ public class AprioriRunnerTest {
 	
 	@Test
 	public void aprioriOfflineTest() {
-		aprioriRunner.runIt();
+		aprioriRunner.runIt(1);
 		/*aprioriService.process(folderName);
 		assert.*/
 		
@@ -46,7 +46,7 @@ public class AprioriRunnerTest {
 		DataInputStream inOf = null;
         try {
             inR = new DataInputStream(new BufferedInputStream(
-                    new FileInputStream(kaasDataPath.getRDataPath())));
+                    new FileInputStream(kaasDataPath.getRDataPath()+"/date1")));
             inOf = new DataInputStream(new BufferedInputStream(
                     new FileInputStream(kaasDataPath.getofDataPath())));
         } catch (FileNotFoundException e) {

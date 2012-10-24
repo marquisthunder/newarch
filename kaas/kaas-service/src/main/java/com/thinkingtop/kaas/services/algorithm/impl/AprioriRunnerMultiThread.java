@@ -47,6 +47,7 @@ public class AprioriRunnerMultiThread extends AlgorithmGeneral implements
 		Algorithm {
 
 	static Logger logger = Logger.getLogger(AprioriRunnerMultiThread.class);
+	private String dateName;
 	private int ofThreadNum;
 	private int ofThreadEndNum;
 	private int rThreadNum;
@@ -104,8 +105,9 @@ public class AprioriRunnerMultiThread extends AlgorithmGeneral implements
 		logger.info("------------------------------------println properties end");
 	}
 
-	public void runIt() {
+	public void runIt(int name) {
 		// println();
+		dateName = "date"+name;
 		runTimeRecord0 = System.nanoTime();
 		logger.info("of start time :" + runTimeRecord0);
 		getOfdao().setFileAll(
@@ -165,7 +167,7 @@ public class AprioriRunnerMultiThread extends AlgorithmGeneral implements
 			}
 			if (ofThreadEndNum == ofThreadNum) {
 				logger.info("run in R");
-				// runR();
+				runR();
 			}
 			logger.info("run all need time: " + runAllTime);
 		} catch (Exception e) {
@@ -274,7 +276,7 @@ public class AprioriRunnerMultiThread extends AlgorithmGeneral implements
 				runAndRules();
 				oneRThreadEnd();
 				if (rThreadEndNum == rThreadNum) {
-					getRdao().submit();
+					getRdao().submit(dateName);
 					long consumingTimeOf = System.nanoTime();
 					runAllTime += consumingTimeOf - runTimeRecord0;
 					logger.warn("generate all Rules End time:"

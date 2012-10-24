@@ -13,9 +13,11 @@ import org.springframework.stereotype.Component;
 import com.thinkingtop.kaas.services.algorithm.Algorithm;
 import com.thinkingtop.kaas.services.algorithm.impl.AlgorithmDefault;
 import com.thinkingtop.kaas.services.algorithm.util.AlgorithmProperties;
+import com.thinkingtop.kaas.services.algorithm.util.PackageDate;
 
 @Component("jarAlgorithmManage")
 public class JarAlgorithmManage {
+	private PackageDate packageDate;
 	private AlgorithmProperties algorithmProperties;
 	static Logger logger=Logger.getLogger(JarAlgorithmManage.class);
 	private Map<String,Algorithm> algorithms;
@@ -49,9 +51,10 @@ public class JarAlgorithmManage {
 			if(myAlgorithm==null){
 				logger.warn("Configuration file does not correspond with the algorithm");
 			}
-			logger.info("algorithm:---- "+algorithmName +"="+myAlgorithm);
-			myAlgorithm.runIt();
+			logger.info("algorithm:"+(i+1)+"---- "+algorithmName +"="+myAlgorithm);
+			myAlgorithm.runIt(i+1);
 		}
+		packageDate.packageD();
 	}
 
 	public AlgorithmProperties getAlgorithmProperties() {
@@ -61,5 +64,14 @@ public class JarAlgorithmManage {
 	@Resource(name="algorithmProperties")
 	public void setAlgorithmProperties(AlgorithmProperties algorithmProperties) {
 		this.algorithmProperties = algorithmProperties;
+	}
+
+	public PackageDate getPackageDate() {
+		return packageDate;
+	}
+
+	@Resource(name="packageDate")
+	public void setPackageDate(PackageDate packageDate) {
+		this.packageDate = packageDate;
 	}
 }

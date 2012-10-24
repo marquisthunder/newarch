@@ -41,7 +41,7 @@ public class AlgorithmDefault extends AlgorithmGeneral implements Algorithm{
 	}
 	
 
-	public void runIt() {
+	public void runIt(int name) {
 		logger.info("runIt Default");
 	}
 
