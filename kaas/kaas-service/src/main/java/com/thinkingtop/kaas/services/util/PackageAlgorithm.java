@@ -107,7 +107,8 @@ public class PackageAlgorithm {
 	public void packageA(ECommerce eCommerce){
 		Set<Scheme> schemes = eCommerce.getSchemes();
 		for(Scheme s : schemes.toArray(new Scheme[schemes.size()])){
-			algorithmProperties.setAlgorithmSequence(s.getAlgorithmNames());
+			
+			algorithmProperties.setSchemeProperties(s.getSchemeName(),eCommerce.getEcommerceName(),s.getAlgorithmNames());
 			String[] Algorithm = s.getAlgorithmNames().split(",");
 			//logger.info("schemes------------"+s.getAlgorithmNames());
 			try {

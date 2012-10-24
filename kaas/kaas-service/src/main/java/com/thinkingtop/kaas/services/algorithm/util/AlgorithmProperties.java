@@ -27,7 +27,7 @@ public class AlgorithmProperties {
 		}
 	}
 	
-	public void setAlgorithmSequence(String algorithmSequence){
+	public void setSchemeProperties(String schemeName,String eCommerceName,String algorithmSequence){
 		Properties properties = new Properties();
 		String alpath = Thread.currentThread().getContextClassLoader().getResource("scheme.properties").toString();
 		if(alpath.startsWith("file:")){
@@ -35,6 +35,8 @@ public class AlgorithmProperties {
 		}
 		try {
 			OutputStream outputStream = new FileOutputStream(alpath);
+			properties.setProperty("scheme.name", schemeName);
+			properties.setProperty("eCommerce.name", eCommerceName);
 			properties.setProperty("algorithm.Sequence", algorithmSequence);
             properties.store(outputStream, "author: 954068039@QQ.com");  
             outputStream.close();
@@ -45,11 +47,23 @@ public class AlgorithmProperties {
 		}
 	}
 	
+	public String getSchemeName(){
+		return schemeProperties.getProperty("scheme.name");
+	}
+	
+	public String getECommerceName(){
+		return schemeProperties.getProperty("eCommerce.name");
+	}
+	
 	public String getSequence(){
 		return schemeProperties.getProperty("algorithm.Sequence");
 	}
 	
-	public String getDataFolder(){
+	public String getRelationFolder(){
+		return schemeProperties.getProperty("scheme.name");
+	}
+	
+	public String getKaasDataFolder(){
 		return algorithmProperties.getProperty("algorithm.kaasDataFolder");
 	}
 	public String getThreadNum(){

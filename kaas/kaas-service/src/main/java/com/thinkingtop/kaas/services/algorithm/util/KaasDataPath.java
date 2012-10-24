@@ -91,14 +91,19 @@ public class KaasDataPath {
 	}
 	public String getMyKaasdataPath() {
 		
-		String folder = algorithmProperties.getDataFolder();
+		String folder = algorithmProperties.getKaasDataFolder();
 		String myKaasdataPath = new File("").getAbsolutePath();
 		int beginIndex;
 		if((beginIndex =  myKaasdataPath.lastIndexOf(folder))==-1){
 			myKaasdataPath = myKaasdataPath + "/../"+folder+"/";
-		}else if((beginIndex = myKaasdataPath.lastIndexOf(folder))!=-1){
+		}else{
 			myKaasdataPath = myKaasdataPath.substring(0,beginIndex) + folder + "/";
 		}
+		File f = new File(myKaasdataPath);
+		if(!f.exists()){
+			f.mkdir();
+		}
+		
 		return myKaasdataPath;
 	}
 
