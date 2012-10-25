@@ -168,6 +168,10 @@ public class ExclusiveKeyServiceImpl implements ExclusiveKeyService{
 		this.packageAlgorithm = packageAlgorithm;
 	}
 
+	public String getTest(String testString) {
+		return "is ok : " + testString;
+	}
+
 
 
 }

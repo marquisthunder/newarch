@@ -54,4 +54,9 @@ public interface ExclusiveKeyService {
 	@WebResult(name = "result")
 	public List<String> getAPIKeyState(@WebParam(name = "ecommerceName")String ecommerceName,
 			@WebParam(name = "KeyString")String keyString);
+	
+	
+	@WebMethod(operationName="Test")
+	@WebResult(name = "result")
+	public String getTest(@WebParam(name = "testString")String testString);
 }

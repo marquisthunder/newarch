@@ -1,0 +1,78 @@
+<html>
+<title>Call webservice with javascript and xmlhttp.</title>
+<body>
+	<script language="javascript">
+		//Test function with get method.
+		function RequestByGet(data) {
+
+			var xmlhttp = null;
+			if (window.ActiveXObject) {
+				xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+			} else if (window.XMLHttpRequest) {
+				xmlhttp = new XMLHttpRequest();
+			}
+			alert(xmlhttp);
+			//Webservice location.
+			var URL = "http://localhost:8080/kaas-service/services/Service?wsdl&testString="+data;
+			xmlhttp.open("GET", URL, false);
+			xmlhttp.setRequestHeader("Content-Type",
+					"application/x-www-form-urlencoded");
+			xmlhttp.setRequestHeader("SOAPAction",
+					"http://dao.wfservice.ws.emolay.com");
+			alert(xmlhttp);
+			xmlhttp.send(null);
+			var result = xmlhttp.statusText;
+			alert(result);
+			//OK
+			if (result == 200) {
+				alert(xmlhttp.responseText);
+				//document.getElementById("result").innerHTML = xmlhttp.responseText;
+				//document.write();
+			}
+			xmlhttp = null;
+		}
+
+		//Test function with post method
+		function RequestByPost(value) {
+			var data;
+			data = '<?xml version="1.0" encoding="utf-8"?>';
+			data = data
+					+ '<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ser="http://service.services.kaas.thinkingtop.com/">';
+			data = data + '<soapenv:Header/>';
+			data = data + '<soapenv:Body>';
+			data = data + '<ser:Test>';
+			data = data + '<testString>' + value + '</testString>';
+			data = data + '</ser:Test>';
+			data = data + '</soapenv:Body>';
+			data = data + '</soapenv:Envelope>';
+
+			var xmlhttp = null;
+			if (window.ActiveXObject) {
+				//alert("A");
+				xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+			} else if (window.XMLHttpRequest) {
+				//alert("X");
+				xmlhttp = new XMLHttpRequest();
+			}
+			alert(xmlhttp);
+			var URL = "http://localhost:8080/kaas-service/services/Service?wsdl";
+			xmlhttp.open("POST", URL, false);
+			xmlhttp.setRequestHeader("Content-Type", "text/xml; charset=utf-8");
+			xmlhttp.setRequestHeader("SOAPAction",
+					"http://dao.wfservice.ws.emolay.com");
+			xmlhttp.send(data);
+			var str = xmlhttp.responseText;
+
+			//alert(xmlhttp.getResponseHeader("result"));
+			document.getElementById("result").innerHTML = str;
+		}
+	</Script>
+
+	<input type="button" value="CallWebserviceByGet"
+		onClick="RequestByGet('123')">
+	<input type="button" value="CallWebserviceByPost"
+		onClick="RequestByPost('aaaaaaaa')">
+	<div id="result"></div>
+</body>
+
+</html>
