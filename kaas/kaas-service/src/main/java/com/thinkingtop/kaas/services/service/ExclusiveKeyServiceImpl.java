@@ -125,6 +125,28 @@ public class ExclusiveKeyServiceImpl implements ExclusiveKeyService{
 		return state;
 	}
 	
+	/**
+	 * External exposure method,the return of the user's APIKey state
+	 * @param ecommerceName:The requesting user name
+	 * @param apiKey:The requesting APIKey
+	 * @return string[0]: If the user does not exist then return to -1,if the user does not have the APIKey returns -2,
+	 * 		If APIKey does not activate the return 1,If the APIKey is activated and can use return 2,
+	 * 		If the APIKey is out of date return 3,If APIKey are forbidden to use return 4
+	 * 		String[1]: Return to the user the APIKey subscription algorithm
+	 */
+	public int getState(String ecommerceName, String keyString) {
+		ECommerce ecommerce =ecommerceManage.getECommerceAndScheme(ecommerceName);
+		if(ecommerce==null){
+			logger.info("The user does not exist");
+			return -1;
+		}
+		ExclusiveKey ek = exclusiveKeyManage.getExclusiveKey(keyString);
+		if(ek==null){
+			return -2;
+		}
+		return ek.getState();
+	}
+	
 	public ExclusiveKeyManage getExclusiveKeyManage() {
 		return exclusiveKeyManage;
 	}
@@ -168,8 +190,9 @@ public class ExclusiveKeyServiceImpl implements ExclusiveKeyService{
 		this.packageAlgorithm = packageAlgorithm;
 	}
 
-	public String getTest(String testString) {
-		return "is ok : " + testString;
+	public String[] getTest(String testString) {
+		String[] test = {"is ok : " + testString,"is ok : yes"};
+		return test;
 	}
 
 

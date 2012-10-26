@@ -55,8 +55,21 @@ public interface ExclusiveKeyService {
 	public List<String> getAPIKeyState(@WebParam(name = "ecommerceName")String ecommerceName,
 			@WebParam(name = "KeyString")String keyString);
 	
+	/**
+	 * External exposure method,the return of the user's APIKey state
+	 * @param ecommerceName:The requesting user name
+	 * @param keyString:The requesting APIKey
+	 * @return If the user does not exist then return to -1,if the user does not have the APIKey returns -2,
+	 * 		If APIKey does not activate the return 1,If the APIKey is activated and can use return 2,
+	 * 		If the APIKey is out of date return 3,If APIKey are forbidden to use return 4
+	 */
+	@WebMethod(operationName="GetState")
+	@WebResult(name = "result")
+	public int getState(@WebParam(name = "ecommerceName")String ecommerceName,
+			@WebParam(name = "KeyString")String keyString);
+	
 	
 	@WebMethod(operationName="Test")
 	@WebResult(name = "result")
-	public String getTest(@WebParam(name = "testString")String testString);
+	public String[] getTest(@WebParam(name = "testString")String testString);
 }
