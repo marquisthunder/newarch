@@ -31,7 +31,7 @@ public class PackageAlgorithm {
 		Attributes a = m.getMainAttributes();
 		a.put(Attributes.Name.MANIFEST_VERSION, "1.0");
 		a.put(Attributes.Name.MAIN_CLASS, "com.thinkingtop.kaas.services.algorithm.entrance.Entrance");
-		a.put(Attributes.Name.CLASS_PATH, "lib/kaas-algorithm-jar-with-dependencies.jar");
+		a.put(Attributes.Name.CLASS_PATH, "lib/kaas-schemeRely-jar-with-dependencies.jar");
 		
 		JarOutputStream out = new JarOutputStream(new FileOutputStream(
 				outputFileName),m);

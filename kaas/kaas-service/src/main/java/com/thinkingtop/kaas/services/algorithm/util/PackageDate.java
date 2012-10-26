@@ -31,20 +31,21 @@ public class PackageDate {
 	
 	public void packageD(){
 		createMeta();
+		String packageName = algorithmProperties.getECommerceName()+algorithmProperties.getSchemeName();
 		try {
-			packageZip(kaasDataPath.getRDataPath(),kaasDataPath.getRDataPath()+".zip");
-			String[] path7z = {"e",kaasDataPath.getRDataPath()+".zip",kaasDataPath.getRDataPath()+".kaas"};
+			packageZip(kaasDataPath.getRDataPath(),packageName+".zip");
+			String[] path7z = {"e",packageName+".zip",packageName+".kaas"};
 			package7zip(path7z);
 			
 			File f = new File(kaasDataPath.getRDataPath());
-			//deleteFolder(f);
+			deleteFolder(f);
 			//logger.info("file : ---------" + f.exists());
-			f = new File(kaasDataPath.getRDataPath()+".zip");
+			f = new File(packageName+".zip");
 			while(f.exists()){
 				f.delete();
 			}
 			
-		} catch (Exception e) {
+		}catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
