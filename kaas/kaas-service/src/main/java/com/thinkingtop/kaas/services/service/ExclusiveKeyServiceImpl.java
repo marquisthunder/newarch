@@ -18,6 +18,7 @@ import com.thinkingtop.kaas.services.dao.ExclusiveKeyDAO;
 import com.thinkingtop.kaas.services.manage.AlgorithmManage;
 import com.thinkingtop.kaas.services.manage.ExclusiveKeyManage;
 import com.thinkingtop.kaas.services.manage.ECommerceManage;
+import com.thinkingtop.kaas.services.manage.RecommendManage;
 import com.thinkingtop.kaas.services.model.ECommerce_Scheme;
 import com.thinkingtop.kaas.services.model.ExclusiveKey;
 import com.thinkingtop.kaas.services.model.ECommerce;
@@ -38,6 +39,7 @@ public class ExclusiveKeyServiceImpl implements ExclusiveKeyService{
 	private ECommerceManage ecommerceManage;
 	private AlgorithmManage algorithmManage;
 	private PackageAlgorithm packageAlgorithm;
+	private RecommendManage recommendManage;
 	private APIKey apiKey;
 
 	/**
@@ -65,6 +67,39 @@ public class ExclusiveKeyServiceImpl implements ExclusiveKeyService{
 	logger.info("outputItemsNum:"+outputItemsNum);
 	logger.info("outputQuantitye:"+outputQuantitye);
 			String[] mapItems = algorithmManage.getRecommend(inputItems,outputItemsNum,outputQuantitye);
+			return mapItems;
+		}
+		return null;
+	}
+	
+	/**
+	 * External exposure method, user request recommendation
+	 * @param ecommerceName:The requesting user name
+	 * @param apiKey:The requesting APIKey
+	 * @param endUser:The need for the user
+	 * @param scheme:The recommended scheme
+	 * @param inputItems:User input commodity
+	 * @param outputItemsNum:Recommended Items number
+	 * @param outputQuantitye:Recommended Items Quantitye
+	 * @return If ecommerceName or apiKey or inputItems is empty,or apiKey without permission, return null
+	 */
+	public String[] getRecommends(String ecommerceName,String apiKey,String endUser,String scheme,String inputItems,int outputItemsNum,int outputQuantitye) {
+		if(!ecommerceManage.isHold(ecommerceName)){
+			logger.info("The user does not exist");
+			return null;
+		}
+		if(!exclusiveKeyManage.isHold(ecommerceName,apiKey)){
+			logger.info("The user does not have the APIKey");
+			return null;
+		}
+		if(exclusiveKeyManage.isActivation(apiKey)){
+			/*algorithmManage.process(scheme);
+			//algorithmManage.runIt();
+			String[] mapItems = algorithmManage.getRecommend(inputItems,outputItemsNum,outputQuantitye);*/
+	logger.info("inputItems:"+inputItems);
+	logger.info("outputItemsNum:"+outputItemsNum);
+	logger.info("outputQuantitye:"+outputQuantitye);
+			String[] mapItems = recommendManage.getRecommend(endUser,scheme,inputItems,outputItemsNum,outputQuantitye);
 			return mapItems;
 		}
 		return null;
@@ -193,8 +228,17 @@ public class ExclusiveKeyServiceImpl implements ExclusiveKeyService{
 	}
 
 	public String[] getTest(String testString) {
-		String[] test = {"is ok : " + testString,"is ok : yes"};
+		String[] test = {"is ok : " + testString, "is ok : yes"};
 		return test;
+	}
+
+	public RecommendManage getRecommendManage() {
+		return recommendManage;
+	}
+
+	@Resource(name="recommendManage")
+	public void setRecommendManage(RecommendManage recommendManage) {
+		this.recommendManage = recommendManage;
 	}
 
 

@@ -24,10 +24,13 @@ public interface ExclusiveKeyService {
 	@WebResult(name = "result")
 	public String getAPIKey(@WebParam(name = "ecommerceName")String ecommerceName);
 	
+	
 	/**
 	 * External exposure method, user request recommendation
 	 * @param ecommerceName:The requesting user name
 	 * @param keyString:The requesting APIKey
+	 * @param endUser:The need for the user
+	 * @param scheme:The recommended scheme
 	 * @param inputItems:User input commodity
 	 * @param outputItemsNum:Recommended Items number
 	 * @param outputQuantitye:Recommended Items Quantitye
@@ -37,7 +40,8 @@ public interface ExclusiveKeyService {
 	@WebResult(name = "result")
 	public String[] getRecommends(@WebParam(name = "ecommerceName")String ecommerceName,
 			@WebParam(name = "KeyString")String keyString,
-			@WebParam(name = "algorithm")String algorithm,
+			@WebParam(name = "endUser")String endUser,
+			@WebParam(name = "scheme")String scheme,
 			@WebParam(name = "inputItems")String inputItems,
 			@WebParam(name = "outputItemsNum")int outputItemsNum,
 			@WebParam(name = "outputQuantitye")int outputQuantitye);
