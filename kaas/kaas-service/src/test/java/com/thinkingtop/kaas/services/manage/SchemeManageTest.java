@@ -33,15 +33,24 @@ public class SchemeManageTest {
 		try{
 			Scheme scheme = new Scheme();
 			scheme.setSchemeName("scheme1");
-			ECommerce ecommerce = new ECommerce();
-			ecommerce.setId((long)5);
-			scheme.setEcommerce(ecommerce);
 			scheme.setAlgorithmNames("AlgorithmDefault,AprioriRunner");
 			schemeManage.add(scheme);
 		}catch(Exception e){
 			isThrough = true;
 		}
 		Assert.assertEquals(true, isThrough);
+	}
+	
+	@Test
+	public void testAdd2(){
+		Scheme scheme = new Scheme();
+		scheme.setSchemeName("scheme3");
+		scheme.setAlgorithmNames("AlgorithmDefault,AprioriRunner");
+		schemeManage.add(scheme);
+		
+		Scheme scheme3 = schemeManage.getScheme("scheme3");
+		logger.info("scheme3:---"+scheme3.getId());
+		Assert.assertEquals(3, scheme3.getId());
 	}
 	
 	@Test

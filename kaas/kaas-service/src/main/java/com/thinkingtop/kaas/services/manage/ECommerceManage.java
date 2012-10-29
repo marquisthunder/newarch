@@ -30,7 +30,7 @@ public class ECommerceManage{
 	 * @param id:The user ID
 	 * @return
 	 */
-	public ECommerce getECommerce(long id){
+	public ECommerce getECommerce(int id){
 		return ecommerceDAO.getECommerce(id);
 	}
 	

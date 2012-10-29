@@ -12,6 +12,7 @@ import org.springframework.stereotype.Component;
 
 import com.thinkingtop.kaas.services.dao.ECommerceDAO;
 import com.thinkingtop.kaas.services.model.ECommerce;
+import com.thinkingtop.kaas.services.model.ECommerce_Scheme;
 import com.thinkingtop.kaas.services.model.Scheme;
 
 
@@ -38,7 +39,7 @@ public class ECommerceDAOImpl implements ECommerceDAO {
 	 * @param id:The user ID
 	 * @return
 	 */
-	public ECommerce getECommerce(Long id) {
+	public ECommerce getECommerce(int id) {
 		ECommerce ecommerce = null;
 		Session session = sessionFactory.getCurrentSession();
 		ecommerce = (ECommerce)session.get(ECommerce.class,id);
@@ -80,10 +81,10 @@ public class ECommerceDAOImpl implements ECommerceDAO {
 		List<ECommerce> ecommerces = (List<ECommerce>)q.list();
 		if(!ecommerces.isEmpty()){
 			ecommerce = ecommerces.get(0);
-			Set<Scheme> schemes = ecommerce.getSchemes();
-			System.out.println(schemes);
-			for(Scheme s : schemes.toArray(new Scheme[schemes.size()])){
-				s.getId();
+			Set<ECommerce_Scheme> ec_ss = ecommerce.getEcommerce_scheme();
+			//System.out.println(ec_s);
+			for(ECommerce_Scheme ec_s : ec_ss.toArray(new ECommerce_Scheme[ec_ss.size()])){
+				ec_s.getId();
 			};
 		}
 		return ecommerce;

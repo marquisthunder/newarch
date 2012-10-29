@@ -18,6 +18,7 @@ import org.springframework.stereotype.Component;
 import com.thinkingtop.kaas.services.algorithm.util.AlgorithmProperties;
 import com.thinkingtop.kaas.services.algorithm.util.KaasDataPath;
 import com.thinkingtop.kaas.services.model.ECommerce;
+import com.thinkingtop.kaas.services.model.ECommerce_Scheme;
 import com.thinkingtop.kaas.services.model.Scheme;
 
 @Component("packageAlgorithm")
@@ -104,11 +105,11 @@ public class PackageAlgorithm {
 	}
 
 	
-	public void packageA(ECommerce eCommerce){
-		Set<Scheme> schemes = eCommerce.getSchemes();
-		for(Scheme s : schemes.toArray(new Scheme[schemes.size()])){
-			
-			algorithmProperties.setSchemeProperties(s.getSchemeName(),eCommerce.getEcommerceName(),s.getAlgorithmNames());
+	public void packageA(ECommerce ecommerce){
+		Set<ECommerce_Scheme> ec_ss = ecommerce.getEcommerce_scheme();
+		for(ECommerce_Scheme ec_s : ec_ss.toArray(new ECommerce_Scheme[ec_ss.size()])){
+			Scheme s = ec_s.getScheme();
+			algorithmProperties.setSchemeProperties(s.getSchemeName(),ecommerce.getEcommerceName(),s.getAlgorithmNames());
 			String[] Algorithm = s.getAlgorithmNames().split(",");
 			//logger.info("schemes------------"+s.getAlgorithmNames());
 			try {

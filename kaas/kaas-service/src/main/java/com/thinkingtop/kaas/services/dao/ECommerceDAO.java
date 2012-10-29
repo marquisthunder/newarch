@@ -13,7 +13,7 @@ public interface ECommerceDAO {
 	 * @param id:The user ID
 	 * @return
 	 */
-	public ECommerce getECommerce(Long id);
+	public ECommerce getECommerce(int id);
 	
 	/**
 	 * Return a user information recording

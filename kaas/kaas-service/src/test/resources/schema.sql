@@ -1,5 +1,5 @@
 CREATE TABLE `ECommerce` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `createDate` datetime NOT NULL,
   `ecommerceName` varchar(255) NOT NULL,
   PRIMARY KEY (`id`),
@@ -24,14 +24,28 @@ insert into ExclusiveKey(createDate, ecommerceid, keyString, state)values
 CREATE TABLE `Scheme` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `algorithmNames` varchar(255) NOT NULL,
+  `createDate` datetime NOT NULL,
   `schemeName` varchar(255) NOT NULL,
-  `ecommerceid` bigint(20) NOT NULL,
   PRIMARY KEY (`id`),
-  UNIQUE KEY `schemeName` (`schemeName`),
-  KEY `FK934621C56A1CB3F6` (`ecommerceid`),
-  CONSTRAINT `FK934621C56A1CB3F6` FOREIGN KEY (`ecommerceid`) REFERENCES `ECommerce` (`id`)
+  UNIQUE KEY `schemeName` (`schemeName`)
 );
-insert into Scheme (algorithmNames, ecommerceid, schemeName) values 
-('AlgorithmDefault,AprioriRunner', 1, 'scheme1');
-insert into Scheme (algorithmNames, ecommerceid, schemeName) values 
-('AlgorithmDefault,AprioriRunnerMultiThread', 1, 'scheme2');
+insert into Scheme (createDate,algorithmNames, schemeName) values 
+(now(),'AlgorithmDefault,AprioriRunner','scheme1');
+insert into Scheme (createDate,algorithmNames,schemeName) values 
+(now(),'AlgorithmDefault,AprioriRunnerMultiThread','scheme2');
+
+CREATE TABLE `ECommerce_Scheme` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `createDate` datetime NOT NULL,
+  `ecommerceid` int(11) NOT NULL,
+  `schemeid` int(11) NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `ecommerceid` (`ecommerceid`,`schemeid`),
+  KEY `FK2247DCA46A1CB3F6` (`ecommerceid`),
+  KEY `FK2247DCA4A4515ECA` (`schemeid`),
+  CONSTRAINT `FK2247DCA4A4515ECA` FOREIGN KEY (`schemeid`) REFERENCES `Scheme` (`id`),
+  CONSTRAINT `FK2247DCA46A1CB3F6` FOREIGN KEY (`ecommerceid`) REFERENCES `ECommerce` (`id`)
+);
+
+insert into ECommerce_Scheme (createDate,ecommerceid,schemeid) values (now(),1,1);
+insert into ECommerce_Scheme (createDate,ecommerceid,schemeid) values (now(),1,2);

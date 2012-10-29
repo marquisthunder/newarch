@@ -18,6 +18,7 @@ import com.thinkingtop.kaas.services.dao.ExclusiveKeyDAO;
 import com.thinkingtop.kaas.services.manage.AlgorithmManage;
 import com.thinkingtop.kaas.services.manage.ExclusiveKeyManage;
 import com.thinkingtop.kaas.services.manage.ECommerceManage;
+import com.thinkingtop.kaas.services.model.ECommerce_Scheme;
 import com.thinkingtop.kaas.services.model.ExclusiveKey;
 import com.thinkingtop.kaas.services.model.ECommerce;
 import com.thinkingtop.kaas.services.model.Scheme;
@@ -114,9 +115,10 @@ public class ExclusiveKeyServiceImpl implements ExclusiveKeyService{
 		state.add(String.valueOf(ek.getState()));
 		if(ek.getState()==2){
 			String scheme = "";
-			Set<Scheme> schemes = ecommerce.getSchemes();
-			for(Scheme s : schemes.toArray(new Scheme[schemes.size()])){
-				scheme += s.getSchemeName()+",";
+			
+			Set<ECommerce_Scheme> ec_ss = ecommerce.getEcommerce_scheme();
+			for(ECommerce_Scheme ec_s : ec_ss.toArray(new ECommerce_Scheme[ec_ss.size()])){
+				scheme += ec_s.getScheme().getSchemeName()+",";
 			}
 			packageAlgorithm.packageA(ecommerce);
 			state.add(scheme);

@@ -20,6 +20,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import com.jolbox.bonecp.BoneCPDataSource;
 import com.thinkingtop.kaas.services.manage.ECommerceManage;
+import com.thinkingtop.kaas.services.model.ECommerce_Scheme;
 import com.thinkingtop.kaas.services.model.ExclusiveKey;
 import com.thinkingtop.kaas.services.model.ECommerce;
 import com.thinkingtop.kaas.services.model.Scheme;
@@ -64,7 +65,6 @@ public class ECommerceManageTest {
 	public void testGetECommerce() {
 		ECommerce ecommerce = ecommerceManage.getECommerce(1);
 		Assert.assertEquals("jingdong", ecommerce.getEcommerceName());
-		
 		ecommerce = ecommerceManage.getECommerce("jingdong");
 		long ecommerceId = ecommerce.getId();
 		Assert.assertEquals(1, ecommerceId);
@@ -73,9 +73,16 @@ public class ECommerceManageTest {
 	@Test
 	public void testGetECommerceAndScheme() {
 		ECommerce ecommerce = ecommerceManage.getECommerceAndScheme("jingdong");
-		long ecommerceId = ecommerce.getId();
-		Set<Scheme> schemes = ecommerce.getSchemes();
-		Assert.assertEquals(true, schemes!=null);
+		int ecommerceId = ecommerce.getId();
+		Set<ECommerce_Scheme> ec_ss = ecommerce.getEcommerce_scheme();
+		Assert.assertEquals(true, ec_ss!=null);
+		//System.out.println(ec_s);
+		for(ECommerce_Scheme ec_s : ec_ss.toArray(new ECommerce_Scheme[ec_ss.size()])){
+			Assert.assertEquals(1, ec_s.getEcommerce().getId());
+			Assert.assertEquals("jingdong", ec_s.getEcommerce().getEcommerceName());
+			int id = ec_s.getId();
+			Assert.assertEquals(id, ec_s.getScheme().getId());
+		};
 		Assert.assertEquals(1, ecommerceId);
 	}
 
