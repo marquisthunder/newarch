@@ -55,9 +55,9 @@ public class AlgorithmManage {
 		logger.info("myAlgorithm:----"+myAlgorithm);
 		myAlgorithm.runIt(name);
 	}
-	public String[] getRecommend(String inputItems, int outputItemsNum,
+	public String[] getRecommend(String scheme,String inputItems, int outputItemsNum,
 			int outputQuantitye) {
-		return ruleDAOFileImpl.getRecommend(inputItems, outputItemsNum, outputQuantitye);
+		return ruleDAOFileImpl.getRecommend(scheme,inputItems, outputItemsNum, outputQuantitye);
 	}
 
 	public RuleDAOFileImpl getRuleDAOFileImpl() {

@@ -47,7 +47,7 @@ public class KaasDataPath {
 	public String getRDataPath(){
 		String rDatap = getMyKaasdataPath()+getDataPath()+"/"+getrPath();
 		rDatap = rDatap + "/" +algorithmProperties.getRelationFolder();
-		//logger.info("rDatap----------"+rDatap);
+		logger.info("rDatap----------"+rDatap);
 		File f = new File(rDatap);
 		if(!f.exists()){
 			f.mkdirs();

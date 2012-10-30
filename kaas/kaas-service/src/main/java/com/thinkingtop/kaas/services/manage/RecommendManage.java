@@ -15,8 +15,8 @@ public class RecommendManage {
 	
 	public String[] getRecommend(String endUser, String scheme,
 			String inputItems, int outputItemsNum, int outputQuantitye) {
-		String[] aa = {"a","b"};
-		return aa;
+		String[] Recommend = ruleDAOFileImpl.getRecommend(scheme,inputItems, outputItemsNum, outputQuantitye);
+		return Recommend;
 	}
 	
 	public SchemeManage getSchemeManage() {

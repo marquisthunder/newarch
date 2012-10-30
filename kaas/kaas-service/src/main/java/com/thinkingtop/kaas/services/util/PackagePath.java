@@ -24,6 +24,7 @@ public class PackagePath {
 	static Logger logger=Logger.getLogger(PackagePath.class);
 	public  Properties packageProperties = new Properties();
 	private String packagePaths;
+	private String dataFolder;
 	private String rPath;
 	private String myKaasdataPath;
 	
@@ -82,7 +83,7 @@ public class PackagePath {
 
 	public String getRDataPath() {
 		logger.info("RDataPath:--------------"+packagePaths +rPath);
-		return packagePaths + rPath;
+		return packagePaths + dataFolder + "/" + rPath;
 	}
 
 	public String getrPath() {
@@ -92,5 +93,14 @@ public class PackagePath {
 	@Value("${algorithm.ruleOutPath}")
 	public void setrPath(String rPath) {
 		this.rPath = rPath;
+	}
+
+	public String getDataFolder() {
+		return dataFolder;
+	}
+
+	@Value("${algorithm.dataPath}")
+	public void setDataFolder(String dataFolder) {
+		this.dataFolder = dataFolder;
 	}
 }

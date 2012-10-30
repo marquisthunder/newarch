@@ -19,7 +19,7 @@ public class RuleDAOFileImplTest {
 	
 	@Test
 	public void testGetRecommend() {
-		String[] a = ruleDAOFileImpl.getRecommend("1,2", 2, 1);
+		String[] a = ruleDAOFileImpl.getRecommend("scheme1","1,2", 2, 1);
 		Assert.assertEquals("3,6",a[0]);
 	}
 

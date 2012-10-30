@@ -51,7 +51,7 @@ public class ExclusiveKeyServiceImpl implements ExclusiveKeyService{
 	 * @param outputQuantitye:Recommended Items Quantitye
 	 * @return If ecommerceName or apiKey or inputItems is empty,or apiKey without permission, return null
 	 */
-	public String[] getRecommends(String ecommerceName,String apiKey,String algorithm,String inputItems,int outputItemsNum,int outputQuantitye) {
+/*	public String[] getRecommends(String ecommerceName,String apiKey,String algorithm,String inputItems,int outputItemsNum,int outputQuantitye) {
 		if(!ecommerceManage.isHold(ecommerceName)){
 			logger.info("The user does not exist");
 			return null;
@@ -70,7 +70,7 @@ public class ExclusiveKeyServiceImpl implements ExclusiveKeyService{
 			return mapItems;
 		}
 		return null;
-	}
+	}*/
 	
 	/**
 	 * External exposure method, user request recommendation

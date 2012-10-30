@@ -25,9 +25,9 @@ import com.thinkingtop.kaas.services.util.PackagePath;
 @Component("ruleDAOFileImpl")
 public class RuleDAOFileImpl implements RuleDAO {
 	static Logger logger=Logger.getLogger(RuleDAOFileImpl.class);
-    private KaasDataPath kaasDataPath;
+    private PackagePath packagePath;
     private  AlgorithmProperties algorithmProperties;
-	public String[] getRecommend(String inputItems, int outputItemsNum,
+	public String[] getRecommend(String scheme,String inputItems, int outputItemsNum,
 			int outputQuantitye) {
 		if(outputItemsNum<=0){
 			outputItemsNum = 1;
@@ -39,7 +39,7 @@ public class RuleDAOFileImpl implements RuleDAO {
 		DataInputStream inR = null;
 		try {
             inR = new DataInputStream(new BufferedInputStream(
-                    new FileInputStream(kaasDataPath.getRDataPath()+"/date1")));
+                    new FileInputStream(packagePath.getRDataPath()+ "/"+ scheme +"/date1")));
         } catch (FileNotFoundException e) {
             logger.warn("local offline file may be moved or renamed!");
         }
@@ -64,7 +64,12 @@ public class RuleDAOFileImpl implements RuleDAO {
         }
 		
 		ArrayList<Map.Entry<String, Double>> list = sortMap(marsRuleList);
-		String[] item = new String[outputQuantitye];
+		String[] item;
+		if(outputQuantitye>list.size()){
+			item = new String[list.size()];
+		}else{
+			item = new String[outputQuantitye];
+		}
 		for(int i=0;i<outputQuantitye&&i<list.size();i++){
 			item[i] = list.get(i).getKey();
 		}
@@ -93,14 +98,14 @@ public class RuleDAOFileImpl implements RuleDAO {
 		this.algorithmProperties = algorithmProperties;
 	}
 
-	public KaasDataPath getKaasDataPath() {
-		return kaasDataPath;
+	public PackagePath getPackagePath() {
+		return packagePath;
+	}
+	@Resource(name="packagePath")
+	public void setPackagePath(PackagePath packagePath) {
+		this.packagePath = packagePath;
 	}
 
-	@Resource(name="kaasDataPath")
-	public void setKaasDataPath(KaasDataPath kaasDataPath) {
-		this.kaasDataPath = kaasDataPath;
-	}
 
 
 }
