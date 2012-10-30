@@ -1,118 +1,36 @@
 <html>
+<script src="js/service.js" type="text/javascript"></script>
 <title>Call webservice with javascript and xmlhttp.</title>
 <body>
 	<script language="javascript">
 		//Test function with get method.
-		
-	function getXMLRequester( ){ //此函数是建立XMLHTTP组件的，可能ie低版本无法使用，请参阅msdn；
-		var xmlhttp_request = false;
-		try{
-			if(window.ActiveXObject){
-				for( var i = 5; i; i-- ){
-					try{
-						if( i == 2 ){
-							xmlhttp_request = new ActiveXObject( "Microsoft.XMLHTTP" );
-				　　		}else{
-						　　	xmlhttp_request = new ActiveXObject( "Msxml2.XMLHTTP." + i + ".0" );
-				　　		}
-				　　		break;
-				   }catch(e){
-				　　		xmlhttp_request = false;
-				　　}
-				}
-			}else if(window.XMLHttpRequest){
-				xmlhttp_request = new XMLHttpRequest();
-				if (xmlhttp_request.overrideMimeType) {
-					xmlhttp_request.overrideMimeType('text/xml');
-				}
-			}
-		}catch(e){
-			xmlhttp_request = false;
-			alert("对不起您的浏览器版本太低，请更新后使用。");
-		}
-		return xmlhttp_request ;
+	function information(){
+		endUser = 'liming';
+		product = '1';
+		scheme = 'scheme1';
+		algorithm = 'AprioriRunner';
+		outputItemsNum = '1';
+		outputQuantitye = '1';
 	}
 		
-	function requestByPost(data) {
-		var xmlhttp  = getXMLRequester();
-		alert(xmlhttp);
-		var URL = "http://localhost:8080/kaas-service/services/Service?wsdl";
-		xmlhttp.open("POST", URL, false);
-		xmlhttp.setRequestHeader("Content-Type", "text/xml; charset=utf-8");
-		xmlhttp.setRequestHeader("SOAPAction",
-				"http://dao.wfservice.ws.emolay.com");
-		xmlhttp.send(data);
-		var str = xmlhttp.responseText;
-		var xmlDoc = new DOMParser().parseFromString(str, "text/xml");
-		var result = xmlDoc.getElementsByTagName("result");
-		return result; 
-	}
-	
-	function jurisdiction(){
-		var data = '<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ser="http://service.services.kaas.thinkingtop.com/">';
-		data +='<soapenv:Header/>';
-		data +='<soapenv:Body>';
-		data +='<ser:GetState>';
-		data +='<ecommerceName>' + ecommerceName + '</ecommerceName>';
-		data +='<KeyString>' + key + '</KeyString>';
-		data +='</ser:GetState>';
-		data +='</soapenv:Body>';
-		data +='</soapenv:Envelope>';
-		var result = requestByPost(data);
-		var state = result[0].firstChild.nodeValue;
-		return state;
-	}
-	
-	function getString(str){
-		var data = '<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ser="http://service.services.kaas.thinkingtop.com/">';
-		data += '<soapenv:Header/>';
-		data += '<soapenv:Body>';
-		data += '<ser:Test>';
-		data += '<testString>'+str+'</testString>';
-		data += '</ser:Test>';
-		data += '</soapenv:Body>';
-		data += '</soapenv:Envelope>';
-		var result = requestByPost(data);
-		var str = result[1].firstChild.nodeValue;
-		return str;
-	}
-	
-	var ecommerceName;
-	var key;
-	var endUser;
-	var product;
-	var scheme;
-	var algorithm;
-	var outputItemsNum;
-	var outputQuantitye;
-	
-	function getRecommend (value){
-		rules(value);
-	}
 	function rules(value) {
-		information();
 		var state = jurisdiction();
 		if(state!=2){
 			return false;
 		}
 		alert(state==2);
 		
-		var str = getString(value);
+		information();
 		
-		document.getElementById("result").innerHTML = str;
+		var str = getRecommend();
+		
+		document.getElementById("result").innerHTML = '';
+		for(var i=0;i<str.length; i++){
+			if(i!=0)
+				document.getElementById("result").innerHTML += '-------';
+			document.getElementById("result").innerHTML += str[i];
+		}
 	}
-	
-	function information(){
-		ecommerceName = 'jingdong';
-		key = 'an2mZW9iLtGdQ~aobA13+V46_vy$2^D4%8+0mQ17nysq6NPC+2uiJnS$v256t$o4MY_2w1b%%tYNdxQ';
-		endUser = 'liming';
-		product = '1';
-		scheme = 'scheme1';
-		algorithm = 'AprioriRunner';
-		outputItemsNum = '1';
-		outputQuantitye = '2';
-	}
-	
 	</Script>
 	<input type="button" value="CallWebserviceByPost"
 		onClick="rules('aaaaaaaa')">
