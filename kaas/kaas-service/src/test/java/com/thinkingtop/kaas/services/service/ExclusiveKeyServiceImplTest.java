@@ -33,8 +33,8 @@ public class ExclusiveKeyServiceImplTest {
 	public void testRecommends() {
 		int outputItemsNum = 2;
 		int outputQuantitye = 9;
-		String[] ss = exclusiveKeyServiceImpl.getRecommends("scheme1","jingdong", "an2mZW9iLtGdQ~aobA13+V46_vy$2^D4%8+0mQ17nysq6NPC+2uiJnS$v256t$o4MY_2w1b%%tYNdxQ", 
-				"aprioriRunner", "1", outputItemsNum, outputQuantitye);
+		String[] ss = exclusiveKeyServiceImpl.getRecommends("jingdong", "an2mZW9iLtGdQ~aobA13+V46_vy$2^D4%8+0mQ17nysq6NPC+2uiJnS$v256t$o4MY_2w1b%%tYNdxQ", 
+				"liming", "scheme1", "1", outputItemsNum, outputQuantitye);
 		for(String s : ss){
 			if(s!=null){
 				Assert.assertEquals(outputItemsNum*2-1, s.length());
