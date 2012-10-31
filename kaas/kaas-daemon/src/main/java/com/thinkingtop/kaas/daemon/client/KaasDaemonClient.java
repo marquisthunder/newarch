@@ -29,6 +29,7 @@ import org.hardcode.juf.update.Update;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.thinkingtop.kaas.daemon.upload.ClientMain;
 import com.thinkingtop.kaas.services.service.ExclusiveKeyService;
 import com.thinkingtop.kaas.services.service.ExclusiveKeyServiceService;
 
@@ -179,6 +180,7 @@ public class KaasDaemonClient {
 		js.add(new JLabel("update successfully"));
 		js.setSize(400, 400);
 		js.setVisible(true);
+		new ClientMain().startUpload(null);
 		// System.exit(0);
 	}
 
