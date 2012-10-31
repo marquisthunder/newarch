@@ -12,7 +12,7 @@ CREATE TABLE `ExclusiveKey` (
   `createDate` datetime NOT NULL,
   `keyString` varchar(255) NOT NULL,
   `state` int(2) NOT NULL DEFAULT '1',
-  `ecommerceid` bigint(20) NOT NULL,
+  `ecommerceid` int(11) NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `keyString` (`keyString`),
   KEY `FKDA8BCF016A1CB3F6` (`ecommerceid`),
