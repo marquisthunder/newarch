@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Map.Entry;
 import java.util.jar.Attributes;
@@ -21,7 +22,6 @@ import com.thinkingtop.kaas.services.algorithm.SevenZip.Compression.LZMA.Decoder
 import com.thinkingtop.kaas.services.algorithm.SevenZip.Compression.LZMA.Encoder;
 import com.thinkingtop.kaas.services.algorithm.SevenZip.LzmaAlone.CommandLine;
 
-import com.ibm.icu.text.SimpleDateFormat;
 
 @Component("packageDate")
 public class PackageDate {
@@ -31,9 +31,10 @@ public class PackageDate {
 	
 	public void packageD(){
 		createMeta();
-		String packageName = algorithmProperties.getECommerceName()+algorithmProperties.getSchemeName();
+		//String packageName = algorithmProperties.getECommerceName()+algorithmProperties.getSchemeName();
+		String packageName =  kaasDataPath.getRDataPath();
 		try {
-			packageZip(kaasDataPath.getRDataPath(),packageName+".zip");
+			packageZip(packageName,packageName+".zip");
 			String[] path7z = {"e",packageName+".zip",packageName+".kaas"};
 			package7zip(path7z);
 			
