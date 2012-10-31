@@ -27,26 +27,6 @@ public class AlgorithmProperties {
 		}
 	}
 	
-	public void setSchemeProperties(String schemeName,String eCommerceName,String algorithmSequence){
-		Properties properties = new Properties();
-		String alpath = Thread.currentThread().getContextClassLoader().getResource("scheme.properties").toString();
-		if(alpath.startsWith("file:")){
-			alpath = alpath.substring("file:".length());
-		}
-		try {
-			OutputStream outputStream = new FileOutputStream(alpath);
-			properties.setProperty("scheme.name", schemeName);
-			properties.setProperty("eCommerce.name", eCommerceName);
-			properties.setProperty("algorithm.Sequence", algorithmSequence);
-            properties.store(outputStream, "author: 954068039@QQ.com");  
-            outputStream.close();
-		} catch (FileNotFoundException e) {
-			e.printStackTrace();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-	}
-	
 	public String getSchemeName(){
 		return schemeProperties.getProperty("scheme.name");
 	}

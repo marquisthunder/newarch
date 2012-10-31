@@ -3,7 +3,10 @@ package com.thinkingtop.kaas.services.util;
 
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
+import java.io.IOException;
+import java.util.Properties;
 import java.util.Set;
 import java.util.jar.Attributes;
 import java.util.jar.JarEntry;
@@ -23,11 +26,11 @@ import com.thinkingtop.kaas.services.model.Scheme;
 
 @Component("packageAlgorithm")
 public class PackageAlgorithm {
-	private AlgorithmProperties algorithmProperties;
 	private PackagePath packagePath;
 	static Logger logger=Logger.getLogger(PackageAlgorithm.class);
-	public void jar(String inputFileName, String outputFileName,String[] algorithm)
+	public void jar(String inputFileName, String outputFileName, String schemeName,String ecommerceName, String algorithmNames)
 			throws Exception {
+		String[] algorithm = algorithmNames.split(",");
 		Manifest m = new Manifest();
 		Attributes a = m.getMainAttributes();
 		a.put(Attributes.Name.MANIFEST_VERSION, "1.0");
@@ -52,13 +55,30 @@ public class PackageAlgorithm {
 		String classpath = PackageAlgorithm.class.getResource("/").toString().substring("file:".length());
 		f = new File(classpath+"algorithm.properties");
 		jar(out, f, "algorithm.properties",algorithm);
-		f = new File(classpath+"scheme.properties");
-		jar(out, f, "scheme.properties",algorithm);
 		f = new File(classpath+"algorithmbeans.xml");
 		jar(out, f, "algorithmbeans.xml",algorithm);
 		f = new File(classpath+"log4j.properties");
 		jar(out, f, "log4j.properties",algorithm);
+		jarSchemeProperties(out,schemeName,ecommerceName,algorithmNames);
+		
 		out.close();
+	}
+
+	private void jarSchemeProperties(JarOutputStream out, String schemeName,
+			String ecommerceName, String algorithmNames) {
+		
+		Properties properties = new Properties();
+		try {
+			out.putNextEntry(new JarEntry("/scheme.properties"));
+			properties.setProperty("scheme.name", schemeName);
+			properties.setProperty("eCommerce.name", ecommerceName);
+			properties.setProperty("algorithm.Sequence", algorithmNames);
+            properties.store(out, "author: 954068039@QQ.com");  
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}		
 	}
 
 	private void jarImpl(JarOutputStream out, File f, String base,
@@ -109,11 +129,9 @@ public class PackageAlgorithm {
 		Set<ECommerce_Scheme> ec_ss = ecommerce.getEcommerce_scheme();
 		for(ECommerce_Scheme ec_s : ec_ss.toArray(new ECommerce_Scheme[ec_ss.size()])){
 			Scheme s = ec_s.getScheme();
-			algorithmProperties.setSchemeProperties(s.getSchemeName(),ecommerce.getEcommerceName(),s.getAlgorithmNames());
-			String[] Algorithm = s.getAlgorithmNames().split(",");
 			//logger.info("schemes------------"+s.getAlgorithmNames());
 			try {
-				jar(packagePath.getAlgorithmPath(), packagePath.getMyKaasdataPath()+"/"+s.getSchemeName()+".jar",Algorithm);
+				jar(packagePath.getAlgorithmPath(), packagePath.getMyKaasdataPath()+"/"+s.getSchemeName()+".jar",s.getSchemeName(),ecommerce.getEcommerceName(),s.getAlgorithmNames());
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
@@ -127,15 +145,6 @@ public class PackageAlgorithm {
 	@Resource(name="packagePath")
 	public void setPackagePath(PackagePath packagePath) {
 		this.packagePath = packagePath;
-	}
-
-	public AlgorithmProperties getAlgorithmProperties() {
-		return algorithmProperties;
-	}
-
-	@Resource(name="algorithmProperties")
-	public void setAlgorithmProperties(AlgorithmProperties algorithmProperties) {
-		this.algorithmProperties = algorithmProperties;
 	}
 	
 }
