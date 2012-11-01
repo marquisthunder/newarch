@@ -4,25 +4,25 @@
 <body>
 	<script language="javascript">
 		//Test function with get method.
-	function information(){
-		endUser = 'liming';
-		product = '2';
-		scheme = 'scheme1';
-		outputItemsNum = '2';
-		outputQuantitye = '3';
-	}
+	rules();
+	function rules() {
+		var result = new Recommend();
 		
-	function rules(value) {
-		var state = jurisdiction();
+		var state = result.jurisdiction();
 		if(state!=2){
 			return false;
 		}
 		alert(state==2);
 		
-		information();
+		var endUser = 'liming';
+		var product = '2';
+		var scheme = 'scheme1';
+		var outputItemsNum = '2';
+		var outputQuantitye = '2';
+		result.information(endUser,product,scheme,outputItemsNum,outputQuantitye);
 		
-		var str = getRecommend();
-		
+		var str = result.getRecommend();
+			//alert(str);
 		document.getElementById("result").innerHTML = '';
 		for(var i=0;i<str.length; i++){
 			if(i!=0)
@@ -32,7 +32,7 @@
 	}
 	</Script>
 	<input type="button" value="CallWebserviceByPost"
-		onClick="rules('aaaaaaaa')">
+		onClick="rules()">
 	<div id="result"></div>
 </body>
 

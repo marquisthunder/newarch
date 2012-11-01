@@ -1,0 +1,132 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<script language="javascript">
+
+/* 
+   　 function f1(){
+  　　　　var n=999;
+  		alert("11111111");
+  　　　 nAdd=function(){
+	  		n+=1
+	  		alert("adf");
+	  	}
+  　　　　function f2(){
+  　　　　　　alert(n);
+  　　　　}
+  　　　　return f2;
+  　　} */
+   　 
+  　　
+   　 
+   　
+		/*  function MyObject1(formalParameter) {
+			this.testNumber = formalParameter;
+		}
+		function MyObject2(formalParameter) {
+			//this.testNumber = null;
+			this.testString = formalParameter;
+
+		} */
+		/* function f1() {
+			var i = 2;
+			this.b = function() {
+				alert(++i);
+				//alert(++j);
+			}
+		}
+
+		function f1() {
+			var i = 0;
+			this.b = function() {
+				alert(++i);
+				//alert(++j);
+			}
+		} */
+
+
+	    　　var name = "The Window";
+
+	    　　var object = {
+	    　　　　name : "My Object",
+
+	    　　　　getNameFunc : function(){
+	    	var that = this;
+	    　　　　　　return function(){
+	    　　　　　　　　return that.name;
+	    　　　　　　};
+
+	    　　　　}
+
+	    　　};
+
+	    　　alert(object.getNameFunc()());
+
+
+/* 		function test() {
+			 var result= f1();
+			 result();
+			 nAdd();
+			 result();
+			 result = undefined;
+		} 
+		
+ 		test();
+ 		
+ 		function nAdd(){
+ 	   　 	alert("22222222");
+ 	   　 }
+		nAdd(); */
+ 		/*function test() {
+			var j = 0;
+			var cs = as();
+			cs();
+			cs();
+		}
+		function as() {
+			var i = 0;
+			function b() {
+				alert(++i);
+				alert(++j);
+			}
+			return b;
+		} */
+		
+
+		/* var Sys = {};
+
+		var ua = navigator.userAgent.toLowerCase();
+
+		alert("111111");
+		
+		var Sys = {};
+
+		var ua = navigator.userAgent.toLowerCase();
+
+		var s;
+		alert(ua.match(/msie ([\d.]+)/));
+		alert(ua.match(/firefox\/([\d.]+)/));
+		alert(ua.match(/chrome\/([\d.]+)/));
+		alert(ua.match(/opera.([\d.]+)/));
+		alert(ua.match(/version\/([\d.]+).*safari/));
+		(s = ua.match(/msie ([\d.]+)/)) ? Sys.ie = s[1] :
+		(s = ua.match(/firefox\/([\d.]+)/)) ? Sys.firefox = s[1] :
+		(s = ua.match(/chrome\/([\d.]+)/)) ? Sys.chrome = s[1] :
+		(s = ua.match(/opera.([\d.]+)/)) ? Sys.opera = s[1] :
+		(s = ua.match(/version\/([\d.]+).*safari/)) ? Sys.safari = s[1] : 0;
+		//以下进行测试
+		if (Sys.ie) document.write('IE: ' + Sys.ie);
+		if (Sys.firefox) document.write('Firefox: ' + Sys.firefox);
+		if (Sys.chrome) document.write('Chrome: ' + Sys.chrome);
+		if (Sys.opera) document.write('Opera: ' + Sys.opera);
+		if (Sys.safari) document.write('Safari: ' + Sys.safari);  */
+	</Script>
+	<input type="button" value="CallWebserviceByPost"
+		onClick="rules('String_Value')">
+	<div id="result"></div>
+</body>
+</html>
