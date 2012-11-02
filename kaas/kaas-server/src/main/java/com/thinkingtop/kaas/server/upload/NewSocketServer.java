@@ -22,6 +22,8 @@ import java.nio.charset.CharsetDecoder;
 import java.nio.charset.CharsetEncoder;
 import java.util.Iterator;
 
+import com.thinkingtop.kaas.services.algorithm.SevenZip.Decompression;
+
 public class NewSocketServer {
  
 	private static final int port = 9527;
@@ -127,6 +129,8 @@ public class NewSocketServer {
 					System.out.println("上传完毕！");
 					fileOut.close(); 
 					channel.close();
+					//解压
+					new Decompression().DecompressionKaas("../dist/data/out/scheme1.kaas", "../dist/data/out/scheme");
 	            }
 	            clientBuffer.clear();   
 	        } 
