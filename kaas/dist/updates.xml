@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <updates>
-	<update component-name="sample" version="1">
-		<installer class-name="Samle"
+	<update component-name="etl-sample" version="1">
+		<installer class-name="com.thinkingtop.kaas.etl.Sample"
 			jar-url="http://localhost:8081/kaas/kaas-etl.jar" />
-		<feature>I am content</feature>
+		<feature>I am a sample from etl</feature>
 	</update>
 	<update component-name="sample-component" version="1">
 		<installer class-name="SampleUpdate"

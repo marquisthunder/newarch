@@ -4,6 +4,7 @@ import java.io.PrintWriter;
 import java.lang.reflect.Field;
 import java.sql.Connection;
 import java.sql.SQLException;
+import java.sql.SQLFeatureNotSupportedException;
 import java.util.Map;
 import java.util.concurrent.locks.ReadWriteLock;
 import java.util.concurrent.locks.ReentrantReadWriteLock;
@@ -218,6 +219,15 @@ public class KaasBoneCPDataSource extends KaasBoneCPConfig implements DataSource
 	 */
 	public KaasBoneCPConfig getConfig() {
 		return this;
+	}
+	/**
+	 * since jdk1.7
+	 */
+	@Override
+	public java.util.logging.Logger getParentLogger()
+			throws SQLFeatureNotSupportedException {
+		// TODO Auto-generated method stub
+		return null;
 	}
 	
 }

@@ -54,7 +54,7 @@ public class KaasDaemonClient {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}*/
-		System.out.println(getAPIKeyState("jingdong", "an2mZW9iLtGdQ~aobA13+V46_vy$2^D4%8+0mQ17nysq6NPC+2uiJnS$v256t$o4MY_2w1b%%tYNdxQ").get(1));
+		//System.out.println(getAPIKeyState("jingdong", "an2mZW9iLtGdQ~aobA13+V46_vy$2^D4%8+0mQ17nysq6NPC+2uiJnS$v256t$o4MY_2w1b%%tYNdxQ").get(1));
 		KaasDaemonClient jus = new KaasDaemonClient();
 		jus.run();
 		

@@ -1,3 +1,4 @@
+package com.thinkingtop.kaas.etl;
 import java.util.HashMap;
 
 import org.hardcode.juf.InstallException;
@@ -11,7 +12,7 @@ import com.thinkingtop.kaas.etl.result.Result;
 import com.thinkingtop.kaas.etl.writer.ResultWriter;
 
 
-public class Samle implements Installer{
+public class Sample implements Installer{
 
 	@Override
 	public UpdateInfo install(HashMap clientStatus, UpdateInfo status,
