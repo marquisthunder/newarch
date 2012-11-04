@@ -26,9 +26,9 @@ public class ClientMain {
 		public void run() {
 			 try {
 				
-				File file = new File(local_filename); //假设文件放在C盘
+				File file = new File(local_filename);
 				if(!file.exists()&&GetOrPut.equals("put")){ 
-					System.out.println("本地没有这个文件，无法上传！"); 
+					System.out.println("file not existed, cannot upload"); 
 					return;
 				} 
 				
@@ -36,7 +36,7 @@ public class ClientMain {
 				System.out.println(loalhost);
 				
 				Socket socket = new Socket(ServerAddress,ServerPort);
-											//服务器IP地址  端口号   本机IP 本机端口号
+											//server ip, server port
 				DataInputStream dis = new DataInputStream(socket.getInputStream());
 				DataOutputStream dos = new DataOutputStream(socket.getOutputStream());
 				 
@@ -47,39 +47,39 @@ public class ClientMain {
 				//String tempString = dis.writeUTF(); 
 				buf = new byte[4096];
 				len = dis.read(buf);
-				String tempString = new String(buf,0,len);//服务器反馈的信息
+				String tempString = new String(buf,0,len);//feedback from the server
 				
 				//System.out.println(tempString); 
 				if(tempString.equals("notexists")){
-					System.out.println("服务器没有这个文件，无法下载！"); 
+					System.out.println("file is not exsited in the server！ cannot download"); 
 					dos.close();
 					dis.close();
 					socket.close();
 					return;
 				}
 				
-				if(tempString.startsWith("准备下载")){  
+				if(tempString.startsWith("perpare to download")){  
 					DataOutputStream fileOut = 
 						new DataOutputStream(new BufferedOutputStream(new FileOutputStream(file)));
  
 					while ((len = dis.read(buf))!=-1) {   
 		                fileOut.write(buf, 0, len);
 		            }
-					System.out.println("下载完毕！");
+					System.out.println("download finished！");
 					fileOut.close();
 					dos.close();
 					dis.close();
 					socket.close();
 				}
 				else if(tempString.equals("UploadReady")){  
-					System.out.println("正在上传文件.......");
+					System.out.println("uploading.......");
 					DataInputStream fis = new DataInputStream(new BufferedInputStream(new FileInputStream(file))); 
 					  
 	                while ((len = fis.read(buf))!= -1) {  
 	                    dos.write(buf, 0, len);
 	                }
 	                dos.flush();
-	                System.out.println("上传完毕！");
+	                System.out.println("upload finished！");
 	                fis.close();
 	                dis.close();
 	                dos.close();
@@ -96,7 +96,7 @@ public class ClientMain {
 	public boolean checkCommand(String command)
 	{ 
 		if(!command.startsWith("put")&&!command.startsWith("get")){
-			System.out.println("输入命令错误");
+			System.out.println("command error");
 			return false;
 		}
 		
@@ -139,7 +139,7 @@ public class ClientMain {
 		Scanner sc = new Scanner(System.in);
 		String commandString = "";
 		do {
-			System.out.println("请输入命令："); 
+			System.out.println("input command："); 
 			commandString = sc.nextLine();
 		} while (!thisC.checkCommand(commandString)); 
 		
@@ -152,7 +152,7 @@ public class ClientMain {
 		Scanner sc = new Scanner(System.in);
 		String commandString = "";
 		do {
-			System.out.println("请输入命令："); 
+			System.out.println("input command："); 
 			commandString = sc.nextLine();
 		} while (!thisC.checkCommand(commandString)); 
 		
