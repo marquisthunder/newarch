@@ -83,7 +83,7 @@ public class PackagePath {
 
 	public String getRDataPath() {
 		logger.info("RDataPath:--------------"+packagePaths +rPath);
-		return packagePaths + dataFolder + "/" + rPath;
+		return "/home/roadahead/workspace/newarch/kaas/dist/test";
 	}
 
 	public String getrPath() {
