@@ -5,6 +5,12 @@ import java.net.InetSocketAddress;
 import java.net.Socket;
 import java.util.Scanner;
 
+import org.apache.commons.cli.BasicParser;
+import org.apache.commons.cli.CommandLine;
+import org.apache.commons.cli.HelpFormatter;
+import org.apache.commons.cli.Options;
+import org.apache.commons.cli.ParseException;
+
 public class ClientMain {
 
 	private   int ServerPort = 9527;
@@ -152,7 +158,7 @@ public class ClientMain {
 		
 		ClientMain.SocketThread a = thisC.new SocketThread();
 		a.start();
-	 
+		
 	}
 
 }
