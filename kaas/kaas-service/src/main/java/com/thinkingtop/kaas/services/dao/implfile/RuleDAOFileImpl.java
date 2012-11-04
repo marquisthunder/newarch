@@ -38,6 +38,7 @@ public class RuleDAOFileImpl implements RuleDAO {
 		Map<String,Double> marsRuleList = new HashMap<String,Double>();
 		DataInputStream inR = null;
 		try {
+			logger.info("packagePath:-"+ packagePath.getRDataPath()+ "/"+ scheme +"/date1");
             inR = new DataInputStream(new BufferedInputStream(
                     new FileInputStream(packagePath.getRDataPath()+ "/"+ scheme +"/date1")));
         } catch (FileNotFoundException e) {
