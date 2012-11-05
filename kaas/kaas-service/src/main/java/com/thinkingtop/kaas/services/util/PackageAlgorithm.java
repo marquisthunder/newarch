@@ -69,7 +69,7 @@ public class PackageAlgorithm {
 		
 		Properties properties = new Properties();
 		try {
-			out.putNextEntry(new JarEntry("/scheme.properties"));
+			out.putNextEntry(new JarEntry("scheme.properties"));
 			properties.setProperty("scheme.name", schemeName);
 			properties.setProperty("eCommerce.name", ecommerceName);
 			properties.setProperty("algorithm.Sequence", algorithmNames);
