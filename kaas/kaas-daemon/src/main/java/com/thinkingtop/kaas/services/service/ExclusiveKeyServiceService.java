@@ -17,7 +17,7 @@ import javax.xml.ws.WebServiceFeature;
  * Generated source version: 2.1
  * 
  */
-@WebServiceClient(name = "ExclusiveKeyServiceService", targetNamespace = "http://service.services.kaas.thinkingtop.com/", wsdlLocation = "http://localhost:8080/kaas-service/services/Service?wsdl")
+@WebServiceClient(name = "ExclusiveKeyServiceService", targetNamespace = "http://service.services.kaas.thinkingtop.com/", wsdlLocation = "http://192.168.0.101:8080/kaas-service/services/Service?wsdl")
 public class ExclusiveKeyServiceService
     extends Service
 {
@@ -30,9 +30,9 @@ public class ExclusiveKeyServiceService
         try {
             URL baseUrl;
             baseUrl = com.thinkingtop.kaas.services.service.ExclusiveKeyServiceService.class.getResource(".");
-            url = new URL(baseUrl, "http://localhost:8080/kaas-service/services/Service?wsdl");
+            url = new URL(baseUrl, "http://192.168.0.101:8080/kaas-service/services/Service?wsdl");
         } catch (MalformedURLException e) {
-            logger.warning("Failed to create URL for the wsdl Location: 'http://localhost:8080/kaas-service/services/Service?wsdl', retrying as a local file");
+            logger.warning("Failed to create URL for the wsdl Location: 'http://192.168.0.101:8080/kaas-service/services/Service?wsdl', retrying as a local file");
             logger.warning(e.getMessage());
         }
         EXCLUSIVEKEYSERVICESERVICE_WSDL_LOCATION = url;
