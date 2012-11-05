@@ -14,10 +14,10 @@ import org.apache.commons.cli.ParseException;
 public class ClientMain {
 
 	private   int ServerPort = 9527;
-	private   String ServerAddress = "localhost";
+	private   String ServerAddress = "192.168.0.101";
 	private   String GetOrPut = "get";   
-	private   String local_filename = "../dist/data/out/scheme1.kaas"; 
-	private   String remote_filename  = ""; 
+	private   String local_filename = "../dist/data/kaas-daemon/outFromService/scheme1.kaas"; 
+	private   String remote_filename  = "../dist/data/kaas-server/scheme1.kaas"; 
 	private   byte[] buf;
 	private   int len;
 	class SocketThread extends Thread{
