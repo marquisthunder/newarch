@@ -28,7 +28,7 @@ function Recommend() {
 			alert("Sorry your browser version is too low, please update after use.");
 		}
 		return xmlhttp_request;
-	}
+	};
 
 	this.requestByPost = function(data) {
 		var xmlhttp = this.getXMLRequester();
@@ -43,7 +43,7 @@ function Recommend() {
 		var xmlDoc = new DOMParser().parseFromString(str, "text/xml");
 		var result = xmlDoc.getElementsByTagName("result");
 		return result;
-	}
+	};
 
 	this.jurisdiction = function() {
 		var data = '<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ser="http://service.services.kaas.thinkingtop.com/">';
