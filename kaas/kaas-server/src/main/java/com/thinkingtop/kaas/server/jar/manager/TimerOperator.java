@@ -8,7 +8,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.thinkingtop.kaas.server.jar.maintenance.Maintenance;
-import com.thinkingtop.kaas.server.jar.reader.PropertiesReader;
+import com.thinkingtop.kaas.server.jar.reader.KaasServerPropertiesReader;
 
 public class TimerOperator { 
 	private static final Logger logger = LoggerFactory.getLogger(TimerOperator.class.getName());
@@ -32,7 +32,7 @@ public class TimerOperator {
     	
     	timer.cancel();
     	timer = new Timer();
-    	Long l = Long.parseLong(PropertiesReader.getProp("priod"));
+    	Long l = Long.parseLong(KaasServerPropertiesReader.getProp("priod"));
         
     	timer.schedule(new KaasTimerTask(m), new Date(m.getFirstJarInfo().getExpired().getTime()+l));
         //timer.schedule(new KaasTimerTask(), 2000);

@@ -54,11 +54,11 @@ public class KaasDaemonClient {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}*/
-		//System.out.println(getAPIKeyState("jingdong", "an2mZW9iLtGdQ~aobA13+V46_vy$2^D4%8+0mQ17nysq6NPC+2uiJnS$v256t$o4MY_2w1b%%tYNdxQ").get(0));
-		if(getAPIKeyState("jingdong", "an2mZW9iLtGdQ~aobA13+V46_vy$2^D4%8+0mQ17nysq6NPC+2uiJnS$v256t$o4MY_2w1b%%tYNdxQ").get(0).equals("2")) {
+		System.out.println(getAPIKeyState("jingdong", "an2mZW9iLtGdQ~aobA13+V46_vy$2^D4%8+0mQ17nysq6NPC+2uiJnS$v256t$o4MY_2w1b%%tYNdxQ").get(0));
+		/*if(getAPIKeyState("jingdong", "an2mZW9iLtGdQ~aobA13+V46_vy$2^D4%8+0mQ17nysq6NPC+2uiJnS$v256t$o4MY_2w1b%%tYNdxQ").get(0).equals("2")) {
 			KaasDaemonClient jus = new KaasDaemonClient();
 			jus.run();
-		}
+		}*/
 		
 		
 		/*
@@ -93,7 +93,7 @@ public class KaasDaemonClient {
 			// urlPrefix with an address.
 			if (clientUpdateInfo == null) {
 				clientUpdateInfo = new UpdateInfo();
-				clientUpdateInfo.setUrlPrefix("http://"+ KaasDaemonPropertiesReader.getInstance().getProperty("updateServerIp") + ":8081/kaas/updates.xml");
+				clientUpdateInfo.setUrlPrefix("http://"+ KaasDaemonPropertiesReader.getProp("updateServerIp") + ":"+KaasDaemonPropertiesReader.getProp("updateServerPort")+"/kaas/updates.xml");
 			}
 		} catch (IOException e) {
 			logger.info("Could not get the information from the updated");

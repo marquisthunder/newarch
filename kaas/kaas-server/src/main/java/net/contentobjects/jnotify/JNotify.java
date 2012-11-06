@@ -44,7 +44,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.thinkingtop.kaas.server.jar.maintenance.Maintenance;
-import com.thinkingtop.kaas.server.jar.reader.PropertiesReader;
+import com.thinkingtop.kaas.server.jar.reader.KaasServerPropertiesReader;
 import com.thinkingtop.kaas.server.model.KaasJarInfo;
 import com.thinkingtop.kaas.server.service.JarBeanFactory;
 
@@ -115,7 +115,7 @@ public class JNotify {
 
 	public void startMonitor() throws InterruptedException, IOException {
 		// String dir = new File("d:/").getAbsolutePath();
-		String dir = new File(PropertiesReader.getProp("directory"))
+		String dir = new File(KaasServerPropertiesReader.getProp("directory"))
 				.getAbsolutePath();
 		JNotify.addWatch(dir, FILE_ANY, true, new JNotifyListener() {
 			public void fileRenamed(int wd, String rootPath, String oldName,
@@ -135,7 +135,7 @@ public class JNotify {
 			public void fileCreated(int wd, String rootPath, String name) {
 				//System.out.println("created " + rootPath + " : " + name);
 				logger.info("created " + rootPath + " : " + name);
-				File f = new File(PropertiesReader.getProp("directory") + name);
+				File f = new File(KaasServerPropertiesReader.getProp("directory") + name);
 				// f.setLastModified(System.currentTimeMillis());
 				//System.out.println("Time: " + new Date(f.lastModified()));
 				logger.info("Time: " + new Date(f.lastModified()));

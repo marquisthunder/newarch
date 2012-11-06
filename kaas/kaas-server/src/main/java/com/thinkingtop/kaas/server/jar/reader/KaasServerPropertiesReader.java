@@ -3,15 +3,15 @@ package com.thinkingtop.kaas.server.jar.reader;
 import java.io.InputStream;
 import java.util.Properties;
 
-public class PropertiesReader {
-	private PropertiesReader() {
+public class KaasServerPropertiesReader {
+	private KaasServerPropertiesReader() {
 	}
 
 	private static Properties props = null;
 
 	static {
-		InputStream is = PropertiesReader.class.getClassLoader()
-				.getResourceAsStream("default.properties");
+		InputStream is = KaasServerPropertiesReader.class.getClassLoader()
+				.getResourceAsStream("running.properties");
 		props = new Properties();
 		try {
 			props.load(is);

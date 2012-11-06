@@ -13,7 +13,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.thinkingtop.kaas.server.jar.maintenance.Maintenance;
-import com.thinkingtop.kaas.server.jar.reader.PropertiesReader;
+import com.thinkingtop.kaas.server.jar.reader.KaasServerPropertiesReader;
 import com.thinkingtop.kaas.server.model.KaasJarInfo;
 import com.thinkingtop.kaas.server.service.JarBeanFactory;
 
@@ -21,7 +21,7 @@ public class JWatch{
 	private static final Logger logger = LoggerFactory.getLogger(JWatch.class.getName());
 
 	public void startMonitor() {
-		Path myDir = Paths.get(PropertiesReader.getProp("directory"));
+		Path myDir = Paths.get(KaasServerPropertiesReader.getProp("directory"));
 
 		try {
 			WatchService watchService = myDir.getFileSystem().newWatchService();
@@ -48,7 +48,7 @@ public class JWatch{
 					case "ENTRY_CREATE":
 						//System.out.println("Create: " + event.context());
 						logger.info("Create: " + event.context());
-						File f = new File(PropertiesReader.getProp("directory")+ event.context().toString());
+						File f = new File(KaasServerPropertiesReader.getProp("directory")+ event.context().toString());
 						// f.setLastModified(System.currentTimeMillis());
 						//System.out.println("Create: "+ new Date(f.lastModified()));
 						logger.info("Create: "+ new Date(f.lastModified()));

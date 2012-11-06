@@ -11,10 +11,12 @@ import org.apache.commons.cli.HelpFormatter;
 import org.apache.commons.cli.Options;
 import org.apache.commons.cli.ParseException;
 
+import com.thinkingtop.kaas.daemon.client.KaasDaemonPropertiesReader;
+
 public class ClientMain {
 
-	private   int ServerPort = 9527;
-	private   String ServerAddress = "192.168.0.101";
+	private   int ServerPort = Integer.parseInt(KaasDaemonPropertiesReader.getProp("updateServerPort"));
+	private   String ServerAddress = KaasDaemonPropertiesReader.getProp("updateServerIp");
 	private   String GetOrPut = "get";   
 	private   String local_filename = "../dist/data/kaas-daemon/outFromService/scheme1.kaas"; 
 	private   String remote_filename  = "../dist/data/kaas-server/scheme1.kaas"; 
@@ -30,10 +32,10 @@ public class ClientMain {
 				if(!file.exists()&&GetOrPut.equals("put")){ 
 					System.out.println("file not existed, cannot upload"); 
 					return;
-				} 
+				}
 				
-				InetAddress loalhost = InetAddress.getByName("193.168.0.103");
-				System.out.println(loalhost);
+				//InetAddress loalhost = InetAddress.getByName("193.168.0.103");
+				//System.out.println(loalhost);
 				
 				Socket socket = new Socket(ServerAddress,ServerPort);
 											//server ip, server port
@@ -76,7 +78,9 @@ public class ClientMain {
 					DataInputStream fis = new DataInputStream(new BufferedInputStream(new FileInputStream(file))); 
 					  
 	                while ((len = fis.read(buf))!= -1) {  
-	                    dos.write(buf, 0, len);
+	                	//if(len!=0) {
+	                		dos.write(buf, 0, len);
+	                	//}
 	                }
 	                dos.flush();
 	                System.out.println("upload finished！");

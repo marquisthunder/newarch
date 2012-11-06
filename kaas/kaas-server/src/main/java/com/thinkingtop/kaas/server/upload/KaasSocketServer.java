@@ -20,6 +20,10 @@ import java.nio.charset.CharsetDecoder;
 import java.nio.charset.CharsetEncoder;
 import java.util.Iterator;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import com.thinkingtop.kaas.server.jar.manager.TimerOperator;
 import com.thinkingtop.kaas.services.algorithm.SevenZip.Decompression;
 
 /*
@@ -27,6 +31,8 @@ import com.thinkingtop.kaas.services.algorithm.SevenZip.Decompression;
  *  If the file is bigger than 300kb, it will get wrong. 
  */
 public class KaasSocketServer {
+	private static final Logger logger = LoggerFactory.getLogger(KaasSocketServer.class.getName());
+
  
 	private static final int port = 9527;
 	private Selector selector;
@@ -130,18 +136,19 @@ public class KaasSocketServer {
 				// 单纯的txt 在300kb一下可以传输。
 				int passlen = channel.read(clientBuffer);
 				while (passlen >= 0) {
-					clientBuffer.flip();
+					if(passlen!=0) {
+						clientBuffer.flip();
+					}
 					fileOut.write(clientBuffer.array(), 0, passlen);
 					passlen = channel.read(clientBuffer);
-					System.out.println(passlen + "----------");
+					logger.debug(passlen + "----------");
+					
 				}
 				System.out.println("upload finished！");
 				fileOut.close();
 				channel.close();
 				// upzip....
-				new Decompression().DecompressionKaas(
-						"../dist/data/out/scheme1.kaas",
-						"../dist/data/out/scheme");
+				//new Decompression().DecompressionKaas("../dist/data/out/scheme1.kaas","../dist/data/out/scheme");
 			}
 			clientBuffer.clear();
 		} else if (key.isWritable()) { 
@@ -156,6 +163,7 @@ public class KaasSocketServer {
 				byte[] buf = new byte[1024];
 				int len = 0;
 				while ((len = fis.read(buf)) != -1) {
+					
 					channel.write(ByteBuffer.wrap(buf, 0, len));
 				}
 				fis.close();
