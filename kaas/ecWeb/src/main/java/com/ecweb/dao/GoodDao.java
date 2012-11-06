@@ -139,7 +139,7 @@ public class GoodDao {
 	public static void main(String[] args) {
 		GoodDao testjdbc = new GoodDao();
 		Good good = testjdbc.getGood(1);
-		good = testjdbc.getGood(2);
+		good = testjdbc.getGood(7);
 		System.out.println(good.getGoods_id() + "  -  " + good.getGoods_name()+ "  -  " + good.getGoods_number()+ "  -  " + good.getGoods_weight()+ "  -  " 
 				+ good.getMarket_price()+ "  -  " + good.getShop_price()+ "  -  " +  good.getPromote_price() + "  -  " + good.getPromote_start_date() + "  -  " 
 				+ good.getPromote_end_date()+ "  -  " + good.getGoods_brief()+ "  -  " + good.getGoods_desc()+ "  -  " + good.getIs_real()+ "  -  " 

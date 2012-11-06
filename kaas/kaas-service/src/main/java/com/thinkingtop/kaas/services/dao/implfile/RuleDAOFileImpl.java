@@ -2,6 +2,7 @@ package com.thinkingtop.kaas.services.dao.implfile;
 
 import java.io.BufferedInputStream;
 import java.io.DataInputStream;
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -39,10 +40,16 @@ public class RuleDAOFileImpl implements RuleDAO {
 		DataInputStream inR = null;
 		try {
 			logger.info("packagePath:-"+ packagePath.getRDataPath()+ "/"+ scheme +"/date1");
+			File f = new File(packagePath.getRDataPath()+ "/"+ scheme +"/date1");
+			if(!f.exists()){
+				logger.info("This file does not exist");
+				return null;
+			}
             inR = new DataInputStream(new BufferedInputStream(
                     new FileInputStream(packagePath.getRDataPath()+ "/"+ scheme +"/date1")));
         } catch (FileNotFoundException e) {
             logger.warn("local offline file may be moved or renamed!");
+            return null;
         }
 		int iR = 0;
 		String rulestr;
