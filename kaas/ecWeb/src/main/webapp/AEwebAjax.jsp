@@ -5,35 +5,42 @@
 
 <%
     response.setContentType("text/xml;charset=gb2312");      
-	String idstr = request.getParameter("id");
+	String idstr = request.getParameter("ids");
 	System.out.println(idstr);
-	int id = 0;
+	int[] ids;
 	if(idstr==null||idstr.equals("")){
-		id=1;
+		ids = new int[]{1};
 	}else{
 		try {
-			String[] ids=idstr.split(",");
-		System.out.println("ids[0] = "+ids[0]);
-		System.out.println("ids.length = "+ids.length);
-			id = Integer.parseInt(ids[0]);
+			String[] idstrs=idstr.split(",");
+		System.out.println("ids[0] = "+idstrs[0]);
+		System.out.println("ids.length = "+idstrs.length);
+			ids = new int[idstrs.length];
+			for(int i=0; i<idstrs.length; i++){
+				ids[i] = Integer.parseInt(idstrs[i]);
+			}
 		} catch (Exception e) {
 		System.out.println("ID input error");
-			id=1;
+			ids = new int[]{1};
 		}
 	}
-	System.out.println("id = " + id);
-	Good good = GoodDao.getGood(id);
-
-	
+	System.out.println("id = " + ids[0]);
     StringBuffer str=new StringBuffer();
-    str.append("<information>");  
-    str.append("<goods_name>");str.append(good.getGoods_name());str.append("</goods_name>");  
-    str.append("<goods_number>");str.append(good.getGoods_number());str.append("</goods_number>");
-    str.append("<goods_weight>");str.append(good.getGoods_weight());str.append("</goods_weight>");  
-    str.append("<market_price>");str.append(good.getMarket_price());str.append("</market_price>");  
-    str.append("<shop_price>");str.append(good.getShop_price());str.append("</shop_price>");  
-    str.append("<promote_price>");str.append(good.getPromote_price());str.append("</promote_price>");  
-    str.append("</information>");  
+    str.append("<information>");
+    for(int i=0;i<ids.length;i++){
+		Good good = GoodDao.getGood(ids[i]);
+		str.append("<goods_id>");str.append(good.getGoods_id());str.append("</goods_id>");
+	    str.append("<goods_name>");str.append(good.getGoods_name());str.append("</goods_name>");
+	    str.append("<goods_number>");str.append(good.getGoods_number());str.append("</goods_number>");
+	    str.append("<goods_weight>");str.append(good.getGoods_weight());str.append("</goods_weight>");  
+	    str.append("<market_price>");str.append(good.getMarket_price());str.append("</market_price>");  
+	    str.append("<shop_price>");str.append(good.getShop_price());str.append("</shop_price>");  
+	    str.append("<promote_price>");str.append(good.getPromote_price());str.append("</promote_price>");
+    }
+    str.append("</information>");
+    /* str.append("<information>"); 
+    str.append("<goods_name>");str.append("<table><tr><td>sdffsdf</td></tr></table>");str.append("</goods_name>");
+    str.append("</information>");  */
     System.out.println(str.toString());
     out.print(str.toString());
 %>  
