@@ -1,0 +1,46 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Insert title here</title>
+<script src="js/service2.js" type="text/javascript"></script>
+</head>
+<body>
+	<script language="javascript">
+	function rules(){
+		function outRFunction(xmlDoc){
+			var goods_names = xmlDoc.getElementsByTagName('goods_name');
+			var str = '';
+			for(var i=0; i<goods_names.length;i++){
+				str += '<a href="test2.html?id='+ xmlDoc.getElementsByTagName('goods_id')[i].childNodes[0].nodeValue+'">';
+				str +='商品ID：'+ xmlDoc.getElementsByTagName('goods_id')[i].childNodes[0].nodeValue + '<br>';
+				str +='商品名称：'+ xmlDoc.getElementsByTagName('goods_name')[i].childNodes[0].nodeValue + '<br>';
+				str +='商品编号：'+xmlDoc.getElementsByTagName('goods_number')[i].childNodes[0].nodeValue+'<br>';
+				str +='商品重量：'+xmlDoc.getElementsByTagName('goods_weight')[i].childNodes[0].nodeValue+'<br>';
+				str +='商品原价：'+xmlDoc.getElementsByTagName('market_price')[i].childNodes[0].nodeValue+'<br>';
+				str +='商品一般价格：'+xmlDoc.getElementsByTagName('shop_price')[i].childNodes[0].nodeValue+'<br>';
+				str +='商品会员价格：'+xmlDoc.getElementsByTagName('promote_price')[i].childNodes[0].nodeValue+'</a><br><br>';
+			}
+			//alert(str);
+			document.getElementById('result').innerHTML = str;
+		}
+		
+		var info = Recommend();
+		var endUser = 'liming';
+		var product = '2';
+		var scheme = 'scheme1';
+		var outputItemsNum = '1';
+		var outputQuantitye = '2';
+		var s = info(endUser,product,scheme,outputItemsNum,outputQuantitye,outRFunction);
+		var str = s();
+		//alert(str);
+	}
+	</Script>
+	<input type="button" value="CallWebserviceByPost"
+		onClick="rules('String_Value')">
+	<div id="result"></div>
+<script type="text/javascript">
+	(rules)()
+</script>
+</body>
+</html>

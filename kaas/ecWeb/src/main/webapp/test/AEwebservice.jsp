@@ -13,7 +13,6 @@
 	int id = 0;
 	if (idstr == null || idstr.equals("")) {
 		id = 1;
-		idstr = "1";
 	} else {
 		try {
 			String[] ids = idstr.split(",");
@@ -23,7 +22,6 @@
 		} catch (Exception e) {
 			System.out.println("ID input error");
 			id = 1;
-			idstr = "1";
 		}
 	}
 	System.out.println("id = " + id);
@@ -32,8 +30,6 @@
 <body>
 	<script language="javascript">
 		var xmlHttp;
-		var isResult = false;
-		
 		function createXmlHttpObject() {
 			if (window.XMLHttpRequest) {
 				xmlHttp = new XMLHttpRequest();
@@ -45,12 +41,11 @@
 
 		function send(id) {
 			xmlHttp = createXmlHttpObject();
-			var url = "AEwebAjax.jsp?time=" + Math.random() + "&ids=" + id;
+			var url = "AEwebAjax.jsp?time=" + Math.random() + "&id=" + id;
 			if (xmlHttp) {
 				xmlHttp.onreadystatechange = callback;
 				xmlHttp.open("GET", url, true);
 				xmlHttp.send(null);
-				//callback();
 			//alert(url);
 			} else {
 				alert("your browser does not support ajax");
@@ -59,28 +54,17 @@
 		}
 
 		function callback() {
-			//alert("isResult:"+isResult);
 			if (xmlHttp.readyState == 4) {
 				if (xmlHttp.status == 200) {
 					var xmlDoc = xmlHttp.responseXML;
-					var goods_names = xmlDoc.getElementsByTagName("goods_name");
 					var str = "";
-					for(var i=0; i<goods_names.length;i++){
-						str += "<td><div onClick='sendandr("+xmlDoc.getElementsByTagName("goods_id")[i].childNodes[0].nodeValue+")'>";
-						str +="商品ID："+ xmlDoc.getElementsByTagName("goods_id")[i].childNodes[0].nodeValue + "<br>";
-						str +="商品名称："+ xmlDoc.getElementsByTagName("goods_name")[i].childNodes[0].nodeValue + "<br>";
-						str +="商品编号："+xmlDoc.getElementsByTagName("goods_number")[i].childNodes[0].nodeValue+"<br>";
-						str +="商品重量："+xmlDoc.getElementsByTagName("goods_weight")[i].childNodes[0].nodeValue+"<br>";
-						str +="商品原价："+xmlDoc.getElementsByTagName("market_price")[i].childNodes[0].nodeValue+"<br>";
-						str +="商品一般价格："+xmlDoc.getElementsByTagName("shop_price")[i].childNodes[0].nodeValue+"<br>";
-						str +="商品会员价格："+xmlDoc.getElementsByTagName("promote_price")[i].childNodes[0].nodeValue+"</div><br><br></td>";
-					}
-					if(isResult){
-						document.getElementById("result").innerHTML = str;
-					}else{
-						document.getElementById("thisGood").innerHTML = str;
-						isResult = true;
-					}
+					str += "商品名称："+ xmlDoc.getElementsByTagName("goods_name")[0].childNodes[0].nodeValue + "<br>";
+					str +="商品编号："+xmlDoc.getElementsByTagName("goods_number")[0].childNodes[0].nodeValue+"<br>";
+					str +="商品重量："+xmlDoc.getElementsByTagName("goods_weight")[0].childNodes[0].nodeValue+"<br>";
+					str +="商品原价："+xmlDoc.getElementsByTagName("market_price")[0].childNodes[0].nodeValue+"<br>";
+					str +="商品一般价格："+xmlDoc.getElementsByTagName("shop_price")[0].childNodes[0].nodeValue+"<br>";
+					str +="商品会员价格："+xmlDoc.getElementsByTagName("promote_price")[0].childNodes[0].nodeValue+"<br>";
+					document.getElementById("thisGood").innerHTML = str;
 				} else {
 					alert(xmlHttp.statusText);
 				}
@@ -103,34 +87,46 @@
 			var outputQuantitye = '2';
 			result.information(endUser, product, scheme, outputItemsNum,
 					outputQuantitye);
-			isResult = true;
+
 			var str = result.getRecommend();
-			send(str);
+			//alert(str);
+			var strs = "";
+			strs += "<table align='center'><tr>";
+			for ( var i = 0; i < str.length; i++) {
+				strs += "<td width='40' >"+
+				"<div onClick='sendandr("+ str[i] +")'>"+str[i]+"</div>"
+				+"</td>";
+			}
+			strs += "</tr></table>";
+			document.getElementById("result").innerHTML = strs;
 			return str;
 		}
-		
+
 		function sendandr(id){
-			isResult = false;
 			send(id);
 			var str = rules(id);
 		}
+		
 	</Script>
 	<input type="button" value="CallWebserviceByPost" onClick="rules()">
 	<table align="center">
 		<tr>
-			<div id="thisGood"  align="center">
-			</div>
+			<td >
+				<div id="thisGood">
+					商品名称：<%=good.getGoods_name()%><br> 
+					商品编号：<%=good.getGoods_number()%><br>
+					商品重量：<%=good.getGoods_weight()%><br> 
+					商品原价：<%=good.getMarket_price()%><br>
+					商品一般价格：<%=good.getShop_price()%><br>
+					商品会员价格：<%=good.getPromote_price()%><br>
+				</div>
+			</td>
 		</tr>
 	</table>
 
-	<table align="right">
-		<tr>
-			<div id="result" align="center">
-			</div>
-		</tr>
-	</table>
+	<div id="result"></div>
 </body>
 <script type="text/javascript">
-	sendandr(<%=idstr%>);
+	rules(<%=idstr%>);
 </script>
 </html>

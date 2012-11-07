@@ -3,12 +3,11 @@ function Recommend() {
 	var outAjax = 'AEwebAjax.jsp';
 	var ecommerceName = 'jingdong';
 	var key = 'an2mZW9iLtGdQ~aobA13+V46_vy$2^D4%8+0mQ17nysq6NPC+2uiJnS$v256t$o4MY_2w1b%%tYNdxQ';
-	var serviceUrl = 'http://service.services.kaas.thinkingtop.com/';
-	var endUser = '';
-	var scheme = '';
-	var product = '';
-	var outputItemsNum = '';
-	var outputQuantitye = '';
+	var endUser;
+	var scheme;
+	var product;
+	var outputItemsNum;
+	var outputQuantitye;
 	function getXMLRequester(){
 		var xmlhttp_request = false;
 		try {
@@ -25,14 +24,14 @@ function Recommend() {
 						break;
 					} catch (e) {
 						xmlhttp_request = false;
-					};
-				};
+					}
+				}
 			} else if (window.XMLHttpRequest) {
 				xmlhttp_request = new XMLHttpRequest();
 				if (xmlhttp_request.overrideMimeType) {
 					xmlhttp_request.overrideMimeType('text/xml');
-				};
-			};
+				}
+			}
 		} catch (e) {
 			xmlhttp_request = false;
 			alert('Sorry your browser version is too low, please update after use.');
@@ -62,12 +61,13 @@ function Recommend() {
 			xmlhttp.onreadystatechange = callback;
 			xmlhttp.open('GET', url, true);
 			xmlhttp.send(null);
+			//callback();
 		//alert(url);
 		} else {
 			alert('your browser does not support ajax');
 			return;
 		}
-	};
+	}
 
 	function callback() {
 		//alert("isResult:"+isResult);
@@ -79,10 +79,22 @@ function Recommend() {
 				alert(xmlHttp.statusText);
 			}
 		}
-	};
+	}
+	
+	/*
+	 * function getString(str){ var data = '<soapenv:Envelope
+	 * xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/"
+	 * xmlns:ser="http://service.services.kaas.thinkingtop.com/">'; data += '<soapenv:Header/>';
+	 * data += '<soapenv:Body>'; data += '<ser:Test>'; data += '<testString>'+str+'</testString>';
+	 * data += '</ser:Test>'; data += '</soapenv:Body>'; data += '</soapenv:Envelope>';
+	 * var result = requestByPost(data); var str =
+	 * result[1].firstChild.nodeValue; return str; }
+	 */
+
+	
 
 	function jurisdiction(){
-		var data = '<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ser="'+serviceUrl+'">';
+		var data = '<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ser="http://service.services.kaas.thinkingtop.com/">';
 		data += '<soapenv:Header/>';
 		data += '<soapenv:Body>';
 		data += '<ser:GetState>';
@@ -94,7 +106,7 @@ function Recommend() {
 		var result = requestByPost(data);
 		var state = result[0].firstChild.nodeValue;
 		return state;
-	};
+	}
 	
 	function information(_endUser,_product,_scheme,_outputItemsNum,_outputQuantitye,_outRFunction){
 		endUser = _endUser;
@@ -105,11 +117,11 @@ function Recommend() {
 		outRFunction = _outRFunction;
 		//alert(endUser+"-"+product+"-"+scheme+"-"+scheme+"-"+outputItemsNum+"-"+outputQuantitye+"-"+outAjax);
 		return getRecommend;
-	};
+	}
 	
 	function getRecommend() {
 		//alert("getRecommend");
-		var data = '<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ser="'+serviceUrl+'">';
+		var data = '<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ser="http://service.services.kaas.thinkingtop.com/">';
 		data += '<soapenv:Header/>';
 		data += '<soapenv:Body>';
 		data += '<ser:GetRecommends>';
@@ -130,10 +142,10 @@ function Recommend() {
 		}
 		send(str);
 		return str;
-	};
+	}
 	
 	var state = jurisdiction();
-	//alert("state:"+state);
+	alert("state:"+state);
 	if(state!=2){
 		return false;
 	}

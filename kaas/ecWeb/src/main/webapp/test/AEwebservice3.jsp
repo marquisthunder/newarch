@@ -32,7 +32,6 @@
 <body>
 	<script language="javascript">
 		var xmlHttp;
-		var isResult = false;
 		
 		function createXmlHttpObject() {
 			if (window.XMLHttpRequest) {
@@ -45,15 +44,15 @@
 
 		function send(id) {
 			xmlHttp = createXmlHttpObject();
-			var url = "AEwebAjax.jsp?time=" + Math.random() + "&ids=" + id;
+			var url = 'AEwebAjax.jsp?time=' + Math.random() + '&ids=' + id;
 			if (xmlHttp) {
 				xmlHttp.onreadystatechange = callback;
-				xmlHttp.open("GET", url, true);
+				xmlHttp.open('GET', url, true);
 				xmlHttp.send(null);
 				//callback();
 			//alert(url);
 			} else {
-				alert("your browser does not support ajax");
+				alert('your browser does not support ajax');
 				return;
 			}
 		}
@@ -63,23 +62,19 @@
 			if (xmlHttp.readyState == 4) {
 				if (xmlHttp.status == 200) {
 					var xmlDoc = xmlHttp.responseXML;
-					var goods_names = xmlDoc.getElementsByTagName("goods_name");
-					var str = "";
+					var goods_names = xmlDoc.getElementsByTagName('goods_name');
+					var str = '';
 					for(var i=0; i<goods_names.length;i++){
-						str += "<td><a href='AEwebservice3.jsp?id="+ xmlDoc.getElementsByTagName("goods_id")[i].childNodes[0].nodeValue+"'>";
-						str +="商品ID："+ xmlDoc.getElementsByTagName("goods_id")[i].childNodes[0].nodeValue + "<br>";
-						str +="商品名称："+ xmlDoc.getElementsByTagName("goods_name")[i].childNodes[0].nodeValue + "<br>";
-						str +="商品编号："+xmlDoc.getElementsByTagName("goods_number")[i].childNodes[0].nodeValue+"<br>";
-						str +="商品重量："+xmlDoc.getElementsByTagName("goods_weight")[i].childNodes[0].nodeValue+"<br>";
-						str +="商品原价："+xmlDoc.getElementsByTagName("market_price")[i].childNodes[0].nodeValue+"<br>";
-						str +="商品一般价格："+xmlDoc.getElementsByTagName("shop_price")[i].childNodes[0].nodeValue+"<br>";
-						str +="商品会员价格："+xmlDoc.getElementsByTagName("promote_price")[i].childNodes[0].nodeValue+"</a><br><br></td>";
+						str += '<a href="AEwebservice3.jsp?id='+ xmlDoc.getElementsByTagName('goods_id')[i].childNodes[0].nodeValue+'">';
+						str +='商品ID：'+ xmlDoc.getElementsByTagName('goods_id')[i].childNodes[0].nodeValue + '<br>';
+						str +='商品名称：'+ xmlDoc.getElementsByTagName('goods_name')[i].childNodes[0].nodeValue + '<br>';
+						str +='商品编号：'+xmlDoc.getElementsByTagName('goods_number')[i].childNodes[0].nodeValue+'<br>';
+						str +='商品重量：'+xmlDoc.getElementsByTagName('goods_weight')[i].childNodes[0].nodeValue+'<br>';
+						str +='商品原价：'+xmlDoc.getElementsByTagName('market_price')[i].childNodes[0].nodeValue+'<br>';
+						str +='商品一般价格：'+xmlDoc.getElementsByTagName('shop_price')[i].childNodes[0].nodeValue+'<br>';
+						str +='商品会员价格：'+xmlDoc.getElementsByTagName('promote_price')[i].childNodes[0].nodeValue+'</a><br><br>';
 					}
-					if(isResult){
-						document.getElementById("result").innerHTML = str;
-					}else{
-						document.getElementById("thisGood").innerHTML = str;
-					}
+					document.getElementById('result').innerHTML = str;
 				} else {
 					alert(xmlHttp.statusText);
 				}
@@ -104,7 +99,6 @@
 					outputQuantitye);
 
 			var str = result.getRecommend();
-			isResult = true;
 			send(str);
 			return str;
 		}
@@ -112,25 +106,28 @@
 	<input type="button" value="CallWebserviceByPost" onClick="rules()">
 	<table align="center">
 		<tr>
-			<div id="thisGood">
-				<td><a href="AEwebservice3.jsp?id=<%=good.getGoods_id()%>">
-					商品ID：<%=good.getGoods_id()%><br>
-					商品名称：<%=good.getGoods_name()%><br> 
-					商品编号：<%=good.getGoods_number()%><br>
-					商品重量：<%=good.getGoods_weight()%><br> 
-					商品原价：<%=good.getMarket_price()%><br>
-					商品一般价格：<%=good.getShop_price()%><br>
-					商品会员价格：<%=good.getPromote_price()%><br><br><br><br><br>
-					</a>
+				<td>
+					<div id="thisGood">
+						<a href="AEwebservice3.jsp?id=<%=good.getGoods_id()%>">
+						商品ID：<%=good.getGoods_id()%><br>
+						商品名称：<%=good.getGoods_name()%><br> 
+						商品编号：<%=good.getGoods_number()%><br>
+						商品重量：<%=good.getGoods_weight()%><br> 
+						商品原价：<%=good.getMarket_price()%><br>
+						商品一般价格：<%=good.getShop_price()%><br>
+						商品会员价格：<%=good.getPromote_price()%><br><br><br><br><br>
+						</a>
+					</div>
 				</td>
-			</div>
 		</tr>
 	</table>
 
-	<table align="right">
+	<table align="center">
 		<tr>
-			<div id="result" align="center">
-			</div>
+			<td>
+				<div id="result" align="center">
+				</div>
+			</td>
 		</tr>
 	</table>
 </body>
