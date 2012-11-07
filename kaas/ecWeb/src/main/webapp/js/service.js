@@ -25,14 +25,14 @@ function Recommend() {
 						break;
 					} catch (e) {
 						xmlhttp_request = false;
-					};
-				};
+					}
+				}
 			} else if (window.XMLHttpRequest) {
 				xmlhttp_request = new XMLHttpRequest();
 				if (xmlhttp_request.overrideMimeType) {
 					xmlhttp_request.overrideMimeType('text/xml');
-				};
-			};
+				}
+			}
 		} catch (e) {
 			xmlhttp_request = false;
 			alert('Sorry your browser version is too low, please update after use.');
