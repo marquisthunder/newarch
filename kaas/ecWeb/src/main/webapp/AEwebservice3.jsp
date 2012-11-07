@@ -13,6 +13,7 @@
 	int id = 0;
 	if (idstr == null || idstr.equals("")) {
 		id = 1;
+		idstr = "1";
 	} else {
 		try {
 			String[] ids = idstr.split(",");
@@ -22,6 +23,7 @@
 		} catch (Exception e) {
 			System.out.println("ID input error");
 			id = 1;
+			idstr = "1";
 		}
 	}
 	System.out.println("id = " + id);
@@ -31,7 +33,6 @@
 	<script language="javascript">
 		var xmlHttp;
 		var isResult = false;
-		var ResultString;
 		
 		function createXmlHttpObject() {
 			if (window.XMLHttpRequest) {
@@ -103,7 +104,7 @@
 					outputQuantitye);
 
 			var str = result.getRecommend();
-			 isResult = true;
+			isResult = true;
 			send(str);
 			return str;
 		}
