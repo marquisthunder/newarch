@@ -15,11 +15,11 @@
 		destroy-method="close">
 		<property name="driverClass" value="com.mysql.jdbc.Driver" />
 		<property name="jdbcUrl"
-			value="jdbc:mysql://localhost:3306/jar?useUnicode=true&amp;characterEncoding=UTF-8" />
+			value="jdbc:mysql://localhost:3306/kaasserver?useUnicode=true&amp;characterEncoding=UTF-8" />
 		<property name="username" value="root" />
 		<property name="password" value="" />
 	</bean>
-
+<!-- configuration of jar table  -->
 	<!-- JdbcTemplate configuration -->
 	<bean id="jdbcTemplate" class="org.springframework.jdbc.core.JdbcTemplate">
 		<property name="dataSource" ref="dataSource" />
@@ -34,7 +34,7 @@
 	<bean id="jarDAO" class="com.thinkingtop.kaas.server.dao.impl.JarDAOImpl">
 		<property name="jdbcTemplate" ref="jdbcTemplate" />
 	</bean>
-
+<!-- configuration of jar table ends -->
 	<!-- utility Bean definition -->
 	<bean id="maintenance" class="com.thinkingtop.kaas.server.jar.maintenance.Maintenance">
 		<property name="jarService" ref="jarService" />
@@ -43,7 +43,7 @@
 
 	<bean class="com.thinkingtop.kaas.server.service.JarBeanFactory" />
 
-
+<!-- file monitor definition -->
 	<bean id="pollThread" class="java.lang.Thread" init-method="start"
 		destroy-method="interrupt">
 		<constructor-arg ref="watchServiceRunnableWrapper" />
@@ -55,8 +55,8 @@
 	<bean id="watchServiceRunnableWrapper"
 		class="com.thinkingtop.kaas.server.jar.monitor.JWatchRunnableWrapper">
 	</bean>
-
-
+<!-- file monitor definition ends-->
+<!-- upload module configuration -->
 
 	<bean id="uploadThread" class="java.lang.Thread" init-method="start"
 		destroy-method="interrupt">
@@ -66,5 +66,18 @@
 	<bean id="socketServerRunnableWrapper"
 		class="com.thinkingtop.kaas.server.upload.SocketServerRunnableWrapper">
 	</bean>
+<!-- upload module configuration ends -->
+<!-- configuration of rule table -->
+
+	<!-- Manager Bean definition -->
+	<bean id="kaasRuleService" class="com.thinkingtop.kaas.server.service.impl.KaasRuleServiceImpl">
+		<property name="kaasRuleDAO" ref="kaasRuleDAO" />
+	</bean>
+
+	<!-- dao Bean definition -->
+	<bean id="kaasRuleDAO" class="com.thinkingtop.kaas.server.dao.impl.KaasRuleDAOImpl">
+		<property name="jdbcTemplate" ref="jdbcTemplate" />
+	</bean>
+<!--  configuration of rule table ends -->
 
 </beans>
