@@ -1,4 +1,4 @@
-package com.thinkingtop.kaas.services.dao.impl;
+package com.thinkingtop.kaas.services.algorithm.dao.implfile;
 
 import static org.junit.Assert.*;
 

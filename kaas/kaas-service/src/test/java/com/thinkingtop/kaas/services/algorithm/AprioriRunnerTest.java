@@ -25,7 +25,7 @@ import com.thinkingtop.kaas.services.algorithm.impl.AprioriRunner;
 import com.thinkingtop.kaas.services.algorithm.util.KaasDataPath;
 
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(locations = "classpath:beans.xml")
+@ContextConfiguration(locations = "classpath:algorithmbeans.xml")
 public class AprioriRunnerTest {
     static Logger logger=Logger.getLogger(AprioriRunnerTest.class);
 	@Autowired

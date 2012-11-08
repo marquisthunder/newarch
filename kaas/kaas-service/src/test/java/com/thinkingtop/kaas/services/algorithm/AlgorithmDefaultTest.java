@@ -12,7 +12,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import com.thinkingtop.kaas.services.algorithm.impl.AlgorithmDefault;
 
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(locations = "classpath:beans.xml")
+@ContextConfiguration(locations = "classpath:algorithmbeans.xml")
 public class AlgorithmDefaultTest {
     static Logger logger=Logger.getLogger(AlgorithmDefaultTest.class);
     

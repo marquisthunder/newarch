@@ -24,7 +24,7 @@ import com.thinkingtop.kaas.services.algorithm.impl.AprioriRunnerMultiThread;
 import com.thinkingtop.kaas.services.algorithm.util.KaasDataPath;
 
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(locations = "classpath:beans.xml")
+@ContextConfiguration(locations = "classpath:algorithmbeans.xml")
 public class AprioriRunnerMultiThreadTest {
 	static Logger logger=Logger.getLogger(AprioriRunnerMultiThreadTest.class);
 	@Autowired
