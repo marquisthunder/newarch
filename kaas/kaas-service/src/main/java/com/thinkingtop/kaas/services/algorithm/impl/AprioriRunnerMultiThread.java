@@ -110,8 +110,7 @@ public class AprioriRunnerMultiThread extends AlgorithmGeneral implements
 		dataName = name;
 		runTimeRecord0 = System.nanoTime();
 		logger.info("of start time :" + runTimeRecord0);
-		getOfdao().setFileAll(
-				new OfConcurrentHashMap<String, KaasOrderFrequent>());
+		getOfdao().clearOrderFrequent();
 		getRdao().setMarsRuleAll(new HashMap<String, KaasRule>());
 		ofThreadEndNum = 0;
 		List<String> filelist = super.getFileHistoryDAO().getFileList();

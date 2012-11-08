@@ -49,3 +49,6 @@ CREATE TABLE `ECommerce_Scheme` (
 
 insert into ECommerce_Scheme (createDate,ecommerceid,schemeid) values (now(),1,1);
 insert into ECommerce_Scheme (createDate,ecommerceid,schemeid) values (now(),1,2);
+
+insert into ORDERFREQUENT(COMBINATION,FREQUENT,ITEMNUM,OFTYPE) value('a',1,1,'all');
+insert into ORDERFREQUENT(ID,COMBINATION,FREQUENT,ITEMNUM,OFTYPE) value(1,'a',1,1,'all');

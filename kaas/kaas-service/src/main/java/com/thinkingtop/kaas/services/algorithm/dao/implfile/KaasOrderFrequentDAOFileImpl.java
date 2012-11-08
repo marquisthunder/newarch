@@ -80,8 +80,8 @@ public class KaasOrderFrequentDAOFileImpl implements KaasOrderFrequentDAO {
 	public OfConcurrentHashMap<String, KaasOrderFrequent> getFileAll() {
 		return fileAll;
 	}
-	public void setFileAll(OfConcurrentHashMap<String, KaasOrderFrequent> fileAll) {
-		this.fileAll = fileAll;
+	public void clearOrderFrequent() {
+		this.fileAll.clear();
 	}
 	public void getKeys() {
 		keys = fileAll.keySet().toArray(new String[0]);
@@ -90,8 +90,8 @@ public class KaasOrderFrequentDAOFileImpl implements KaasOrderFrequentDAO {
 		getKeys();
 		return fileAll.size();
 	}
-	public KaasOrderFrequent getKeyMarsOrderFrequent(int i) {
-		return fileAll.get(keys[i]);
+	public KaasOrderFrequent getKeyMarsOrderFrequent(long i) {
+		return fileAll.get(keys[(int)i]);
 	}
 	public KaasDataPath getKaasDataPath() {
 		return kaasDataPath;

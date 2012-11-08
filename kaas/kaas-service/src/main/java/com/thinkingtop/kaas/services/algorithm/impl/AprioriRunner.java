@@ -96,7 +96,7 @@ public class AprioriRunner extends AlgorithmGeneral implements Algorithm{
     	dataName = name;
         runTimeRecord0 = System.nanoTime();
         logger.info("of start time :"+runTimeRecord0);
-    	getOfdao().setFileAll(new OfConcurrentHashMap<String, KaasOrderFrequent>());
+    	getOfdao().clearOrderFrequent();
     	getRdao().setMarsRuleAll(new ConcurrentHashMap<String, KaasRule>());
     	threadEndNum=0;
         List<String> filelist=super.getFileHistoryDAO().getFileList();

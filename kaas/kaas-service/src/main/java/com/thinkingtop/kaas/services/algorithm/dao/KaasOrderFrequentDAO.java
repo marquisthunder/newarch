@@ -9,8 +9,7 @@ public interface KaasOrderFrequentDAO {
 	public int submit(KaasOrderFrequent of);
 	public int submit();
 	public KaasOrderFrequent findOneByProperty(String freqSet, String myFreqSet);
-	public void getKeys();
 	public int size();
-	public KaasOrderFrequent getKeyMarsOrderFrequent(int i);
-	public void setFileAll(OfConcurrentHashMap<String, KaasOrderFrequent> fileAll);
+	public KaasOrderFrequent getKeyMarsOrderFrequent(long id);
+	public void clearOrderFrequent();
 }
