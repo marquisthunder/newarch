@@ -46,7 +46,7 @@ import com.thinkingtop.kaas.services.algorithm.util.OfConcurrentHashMap;
 @Component("aprioriRunner")
 public class AprioriRunner extends AlgorithmGeneral implements Algorithm{
     static Logger logger=Logger.getLogger(AprioriRunner.class);
-    private String dateName;
+    private String dataName;
     private int actualThreadNum;
     private int threadEndNum;
     private long runAllTime;
@@ -91,9 +91,9 @@ public class AprioriRunner extends AlgorithmGeneral implements Algorithm{
     }
     
     
-    public void runIt(int name){
+    public void runIt(String name){
     println();
-    	dateName = "date"+name;
+    	dataName = name;
         runTimeRecord0 = System.nanoTime();
         logger.info("of start time :"+runTimeRecord0);
     	getOfdao().setFileAll(new OfConcurrentHashMap<String, KaasOrderFrequent>());
@@ -246,7 +246,7 @@ public class AprioriRunner extends AlgorithmGeneral implements Algorithm{
             oneThreadEnd();
             if(threadEndNum==actualThreadNum){
             	getOfdao().submit();
-            	getRdao().submit(dateName);
+            	getRdao().submit(dataName);
             	long consumingTimeOf = System.nanoTime();
             	runAllTime += consumingTimeOf - runTimeRecord0;
             	logger.warn("generate all consuming End time:"+ consumingTimeOf +" seconds!");

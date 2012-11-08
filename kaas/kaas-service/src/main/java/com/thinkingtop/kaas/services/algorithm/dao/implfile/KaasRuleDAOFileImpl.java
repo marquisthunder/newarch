@@ -45,12 +45,12 @@ public class KaasRuleDAOFileImpl implements KaasRuleDAO {
 		}
 		return 1;
 	}
-	public int submit(String dateName) {
+	public int submit(String dataName) {
 		FileOutputStream fo = null;
 		try {
-			logger.info("kaasDataOutPath:-"+ kaasDataPath.getRDataPath()+"/" +dateName);
+			logger.info("kaasDataOutPath:-"+ kaasDataPath.getRDataPath()+"/" +dataName);
 			logger.info("marsRuleAll.size:" + marsRuleAll.size());
-            fo = new FileOutputStream(kaasDataPath.getRDataPath()+"/" +dateName,false);
+            fo = new FileOutputStream(kaasDataPath.getRDataPath()+"/" +dataName,false);
             boolean one =true;
             for(Entry<String, KaasRule> me: marsRuleAll.entrySet()){
             	KaasRule o = me.getValue();
@@ -59,7 +59,7 @@ public class KaasRuleDAOFileImpl implements KaasRuleDAO {
             		one = false;
             		song = o.getProducts() + "==" + o.getRecommendation() + "==" + o.getConfidence() + "==" + o.getFlag();
             		fo.write(song.getBytes());
-            		fo = new FileOutputStream(kaasDataPath.getRDataPath()+"/" + dateName,true);
+            		fo = new FileOutputStream(kaasDataPath.getRDataPath()+"/" + dataName,true);
             	}else{
             		song = "\r\n" + o.getProducts() + "==" + o.getRecommendation() + "==" + o.getConfidence() + "==" + o.getFlag();
             		fo.write(song.getBytes());

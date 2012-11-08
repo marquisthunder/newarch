@@ -52,7 +52,7 @@ public class JarAlgorithmManage {
 				logger.warn("Configuration file does not correspond with the algorithm");
 			}
 			logger.info("algorithm:"+(i+1)+"---- "+algorithmName +"="+myAlgorithm);
-			myAlgorithm.runIt(i+1);
+			myAlgorithm.runIt("data"+(i+1));
 		}
 		packageDate.packageD();
 	}

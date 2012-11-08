@@ -51,7 +51,7 @@ public class AlgorithmManage {
 		return "This algorithm does not exist";
 	}
 	
-	public void runIt(int name) {
+	public void runIt(String name) {
 		logger.info("myAlgorithm:----"+myAlgorithm);
 		myAlgorithm.runIt(name);
 	}

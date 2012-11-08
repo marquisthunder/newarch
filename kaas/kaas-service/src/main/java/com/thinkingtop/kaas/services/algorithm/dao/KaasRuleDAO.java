@@ -9,7 +9,7 @@ import com.thinkingtop.kaas.services.algorithm.model.KaasRule;
 public interface KaasRuleDAO {
 
 	public int submit(KaasRule r);
-	public int submit(String dateName);
+	public int submit(String dataName);
 	public List<KaasRule> getRule(String string);
 	public Map<String,Integer> getRuleMap(String Goods);
 	public void setMarsRuleAll(Map<String, KaasRule> marsRuleAll);
