@@ -181,7 +181,7 @@ public class AprioriRunnerMultiThread extends AlgorithmGeneral implements
 	private void runR() {
 		runTimeRecord0 = System.nanoTime();
 		logger.info("R start time :" + runTimeRecord0);
-		int ofsize = getOfdao().size();
+		long ofsize = getOfdao().size();
 		if (ofsize <= 0) {
 			return;
 		}
@@ -189,12 +189,12 @@ public class AprioriRunnerMultiThread extends AlgorithmGeneral implements
 		int loop;
 		int Remainder;
 		if (rThreadNum < ofsize) {
-			loop = ofsize / rThreadNum;
-			Remainder = ofsize % rThreadNum;
+			loop = (int) (ofsize / rThreadNum);
+			Remainder = (int) (ofsize % rThreadNum);
 		} else {
 			loop = 1;
 			Remainder = 0;
-			rThreadNum = ofsize;
+			rThreadNum = (int) ofsize;
 		}
 
 		int submitLoopMax = Integer.parseInt(getSubmitLoopMaxStr());
@@ -205,11 +205,11 @@ public class AprioriRunnerMultiThread extends AlgorithmGeneral implements
 			if (Remainder > i) {
 				start = i * (loop + 1);
 				end = (i + 1) * (loop + 1);
-				end = end < ofsize ? end : ofsize;
+				end = (int) (end < ofsize ? end : ofsize);
 			} else {
 				start = Remainder * (loop + 1) + (i - Remainder) * loop;
 				end = Remainder * (loop + 1) + (i - Remainder + 1) * loop;
-				end = end < ofsize ? end : ofsize;
+				end = (int) (end < ofsize ? end : ofsize);
 			}
 			logger.info("run in R " + start + "~" + end);
 			KaasAprioriTask marsAprioriTask = new KaasAprioriTask(start, end,
@@ -475,8 +475,7 @@ public class AprioriRunnerMultiThread extends AlgorithmGeneral implements
 			if (rulemap != null) {
 				for (Map.Entry<String, Integer> me : rulemap.entrySet()) {
 					String[] tmp = me.getKey().split("\\|");
-					KaasOrderFrequent of = getOfdao().findOneByProperty(
-							"freqSet", tmp[0]);
+					KaasOrderFrequent of = getOfdao().findOneByProperty(tmp[0]);
 					if (of != null) {
 						Double downSup = of.getFrequent() * 1.0;
 						Double x = (baseSupport * 1.0) / downSup;

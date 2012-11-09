@@ -50,5 +50,15 @@ CREATE TABLE `ECommerce_Scheme` (
 insert into ECommerce_Scheme (createDate,ecommerceid,schemeid) values (now(),1,1);
 insert into ECommerce_Scheme (createDate,ecommerceid,schemeid) values (now(),1,2);
 
-insert into ORDERFREQUENT(COMBINATION,FREQUENT,ITEMNUM,OFTYPE) value('a',1,1,'all');
-insert into ORDERFREQUENT(ID,COMBINATION,FREQUENT,ITEMNUM,OFTYPE) value(1,'a',1,1,'all');
+CREATE TABLE `OrderFrequent` (
+  `id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `combination` varchar(255) NOT NULL,
+  `frequent` int(11) NOT NULL,
+  `itemNum` int(11) NOT NULL,
+  `ofType` varchar(255) NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `combination` (`combination`)
+);
+
+insert into OrderFrequent(combination,frequent,itemNum,ofType) values('2,3,4,5',2,4,'all');
+insert into OrderFrequent(combination,frequent,itemNum,ofType) values('4,5,6',2,3,'all');

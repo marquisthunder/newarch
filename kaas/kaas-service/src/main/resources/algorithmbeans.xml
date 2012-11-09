@@ -21,9 +21,11 @@
 		<property name="locations">
 			<list>
 				<value>classpath:algorithmjdbc.properties</value>
+				<value>classpath:jdbc.properties</value>
 			</list>
 		</property>
 	</bean>
+	
 	
 	<bean id="dataSource" destroy-method="close"
 		class="com.jolbox.bonecp.BoneCPDataSource">
@@ -32,6 +34,7 @@
 		<property name="username" value="${algorithmjdbc.username}" />
 		<property name="password" value="${algorithmjdbc.password}" />
 	</bean>
+	
 	
 	<bean id="sessionFactory"
 		class="org.springframework.orm.hibernate3.annotation.AnnotationSessionFactoryBean">
@@ -61,6 +64,7 @@
 		<property name="sessionFactory" ref="sessionFactory" />
 	</bean>
 	
+	
 	<tx:annotation-driven transaction-manager="txManager" />
 	<aop:config>
 		<aop:pointcut id="bussinessService"
@@ -70,8 +74,11 @@
 	<tx:advice id="txAdvice" transaction-manager="txManager">
 		<tx:attributes>
 			<tx:method name="add*" propagation="REQUIRED" />
-			<!-- <tx:method name="getUser" read-only="true" />
+			<tx:method name="deleteAll" propagation="REQUIRED" />
 			<tx:method name="get*" read-only="true" />
+			<tx:method name="size" read-only="true" />
+			<tx:method name="update" propagation="REQUIRED" />
+			<!-- <tx:method name="getUser" read-only="true" />
 			<tx:method name="getLeaveWords" read-only="true" />
 			<tx:method name="getUsers" read-only="true" />
 			<tx:method name="isHold" read-only="true" />

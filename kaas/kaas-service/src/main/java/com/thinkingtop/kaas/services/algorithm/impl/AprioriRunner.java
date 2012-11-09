@@ -316,7 +316,7 @@ public class AprioriRunner extends AlgorithmGeneral implements Algorithm{
              //logger.info("olist:"+olist.size());
                 int newSup=me.getValue();
                 
-                KaasOrderFrequent tmp = getOfdao().findOneByProperty("freqSet", me.getKey());
+                KaasOrderFrequent tmp = getOfdao().findOneByProperty(me.getKey());
                 if(tmp != null){
                     newSup+=tmp.getFrequent();
                 }
@@ -389,7 +389,7 @@ public class AprioriRunner extends AlgorithmGeneral implements Algorithm{
             if(rulemap != null){
                 for (Map.Entry<String, Integer> me: rulemap.entrySet()){
                     String[] tmp = me.getKey().split("\\|");
-                    KaasOrderFrequent of = getOfdao().findOneByProperty("freqSet", tmp[0]);
+                    KaasOrderFrequent of = getOfdao().findOneByProperty(tmp[0]);
                     if(of != null || submitMap.containsKey(tmp[0])){
                         Double downSup = (of == null?0.0:of.getFrequent())+submitMap.get(tmp[0]);
                         Double x = (baseSupport*1.0)/downSup;
@@ -424,11 +424,11 @@ public class AprioriRunner extends AlgorithmGeneral implements Algorithm{
                 if(submitMap.containsKey(tmp[0]+getItemDelimiter()+tmp[1])){
                 	continue;
                 }
-                KaasOrderFrequent hi = getOfdao().findOneByProperty("freqSet", tmp[0]+getItemDelimiter()+tmp[1]);
+                KaasOrderFrequent hi = getOfdao().findOneByProperty(tmp[0]+getItemDelimiter()+tmp[1]);
                 if(hi==null){
                 	continue;
                 }
-                KaasOrderFrequent of = getOfdao().findOneByProperty("freqSet", tmp[0]);
+                KaasOrderFrequent of = getOfdao().findOneByProperty(tmp[0]);
                 if(of != null || submitMap.containsKey(tmp[0])){
                     Double downSup = (of == null?0.0:of.getFrequent())+submitMap.get(tmp[0]);
                     Double x = (hi.getFrequent()*1.0)/downSup;

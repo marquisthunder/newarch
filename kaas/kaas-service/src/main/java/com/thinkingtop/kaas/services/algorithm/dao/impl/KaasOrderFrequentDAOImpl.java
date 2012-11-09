@@ -1,8 +1,12 @@
 package com.thinkingtop.kaas.services.algorithm.dao.impl;
 
+import java.util.List;
+
 import javax.annotation.Resource;
 
 import org.apache.log4j.Logger;
+import org.hibernate.Query;
+import org.hibernate.SQLQuery;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.stereotype.Component;
@@ -26,29 +30,54 @@ public class KaasOrderFrequentDAOImpl implements KaasOrderFrequentDAO {
 	
 	public int submit(KaasOrderFrequent of) {
 		Session session = sessionFactory.getCurrentSession();
-		//logger.info("-----------add sessionFactory");
 		session.save(of);
 		return 1;
 	}
 
 	public int submit() {
-		return 0;
+		return 1;
 	}
 
-	public KaasOrderFrequent findOneByProperty(String freqSet, String myFreqSet) {
-		return null;
+	public KaasOrderFrequent findOneByProperty(String myFreqSet) {
+		KaasOrderFrequent kaasOrderFrequent = null;
+		Session session = sessionFactory.getCurrentSession();
+		SQLQuery q = session.createSQLQuery("select * from OrderFrequent orderFrequent " 
+		+ " where orderFrequent.combination = '"+myFreqSet+"'").addEntity(KaasOrderFrequent.class);
+		List<KaasOrderFrequent> orderFrequents = (List<KaasOrderFrequent>)q.list();
+		if(!orderFrequents.isEmpty()){
+			kaasOrderFrequent = orderFrequents.get(0);
+		}
+		return kaasOrderFrequent;
 	}
 
-	public int size() {
-		return 0;
+	
+	public long size() {
+		Session session = sessionFactory.getCurrentSession();
+		String hql ="select count(*) from  OrderFrequent";
+		Query q = session.createSQLQuery(hql);
+		Object count =  q.uniqueResult();
+		long i = Long.valueOf(count.toString());
+		return i;
 	}
 
 	public KaasOrderFrequent getKeyMarsOrderFrequent(long id) {
-		return null;
+		Session session = sessionFactory.getCurrentSession();
+		KaasOrderFrequent kaasOrderFrequent = (KaasOrderFrequent) session.get(KaasOrderFrequent.class, id);
+		return kaasOrderFrequent;
 	}
 
 	public void clearOrderFrequent() {
-		
+		String hql = "delete from OrderFrequent";
+		Session session = sessionFactory.getCurrentSession();
+		//logger.info("hql: ---"+hql);
+        Query query = session.createSQLQuery(hql);
+        query.executeUpdate();
+	}
+
+	@Override
+	public void update(KaasOrderFrequent of) {
+		Session session = sessionFactory.getCurrentSession();
+		session.update(of);
 	}
 
 }

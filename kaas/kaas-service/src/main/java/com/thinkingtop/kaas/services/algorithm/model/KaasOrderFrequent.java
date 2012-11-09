@@ -28,7 +28,7 @@ public class KaasOrderFrequent {
 		this.ofType = ofType;
 	}
 	
-	@Column(nullable = false)
+	@Column(nullable = false, unique = true)
 	public String getCombination() {
 		return combination;
 	}

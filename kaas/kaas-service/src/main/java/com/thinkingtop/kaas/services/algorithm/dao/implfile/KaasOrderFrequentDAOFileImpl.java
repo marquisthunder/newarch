@@ -32,7 +32,7 @@ public class KaasOrderFrequentDAOFileImpl implements KaasOrderFrequentDAO {
 	public KaasOrderFrequentDAOFileImpl() {
 		fileAll = new OfConcurrentHashMap<String, KaasOrderFrequent>();
 	}
-	public KaasOrderFrequent findOneByProperty(String freqSet, String myFreqSet) {
+	public KaasOrderFrequent findOneByProperty(String myFreqSet) {
 		return fileAll.get(myFreqSet);
 	}
 
@@ -86,7 +86,7 @@ public class KaasOrderFrequentDAOFileImpl implements KaasOrderFrequentDAO {
 	public void getKeys() {
 		keys = fileAll.keySet().toArray(new String[0]);
 	}
-	public int size() {
+	public long size() {
 		getKeys();
 		return fileAll.size();
 	}
@@ -99,5 +99,10 @@ public class KaasOrderFrequentDAOFileImpl implements KaasOrderFrequentDAO {
 	@Resource(name="kaasDataPath")
 	public void setKaasDataPath(KaasDataPath kaasDataPath) {
 		this.kaasDataPath = kaasDataPath;
+	}
+	@Override
+	public void update(KaasOrderFrequent of) {
+		// TODO Auto-generated method stub
+		
 	}
 }
