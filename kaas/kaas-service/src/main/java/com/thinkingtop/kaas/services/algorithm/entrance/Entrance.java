@@ -15,12 +15,14 @@ public class Entrance  implements Installer{
 	public static void main(String[] args) {
 		JarAlgorithmManage algorithmManage = JarAlgorithmManage.getJarAlgorithmManage();
 		algorithmManage.runIt();
+		JarAlgorithmManage.destroyACX();
 	}
 
 	public UpdateInfo install(HashMap clientStatus, UpdateInfo status,
 			ProgressListener listener) throws InstallException {
 		JarAlgorithmManage algorithmManage = JarAlgorithmManage.getJarAlgorithmManage();
 		algorithmManage.runIt();
+		JarAlgorithmManage.destroyACX();
 		
 		
 		JUpdateUtilities jup = new JUpdateUtilities();

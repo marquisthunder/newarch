@@ -59,7 +59,7 @@ public class AlgorithmGeneral {
 	}
 
 	public String getThreadNum() {
-		System.out.println(algorithmProperties);
+		//System.out.println(algorithmProperties);
 		return algorithmProperties.getThreadNum();
 	}
 

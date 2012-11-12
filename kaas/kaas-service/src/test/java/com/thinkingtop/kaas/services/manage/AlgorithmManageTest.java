@@ -37,8 +37,6 @@ public class AlgorithmManageTest {
 	
 	@Test
 	public void testGetRecommend() {
-		String s = algorithmManage.process("aprioriRunner");
-		algorithmManage.runIt("data1");
 		String[] a = algorithmManage.getRecommend("scheme1","1,2", 2, 1);
 		//logger.info("algorithmManage myAlgorithm:"+a[0]);
 		Assert.assertEquals("3,6",a[0]);

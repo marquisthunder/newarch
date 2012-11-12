@@ -53,10 +53,15 @@ public class PackageAlgorithm {
 		jar(out, f, base+"/algorithm",algorithm);
 		
 		String classpath = PackageAlgorithm.class.getResource("/").toString().substring("file:".length());
+		if(classpath.matches(".*target/test-classes.*")){
+			classpath = classpath.replaceFirst("target/test-classes","target/classes");
+		}
 		f = new File(classpath+"algorithm.properties");
 		jar(out, f, "algorithm.properties",algorithm);
 		f = new File(classpath+"algorithmbeans.xml");
 		jar(out, f, "algorithmbeans.xml",algorithm);
+		f = new File(classpath+"algorithmjdbc.properties");
+		jar(out, f, "algorithmjdbc.properties",algorithm);
 		f = new File(classpath+"log4j.properties");
 		jar(out, f, "log4j.properties",algorithm);
 		jarSchemeProperties(out,schemeName,ecommerceName,algorithmNames);

@@ -21,12 +21,15 @@ public class JarAlgorithmManage {
 	private AlgorithmProperties algorithmProperties;
 	static Logger logger=Logger.getLogger(JarAlgorithmManage.class);
 	private Map<String,Algorithm> algorithms;
-	
+	public static ClassPathXmlApplicationContext acx;
 	public static JarAlgorithmManage getJarAlgorithmManage(){
-		ClassPathXmlApplicationContext acx = new ClassPathXmlApplicationContext("algorithmbeans.xml");
+		acx = new ClassPathXmlApplicationContext("algorithmbeans.xml");
 		JarAlgorithmManage algorithmManage = (JarAlgorithmManage) acx.getBean("jarAlgorithmManage");
-		acx.destroy();
 		return algorithmManage;
+	}
+	
+	public static void destroyACX(){
+		acx.destroy();
 	}
 	
 	public Map<String, Algorithm> getAlgorithms() {

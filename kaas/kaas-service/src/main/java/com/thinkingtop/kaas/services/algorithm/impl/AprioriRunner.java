@@ -77,13 +77,13 @@ public class AprioriRunner extends AlgorithmGeneral implements Algorithm{
     }
 
     public void println(){
-    	/*logger.info("------------------------------------println properties ");
+    	logger.info("------------------------------------println properties ");
     	logger.info("fileHistoryDAO:  "+super.getFileHistoryDAO().getClass());
-    	logger.info("ofdao:  "+getOfdao().getClass());
+    	logger.info("ofdao:  "+getOfm().getClass());
     	logger.info("rdao:  "+getRdao().getClass());
     	logger.info("threadNum:  "+super.getThreadNum());
     	logger.info("folder:  "+getFolder());
-    	logger.info("waitTime:  "+super.getWaitTime());*/
+    	logger.info("waitTime:  "+super.getWaitTime());
     	logger.info("submitLoopMaxStr:  "+getSubmitLoopMaxStr());
     	logger.info("combinationMaxSizeStr:  "+getCombinationMaxSizeStr());
     	logger.info("frequencyLowerLimitStr:  "+getfrequencyLowerLimitStr());
@@ -94,6 +94,7 @@ public class AprioriRunner extends AlgorithmGeneral implements Algorithm{
     public void runIt(String name){
     println();
     	dataName = name;
+    	logger.info("dataName:  "+dataName);
         runTimeRecord0 = System.nanoTime();
         logger.info("of start time :"+runTimeRecord0);
     	getOfm().deleteAll();
