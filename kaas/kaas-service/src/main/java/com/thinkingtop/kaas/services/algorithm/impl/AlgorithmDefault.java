@@ -21,7 +21,7 @@ public class AlgorithmDefault extends AlgorithmGeneral implements Algorithm{
     public void println(){
     	logger.info("------------------------------------println properties ");
     	logger.info("fileHistoryDAO:  "+super.getFileHistoryDAO().getClass());
-    	logger.info("ofdao:  "+super.getOfdao().getClass());
+    	logger.info("ofdao:  "+super.getOfm().getClass());
     	logger.info("rdao:  "+super.getRdao().getClass());
     	logger.info("threadNum:  "+super.getThreadNum());
     	logger.info("folder:  "+super.getFolder());

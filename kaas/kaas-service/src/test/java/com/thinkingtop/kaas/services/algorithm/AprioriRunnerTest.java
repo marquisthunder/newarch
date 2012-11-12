@@ -22,6 +22,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import com.thinkingtop.kaas.services.algorithm.impl.AlgorithmDefault;
 import com.thinkingtop.kaas.services.algorithm.impl.AprioriRunner;
+import com.thinkingtop.kaas.services.algorithm.manage.KaasOrderFrequentManage;
 import com.thinkingtop.kaas.services.algorithm.util.KaasDataPath;
 
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -34,13 +35,15 @@ public class AprioriRunnerTest {
 	@Autowired
     private KaasDataPath kaasDataPath;
 	
+	@Autowired
+	private KaasOrderFrequentManage kaasOrderFrequentManage;
 
 	
-	@Test
-	public void aprioriOfflineTest() {
+/*	@Test
+	public void aprioriOfflineFileTest() {
 		aprioriRunner.runIt("data1");
-		/*aprioriService.process(folderName);
-		assert.*/
+		aprioriService.process(folderName);
+		assert.
 		DataInputStream inR = null;
 		DataInputStream inOf = null;
         try {
@@ -73,8 +76,39 @@ public class AprioriRunnerTest {
         
 		Assert.assertEquals(86, iR);
 		Assert.assertEquals(62, iOf);
-	}
+	}*/
 	
+	@Test
+	public void aprioriOfflineTest() {
+		aprioriRunner.runIt("data1");
+		/*aprioriService.process(folderName);
+		assert.*/
+		DataInputStream inR = null;
+        try {
+            inR = new DataInputStream(new BufferedInputStream(
+                    new FileInputStream(kaasDataPath.getRDataPath()+"/data1")));
+        } catch (FileNotFoundException e) {
+            logger.warn("local offline file may be moved or renamed!");
+        }
+        int iR = 0;
+        int iOf =0;
+        try {
+            while (inR.readLine() != null) {
+            	iR++;
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }finally{
+        	try {
+        		inR.close();
+        	} catch (IOException e) {
+        		e.printStackTrace();
+        	}
+        }
+        
+		Assert.assertEquals(86, iR);
+		Assert.assertEquals(62, kaasOrderFrequentManage.size());
+	}
 
 
 }

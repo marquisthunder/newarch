@@ -30,6 +30,7 @@ import com.thinkingtop.kaas.services.algorithm.combinationutil.CombinationModel;
 import com.thinkingtop.kaas.services.algorithm.dao.FileHistoryDAO;
 import com.thinkingtop.kaas.services.algorithm.dao.KaasOrderFrequentDAO;
 import com.thinkingtop.kaas.services.algorithm.dao.KaasRuleDAO;
+import com.thinkingtop.kaas.services.algorithm.manage.KaasOrderFrequentManage;
 import com.thinkingtop.kaas.services.algorithm.model.KaasOrderFrequent;
 import com.thinkingtop.kaas.services.algorithm.model.KaasRule;
 import com.thinkingtop.kaas.services.algorithm.util.AlgorithmProperties;
@@ -69,9 +70,9 @@ public class AprioriRunnerMultiThread extends AlgorithmGeneral implements
 	}
 
 
-	public KaasOrderFrequentDAO getOfdao() {
-		return super.getOfdao();
-	}
+    public KaasOrderFrequentManage getOfm() {
+        return super.getOfm();
+    }
 
 	public KaasRuleDAO getRdao() {
 		return super.getRdao();
@@ -94,7 +95,7 @@ public class AprioriRunnerMultiThread extends AlgorithmGeneral implements
 	public void println() {
 		logger.info("------------------------------------println properties ");
 		logger.info("fileHistoryDAO:  " + super.getFileHistoryDAO().getClass());
-		logger.info("ofdao:  " + getOfdao().getClass());
+		logger.info("ofdao:  " + getOfm().getClass());
 		logger.info("rdao:  " + getRdao().getClass());
 		logger.info("threadNum:  " + super.getThreadNum());
 		logger.info("folder:  " + getFolder());
@@ -110,7 +111,7 @@ public class AprioriRunnerMultiThread extends AlgorithmGeneral implements
 		dataName = name;
 		runTimeRecord0 = System.nanoTime();
 		logger.info("of start time :" + runTimeRecord0);
-		getOfdao().clearOrderFrequent();
+		getOfm().deleteAll();
 		getRdao().setMarsRuleAll(new HashMap<String, KaasRule>());
 		ofThreadEndNum = 0;
 		List<String> filelist = super.getFileHistoryDAO().getFileList();
@@ -181,7 +182,7 @@ public class AprioriRunnerMultiThread extends AlgorithmGeneral implements
 	private void runR() {
 		runTimeRecord0 = System.nanoTime();
 		logger.info("R start time :" + runTimeRecord0);
-		long ofsize = getOfdao().size();
+		long ofsize = getOfm().size();
 		if (ofsize <= 0) {
 			return;
 		}
@@ -341,7 +342,6 @@ public class AprioriRunnerMultiThread extends AlgorithmGeneral implements
 			genCombinationFromMemory();
 			oneOfThreadEnd();
 			if (ofThreadEndNum == ofThreadNum) {
-				getOfdao().submit();
 				long consumingTimeOf = System.nanoTime();
 				runAllTime += consumingTimeOf - runTimeRecord0;
 				logger.warn("generate all consuming End time:"
@@ -415,14 +415,14 @@ public class AprioriRunnerMultiThread extends AlgorithmGeneral implements
 
 			for (KaasOrderFrequent o : olist) {
 				int rval = 0;
-				rval = getOfdao().submit(o);
+				rval = getOfm().add(o);
 				if (rval != 1) {
 					// all error case
 					if (rval == 2) {
 						// concurrent case
 						int maxTryCountNum = Integer.valueOf(getMaxTryCount());
 						while (rval == 2 && maxTryCountNum > 0) {
-							rval = getOfdao().submit(o);
+							rval = getOfm().add(o);
 							maxTryCountNum--;
 						}
 						if (rval == 2) {
@@ -441,7 +441,7 @@ public class AprioriRunnerMultiThread extends AlgorithmGeneral implements
 			List<KaasRule> rlist = new ArrayList<KaasRule>();
 			submitLoopCur = 0;
 			for (int i = start; i < end; i++) {
-				KaasOrderFrequent of = getOfdao().getKeyMarsOrderFrequent(i);
+				KaasOrderFrequent of = getOfm().getOrderFrequent(i);
 				if (of != null && of.getFrequent() >= frequencyLowerLimit) {
 					if (of.getCombination().matches(".?")) {
 						continue;
@@ -475,7 +475,7 @@ public class AprioriRunnerMultiThread extends AlgorithmGeneral implements
 			if (rulemap != null) {
 				for (Map.Entry<String, Integer> me : rulemap.entrySet()) {
 					String[] tmp = me.getKey().split("\\|");
-					KaasOrderFrequent of = getOfdao().findOneByProperty(tmp[0]);
+					KaasOrderFrequent of = getOfm().getOrderFrequent(tmp[0]);
 					if (of != null) {
 						Double downSup = of.getFrequent() * 1.0;
 						Double x = (baseSupport * 1.0) / downSup;

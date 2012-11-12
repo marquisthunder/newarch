@@ -8,6 +8,7 @@ import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
 import com.thinkingtop.kaas.services.algorithm.dao.FileHistoryDAO;
 import com.thinkingtop.kaas.services.algorithm.dao.KaasOrderFrequentDAO;
 import com.thinkingtop.kaas.services.algorithm.dao.KaasRuleDAO;
+import com.thinkingtop.kaas.services.algorithm.manage.KaasOrderFrequentManage;
 import com.thinkingtop.kaas.services.algorithm.util.AlgorithmProperties;
 import com.thinkingtop.kaas.services.algorithm.util.KaasDataPath;
 
@@ -16,7 +17,7 @@ public class AlgorithmGeneral {
 	private  AlgorithmProperties algorithmProperties;
 	private ThreadPoolTaskExecutor taskExecutor;
 	private FileHistoryDAO fileHistoryDAO;
-	private KaasOrderFrequentDAO ofdao;
+	private KaasOrderFrequentManage ofm;
 	private KaasRuleDAO rdao;
 	private KaasDataPath kaasDataPath;
 	private int actualThreadNum;
@@ -47,14 +48,6 @@ public class AlgorithmGeneral {
 		this.fileHistoryDAO = fileHistoryDAO;
 	}
 
-	public KaasOrderFrequentDAO getOfdao() {
-		return ofdao;
-	}
-
-	@Resource(name = "kaasOrderFrequentDAOFileImpl")
-	public void setOfdao(KaasOrderFrequentDAO ofdao) {
-		this.ofdao = ofdao;
-	}
 
 	public KaasRuleDAO getRdao() {
 		return rdao;
@@ -134,5 +127,14 @@ public class AlgorithmGeneral {
 
 	public AlgorithmProperties getAlgorithmProperties() {
 		return algorithmProperties;
+	}
+
+	public KaasOrderFrequentManage getOfm() {
+		return ofm;
+	}
+	
+	@Resource(name="kaasOrderFrequentManage")
+	public void setOfm(KaasOrderFrequentManage ofm) {
+		this.ofm = ofm;
 	}
 }

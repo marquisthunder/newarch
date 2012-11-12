@@ -30,8 +30,8 @@ import com.thinkingtop.kaas.services.algorithm.Algorithm;
 import com.thinkingtop.kaas.services.algorithm.AlgorithmGeneral;
 import com.thinkingtop.kaas.services.algorithm.combinationutil.CombinationModel;
 import com.thinkingtop.kaas.services.algorithm.dao.FileHistoryDAO;
-import com.thinkingtop.kaas.services.algorithm.dao.KaasOrderFrequentDAO;
 import com.thinkingtop.kaas.services.algorithm.dao.KaasRuleDAO;
+import com.thinkingtop.kaas.services.algorithm.manage.KaasOrderFrequentManage;
 import com.thinkingtop.kaas.services.algorithm.model.KaasOrderFrequent;
 import com.thinkingtop.kaas.services.algorithm.model.KaasRule;
 import com.thinkingtop.kaas.services.algorithm.util.AlgorithmProperties;
@@ -61,8 +61,8 @@ public class AprioriRunner extends AlgorithmGeneral implements Algorithm{
     public String getCombinationMaxSizeStr() {
         return super.getAlgorithmProperties().getCombinationMaxSizeStr();
     }
-    public KaasOrderFrequentDAO getOfdao() {
-        return super.getOfdao();
+    public KaasOrderFrequentManage getOfm() {
+        return super.getOfm();
     }
     public KaasRuleDAO getRdao() {
         return super.getRdao();
@@ -96,7 +96,7 @@ public class AprioriRunner extends AlgorithmGeneral implements Algorithm{
     	dataName = name;
         runTimeRecord0 = System.nanoTime();
         logger.info("of start time :"+runTimeRecord0);
-    	getOfdao().clearOrderFrequent();
+    	getOfm().deleteAll();
     	getRdao().setMarsRuleAll(new ConcurrentHashMap<String, KaasRule>());
     	threadEndNum=0;
         List<String> filelist=super.getFileHistoryDAO().getFileList();
@@ -245,7 +245,6 @@ public class AprioriRunner extends AlgorithmGeneral implements Algorithm{
             genRulesFromMemory();
             oneThreadEnd();
             if(threadEndNum==actualThreadNum){
-            	getOfdao().submit();
             	getRdao().submit(dataName);
             	long consumingTimeOf = System.nanoTime();
             	runAllTime += consumingTimeOf - runTimeRecord0;
@@ -316,7 +315,7 @@ public class AprioriRunner extends AlgorithmGeneral implements Algorithm{
              //logger.info("olist:"+olist.size());
                 int newSup=me.getValue();
                 
-                KaasOrderFrequent tmp = getOfdao().findOneByProperty(me.getKey());
+                KaasOrderFrequent tmp = getOfm().getOrderFrequent(me.getKey());
                 if(tmp != null){
                     newSup+=tmp.getFrequent();
                 }
@@ -335,14 +334,14 @@ public class AprioriRunner extends AlgorithmGeneral implements Algorithm{
 
             for(KaasOrderFrequent o : olist){
                 int rval=0;
-                rval = getOfdao().submit(o);
+                rval = getOfm().add(o);
                 if(rval !=1){
                     //all error case
                     if(rval == 2){
                         //concurrent case
                     	int maxTryCountNum=Integer.valueOf(getMaxTryCount());
                         while(rval == 2 && maxTryCountNum>0){
-                            rval=getOfdao().submit(o);
+                            rval=getOfm().add(o);
                             maxTryCountNum--;
                         }
                         if(rval==2){
@@ -389,7 +388,7 @@ public class AprioriRunner extends AlgorithmGeneral implements Algorithm{
             if(rulemap != null){
                 for (Map.Entry<String, Integer> me: rulemap.entrySet()){
                     String[] tmp = me.getKey().split("\\|");
-                    KaasOrderFrequent of = getOfdao().findOneByProperty(tmp[0]);
+                    KaasOrderFrequent of = getOfm().getOrderFrequent(tmp[0]);
                     if(of != null || submitMap.containsKey(tmp[0])){
                         Double downSup = (of == null?0.0:of.getFrequent())+submitMap.get(tmp[0]);
                         Double x = (baseSupport*1.0)/downSup;
@@ -424,11 +423,11 @@ public class AprioriRunner extends AlgorithmGeneral implements Algorithm{
                 if(submitMap.containsKey(tmp[0]+getItemDelimiter()+tmp[1])){
                 	continue;
                 }
-                KaasOrderFrequent hi = getOfdao().findOneByProperty(tmp[0]+getItemDelimiter()+tmp[1]);
+                KaasOrderFrequent hi = getOfm().getOrderFrequent(tmp[0]+getItemDelimiter()+tmp[1]);
                 if(hi==null){
                 	continue;
                 }
-                KaasOrderFrequent of = getOfdao().findOneByProperty(tmp[0]);
+                KaasOrderFrequent of = getOfm().getOrderFrequent(tmp[0]);
                 if(of != null || submitMap.containsKey(tmp[0])){
                     Double downSup = (of == null?0.0:of.getFrequent())+submitMap.get(tmp[0]);
                     Double x = (hi.getFrequent()*1.0)/downSup;
