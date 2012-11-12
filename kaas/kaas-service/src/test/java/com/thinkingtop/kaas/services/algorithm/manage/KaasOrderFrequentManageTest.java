@@ -31,6 +31,15 @@ public class KaasOrderFrequentManageTest {
 		kaasOrderFrequentManage.add(of);
 		of = kaasOrderFrequentManage.getOrderFrequent("2,3,4,5,2");
 		Assert.assertEquals(3, of.getId());
+		Assert.assertEquals(2, (int)of.getFrequent());
+		
+		of = new KaasOrderFrequent("2,3,4,5,2", 2, 4, "all");
+		kaasOrderFrequentManage.add(of);
+		of = kaasOrderFrequentManage.getOrderFrequent("2,3,4,5,2");
+		Assert.assertEquals(3, of.getId());
+		Assert.assertEquals(4, (int)of.getFrequent());
+		
+		
 	}
 	
 	@Test
@@ -42,13 +51,20 @@ public class KaasOrderFrequentManageTest {
 		}catch(Exception e){
 			isThrough = true;
 		}
-		Assert.assertEquals(true, isThrough);
+		Assert.assertEquals(false, isThrough);
 	}
 	
 	@Test
 	public void testGetOrderFrequent() {
 		KaasOrderFrequent of = kaasOrderFrequentManage.getOrderFrequent("2,3,4,5");
 		Assert.assertEquals(1,of.getId());
+	}
+	
+	@Test
+	public void testGetOrderFrequentID() {
+		KaasOrderFrequent of = kaasOrderFrequentManage.getOrderFrequent(1);
+		//logger.info("get id:1 Combination--"+of.getCombination());
+		Assert.assertEquals("2,3,4,5",of.getCombination());
 	}
 	
 	@Test
@@ -62,9 +78,15 @@ public class KaasOrderFrequentManageTest {
 	@Test
 	public void testDeleteAll() {
 		kaasOrderFrequentManage.deleteAll();
+		
+		KaasOrderFrequent of = new KaasOrderFrequent("2,3,4,5", 2, 4, "all");
+		kaasOrderFrequentManage.add(of);
+		of = kaasOrderFrequentManage.getOrderFrequent("2,3,4,5");
+		Assert.assertEquals(1, of.getId());
+		
 		long i = kaasOrderFrequentManage.size();
 		logger.info("kaasOrderFrequent size : "+i);
-		Assert.assertEquals(0,i);
+		Assert.assertEquals(1,i);
 	}
 	
 	@Test

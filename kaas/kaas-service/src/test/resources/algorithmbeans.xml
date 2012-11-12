@@ -20,8 +20,8 @@
 		class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
 		<property name="locations">
 			<list>
-				<value>classpath:algorithmjdbc.properties</value>
-				<value>classpath:jdbc.properties</value>
+				<value>algorithmjdbc.properties</value>
+				<value>jdbc.properties</value>
 			</list>
 		</property>
 	</bean>

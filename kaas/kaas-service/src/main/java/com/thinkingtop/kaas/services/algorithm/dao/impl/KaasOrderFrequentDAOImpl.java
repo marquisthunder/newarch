@@ -67,14 +67,38 @@ public class KaasOrderFrequentDAOImpl implements KaasOrderFrequentDAO {
 	}
 
 	public void clearOrderFrequent() {
-		String hql = "delete from OrderFrequent";
+		String hql = "drop table OrderFrequent";
 		Session session = sessionFactory.getCurrentSession();
 		//logger.info("hql: ---"+hql);
         Query query = session.createSQLQuery(hql);
         query.executeUpdate();
+        
+        hql = "CREATE TABLE `OrderFrequent` (";
+        hql += "`id` bigint(20) NOT NULL AUTO_INCREMENT,";
+        hql += "`combination` varchar(255) NOT NULL,";
+        hql += "`frequent` int(11) NOT NULL,";
+        hql += "`itemNum` int(11) NOT NULL,";
+        hql += "`ofType` varchar(255) NOT NULL,";
+        hql += "PRIMARY KEY (`id`),";
+        hql += "UNIQUE KEY `combination` (`combination`))";
+        query = session.createSQLQuery(hql);
+        query.executeUpdate();
+        		
 	}
 
-	@Override
+	public boolean isHold(KaasOrderFrequent of){
+		Session session = sessionFactory.getCurrentSession();
+		String hql ="select count(*) from  OrderFrequent where combination = '" + of.getCombination()+"'";
+		logger.info("hql: ---"+hql);
+		Query q = session.createSQLQuery(hql);
+		Object count =  q.uniqueResult();
+		int i = Integer.parseInt(count.toString());
+		if(i>0){
+			return true;
+		}
+		return false;
+	}
+	
 	public void update(KaasOrderFrequent of) {
 		Session session = sessionFactory.getCurrentSession();
 		session.update(of);

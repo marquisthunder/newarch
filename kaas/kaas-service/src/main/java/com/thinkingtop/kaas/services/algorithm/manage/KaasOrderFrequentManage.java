@@ -11,12 +11,22 @@ import com.thinkingtop.kaas.services.algorithm.model.KaasOrderFrequent;
 public class KaasOrderFrequentManage {
 	private KaasOrderFrequentDAO kaasOrderFrequentDAO;
 	
-	public void add(KaasOrderFrequent of){
-		kaasOrderFrequentDAO.submit(of);
+	public int add(KaasOrderFrequent of){
+		KaasOrderFrequent isof = kaasOrderFrequentDAO.findOneByProperty(of.getCombination());
+		if(isof!=null){
+			isof.setFrequent(of.getFrequent() + isof.getFrequent());
+			update(isof);
+			return 1;
+		}
+		return kaasOrderFrequentDAO.submit(of);
 	}
 	
 	public KaasOrderFrequent getOrderFrequent(String myFreqSet){
 		return kaasOrderFrequentDAO.findOneByProperty(myFreqSet);
+	}
+	
+	public KaasOrderFrequent getOrderFrequent(int id){
+		return kaasOrderFrequentDAO.getKeyMarsOrderFrequent(id);
 	}
 	
 	public long size() {
