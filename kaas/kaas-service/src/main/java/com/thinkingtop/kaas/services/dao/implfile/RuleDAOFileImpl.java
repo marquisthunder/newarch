@@ -21,6 +21,7 @@ import org.springframework.stereotype.Component;
 import com.thinkingtop.kaas.services.algorithm.util.AlgorithmProperties;
 import com.thinkingtop.kaas.services.algorithm.util.KaasDataPath;
 import com.thinkingtop.kaas.services.dao.RuleDAO;
+import com.thinkingtop.kaas.services.model.Rule;
 import com.thinkingtop.kaas.services.util.PackagePath;
 
 @Component("ruleDAOFileImpl")
@@ -112,6 +113,10 @@ public class RuleDAOFileImpl implements RuleDAO {
 	@Resource(name="packagePath")
 	public void setPackagePath(PackagePath packagePath) {
 		this.packagePath = packagePath;
+	}
+
+	public Rule getRule(int id) {
+		return null;
 	}
 
 
