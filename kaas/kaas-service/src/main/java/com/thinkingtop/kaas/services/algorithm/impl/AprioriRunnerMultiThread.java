@@ -85,13 +85,6 @@ public class AprioriRunnerMultiThread extends AlgorithmGeneral implements
 	private synchronized void oneRThreadEnd() {
 		rThreadEndNum++;
 	}
-
-	public String[] getRecommend(String inputItems, int outputItemsNum,
-			int outputQuantitye) {
-		return getRdao()
-				.getRuleMap(inputItems, outputItemsNum, outputQuantitye);
-	}
-
 	public void println() {
 		logger.info("------------------------------------println properties ");
 		logger.info("fileHistoryDAO:  " + super.getFileHistoryDAO().getClass());
@@ -112,7 +105,7 @@ public class AprioriRunnerMultiThread extends AlgorithmGeneral implements
 		runTimeRecord0 = System.nanoTime();
 		logger.info("of start time :" + runTimeRecord0);
 		getOfm().deleteAll();
-		getRdao().setMarsRuleAll(new HashMap<String, KaasRule>());
+		getRdao().clearMarsRuleAll();
 		ofThreadEndNum = 0;
 		List<String> filelist = super.getFileHistoryDAO().getFileList();
 		if (filelist == null || filelist.size() == 0) {

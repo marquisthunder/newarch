@@ -71,10 +71,6 @@ public class AprioriRunner extends AlgorithmGeneral implements Algorithm{
     private synchronized void oneThreadEnd(){
     	threadEndNum++;
     }
-    
-    public String[] getRecommend(String inputItems, int outputItemsNum,int outputQuantitye){
-    		return getRdao().getRuleMap(inputItems,outputItemsNum,outputQuantitye);
-    }
 
     public void println(){
     	logger.info("------------------------------------println properties ");
@@ -98,7 +94,7 @@ public class AprioriRunner extends AlgorithmGeneral implements Algorithm{
         runTimeRecord0 = System.nanoTime();
         logger.info("of start time :"+runTimeRecord0);
     	getOfm().deleteAll();
-    	getRdao().setMarsRuleAll(new ConcurrentHashMap<String, KaasRule>());
+    	getRdao().clearMarsRuleAll();
     	threadEndNum=0;
         List<String> filelist=super.getFileHistoryDAO().getFileList();
         if(filelist == null || filelist.size() == 0){

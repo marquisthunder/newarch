@@ -104,8 +104,6 @@ public class BeforeTest {
 				logger.info("Algorithm.class.getClassLoader():--   "
 						+ Thread.currentThread().getContextClassLoader()
 								.getResource(""));
-				logger.info("class.forname:--   "
-						+ aa.getRecommend(null, 0, 0)[0]);
 			} catch (InstantiationException e) {
 				e.printStackTrace();
 			} catch (IllegalAccessException e) {

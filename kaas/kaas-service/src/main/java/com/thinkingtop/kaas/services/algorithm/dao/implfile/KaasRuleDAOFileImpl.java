@@ -104,8 +104,8 @@ public class KaasRuleDAOFileImpl implements KaasRuleDAO {
 		return marsRuleAll;
 	}
 
-	public void setMarsRuleAll(Map<String, KaasRule> marsRuleAll) {
-		this.marsRuleAll = marsRuleAll;
+	public void clearMarsRuleAll() {
+		this.marsRuleAll.clear();
 	}
 
 	public String[] getRuleMap(String inputItems, int outputItemsNum,int outputQuantitye) {
@@ -194,6 +194,26 @@ public class KaasRuleDAOFileImpl implements KaasRuleDAO {
 
 	public void setAlgorithmProperties(AlgorithmProperties algorithmProperties) {
 		this.algorithmProperties = algorithmProperties;
+	}
+
+	public KaasRule getRule(int id) {
+		return null;
+	}
+
+	public int update(KaasRule r) {
+		return 1;
+	}
+
+	@Override
+	public boolean isHold(String products, String recommendation) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public KaasRule getRule(String products, String recommendation) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 
