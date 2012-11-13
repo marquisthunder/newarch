@@ -24,6 +24,7 @@ import org.dom4j.Document;
 import org.dom4j.DocumentException;
 import org.dom4j.Element;
 import org.dom4j.io.SAXReader;
+import org.junit.Assert;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
@@ -45,6 +46,32 @@ public class BeforeTest {
 				"beans.xml");
 		BoneCPDataSource dataSource = (BoneCPDataSource) ctx
 				.getBean("dataSource");
+		try {
+			Connection conn = dataSource.getConnection();
+			Statement st = conn.createStatement();
+			st.execute("drop all objects;");
+			logger.info("sqlURL:------"+ new DefaultResourceLoader().getResource("schema.sql")
+							.getURL().toString());
+			st.execute("runscript from '"
+					+ new File(new DefaultResourceLoader()
+							.getResource("schema.sql").getURL().toURI())
+							.getPath() + "'");
+			st.close();
+			conn.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		} catch (URISyntaxException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public static void init3() {
+		ClassPathXmlApplicationContext ctx = new ClassPathXmlApplicationContext(
+				"beans.xml");
+		BoneCPDataSource dataSource = (BoneCPDataSource) ctx
+				.getBean("dataSource3");
 		try {
 			Connection conn = dataSource.getConnection();
 			Statement st = conn.createStatement();
@@ -147,6 +174,12 @@ public class BeforeTest {
 		     System.out.println(rs.getInt("ID")+","+rs.getString("NAME"));  
 		    }  
 		   conn.close();  
+	}
+	
+	@Test
+	public void testPattern(){
+		String patt = "a";
+		Assert.assertEquals(true, patt.matches("^\\p{Alnum}"));
 	}
 
 }

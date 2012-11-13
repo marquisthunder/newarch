@@ -21,10 +21,10 @@ public class RuleManageTest {
 	@Autowired
 	private RuleManage ruleManage;
 	
-/*    @Before
+    @Before
     public void init() {
-    	BeforeTest.init();
-    }*/
+    	BeforeTest.init3();
+    }
     
 	@Test
 	public void testGetRule() {
@@ -33,6 +33,21 @@ public class RuleManageTest {
 		Assert.assertEquals("2,4", r.getProducts());
 		Assert.assertEquals("3", r.getRecommendation());
 		Assert.assertEquals("0.857142857142857", r.getConfidence().toString());
+	}
+	
+	@Test
+	public void testGetRecommend() {
+		int outputItemsNum = 1;
+		int outputQuantitye = 2;
+		String[] ss =ruleManage.getRecommend("scheme1", "2", outputItemsNum, outputQuantitye);
+		//Assert.assertEquals(true, r==null);
+		for(String s : ss){
+			if(s!=null){
+				logger.info("R ----------:"+s);
+				Assert.assertEquals(outputItemsNum*2-1, s.length());
+			}
+		}
+		Assert.assertEquals(true,ss.length<=outputQuantitye);
 	}
 
 }

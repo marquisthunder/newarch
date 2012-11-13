@@ -78,6 +78,7 @@ public class AprioriRunnerMultiThreadTest {
 		
 		DataInputStream inR = null;
         try {
+        	logger.info("data1 path:-----"+kaasDataPath.getRDataPath()+"/data1");
             inR = new DataInputStream(new BufferedInputStream(
                     new FileInputStream(kaasDataPath.getRDataPath()+"/data1")));
         } catch (FileNotFoundException e) {

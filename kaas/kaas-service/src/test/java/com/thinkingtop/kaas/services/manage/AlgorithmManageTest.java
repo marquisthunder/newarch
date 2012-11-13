@@ -27,6 +27,11 @@ public class AlgorithmManageTest {
 	@Autowired
 	private AlgorithmManage algorithmManage;
 	
+    @Before
+    public void init() {
+    	BeforeTest.init3();
+    }
+	
 	@Test
 	public void testProcess() {
 		String s = algorithmManage.process("aprioriRunner");
@@ -38,7 +43,7 @@ public class AlgorithmManageTest {
 	@Test
 	public void testGetRecommend() {
 		String[] a = algorithmManage.getRecommend("scheme1","1,2", 2, 1);
-		//logger.info("algorithmManage myAlgorithm:"+a[0]);
+		logger.info("algorithmManage myAlgorithm:"+a[0]);
 		Assert.assertEquals("3,6",a[0]);
 	}
 	
