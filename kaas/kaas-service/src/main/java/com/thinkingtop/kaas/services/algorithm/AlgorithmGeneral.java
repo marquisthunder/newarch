@@ -9,6 +9,7 @@ import com.thinkingtop.kaas.services.algorithm.dao.FileHistoryDAO;
 import com.thinkingtop.kaas.services.algorithm.dao.KaasOrderFrequentDAO;
 import com.thinkingtop.kaas.services.algorithm.dao.KaasRuleDAO;
 import com.thinkingtop.kaas.services.algorithm.manage.KaasOrderFrequentManage;
+import com.thinkingtop.kaas.services.algorithm.manage.KaasRuleManage;
 import com.thinkingtop.kaas.services.algorithm.util.AlgorithmProperties;
 import com.thinkingtop.kaas.services.algorithm.util.KaasDataPath;
 
@@ -18,7 +19,7 @@ public class AlgorithmGeneral {
 	private ThreadPoolTaskExecutor taskExecutor;
 	private FileHistoryDAO fileHistoryDAO;
 	private KaasOrderFrequentManage ofm;
-	private KaasRuleDAO rdao;
+	private KaasRuleManage rm;
 	private KaasDataPath kaasDataPath;
 	private int actualThreadNum;
 	private int threadEndNum;
@@ -46,16 +47,6 @@ public class AlgorithmGeneral {
 	@Resource(name = "fileHistoryDAOFileImpl")
 	public void setFileHistoryDAO(FileHistoryDAO fileHistoryDAO) {
 		this.fileHistoryDAO = fileHistoryDAO;
-	}
-
-
-	public KaasRuleDAO getRdao() {
-		return rdao;
-	}
-
-	@Resource(name = "kaasRuleDAOFileImpl")
-	public void setRdao(KaasRuleDAO rdao) {
-		this.rdao = rdao;
 	}
 
 	public String getThreadNum() {
@@ -136,5 +127,14 @@ public class AlgorithmGeneral {
 	@Resource(name="kaasOrderFrequentManage")
 	public void setOfm(KaasOrderFrequentManage ofm) {
 		this.ofm = ofm;
+	}
+
+	public KaasRuleManage getRm() {
+		return rm;
+	}
+
+	@Resource(name="kaasRuleManage")
+	public void setRm(KaasRuleManage rm) {
+		this.rm = rm;
 	}
 }

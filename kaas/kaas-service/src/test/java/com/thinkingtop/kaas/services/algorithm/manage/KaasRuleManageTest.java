@@ -75,5 +75,22 @@ public class KaasRuleManageTest {
 			logger.info("strs:-----"+s);
 		}
 	}
+	
+	@Test
+	public void testSubmit(){
+		/*KaasRule r = new KaasRule();
+		r.setId(1);
+		r.setProducts("2,4");
+		r.setRecommendation("3");
+		r.setConfidence(0.9111);
+		r.setFlag("general");
+		kaasRuleManage.add(r);
+		
+		KaasRule r2 = kaasRuleManage.getRule(1);
+		assertEquals("2,4", r2.getProducts());
+		assertEquals("0.9111", r2.getConfidence().toString());*/
+		
+		kaasRuleManage.submit("data1");
+	}
 
 }

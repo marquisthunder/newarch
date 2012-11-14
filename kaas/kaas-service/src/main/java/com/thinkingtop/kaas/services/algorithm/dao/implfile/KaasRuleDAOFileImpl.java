@@ -7,6 +7,7 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
@@ -204,20 +205,22 @@ public class KaasRuleDAOFileImpl implements KaasRuleDAO {
 		return 1;
 	}
 
-	@Override
 	public boolean isHold(String products, String recommendation) {
 		// TODO Auto-generated method stub
 		return false;
 	}
 
-	@Override
 	public KaasRule getRule(String products, String recommendation) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
-	@Override
 	public List<KaasRule> getRules(String products) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public Iterator<KaasRule> getRuleIterator() {
 		// TODO Auto-generated method stub
 		return null;
 	}

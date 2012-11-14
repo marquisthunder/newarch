@@ -32,6 +32,7 @@ import com.thinkingtop.kaas.services.algorithm.combinationutil.CombinationModel;
 import com.thinkingtop.kaas.services.algorithm.dao.FileHistoryDAO;
 import com.thinkingtop.kaas.services.algorithm.dao.KaasRuleDAO;
 import com.thinkingtop.kaas.services.algorithm.manage.KaasOrderFrequentManage;
+import com.thinkingtop.kaas.services.algorithm.manage.KaasRuleManage;
 import com.thinkingtop.kaas.services.algorithm.model.KaasOrderFrequent;
 import com.thinkingtop.kaas.services.algorithm.model.KaasRule;
 import com.thinkingtop.kaas.services.algorithm.util.AlgorithmProperties;
@@ -64,8 +65,8 @@ public class AprioriRunner extends AlgorithmGeneral implements Algorithm{
     public KaasOrderFrequentManage getOfm() {
         return super.getOfm();
     }
-    public KaasRuleDAO getRdao() {
-        return super.getRdao();
+    public KaasRuleManage getRm() {
+        return super.getRm();
     }
     
     private synchronized void oneThreadEnd(){
@@ -76,7 +77,7 @@ public class AprioriRunner extends AlgorithmGeneral implements Algorithm{
     	logger.info("------------------------------------println properties ");
     	logger.info("fileHistoryDAO:  "+super.getFileHistoryDAO().getClass());
     	logger.info("ofdao:  "+getOfm().getClass());
-    	logger.info("rdao:  "+getRdao().getClass());
+    	logger.info("rdao:  "+getRm().getClass());
     	logger.info("threadNum:  "+super.getThreadNum());
     	logger.info("folder:  "+getFolder());
     	logger.info("waitTime:  "+super.getWaitTime());
@@ -94,7 +95,7 @@ public class AprioriRunner extends AlgorithmGeneral implements Algorithm{
         runTimeRecord0 = System.nanoTime();
         logger.info("of start time :"+runTimeRecord0);
     	getOfm().deleteAll();
-    	getRdao().clearMarsRuleAll();
+    	getRm().deleteAll();
     	threadEndNum=0;
         List<String> filelist=super.getFileHistoryDAO().getFileList();
         if(filelist == null || filelist.size() == 0){
@@ -146,6 +147,11 @@ public class AprioriRunner extends AlgorithmGeneral implements Algorithm{
         	while(threadEndNum!=actualThreadNum){
         		Thread.sleep(time);
         	}
+        }catch(Exception e){
+            ;
+        }
+        try{
+        	Thread.sleep(5000);
         }catch(Exception e){
             ;
         }
@@ -242,7 +248,7 @@ public class AprioriRunner extends AlgorithmGeneral implements Algorithm{
             genRulesFromMemory();
             oneThreadEnd();
             if(threadEndNum==actualThreadNum){
-            	getRdao().submit(dataName);
+            	getRm().submit(dataName);
             	long consumingTimeOf = System.nanoTime();
             	runAllTime += consumingTimeOf - runTimeRecord0;
             	logger.warn("generate all consuming End time:"+ consumingTimeOf +" seconds!");
@@ -295,7 +301,7 @@ public class AprioriRunner extends AlgorithmGeneral implements Algorithm{
             long startTime1 = System.nanoTime();
             for(Map.Entry<String, Integer> me : submitMap.entrySet()){
             	
-            	List<String> histery = getRdao().getRuleMap(me.getKey());
+            	List<String> histery = getRm().getRules(me.getKey());
         		if(histery.size()>0){
         			List<KaasRule> subRlist = genMapRulesByLine(histery);
         			rlist.addAll(subRlist);
@@ -350,14 +356,14 @@ public class AprioriRunner extends AlgorithmGeneral implements Algorithm{
             //getOfdao().submit();
             for(KaasRule r: rlist){
                 int rval=0;
-                getRdao().submit(r);
+                getRm().add(r);
                 if(rval !=1){
                     //all error case
                     if(rval == 2){
                         //concurrent case
                         int maxTryCountNum=Integer.valueOf(getMaxTryCount());
                         while(rval == 2 && maxTryCountNum>0){
-                            rval=getRdao().submit(r);
+                            rval=getRm().add(r);
                             maxTryCountNum--;
                         }
                         if(rval==2){

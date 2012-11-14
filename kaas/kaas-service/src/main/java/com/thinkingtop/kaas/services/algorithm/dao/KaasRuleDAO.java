@@ -1,5 +1,6 @@
 package com.thinkingtop.kaas.services.algorithm.dao;
 
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -14,6 +15,7 @@ public interface KaasRuleDAO {
 	public KaasRule getRule(int id);
 	public List<String> getRuleMap(String string);
 	public List<KaasRule> getRules(String products);
+	public Iterator<KaasRule> getRuleIterator();
 	public int update(KaasRule r);
 	public boolean isHold(String products,String recommendation);
 	public KaasRule getRule(String products,String recommendation);
