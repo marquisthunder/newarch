@@ -35,7 +35,7 @@ public class Entrance  implements Installer{
 		status.addStatus(componentStatus);
 		}else{
 		componentStatus.setVersion(componentStatus.getVersion() + 1);
-		} 
+		}
 		return status;
 	}
 }

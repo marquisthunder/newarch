@@ -1,5 +1,8 @@
 package com.thinkingtop.kaas.services.algorithm.manage;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.annotation.Resource;
 
 import org.apache.log4j.Logger;
@@ -25,6 +28,15 @@ public class KaasRuleManage {
 		return kaasRuleDAO.submit(r);
 	}
 
+	public List<String> getRules(String products){
+		List<String> marsRuleList = new ArrayList<String>();
+		List<KaasRule> rules = kaasRuleDAO.getRules(products);
+		for(KaasRule ku : rules){
+			marsRuleList.add(ku.getProducts()+"|"+ku.getRecommendation());
+		}
+		return marsRuleList;
+	}
+	
 	public boolean isHold(String products,String recommendation){
 		return kaasRuleDAO.isHold(products, recommendation);
 	}

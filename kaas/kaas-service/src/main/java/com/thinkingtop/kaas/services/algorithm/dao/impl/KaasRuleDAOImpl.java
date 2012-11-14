@@ -42,7 +42,7 @@ public class KaasRuleDAOImpl implements KaasRuleDAO {
 		return null;
 	}
 
-	public Map<String, Integer> getRuleMap(String Item) {
+	public List<String> getRuleMap(String Item) {
 		return null;
 	}
 
@@ -98,5 +98,13 @@ public class KaasRuleDAOImpl implements KaasRuleDAO {
 			return true;
 		}
 		return false;
+	}
+
+	public List<KaasRule> getRules(String products) {
+		String hql = "select * from Rule where products ='"+products+"'";
+		Session session = sessionFactory.getCurrentSession();
+		SQLQuery q = session.createSQLQuery(hql).addEntity(KaasRule.class);
+		List<KaasRule> rules = (List<KaasRule>)q.list();
+		return rules;
 	}
 }

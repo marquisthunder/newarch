@@ -2,6 +2,8 @@ package com.thinkingtop.kaas.services.algorithm.manage;
 
 import static org.junit.Assert.*;
 
+import java.util.List;
+
 import org.apache.log4j.Logger;
 import org.junit.Before;
 import org.junit.Test;
@@ -64,6 +66,14 @@ public class KaasRuleManageTest {
 	public void testIsHold(){
 		boolean is = kaasRuleManage.isHold("2,4", "3");
 		assertEquals(true, is);
+	}
+	
+	@Test
+	public void testGetRules(){
+		List<String> strs = kaasRuleManage.getRules("2");
+		for(String s : strs){
+			logger.info("strs:-----"+s);
+		}
 	}
 
 }

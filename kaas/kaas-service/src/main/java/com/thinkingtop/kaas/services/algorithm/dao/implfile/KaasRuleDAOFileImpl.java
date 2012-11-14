@@ -89,12 +89,12 @@ public class KaasRuleDAOFileImpl implements KaasRuleDAO {
 		return marsRuleList;
 	}
 	
-	public Map<String,Integer> getRuleMap(String string) {
-		Map<String,Integer> marsRuleList = new HashMap<String,Integer>();
+	public List<String> getRuleMap(String string) {
+		List<String> marsRuleList = new ArrayList<String>();
 		Set<String> mra = marsRuleAll.keySet();
 		for(String s : mra){
 			if(s.startsWith(string+"|")){
-				marsRuleList.put(s,0);
+				marsRuleList.add(s);
 			}
 		}
 		return marsRuleList;
@@ -212,6 +212,12 @@ public class KaasRuleDAOFileImpl implements KaasRuleDAO {
 
 	@Override
 	public KaasRule getRule(String products, String recommendation) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<KaasRule> getRules(String products) {
 		// TODO Auto-generated method stub
 		return null;
 	}

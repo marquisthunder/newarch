@@ -295,7 +295,7 @@ public class AprioriRunner extends AlgorithmGeneral implements Algorithm{
             long startTime1 = System.nanoTime();
             for(Map.Entry<String, Integer> me : submitMap.entrySet()){
             	
-            	Map<String,Integer> histery = getRdao().getRuleMap(me.getKey());
+            	List<String> histery = getRdao().getRuleMap(me.getKey());
         		if(histery.size()>0){
         			List<KaasRule> subRlist = genMapRulesByLine(histery);
         			rlist.addAll(subRlist);
@@ -413,10 +413,10 @@ public class AprioriRunner extends AlgorithmGeneral implements Algorithm{
             return rlist;
         }
         
-        private List<KaasRule> genMapRulesByLine(Map<String,Integer> history){
+        private List<KaasRule> genMapRulesByLine(List<String> history){
         	List<KaasRule> rlist= new ArrayList<KaasRule>();
-        	for (Map.Entry<String, Integer> me: history.entrySet()){
-                String[] tmp = me.getKey().split("\\|");
+        	for (String me: history){
+                String[] tmp = me.split("\\|");
                 if(submitMap.containsKey(tmp[0]+getItemDelimiter()+tmp[1])){
                 	continue;
                 }
