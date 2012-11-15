@@ -12,12 +12,11 @@ import org.hibernate.SessionFactory;
 import org.springframework.stereotype.Component;
 
 import com.thinkingtop.kaas.services.algorithm.dao.KaasOrderFrequentDAO;
-import com.thinkingtop.kaas.services.algorithm.dao.implfile.KaasOrderFrequentDAOFileImpl;
 import com.thinkingtop.kaas.services.algorithm.model.KaasOrderFrequent;
 
 @Component("kaasOrderFrequentDAOImpl")
 public class KaasOrderFrequentDAOImpl implements KaasOrderFrequentDAO {
-	static Logger logger=Logger.getLogger(KaasOrderFrequentDAOFileImpl.class);
+	static Logger logger=Logger.getLogger(KaasOrderFrequentDAOImpl.class);
 	private SessionFactory sessionFactory;
 	public SessionFactory getSessionFactory() {
 		return sessionFactory;

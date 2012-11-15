@@ -13,7 +13,6 @@ public interface KaasRuleDAO {
 	public int submit(String dataName);
 	public void clearMarsRuleAll();
 	public KaasRule getRule(int id);
-	public List<String> getRuleMap(String string);
 	public List<KaasRule> getRules(String products);
 	public Iterator<KaasRule> getRuleIterator();
 	public int update(KaasRule r);
