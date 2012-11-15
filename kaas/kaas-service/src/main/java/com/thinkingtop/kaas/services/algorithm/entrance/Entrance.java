@@ -2,6 +2,7 @@ package com.thinkingtop.kaas.services.algorithm.entrance;
 
 import java.util.HashMap;
 
+import org.apache.log4j.Logger;
 import org.hardcode.juf.InstallException;
 import org.hardcode.juf.Installer;
 import org.hardcode.juf.JUpdateUtilities;
@@ -17,12 +18,14 @@ import com.thinkingtop.kaas.services.algorithm.dao.impl.KaasRuleDAOImpl;
 import com.thinkingtop.kaas.services.algorithm.manage.JarAlgorithmManage;
 
 public class Entrance  implements Installer{
+	static Logger logger = Logger.getLogger(Entrance.class);
 	public static void main(String[] args) {
 		ClassPathXmlApplicationContext acx = new ClassPathXmlApplicationContext("algorithmbeans.xml");
 		JarAlgorithmManage algorithmManage = (JarAlgorithmManage) acx.getBean("jarAlgorithmManage");
 		
 		ClassPathXmlApplicationContext acxDatabase = new ClassPathXmlApplicationContext("algorithmdatabase.xml");
 		SessionFactory sessionFactory = (SessionFactory) acxDatabase.getBean("sessionFactory");
+		//SessionFactory sessionFactory = gieSessionFactory();
 		
 		setSessionFactory(acx, sessionFactory);
 		
@@ -39,12 +42,39 @@ public class Entrance  implements Installer{
 		KaasOrderFrequentDAOImpl kaasOrderFrequentDAOImpl = (KaasOrderFrequentDAOImpl)acx.getBean("kaasOrderFrequentDAOImpl");
 		kaasOrderFrequentDAOImpl.setSessionFactory(sessionFactory);
 	}
+	
+	public static SessionFactory gieSessionFactory(){
+		SessionFactory sessionFactory = null;
+		try {
+			Class<?> sessionf = Class.forName("com.thinkingtop.kaas.services.ReturnSessionFactory.ReturnSessionFactory");
+			com.thinkingtop.kaas.services.ReturnSessionFactory.ReturnSessionFactory rsessionFactory = 
+					(com.thinkingtop.kaas.services.ReturnSessionFactory.ReturnSessionFactory)sessionf.newInstance();
+			sessionFactory = rsessionFactory.getSessionFactory();
+		}catch (ClassNotFoundException e) {
+			e.printStackTrace();
+		} catch (InstantiationException e) {
+			e.printStackTrace();
+		} catch (IllegalAccessException e) {
+			e.printStackTrace();
+		}
+		return sessionFactory;
+	}
 
 	public UpdateInfo install(HashMap clientStatus, UpdateInfo status,
 			ProgressListener listener) throws InstallException {
-		/*JarAlgorithmManage algorithmManage = JarAlgorithmManage.getJarAlgorithmManage();
+		ClassPathXmlApplicationContext acx = new ClassPathXmlApplicationContext("algorithmbeans.xml");
+		JarAlgorithmManage algorithmManage = (JarAlgorithmManage) acx.getBean("jarAlgorithmManage");
+		
+		SessionFactory sessionFactory = gieSessionFactory();
+		
+		if(sessionFactory==null){
+			logger.info("No sessionFactory");
+		}
+		
+		setSessionFactory(acx, sessionFactory);
+		
 		algorithmManage.runIt();
-		JarAlgorithmManage.destroyACX();*/
+		acx.destroy();
 		
 		
 		JUpdateUtilities jup = new JUpdateUtilities();

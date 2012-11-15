@@ -17,23 +17,20 @@
 	<context:component-scan base-package="com.thinkingtop.kaas.services.algorithm" />
 	<aop:aspectj-autoproxy />		
 	
-	
-	<bean id="dataSource" destroy-method="close"
-		class="com.jolbox.bonecp.BoneCPDataSource">
-		<property name="driverClass" value="org.h2.Driver" />
-		<property name="jdbcUrl"
-			value="jdbc:h2:mem:kaasservice" />
-	</bean>
-	
-	
 	<bean id="sessionFactory"
 		class="org.springframework.orm.hibernate3.annotation.AnnotationSessionFactoryBean">
-		<property name="dataSource" ref="dataSource" />
+		<property name="dataSource" >
+			<bean id="dataSource" destroy-method="close"
+				class="com.jolbox.bonecp.BoneCPDataSource">
+				<property name="driverClass" value="org.h2.Driver" />
+				<property name="jdbcUrl" value="jdbc:h2:mem:kaasservice" />
+			</bean>
+		</property>
 	</bean>
 	
 	<bean id="txManager"
 		class="org.springframework.orm.hibernate3.HibernateTransactionManager">
-		<property name="sessionFactory" ref="sessionFactory" />
+		<property name="sessionFactory" ref="sessionFactory"/>
 	</bean>
 	
 	
