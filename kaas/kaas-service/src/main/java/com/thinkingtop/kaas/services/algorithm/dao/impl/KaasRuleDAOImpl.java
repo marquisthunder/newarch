@@ -24,8 +24,6 @@ public class KaasRuleDAOImpl implements KaasRuleDAO {
 	public SessionFactory getSessionFactory() {
 		return sessionFactory;
 	}
-	
-	@Resource
 	public void setSessionFactory(SessionFactory sessionFactory) {
 		this.sessionFactory = sessionFactory;
 	}

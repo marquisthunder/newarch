@@ -21,16 +21,6 @@ public class JarAlgorithmManage {
 	private AlgorithmProperties algorithmProperties;
 	static Logger logger=Logger.getLogger(JarAlgorithmManage.class);
 	private Map<String,Algorithm> algorithms;
-	public static ClassPathXmlApplicationContext acx;
-	public static JarAlgorithmManage getJarAlgorithmManage(){
-		acx = new ClassPathXmlApplicationContext("algorithmbeans.xml");
-		JarAlgorithmManage algorithmManage = (JarAlgorithmManage) acx.getBean("jarAlgorithmManage");
-		return algorithmManage;
-	}
-	
-	public static void destroyACX(){
-		acx.destroy();
-	}
 	
 	public Map<String, Algorithm> getAlgorithms() {
 		return algorithms;
