@@ -91,7 +91,7 @@ public class KaasRuleDAOImpl implements KaasRuleDAO {
 	}
 	
 	public Iterator<KaasRule> getRuleIterator(){
-		String hql = "from KaasRule";
+		String hql = "from KaasRule order by Products";
 		Session session = sessionFactory.getCurrentSession();
 		logger.info("hql:----"+hql);
 		Query q = session.createQuery(hql);
@@ -99,18 +99,6 @@ public class KaasRuleDAOImpl implements KaasRuleDAO {
 		Iterator<KaasRule> ier = q.iterate();
 		return ier;
 	}
-	
-/*	public List<KaasRule> getRuleIterator(){
-		String hql = "select * from Rule";
-		Session session = sessionFactory.getCurrentSession();
-		logger.info("hql:----"+hql);
-		SQLQuery q = session.createSQLQuery(hql).addEntity(KaasRule.class);
-		logger.info("hql1:----"+hql);
-		List<KaasRule> ielist = (List<KaasRule>)q.list();
-		logger.info("size: "+ielist.size());
-		//Iterator<KaasRule> ier = (Iterator<KaasRule>)ielist.iterator();
-		return ielist;
-	}*/
 	
 	public boolean isHold(String products,String recommendation){
 		String hql = "select count(*) from Rule where products ='"+products+"' and recommendation='"+recommendation+"'";

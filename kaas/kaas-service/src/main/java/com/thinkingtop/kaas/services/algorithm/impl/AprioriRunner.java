@@ -150,11 +150,7 @@ public class AprioriRunner extends AlgorithmGeneral implements Algorithm{
         }catch(Exception e){
             ;
         }
-        try{
-        	Thread.sleep(5000);
-        }catch(Exception e){
-            ;
-        }
+        getRm().submit(dataName);
         super.getTaskExecutor().getThreadPoolExecutor().shutdownNow();
         logger.info("run all need time: "+runAllTime);
         logger.info("Offline Training Task Finished Once!");
@@ -248,7 +244,6 @@ public class AprioriRunner extends AlgorithmGeneral implements Algorithm{
             genRulesFromMemory();
             oneThreadEnd();
             if(threadEndNum==actualThreadNum){
-            	getRm().submit(dataName);
             	long consumingTimeOf = System.nanoTime();
             	runAllTime += consumingTimeOf - runTimeRecord0;
             	logger.warn("generate all consuming End time:"+ consumingTimeOf +" seconds!");

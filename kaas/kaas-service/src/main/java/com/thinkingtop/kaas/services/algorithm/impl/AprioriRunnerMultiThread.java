@@ -163,11 +163,11 @@ public class AprioriRunnerMultiThread extends AlgorithmGeneral implements
 				logger.info("run in R");
 				runR();
 			}
-			Thread.sleep(5000);
 			logger.info("run all need time: " + runAllTime);
 		} catch (Exception e) {
 			;
 		}
+		getRm().submit(dataName);
 		super.getTaskExecutor().getThreadPoolExecutor().shutdownNow();
 		logger.info("Offline Training Task Finished Once!");
 
@@ -271,7 +271,6 @@ public class AprioriRunnerMultiThread extends AlgorithmGeneral implements
 				runAndRules();
 				oneRThreadEnd();
 				if (rThreadEndNum == rThreadNum) {
-					getRm().submit(dataName);
 					long consumingTimeOf = System.nanoTime();
 					runAllTime += consumingTimeOf - runTimeRecord0;
 					logger.warn("generate all Rules End time:"
