@@ -25,11 +25,11 @@ public class KaasRuleManage {
 	public int add(KaasRule r){
 		KaasRule rule = kaasRuleDAO.getRule(r.getProducts(), r.getRecommendation());
 		if(rule!=null){
-			logger.info("update-------");
+			//logger.info("update-------");
 			rule.setConfidence(r.getConfidence());
-			logger.info("r id : --" + r.getId());
+			/*logger.info("r id : --" + r.getId());
 			logger.info("r Products : --" + r.getProducts());
-			logger.info("r Recommendation : --" + r.getRecommendation());
+			logger.info("r Recommendation : --" + r.getRecommendation());*/
 			return kaasRuleDAO.update(rule);
 		}
 		return kaasRuleDAO.submit(r);
@@ -53,11 +53,11 @@ public class KaasRuleManage {
 			boolean one =true;
 			while(kri!=null&&kri.hasNext()){
 				KaasRule kr= kri.next();
-				logger.info("kaasDataOutPath:-"+ kaasDataPath.getRDataPath()+"/" +dataName);
+				/*logger.info("kaasDataOutPath:-"+ kaasDataPath.getRDataPath()+"/" +dataName);
 				logger.info("-------------------");
 				logger.info("kaasRule--:id-"+kr.getId());
 				logger.info("kaasRule--:Products-"+kr.getProducts());
-				logger.info("kaasRule--:Recommendation-"+kr.getRecommendation());
+				logger.info("kaasRule--:Recommendation-"+kr.getRecommendation());*/
 				String song="";
             	if(one){
             		one = false;
