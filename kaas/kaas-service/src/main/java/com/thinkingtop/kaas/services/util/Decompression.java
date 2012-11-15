@@ -19,7 +19,27 @@ import com.thinkingtop.kaas.services.algorithm.SevenZip.LzmaAlone.CommandLine;
 
 public class Decompression {
 	public static void main(String[] args) {
-		new Decompression().DecompressionKaas("/home/roadahead/workspace/newarch/kaas/dist/data/out/scheme1.kaas", "/home/roadahead/workspace/newarch/kaas/dist/data/out/scheme");
+		if(args.length < 2){
+			System.out.println("----------------------------------------------");
+			System.out.println("Please input parameters");
+			System.out.println("The first parameter to the extracted files");
+			System.out.println("Parameter 2 is the path to extract");
+			System.out.println("For example:  java -jar decompression.jar D:/test.kaas D:/data/test");
+			System.out.println("----------------------------------------------");
+			return;
+		}
+		File file = new File(args[0]);
+		if(!file.exists()){
+			System.out.println("----------------------------------------------");
+			System.out.println("The file does not exist");
+			System.out.println("----------------------------------------------");
+			return;
+		}
+		file = new File(args[1]);
+		if(!file.exists()||!file.isDirectory()){
+			file.mkdirs();
+		}
+		new Decompression().DecompressionKaas(args[0], args[1]);
 	}
 	
 	public void DecompressionKaas(String fileName, String outputPath){

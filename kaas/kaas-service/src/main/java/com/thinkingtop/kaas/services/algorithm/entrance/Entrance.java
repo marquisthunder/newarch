@@ -72,7 +72,6 @@ public class Entrance  implements Installer{
 		}
 		
 		setSessionFactory(acx, sessionFactory);
-		
 		algorithmManage.runIt();
 		acx.destroy();
 		
