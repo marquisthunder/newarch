@@ -3,7 +3,7 @@ function Recommend() {
 	var outAjax = 'AEwebAjax.jsp';
 	var ecommerceName = 'jingdong';
 	var key = 'an2mZW9iLtGdQ~aobA13+V46_vy$2^D4%8+0mQ17nysq6NPC+2uiJnS$v256t$o4MY_2w1b%%tYNdxQ';
-	var serviceUrl = 'kaasservice';
+	var serviceUrl = 'http://www.thinkingtop.com/kaasservice';
 	var endUser = '';
 	var scheme = '';
 	var product = '';
