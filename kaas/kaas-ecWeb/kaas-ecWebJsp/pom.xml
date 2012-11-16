@@ -5,21 +5,19 @@
 	<modelVersion>4.0.0</modelVersion>
 	<parent>
 		<groupId>com.thinkingtop</groupId>
-		<artifactId>kaas</artifactId>
+		<artifactId>kaas-ecWeb</artifactId>
 		<version>0.0.1-SNAPSHOT</version>
 	</parent>
+	
 	<groupId>com.thinkingtop</groupId>
-	<artifactId>ecWeb</artifactId>
+	<artifactId>ecWebJsp</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>war</packaging>
-	<name>ecWeb Maven Webapp</name>
-	<url>http://maven.apache.org</url>
+	<name>ecWebJsp Maven Webapp</name>
 	<dependencies>
 		<dependency>
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>
-			<version>3.8.1</version>
-			<scope>test</scope>
 		</dependency>
 	<dependency>
 		<groupId>mysql</groupId>
@@ -27,6 +25,6 @@
 	</dependency>
 	</dependencies>
 	<build>
-		<finalName>ecWeb</finalName>
+		<finalName>ecWebJsp</finalName>
 	</build>
 </project>

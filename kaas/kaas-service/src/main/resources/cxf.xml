@@ -19,7 +19,7 @@ xsi:schemaLocation="http://www.springframework.org/schema/beans
 	
 
    <!-- hello -->
-	<jaxws:server id="services" serviceClass="com.thinkingtop.kaas.services.service.ExclusiveKeyService" address="/Service">
+	<jaxws:server id="services" serviceClass="com.thinkingtop.kaas.services.service.ExclusiveKeyService" address="/Service" serviceName="kaas-Service">
   		<jaxws:serviceBean>
   			<ref bean="exclusiveKeyServiceImpl"/>
   		</jaxws:serviceBean>
