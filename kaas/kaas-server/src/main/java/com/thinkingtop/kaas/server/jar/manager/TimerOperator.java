@@ -8,7 +8,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.thinkingtop.kaas.server.jar.maintenance.Maintenance;
-import com.thinkingtop.kaas.server.jar.reader.KaasServerPropertiesReader;
+import com.thinkingtop.kaas.server.reader.KaasServerPropertiesReader;
 
 public class TimerOperator { 
 	private static final Logger logger = LoggerFactory.getLogger(TimerOperator.class.getName());

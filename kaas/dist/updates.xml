@@ -17,8 +17,14 @@
 	</update>
 	<update component-name="kaas-scheme1" version="1">
 		<installer class-name="com.thinkingtop.kaas.services.algorithm.entrance.Entrance"
-			jar-url="http://localhost:8081/kaas/schemeJar/scheme1.jar" />
-		<feature>I am content</feature>
+			jar-url="http://localhost:8081/kaas/data/kaas-server/fromService/schemeJar/scheme1.jar" />
+		<feature>I am content-- kaas-scheme1.jar </feature>
+	</update>
+	
+	<update component-name="kaas-scheme2" version="1">
+		<installer class-name="com.thinkingtop.kaas.services.algorithm.entrance.Entrance"
+			jar-url="http://localhost:8081/kaas/data/kaas-server/fromService/schemeJar/scheme2.jar" />
+		<feature>I am content-- kaas-scheme2.jar</feature>
 	</update>
 	
 </updates>

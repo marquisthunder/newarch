@@ -15,8 +15,8 @@ import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.xml.namespace.QName;
-import javax.xml.ws.Service;
+//import javax.xml.namespace.QName;
+//import javax.xml.ws.Service;
 
 import org.hardcode.juf.BadConfigurationException;
 import org.hardcode.juf.ClientStatusException;
@@ -29,9 +29,10 @@ import org.hardcode.juf.update.Update;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.thinkingtop.kaas.daemon.reader.KaasDaemonPropertiesReader;
 import com.thinkingtop.kaas.daemon.upload.ClientMain;
-import com.thinkingtop.kaas.services.service.ExclusiveKeyService;
-import com.thinkingtop.kaas.services.service.ExclusiveKeyServiceService;
+import com.thinkingtop.kaasservice.ExclusiveKeyService;
+import com.thinkingtop.kaasservice.KaasService;
 
 
 /** 
@@ -41,7 +42,7 @@ public class KaasDaemonClient {
 	private static final Logger logger = LoggerFactory.getLogger(KaasDaemonClient.class.getName());
 	
 	public static void main(String[] args) {
-	/*	URL wsdlURL;
+		/*URL wsdlURL;
 		try {
 			wsdlURL = new URL("http://localhost:8080/kaas-service/services/Service?wsdl");
 		
@@ -54,11 +55,11 @@ public class KaasDaemonClient {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}*/
-		System.out.println(getAPIKeyState("jingdong", "an2mZW9iLtGdQ~aobA13+V46_vy$2^D4%8+0mQ17nysq6NPC+2uiJnS$v256t$o4MY_2w1b%%tYNdxQ").get(0));
-		/*if(getAPIKeyState("jingdong", "an2mZW9iLtGdQ~aobA13+V46_vy$2^D4%8+0mQ17nysq6NPC+2uiJnS$v256t$o4MY_2w1b%%tYNdxQ").get(0).equals("2")) {
+		//System.out.println(getAPIKeyState("jingdong", "an2mZW9iLtGdQ~aobA13+V46_vy$2^D4%8+0mQ17nysq6NPC+2uiJnS$v256t$o4MY_2w1b%%tYNdxQ").get(0));
+		if(getAPIKeyState("jingdong", "an2mZW9iLtGdQ~aobA13+V46_vy$2^D4%8+0mQ17nysq6NPC+2uiJnS$v256t$o4MY_2w1b%%tYNdxQ").get(0).equals("2")) {
 			KaasDaemonClient jus = new KaasDaemonClient();
 			jus.run();
-		}*/
+		}
 		
 		
 		/*
@@ -164,8 +165,9 @@ public class KaasDaemonClient {
 					add.setAccessible(true);
 					add.invoke(classLoader, new Object[] {new URL(actualizaciones[i].getInstaller().getJarUrl())});
 				}catch (Exception e) {
-					// TODO: handle exception
 				}
+				
+				
 				update.doUpdate(null, clientUpdateInfo, "sample",actualizaciones[i], null);
 			}
 		} catch (BadConfigurationException e2) {
@@ -190,7 +192,7 @@ public class KaasDaemonClient {
 		System.out.println(o);
 	}*/
 	 private static List<String> getAPIKeyState(String name, String key) {
-		 ExclusiveKeyServiceService service = new ExclusiveKeyServiceService();
+		 KaasService service = new KaasService();
 		 ExclusiveKeyService port = service.getExclusiveKeyServicePort();
 		 return port.getAPIKeyState(name, key);
 	 }

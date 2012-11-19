@@ -44,8 +44,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.thinkingtop.kaas.server.jar.maintenance.Maintenance;
-import com.thinkingtop.kaas.server.jar.reader.KaasServerPropertiesReader;
 import com.thinkingtop.kaas.server.model.KaasJarInfo;
+import com.thinkingtop.kaas.server.reader.KaasServerPropertiesReader;
 import com.thinkingtop.kaas.server.service.JarBeanFactory;
 
 public class JNotify {

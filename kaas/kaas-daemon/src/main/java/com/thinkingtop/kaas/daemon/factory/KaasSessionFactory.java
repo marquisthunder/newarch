@@ -7,8 +7,11 @@ import com.thinkingtop.kaas.daemon.inter.SessionFactoryInterface;
 
 
 public class KaasSessionFactory implements SessionFactoryInterface{
+	private static ApplicationContext ac = null ;
 	public Object getBean(String name) {
-		ApplicationContext ac = new ClassPathXmlApplicationContext("applicationContext.xml");
+		if(ac==null) {
+			ac = new ClassPathXmlApplicationContext("applicationContextForH2.xml");
+		}
 		name = "sessionFactory";
 		return ac.getBean(name);
 	}

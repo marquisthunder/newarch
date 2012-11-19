@@ -24,6 +24,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.thinkingtop.kaas.server.jar.manager.TimerOperator;
+import com.thinkingtop.kaas.server.reader.KaasServerPropertiesReader;
 import com.thinkingtop.kaas.services.algorithm.SevenZip.Decompression;
 
 /*
@@ -34,7 +35,9 @@ public class KaasSocketServer {
 	private static final Logger logger = LoggerFactory.getLogger(KaasSocketServer.class.getName());
 
  
-	private static final int port = 9527;
+	private static int port = Integer.parseInt(KaasServerPropertiesReader.getProp("port"));
+	//private static int port = 9527;
+
 	private Selector selector;
 	private ByteBuffer clientBuffer = ByteBuffer.allocate(4096);
 	private CharsetDecoder decoder = Charset.forName("utf-8").newDecoder();
@@ -119,7 +122,7 @@ public class KaasSocketServer {
 				System.out.println(name + "--------------");
 				DataOutputStream fileOut = new DataOutputStream(
 						new BufferedOutputStream(new FileOutputStream(new File(
-								name.split("#")[1]), true)));
+								name.split("#")[1]), false)));
 
 				/*
 				 * int nread = 0; while (nread != -1) { try { nread =
@@ -148,7 +151,7 @@ public class KaasSocketServer {
 				fileOut.close();
 				channel.close();
 				// upzip....
-				//new Decompression().DecompressionKaas("../dist/data/out/scheme1.kaas","../dist/data/out/scheme");
+				//new Decompression().DecompressionKaas("../dist/scheme1.kaas","../dist/data/out/scheme");
 			}
 			clientBuffer.clear();
 		} else if (key.isWritable()) { 
