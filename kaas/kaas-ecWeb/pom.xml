@@ -14,62 +14,8 @@
 	<modules>
 		<module>kaas-ecWebJs</module>
 		<module>kaas-ecWebJsp</module>
+		<module>kaas-ecWebSSH</module>
 	</modules>
-	<properties>
-		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<spring.version>3.1.1.RELEASE</spring.version>
-	</properties>
-	<!-- specify the bonecp repository -->
-	<repositories>
-		<repository>
-			<releases>
-				<enabled>true</enabled>
-			</releases>
-			<id>bonecp-repo</id>
-			<name>BoneCP Repository</name>
-			<url>http://jolbox.com/bonecp/downloads/maven</url>
-		</repository>
-	</repositories>
-
-	<dependencyManagement>
-		<dependencies>
-			<!-- junit test dependency -->
-			<dependency>
-				<groupId>junit</groupId>
-				<artifactId>junit</artifactId>
-				<version>4.10</version>
-				<scope>test</scope>
-			</dependency>
-			<!-- junit test dependency ends -->
-			<!-- bonecp dependency -->
-			<dependency>
-				<groupId>com.jolbox</groupId>
-				<artifactId>bonecp</artifactId>
-				<version>0.6.7.2</version>
-			</dependency>
-			<dependency>
-				<groupId>log4j</groupId>
-				<artifactId>log4j</artifactId>
-				<version>1.2.12</version>
-			</dependency>
-			<dependency>
-				<groupId>org.slf4j</groupId>
-				<artifactId>slf4j-log4j12</artifactId>
-				<version>1.5.10</version>
-			</dependency>
-
-			<!-- bonecp dependency ends -->
-			<!-- mysql driver -->
-			<dependency>
-				<groupId>mysql</groupId>
-				<artifactId>mysql-connector-java</artifactId>
-				<version>5.1.20</version>
-			</dependency>
-			<!-- mysql driver ends -->
-
-		</dependencies>
-	</dependencyManagement>
-
 
 	<build>
 		<pluginManagement>

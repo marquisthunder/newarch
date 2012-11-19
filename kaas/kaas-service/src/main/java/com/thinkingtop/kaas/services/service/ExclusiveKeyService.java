@@ -14,7 +14,7 @@ import com.thinkingtop.kaas.services.model.ExclusiveKey;
  * @author roadahead
  *
  */
-@WebService(targetNamespace="http://www.thinkingtop.com/kaasservice")
+@WebService(targetNamespace="http://www.thinkingtop.com/kaasservice",serviceName="kaasService")
 public interface ExclusiveKeyService {
 	/**
 	 * External exposure method, creates and returns a APIKey, and put it into the database
