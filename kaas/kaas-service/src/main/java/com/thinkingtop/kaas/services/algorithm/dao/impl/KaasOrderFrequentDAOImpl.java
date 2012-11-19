@@ -21,6 +21,7 @@ public class KaasOrderFrequentDAOImpl implements KaasOrderFrequentDAO {
 	public SessionFactory getSessionFactory() {
 		return sessionFactory;
 	}
+	@Resource
 	public void setSessionFactory(SessionFactory sessionFactory) {
 		this.sessionFactory = sessionFactory;
 	}

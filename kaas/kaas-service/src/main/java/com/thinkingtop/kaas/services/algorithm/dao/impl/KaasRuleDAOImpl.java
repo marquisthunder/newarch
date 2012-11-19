@@ -21,9 +21,11 @@ import com.thinkingtop.kaas.services.algorithm.model.KaasRule;
 public class KaasRuleDAOImpl implements KaasRuleDAO {
 	static Logger logger=Logger.getLogger(KaasRuleDAOImpl.class);
 	private SessionFactory sessionFactory;
+	
 	public SessionFactory getSessionFactory() {
 		return sessionFactory;
 	}
+	@Resource
 	public void setSessionFactory(SessionFactory sessionFactory) {
 		this.sessionFactory = sessionFactory;
 	}
