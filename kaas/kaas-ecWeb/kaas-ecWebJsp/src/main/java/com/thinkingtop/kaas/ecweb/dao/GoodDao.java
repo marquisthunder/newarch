@@ -1,4 +1,4 @@
-package com.ecweb.dao;
+package com.thinkingtop.kaas.ecweb.dao;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -10,7 +10,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-import com.ecweb.model.Good;
+import com.thinkingtop.kaas.ecweb.model.Good;
 
 public class GoodDao {
 	static Connection conn = null;

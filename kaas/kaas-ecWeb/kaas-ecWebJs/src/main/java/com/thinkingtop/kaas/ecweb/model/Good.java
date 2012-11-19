@@ -1,4 +1,4 @@
-package com.ecweb.model;
+package com.thinkingtop.kaas.ecweb.model;
 
 import java.util.Date;
 

@@ -1,10 +1,10 @@
-package com.ecweb.kaasservice.manage;
+package com.thinkingtop.kaas.ecweb.manage;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import com.ecweb.dao.GoodDao;
-import com.ecweb.model.Good;
+import com.thinkingtop.kaas.ecweb.dao.GoodDao;
+import com.thinkingtop.kaas.ecweb.model.Good;
 import com.thinkingtop.kaasservice.ExclusiveKeyService;
 import com.thinkingtop.kaasservice.KaasService;
 

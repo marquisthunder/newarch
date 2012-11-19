@@ -1,5 +1,5 @@
-<%@page import="com.ecweb.dao.GoodDao"%>
-<%@page import="com.ecweb.model.Good"%>
+<%@page import="com.thinkingtop.kaas.ecweb.dao.GoodDao"%>
+<%@page import="com.thinkingtop.kaas.ecweb.model.Good"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -55,6 +55,7 @@
 		var scheme = 'scheme1';
 		var outputItemsNum = '1';
 		var outputQuantitye = '2';
+		//alert(endUser,product,scheme,outputItemsNum,outputQuantitye,outRFunction);
 		var s = info(endUser,product,scheme,outputItemsNum,outputQuantitye,outRFunction);
 		var str = s();
 		//alert(str);

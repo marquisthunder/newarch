@@ -1,5 +1,5 @@
-<%@page import="com.ecweb.dao.GoodDao"%>
-<%@page import="com.ecweb.model.Good"%>
+<%@page import="com.thinkingtop.kaas.ecweb.dao.GoodDao"%>
+<%@page import="com.thinkingtop.kaas.ecweb.model.Good"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 

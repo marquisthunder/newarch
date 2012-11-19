@@ -4,6 +4,7 @@ function Recommend() {
 	var ecommerceName = 'jingdong';
 	var key = 'an2mZW9iLtGdQ~aobA13+V46_vy$2^D4%8+0mQ17nysq6NPC+2uiJnS$v256t$o4MY_2w1b%%tYNdxQ';
 	var serviceUrl = 'http://www.thinkingtop.com/kaasservice';
+	var serviceWsdl = 'http://192.168.0.101:8080/kaas-service/services/Service?wsdl';
 	var endUser = '';
 	var scheme = '';
 	var product = '';
@@ -44,7 +45,7 @@ function Recommend() {
 	
 	function requestByPost(data) {
 		// alert(xmlhttp);
-		var URL = 'http://localhost:8080/kaas-service/services/Service?wsdl';
+		var URL = serviceWsdl;
 		xmlhttp.open('POST', URL, false);
 		xmlhttp.setRequestHeader('Content-Type', 'text/xml; charset=utf-8');
 		xmlhttp.setRequestHeader('SOAPAction',
