@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:aop="http://www.springframework.org/schema/aop" xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+           http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+           http://www.springframework.org/schema/context
+           http://www.springframework.org/schema/context/spring-context-2.5.xsd
+           http://www.springframework.org/schema/aop
+           http://www.springframework.org/schema/aop/spring-aop-2.5.xsd
+           http://www.springframework.org/schema/tx 
+           http://www.springframework.org/schema/tx/spring-tx-2.5.xsd
+           ">
+	<context:annotation-config />
+	<context:component-scan base-package="com.thinkingtop.kaas.services" />
+	<aop:aspectj-autoproxy />
+
+
+	<bean
+		class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+		<property name="locations">
+			<list>
+				<value>classpath:jdbc.properties</value>
+				<value>classpath:algorithm.properties</value>
+				<value>classpath:package.properties</value>
+			</list>
+		</property>
+	</bean>
+
+	<!-- h2 dataSource -->
+	<bean id="dataSource" destroy-method="close"
+		class="com.jolbox.bonecp.BoneCPDataSource">
+		<property name="driverClass" value="org.h2.Driver" />
+		<property name="jdbcUrl"
+			value="jdbc:h2:mem:kaasservice;MODE=MYSQL;DB_CLOSE_DELAY=-1" />
+	</bean>
+	<bean id="dataSource3" destroy-method="close"
+		class="com.jolbox.bonecp.BoneCPDataSource">
+		<property name="driverClass" value="org.h2.Driver" />
+		<property name="jdbcUrl"
+			value="jdbc:h2:mem:kaasserver;MODE=MYSQL;DB_CLOSE_DELAY=-1" />
+	</bean>
+	<!-- h2 end -->
+
+	<!-- kaasservice database -->
+	<!-- mysql datasource -->
+	<bean id="dataSource2" destroy-method="close"
+		class="com.jolbox.bonecp.BoneCPDataSource">
+		<property name="driverClass" value="${jdbc.driverClassName}" />
+		<property name="jdbcUrl" value="${jdbc.url}" />
+		<property name="username" value="${jdbc.username}" />
+		<property name="password" value="${jdbc.password}" />
+	</bean>
+	
+	<bean id="sessionFactory"
+		class="org.springframework.orm.hibernate3.annotation.AnnotationSessionFactoryBean">
+		<property name="dataSource" ref="dataSource" />
+		<!-- <property name="annotatedClasses"> <list> <value>com.pocoer.model.User</value> 
+			<value>com.pocoer.model.Log</value> </list> </property> -->
+		<property name="packagesToScan">
+			<list>
+				<value>com.thinkingtop.kaas.services.model</value>
+			</list>
+		</property>
+		<property name="hibernateProperties">
+			<props>
+				<prop key="hibernate.dialect">
+					org.hibernate.dialect.MySQLDialect
+				</prop>
+				<prop key="hibernate.show_sql">true</prop>
+				<prop key="hibernate.format_sql">true</prop>
+				<prop key="hibernate.order_updates">true</prop>
+				<prop key="hibernate.hbm2ddl.auto">update</prop>
+			</props>
+		</property>
+	</bean>
+
+	<bean id="txManager"
+		class="org.springframework.orm.hibernate3.HibernateTransactionManager">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+
+	<tx:annotation-driven transaction-manager="txManager" />
+	<aop:config>
+		<aop:pointcut id="bussinessService"
+			expression="execution(public * com.thinkingtop.kaas.services.manage..*.*(..))" />
+		<aop:advisor pointcut-ref="bussinessService" advice-ref="txAdvice" />
+	</aop:config>
+	<tx:advice id="txAdvice" transaction-manager="txManager">
+		<tx:attributes>
+			<tx:method name="getUser" read-only="true" />
+			<tx:method name="add*" propagation="REQUIRED" />
+			<tx:method name="getLeaveWords" read-only="true" />
+			<tx:method name="get*" read-only="true" />
+			<tx:method name="getUsers" read-only="true" />
+			<tx:method name="isHold" read-only="true" />
+			<tx:method name="isActivation" read-only="true" />
+		</tx:attributes>
+	</tx:advice>
+	<!-- kaasservice database end -->
+	
+	<!-- kaasserver database -->
+	<bean id="dataSource1" destroy-method="close"
+		class="com.jolbox.bonecp.BoneCPDataSource">
+		<property name="driverClass" value="${jdbc.driverClassName}" />
+		<property name="jdbcUrl" value="${jdbcKaasserver.url}" />
+		<property name="username" value="${jdbc.username}" />
+		<property name="password" value="${jdbc.password}" />
+	</bean>
+	
+	<bean id="sessionFactory1"
+		class="org.springframework.orm.hibernate3.annotation.AnnotationSessionFactoryBean">
+		<property name="dataSource" ref="dataSource3" />
+		<property name="annotatedClasses"> 
+			<list> 
+				<value>com.thinkingtop.kaas.services.model.Rule</value> 
+			</list>
+		</property>
+		<property name="hibernateProperties">
+			<props>
+				<prop key="hibernate.dialect">
+					org.hibernate.dialect.MySQLDialect
+				</prop>
+				<prop key="hibernate.show_sql">true</prop>
+				<prop key="hibernate.format_sql">true</prop>
+				<prop key="hibernate.order_updates">true</prop>
+				<prop key="hibernate.hbm2ddl.auto">update</prop>
+			</props>
+		</property>
+	</bean>
+		
+	<bean id="txManager1"
+		class="org.springframework.orm.hibernate3.HibernateTransactionManager">
+		<property name="sessionFactory" ref="sessionFactory1" />
+	</bean>
+	
+	<tx:annotation-driven transaction-manager="txManager1" />
+	<aop:config>
+		<aop:pointcut id="bussinessService1"
+			expression="execution(public * com.thinkingtop.kaas.services.manage.RuleManage.*(..))" />
+		<aop:advisor pointcut-ref="bussinessService1" advice-ref="txAdvice1" />
+	</aop:config>
+	<tx:advice id="txAdvice1" transaction-manager="txManager1">
+		<tx:attributes>
+			<tx:method name="get*" read-only="true" />
+		</tx:attributes>
+	</tx:advice>
+	
+	<!-- kaasserver database end  -->
+	
+	
+	
+	<!-- <bean id="hibernateTemplate" class="org.springframework.orm.hibernate3.HibernateTemplate"> 
+		<property name="sessionFactory" ref="sessionFactory"></property> </bean> -->
+	<bean id="threadPoolTaskExecutor"
+		class="org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor">
+		<property name="corePoolSize" value="10" />
+		<property name="maxPoolSize" value="15" />
+		<property name="queueCapacity" value="1000" />
+	</bean>
+</beans>

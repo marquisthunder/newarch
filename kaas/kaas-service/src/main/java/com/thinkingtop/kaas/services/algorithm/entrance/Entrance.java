@@ -1,5 +1,6 @@
 package com.thinkingtop.kaas.services.algorithm.entrance;
 
+import java.net.URLClassLoader;
 import java.util.HashMap;
 
 import org.apache.log4j.Logger;
@@ -13,6 +14,7 @@ import org.hibernate.SessionFactory;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.orm.hibernate3.HibernateTransactionManager;
 
+import com.thinkingtop.kaas.daemon.inter.SessionFactoryInterface;
 import com.thinkingtop.kaas.services.algorithm.dao.impl.KaasOrderFrequentDAOImpl;
 import com.thinkingtop.kaas.services.algorithm.dao.impl.KaasRuleDAOImpl;
 import com.thinkingtop.kaas.services.algorithm.manage.JarAlgorithmManage;
@@ -46,10 +48,14 @@ public class Entrance  implements Installer{
 	public static SessionFactory gieSessionFactory(){
 		SessionFactory sessionFactory = null;
 		try {
-			Class<?> sessionf = Class.forName("com.thinkingtop.kaas.services.ReturnSessionFactory.ReturnSessionFactory");
-			com.thinkingtop.kaas.services.ReturnSessionFactory.ReturnSessionFactory rsessionFactory = 
-					(com.thinkingtop.kaas.services.ReturnSessionFactory.ReturnSessionFactory)sessionf.newInstance();
-			sessionFactory = rsessionFactory.getSessionFactory();
+			Class<?> sessionf = Class.forName("com.thinkingtop.kaas.daemon.factory.KaasSessionFactory");
+			
+			/*URLClassLoader loader = (URLClassLoader) ClassLoader.getSystemClassLoader();
+	        Class c = loader.loadClass("com.thinkingtop.kaas.daemon.factory.KaasBeanFactory");*/
+
+			SessionFactoryInterface inter =(SessionFactoryInterface) sessionf.newInstance();
+			
+			sessionFactory = (org.hibernate.SessionFactory)inter.getBean("seesionFactory");
 		}catch (ClassNotFoundException e) {
 			e.printStackTrace();
 		} catch (InstantiationException e) {
