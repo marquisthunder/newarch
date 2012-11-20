@@ -1,6 +1,5 @@
-<%@page import="com.thinkingtop.kaas.ecweb.model.Good"%>
 <%@page import="java.util.List"%>
-<%@page import="com.thinkingtop.kaas.ecweb.manage.GoodManage"%>
+<%@page import="com.thinkingtop.kaas.ecweb.model.Good"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -9,45 +8,17 @@
 <title>Call webservice with javascript and xmlhttp.</title>
 
 <%
-	String idstr = request.getParameter("id");
-	//System.out.println(idstr);
-	int id = 0;
-	if (idstr == null || idstr.equals("")) {
-		id = 1;
-		idstr = "1";
-	} else {
-		try {
-	String[] ids = idstr.split(",");
-	System.out.println("ids[0] = " + ids[0]);
-	System.out.println("ids.length = " + ids.length);
-	id = Integer.parseInt(ids[0]);
-		} catch (Exception e) {
-	System.out.println("ID input error");
-	id = 1;
-	idstr = "1";
-		}
-	}
-	System.out.println("id = " + id);
-	GoodManage goodManage = GoodManage.getGoodManage();
-	Good good = goodManage.getGood(id);
-	
-	String ecommerceName = "jingdong";
-	String apiKey = "an2mZW9iLtGdQ~aobA13+V46_vy$2^D4%8+0mQ17nysq6NPC+2uiJnS$v256t$o4MY_2w1b%%tYNdxQ";
-	String endUser = "liming";
-	String scheme = "scheme1";
-	int outputItemsNum = 2;
-	int outputQuantitye = 3;
-	
-	System.out.println("idstr = " + idstr);
-	List<Good> goods = goodManage.getRecommends(ecommerceName,apiKey,scheme,endUser,idstr,outputItemsNum,outputQuantitye);
+	Good good = (Good)request.getAttribute("good");
+	List<Good> goods = (List<Good>)request.getAttribute("goods");
 %>
 <body>
 	<input type="button" value="CallWebserviceByPost" onClick="rules()">
+	<%if(good ==null)return; %>
 	<table align="center">
 		<tr>
 			<td>
 				<div id="thisGood">
-					<a href="AEwebservice.jsp?id=<%=good.getGoods_id()%>">
+					<a href="good.action?id=<%=good.getGoods_id()%>">
 					商品ID：<%=good.getGoods_id()%><br>
 					商品名称：<%=good.getGoods_name()%><br>
 					商品编号：<%=good.getGoods_number()%><br>
@@ -60,6 +31,7 @@
 			</td>
 		</tr>
 	</table>
+	
 	<%if(goods==null)return; %>
 	<table  align='center'>
 		<tr>
@@ -71,7 +43,7 @@
 	%>
 			<td>
 				<div>
-					<a href="AEwebservice.jsp?id=<%=g.getGoods_id()%>">
+					<a href="good.action?id=<%=g.getGoods_id()%>">
 					商品ID：<%=g.getGoods_id()%><br>
 					商品名称：<%=g.getGoods_name()%><br>
 					商品编号：<%=g.getGoods_number()%><br>

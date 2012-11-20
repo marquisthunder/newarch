@@ -16,7 +16,6 @@ import org.springframework.stereotype.Component;
  * Generated source version: 2.6.1
  * 
  */
-@Component("kaasService")
 @WebServiceClient(name = "kaasService", 
                   wsdlLocation = "http://192.168.0.101:8080/kaas-service/services/Service?wsdl",
                   targetNamespace = "http://www.thinkingtop.com/kaasservice") 

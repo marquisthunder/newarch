@@ -18,27 +18,19 @@ import com.thinkingtop.kaasservice.KaasService;
 public class GoodManage {
 	static Logger logger=Logger.getLogger(GoodManage.class);
 	private GoodDAO gooddao;
-	private static KaasService kaasService;
-	public static GoodManage goodManage;
-	static{
-		ClassPathXmlApplicationContext acx = new ClassPathXmlApplicationContext("beans.xml");
-		goodManage = (GoodManage)acx.getBean("goodManage");
-	}
-	
-	public static void main(String[] args) {
-		GoodManage g = new GoodManage();
-		System.out.println("adf");
-	}
-	
-	public static GoodManage getGoodManage(){
-		return goodManage;
-	}
 	
 	public Good getGood(int id){
 		return gooddao.getGood(id);
 	}
 	
 	public List<Good> getRecommends(String ecommerceName,String apiKey,String endUser,String scheme,String inputItems,int outputItemsNum,int outputQuantitye){
+		KaasService kaasService;
+		try{
+			kaasService = new KaasService();
+		}catch(Exception e){
+			logger.info("webservice is close");
+			return null;
+		}
 		ExclusiveKeyService eks;
 		try{
 			eks = kaasService.getExclusiveKeyServicePort();
@@ -83,12 +75,5 @@ public class GoodManage {
 		this.gooddao = gooddao;
 	}
 
-	public KaasService getKaasService() {
-		return kaasService;
-	}
-	@Resource(name="kaasService")
-	public void setKaasService(KaasService kaasService) {
-		this.kaasService = kaasService;
-	}
 
 }
