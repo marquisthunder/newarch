@@ -1,33 +1,37 @@
 package com.thinkingtop.kaasservice;
 
+import org.apache.log4j.Logger;
 import org.springframework.stereotype.Component;
 
-@Component("kaasServiceManage")
 public class KaasServiceManage {
-	private static KaasService kaasService;
-	public static KaasService getKaasService(){
-		if(kaasService==null){
-			try{
-				kaasService = new KaasService();
-			}catch(Exception e){
-				kaasService = null;
-				return null;
-			}
+	private Logger logger=Logger.getLogger(KaasServiceManage.class);
+	private KaasService kaasService;
+	KaasServiceManage(){
+		try{
+			kaasService = new KaasService();
+			logger.info("webservice Connection successful");
+		}catch(Exception e){
+			logger.info("webservice Connection failure");
+			kaasService = null;
 		}
+	}
+	public KaasService getKaasService(){
 		return kaasService;
 	}
 	
-	public static ExclusiveKeyService getExclusiveKeyService(){
+	public ExclusiveKeyService getExclusiveKeyService(){
 		if(kaasService==null){
 			getKaasService();
 		}
 		if(kaasService==null){
+			logger.info("webservice has closed");
 			return null;
 		}
 		ExclusiveKeyService eks;
 		try{
 			eks = kaasService.getExclusiveKeyServicePort();
 		}catch(Exception e){
+			logger.info("webservice has closed");
 			return null;
 		}
 		return eks;
