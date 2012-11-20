@@ -16,7 +16,7 @@ metadata-complete="true">
   <listener>
     <listener-class>
             org.springframework.web.context.ContextLoaderListener
-        </listener-class>
+    </listener-class>
   </listener>
   <servlet>
     <description>Apache CXF Endpoint</description>

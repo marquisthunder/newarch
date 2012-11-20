@@ -14,13 +14,14 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = "classpath:beans.xml")
 public class KaasServiceTest {
-	static Logger logger=Logger.getLogger(KaasServiceTest.class);
+	/*static Logger logger=Logger.getLogger(KaasServiceTest.class);
 	@Autowired
-	private KaasService kaasService;
+	private KaasService kaasService;*/
 	@Test
 	public void test() {
-		ExclusiveKeyService eks = kaasService.getExclusiveKeyServicePort();
+		//KaasService kaasService = new KaasService();
+		/*ExclusiveKeyService eks = kaasService.getExclusiveKeyServicePort();
 		List<String> a = eks.test("afdsa");
-		logger.info("test----------:"+eks.test("afdsa"));
+		logger.info("test----------:"+eks.test("afdsa"));*/
 	}
 }

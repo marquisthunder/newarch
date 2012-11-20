@@ -1,4 +1,4 @@
-<%@page import="com.thinkingtop.kaas.ecweb.dao.GoodDao"%>
+<%@page import="com.thinkingtop.kaas.ecweb.dao.GoodDaojsp"%>
 <%@page import="com.thinkingtop.kaas.ecweb.model.Good"%>
 <%@page import="java.util.List"%>
 <%@page import="com.thinkingtop.kaas.ecweb.manage.KaasserviceManage"%>
@@ -18,18 +18,18 @@
 		idstr = "1";
 	} else {
 		try {
-			String[] ids = idstr.split(",");
-			System.out.println("ids[0] = " + ids[0]);
-			System.out.println("ids.length = " + ids.length);
-			id = Integer.parseInt(ids[0]);
+	String[] ids = idstr.split(",");
+	System.out.println("ids[0] = " + ids[0]);
+	System.out.println("ids.length = " + ids.length);
+	id = Integer.parseInt(ids[0]);
 		} catch (Exception e) {
-			System.out.println("ID input error");
-			id = 1;
-			idstr = "1";
+	System.out.println("ID input error");
+	id = 1;
+	idstr = "1";
 		}
 	}
 	System.out.println("id = " + id);
-	Good good = GoodDao.getGood(id);
+	Good good = GoodDaojsp.getGood(id);
 	
 	String ecommerceName = "jingdong";
 	String apiKey = "an2mZW9iLtGdQ~aobA13+V46_vy$2^D4%8+0mQ17nysq6NPC+2uiJnS$v256t$o4MY_2w1b%%tYNdxQ";
