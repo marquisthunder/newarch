@@ -6,18 +6,14 @@ import java.util.Properties;
 public class PropertiesReader {
 	private PropertiesReader() {
 	}
-	private static PropertiesReader reader = null;
-	public static PropertiesReader getInstance() {
-		if(reader==null) {
-			reader = new PropertiesReader();
-		}
-		return reader;
-	}
 
 	private static Properties props = null;
 
+
 	static {
-		InputStream is = Thread.currentThread().getContextClassLoader().getResourceAsStream("runner.properties");
+		//InputStream is = Thread.currentThread().getContextClassLoader().getResourceAsStream("runner.properties");
+		
+		InputStream is = PropertiesReader.class.getClassLoader().getResourceAsStream("runner.properties");
 		props = new Properties();
 		try {
 			props.load(is);
@@ -36,8 +32,8 @@ public class PropertiesReader {
 		return props.getProperty(key);
 	}
 	
-	/*public static void main(String args[]) {
-		System.out.println(PropertiesReader.getProp("directory"));
-	}*/
+	public static void main(String args[]) {
+		System.out.println(PropertiesReader.getProperty("inType"));
+	}
 }
 

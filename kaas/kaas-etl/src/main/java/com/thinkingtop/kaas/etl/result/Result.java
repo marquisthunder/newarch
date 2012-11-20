@@ -1,5 +1,6 @@
 package com.thinkingtop.kaas.etl.result;
 
+import java.net.URLClassLoader;
 import java.util.HashMap;
 import java.util.LinkedHashSet;
 import java.util.List;
@@ -9,6 +10,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
+import org.springframework.core.io.UrlResource;
 
 import com.thinkingtop.kaas.etl.reader.EtlInfoReader;
 import com.thinkingtop.kaas.etl.service.EtlService;
@@ -27,8 +29,28 @@ public class Result{
 		/*
 		 * 
 		 */
-		ApplicationContext ac = new ClassPathXmlApplicationContext("applicationContext.xml");
-		new ClassPathXmlApplicationContext();
+		/*
+		 * use '/' or not is all ok. here. to init the ApplicationContext 
+		 */
+		System.out.println(Result.class.getClassLoader()+".....................1");
+		System.out.println(this.getClass().getClassLoader()+"...................2");
+		
+		String tt = this.getClass().getClassLoader().getResource("applicationContext.xml").toString();
+		System.out.println(tt);
+		KaasContext kc = new KaasContext(tt);
+		//kc.setClassLoader(Result.class.getClassLoader());
+		//this.getClass().getClassLoader();
+		//Result.class.getClassLoader();
+		//ApplicationContext ac = new KaasContext("D:/applicationContext.xml");
+		ApplicationContext ac = kc;
+
+		
+//		ApplicationContext ac = new ClassPathXmlApplicationContext("/applicationContext.xml");
+		
+		//ApplicationContext ac = new ClassPathXmlApplicationContext("applicationContext.xml");
+		
+		System.out.println("------------------------------------------1");
+		//new ClassPathXmlApplicationContext();
 		EtlService etlService = (EtlService) ac.getBean("etlService");
 		return getItemsList(etlService);
 		

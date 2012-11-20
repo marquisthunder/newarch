@@ -31,6 +31,6 @@ public class KaasDaemonPropertiesReader {
 	}
 	
 	/*public static void main(String args[]) {
-		System.out.println(PropertiesReader.getProp("directory"));
+		System.out.println(KaasDaemonPropertiesReader.getProp("directory"));
 	}*/
 }

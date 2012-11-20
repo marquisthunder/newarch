@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<database name="ecshop" type="mssql" driverClass="net.sourceforge.jtds.jdbc.Driver"
+	jdbcUrl="jdbc:jtds:sqlserver://localhost:1433;DatabaseName=ecshop1"
+	user="sa" password="root">
+
+	<order ref="ecs_order">
+		<id name="id" type="integer">
+			<column name="order_id" />
+		</id>
+
+		
+		<mapping type="relation1" table="ecs_order">
+			<one-to-many column="order_id">
+				<singleColumn>
+					<separator value="#"></separator>
+					<goods_list value="goods_list"></goods_list>
+				</singleColumn>
+			</one-to-many>
+		</mapping>
+
+	</order>
+
+</database>

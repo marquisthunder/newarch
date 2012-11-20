@@ -29,7 +29,7 @@ public class ValidateXML {
  * 
  * 
  */
-			InputStream isSchema = getClass().getResourceAsStream(PropertiesReader.getInstance().getProperty("schema"));
+			InputStream isSchema = getClass().getResourceAsStream(PropertiesReader.getProperty("schema"));
 			StreamSource ss = new StreamSource(isSchema);
 			Schema schema = factory.newSchema(ss);
 

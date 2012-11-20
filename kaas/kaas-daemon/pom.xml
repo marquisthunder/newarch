@@ -24,6 +24,18 @@
 			<artifactId>junit</artifactId>
 		</dependency>
 		<!-- mina -->
+		<!-- mysql driver -->
+		<!-- <dependency>
+			<groupId>mysql</groupId>
+			<artifactId>mysql-connector-java</artifactId>
+		</dependency> -->
+		<!-- mysql driver ends -->
+		<!-- ms sql driver -->
+		<dependency>
+			<groupId>net.sourceforge.jtds</groupId>
+			<artifactId>jtds</artifactId>
+		</dependency>
+		<!-- ms sql driver end -->
 		<!-- <dependency> <groupId>org.apache.mina</groupId> <artifactId>mina-core</artifactId> 
 			<version>2.0.6</version> </dependency> -->
 		<!-- juf dependency -->

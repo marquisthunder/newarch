@@ -56,10 +56,10 @@ public class KaasDaemonClient {
 			e.printStackTrace();
 		}*/
 		//System.out.println(getAPIKeyState("jingdong", "an2mZW9iLtGdQ~aobA13+V46_vy$2^D4%8+0mQ17nysq6NPC+2uiJnS$v256t$o4MY_2w1b%%tYNdxQ").get(0));
-		if(getAPIKeyState("jingdong", "an2mZW9iLtGdQ~aobA13+V46_vy$2^D4%8+0mQ17nysq6NPC+2uiJnS$v256t$o4MY_2w1b%%tYNdxQ").get(0).equals("2")) {
+		//if(getAPIKeyState("jingdong", "an2mZW9iLtGdQ~aobA13+V46_vy$2^D4%8+0mQ17nysq6NPC+2uiJnS$v256t$o4MY_2w1b%%tYNdxQ").get(0).equals("2")) {
 			KaasDaemonClient jus = new KaasDaemonClient();
 			jus.run();
-		}
+		//}
 		
 		
 		/*
@@ -158,15 +158,23 @@ public class KaasDaemonClient {
 				 * load the url jar into memory..
 				 * do it in this way...we donot need to modify the code of "juf" framework
 				 */
-				URLClassLoader classLoader = (URLClassLoader) ClassLoader.getSystemClassLoader();
+				/*URLClassLoader classLoader = (URLClassLoader) ClassLoader.getSystemClassLoader();
 				Method add;
 				try {
 					add = URLClassLoader.class.getDeclaredMethod("addURL", new Class[]{URL.class});
 					add.setAccessible(true);
 					add.invoke(classLoader, new Object[] {new URL(actualizaciones[i].getInstaller().getJarUrl())});
 				}catch (Exception e) {
-				}
+				}*/
 				
+				//write custom classloader
+				//printp();
+				System.out.println(this.getClass().getClassLoader()+"111111111111111111111111111111");
+				//-------------------
+				URL sl= new URL("file:/D:/1.jar"); 
+				URLClassLoader cc = new URLClassLoader(new URL[]{sl},ClassLoader.getSystemClassLoader());
+				//printp();
+				//----------------------
 				
 				update.doUpdate(null, clientUpdateInfo, "sample",actualizaciones[i], null);
 			}
@@ -195,5 +203,13 @@ public class KaasDaemonClient {
 		 KaasService service = new KaasService();
 		 ExclusiveKeyService port = service.getExclusiveKeyServicePort();
 		 return port.getAPIKeyState(name, key);
+	 }
+	 
+	 public void printp() {
+		 URLClassLoader classLoader = (URLClassLoader) ClassLoader.getSystemClassLoader();
+			URL[] us = classLoader.getURLs();
+			for(int r=0;r<us.length;r++) {
+				System.out.println(us[r]+"=="+r);
+			}
 	 }
 }

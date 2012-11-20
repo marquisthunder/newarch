@@ -34,7 +34,7 @@ import com.thinkingtop.kaas.etl.result.Result;
 public class ResultWriter {
 
 	private static Logger logger = LoggerFactory.getLogger(ResultWriter.class.getName()); 
-	static final String fileName = PropertiesReader.getInstance().getProperty("out");// the name of the target file
+	static final String fileName = PropertiesReader.getProperty("out");// the name of the target file
 	private static Element root;
 	private static ResultWriter reader = null;
 
