@@ -1,5 +1,6 @@
 package com.thinkingtop.kaas.services.algorithm.entrance;
 
+import java.awt.Desktop.Action;
 import java.net.URLClassLoader;
 import java.util.HashMap;
 
@@ -11,6 +12,7 @@ import org.hardcode.juf.ProgressListener;
 import org.hardcode.juf.status.Status;
 import org.hardcode.juf.status.UpdateInfo;
 import org.hibernate.SessionFactory;
+import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.orm.hibernate3.HibernateTransactionManager;
 
@@ -36,7 +38,7 @@ public class Entrance  implements Installer{
 		acx.destroy();
 	}
 	
-	public static void setSessionFactory(ClassPathXmlApplicationContext acx,SessionFactory sessionFactory){
+	public static void setSessionFactory(ApplicationContext acx,SessionFactory sessionFactory){
 		HibernateTransactionManager txManager = (HibernateTransactionManager)acx.getBean("txManager");
 		txManager.setSessionFactory(sessionFactory);
 		KaasRuleDAOImpl kaasRuleDAOImpl = (KaasRuleDAOImpl)acx.getBean("kaasRuleDAOImpl");
@@ -68,7 +70,10 @@ public class Entrance  implements Installer{
 
 	public UpdateInfo install(HashMap clientStatus, UpdateInfo status,
 			ProgressListener listener) throws InstallException {
-		ClassPathXmlApplicationContext acx = new ClassPathXmlApplicationContext("algorithmbeans.xml");
+		//ClassPathXmlApplicationContext acx = new ClassPathXmlApplicationContext("algorithmbeans.xml");
+		String tt = this.getClass().getClassLoader().getResource("algorithmbeans.xml").toString();
+		System.out.println(tt);
+		KaasContext acx = new KaasContext(tt);
 		JarAlgorithmManage algorithmManage = (JarAlgorithmManage) acx.getBean("jarAlgorithmManage");
 		
 		SessionFactory sessionFactory = gieSessionFactory();
@@ -80,6 +85,7 @@ public class Entrance  implements Installer{
 		setSessionFactory(acx, sessionFactory);
 		algorithmManage.runIt();
 		acx.destroy();
+		//acx.
 		
 		
 		JUpdateUtilities jup = new JUpdateUtilities();
