@@ -6,7 +6,7 @@
 <struts>
 	<package name="registration" extends="struts-default">
 	
-		<action name="good" class="com.thinkingtop.kaas.ecweb.action.GoodAction">
+		<action name="good" class="goodAction">
 			<result name="success">/AEwebservice.jsp</result>
 			<result name="fail">/AEwebservice.jsp</result>
 		</action>

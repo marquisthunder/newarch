@@ -18,9 +18,11 @@ import com.thinkingtop.kaas.ecweb.model.Good;
 
 @Component("goodAction")
 @Scope("prototype")
-public class GoodAction  implements Action {
+public class GoodAction implements Action {
 	static Logger logger=Logger.getLogger(GoodAction.class);
 	private int id;
+	private Good good;
+	private List<Good> goods;
 	private GoodManage goodManage;
 	@Resource(name="goodManage")
 	public void setGoodManage(GoodManage goodManage) {
@@ -30,32 +32,41 @@ public class GoodAction  implements Action {
 		return goodManage;
 	}
 
-	public int getId() {
-		return id;
-	}
-
-	public void setId(int id) {
-		this.id = id;
-	}
 	@Override
 	public String execute() throws Exception {
 		if (id < 1) {
 			id = 1;
 		}
-		HttpServletRequest request = ServletActionContext.getRequest();
-		Good good = goodManage.getGood(id);
-		request.setAttribute("good",good);
+		
+		this.good = goodManage.getGood(id);
 		
 		String ecommerceName = "jingdong";
 		String apiKey = "an2mZW9iLtGdQ~aobA13+V46_vy$2^D4%8+0mQ17nysq6NPC+2uiJnS$v256t$o4MY_2w1b%%tYNdxQ";
 		String endUser = "liming";
 		String scheme = "scheme1";
 		int outputItemsNum = 2;
-		int outputQuantitye = 3;
+		int outputQuantitye = 2;
 		
-		List<Good> goods = goodManage.getRecommends(ecommerceName, apiKey, endUser, scheme, String.valueOf(id), outputItemsNum, outputQuantitye);
-		request.setAttribute("goods",goods);
+		this.goods = goodManage.getRecommends(ecommerceName, apiKey, endUser, scheme, String.valueOf(id), outputItemsNum, outputQuantitye);
 		return "success";
+	}
+	public int getId() {
+		return id;
+	}
+	public void setId(int id) {
+		this.id = id;
+	}
+	public List<Good> getGoods() {
+		return goods;
+	}
+	public void setGoods(List<Good> goods) {
+		this.goods = goods;
+	}
+	public Good getGood() {
+		return good;
+	}
+	public void setGood(Good good) {
+		this.good = good;
 	}
 
 
