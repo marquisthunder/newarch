@@ -1,0 +1,146 @@
+2012-11-21 19:17:29,651 INFO - Root WebApplicationContext: initialization started
+2012-11-21 19:17:29,746 DEBUG - Initializing new StandardServletEnvironment
+2012-11-21 19:17:29,747 DEBUG - Adding [servletConfigInitParams] PropertySource with lowest search precedence
+2012-11-21 19:17:29,747 DEBUG - Adding [servletContextInitParams] PropertySource with lowest search precedence
+2012-11-21 19:17:29,751 DEBUG - Adding [jndiProperties] PropertySource with lowest search precedence
+2012-11-21 19:17:29,751 DEBUG - Adding [systemProperties] PropertySource with lowest search precedence
+2012-11-21 19:17:29,751 DEBUG - Adding [systemEnvironment] PropertySource with lowest search precedence
+2012-11-21 19:17:29,751 DEBUG - Initialized StandardServletEnvironment with PropertySources [servletConfigInitParams,servletContextInitParams,jndiProperties,systemProperties,systemEnvironment]
+2012-11-21 19:17:29,756 INFO - Refreshing Root WebApplicationContext: startup date [Wed Nov 21 19:17:29 CST 2012]; root of context hierarchy
+2012-11-21 19:17:29,761 DEBUG - Replacing [servletContextInitParams] PropertySource with [servletContextInitParams]
+2012-11-21 19:17:29,801 DEBUG - Initializing new StandardEnvironment
+2012-11-21 19:17:29,801 DEBUG - Adding [systemProperties] PropertySource with lowest search precedence
+2012-11-21 19:17:29,801 DEBUG - Adding [systemEnvironment] PropertySource with lowest search precedence
+2012-11-21 19:17:29,801 DEBUG - Initialized StandardEnvironment with PropertySources [systemProperties,systemEnvironment]
+2012-11-21 19:17:29,802 DEBUG - Initializing new StandardEnvironment
+2012-11-21 19:17:29,803 DEBUG - Adding [systemProperties] PropertySource with lowest search precedence
+2012-11-21 19:17:29,803 DEBUG - Adding [systemEnvironment] PropertySource with lowest search precedence
+2012-11-21 19:17:29,803 DEBUG - Initialized StandardEnvironment with PropertySources [systemProperties,systemEnvironment]
+2012-11-21 19:17:29,810 INFO - Loading XML bean definitions from class path resource [applicationContext.xml]
+2012-11-21 19:17:29,813 DEBUG - Using JAXP provider [com.sun.org.apache.xerces.internal.jaxp.DocumentBuilderFactoryImpl]
+2012-11-21 19:17:29,841 DEBUG - Loading schema mappings from [META-INF/spring.schemas]
+2012-11-21 19:17:29,844 DEBUG - Loaded schema mappings: {http://www.springframework.org/schema/util/spring-util.xsd=org/springframework/beans/factory/xml/spring-util-3.1.xsd, http://www.springframework.org/schema/task/spring-task.xsd=org/springframework/scheduling/config/spring-task-3.1.xsd, http://www.springframework.org/schema/beans/spring-beans-3.1.xsd=org/springframework/beans/factory/xml/spring-beans-3.1.xsd, http://www.springframework.org/schema/cache/spring-cache.xsd=org/springframework/cache/config/spring-cache-3.1.xsd, http://www.springframework.org/schema/aop/spring-aop-3.0.xsd=org/springframework/aop/config/spring-aop-3.0.xsd, http://www.springframework.org/schema/task/spring-task-3.1.xsd=org/springframework/scheduling/config/spring-task-3.1.xsd, http://www.springframework.org/schema/aop/spring-aop-2.0.xsd=org/springframework/aop/config/spring-aop-2.0.xsd, http://www.springframework.org/schema/tool/spring-tool-2.5.xsd=org/springframework/beans/factory/xml/spring-tool-2.5.xsd, http://www.springframework.org/schema/beans/spring-beans.xsd=org/springframework/beans/factory/xml/spring-beans-3.1.xsd, http://www.springframework.org/schema/jee/spring-jee-2.5.xsd=org/springframework/ejb/config/spring-jee-2.5.xsd, http://www.springframework.org/schema/jdbc/spring-jdbc-3.1.xsd=org/springframework/jdbc/config/spring-jdbc-3.1.xsd, http://www.springframework.org/schema/tool/spring-tool-3.1.xsd=org/springframework/beans/factory/xml/spring-tool-3.1.xsd, http://www.springframework.org/schema/jee/spring-jee-3.1.xsd=org/springframework/ejb/config/spring-jee-3.1.xsd, http://www.springframework.org/schema/aop/spring-aop.xsd=org/springframework/aop/config/spring-aop-3.1.xsd, http://www.springframework.org/schema/beans/spring-beans-2.0.xsd=org/springframework/beans/factory/xml/spring-beans-2.0.xsd, http://www.springframework.org/schema/beans/spring-beans-3.0.xsd=org/springframework/beans/factory/xml/spring-beans-3.0.xsd, http://www.springframework.org/schema/task/spring-task-3.0.xsd=org/springframework/scheduling/config/spring-task-3.0.xsd, http://www.springframework.org/schema/tx/spring-tx-2.5.xsd=org/springframework/transaction/config/spring-tx-2.5.xsd, http://www.springframework.org/schema/context/spring-context-2.5.xsd=org/springframework/context/config/spring-context-2.5.xsd, http://www.springframework.org/schema/jdbc/spring-jdbc-3.0.xsd=org/springframework/jdbc/config/spring-jdbc-3.0.xsd, http://www.springframework.org/schema/tool/spring-tool-3.0.xsd=org/springframework/beans/factory/xml/spring-tool-3.0.xsd, http://www.springframework.org/schema/lang/spring-lang.xsd=org/springframework/scripting/config/spring-lang-3.1.xsd, http://www.springframework.org/schema/tx/spring-tx.xsd=org/springframework/transaction/config/spring-tx-3.1.xsd, http://www.springframework.org/schema/tool/spring-tool-2.0.xsd=org/springframework/beans/factory/xml/spring-tool-2.0.xsd, http://www.springframework.org/schema/util/spring-util-2.5.xsd=org/springframework/beans/factory/xml/spring-util-2.5.xsd, http://www.springframework.org/schema/lang/spring-lang-2.5.xsd=org/springframework/scripting/config/spring-lang-2.5.xsd, http://www.springframework.org/schema/jee/spring-jee-3.0.xsd=org/springframework/ejb/config/spring-jee-3.0.xsd, http://www.springframework.org/schema/jee/spring-jee-2.0.xsd=org/springframework/ejb/config/spring-jee-2.0.xsd, http://www.springframework.org/schema/tx/spring-tx-3.1.xsd=org/springframework/transaction/config/spring-tx-3.1.xsd, http://www.springframework.org/schema/context/spring-context-3.1.xsd=org/springframework/context/config/spring-context-3.1.xsd, http://www.springframework.org/schema/util/spring-util-3.1.xsd=org/springframework/beans/factory/xml/spring-util-3.1.xsd, http://www.springframework.org/schema/lang/spring-lang-3.1.xsd=org/springframework/scripting/config/spring-lang-3.1.xsd, http://www.springframework.org/schema/cache/spring-cache-3.1.xsd=org/springframework/cache/config/spring-cache-3.1.xsd, http://www.springframework.org/schema/context/spring-context.xsd=org/springframework/context/config/spring-context-3.1.xsd, http://www.springframework.org/schema/jee/spring-jee.xsd=org/springframework/ejb/config/spring-jee-3.1.xsd, http://www.springframework.org/schema/aop/spring-aop-2.5.xsd=org/springframework/aop/config/spring-aop-2.5.xsd, http://www.springframework.org/schema/jdbc/spring-jdbc.xsd=org/springframework/jdbc/config/spring-jdbc-3.1.xsd, http://www.springframework.org/schema/tx/spring-tx-2.0.xsd=org/springframework/transaction/config/spring-tx-2.0.xsd, http://www.springframework.org/schema/aop/spring-aop-3.1.xsd=org/springframework/aop/config/spring-aop-3.1.xsd, http://www.springframework.org/schema/tx/spring-tx-3.0.xsd=org/springframework/transaction/config/spring-tx-3.0.xsd, http://www.springframework.org/schema/context/spring-context-3.0.xsd=org/springframework/context/config/spring-context-3.0.xsd, http://www.springframework.org/schema/tool/spring-tool.xsd=org/springframework/beans/factory/xml/spring-tool-3.1.xsd, http://www.springframework.org/schema/util/spring-util-3.0.xsd=org/springframework/beans/factory/xml/spring-util-3.0.xsd, http://www.springframework.org/schema/lang/spring-lang-3.0.xsd=org/springframework/scripting/config/spring-lang-3.0.xsd, http://www.springframework.org/schema/util/spring-util-2.0.xsd=org/springframework/beans/factory/xml/spring-util-2.0.xsd, http://www.springframework.org/schema/lang/spring-lang-2.0.xsd=org/springframework/scripting/config/spring-lang-2.0.xsd, http://www.springframework.org/schema/beans/spring-beans-2.5.xsd=org/springframework/beans/factory/xml/spring-beans-2.5.xsd}
+2012-11-21 19:17:29,846 DEBUG - Found XML schema [http://www.springframework.org/schema/beans/spring-beans-3.0.xsd] in classpath: org/springframework/beans/factory/xml/spring-beans-3.0.xsd
+2012-11-21 19:17:29,889 DEBUG - Loading bean definitions
+2012-11-21 19:17:29,908 DEBUG - Neither XML 'id' nor 'name' specified - using generated bean name [com.thinkingtop.kaas.server.service.JarBeanFactory#0]
+2012-11-21 19:17:29,911 DEBUG - Loaded 12 bean definitions from location pattern [classpath:applicationContext.xml]
+2012-11-21 19:17:29,911 DEBUG - Bean factory for Root WebApplicationContext: org.springframework.beans.factory.support.DefaultListableBeanFactory@1168774: defining beans [dataSource,jdbcTemplate,jarService,jarDAO,maintenance,com.thinkingtop.kaas.server.service.JarBeanFactory#0,pollThread,watchServiceRunnableWrapper,uploadThread,socketServerRunnableWrapper,kaasRuleService,kaasRuleDAO]; root of factory hierarchy
+2012-11-21 19:17:29,941 DEBUG - Unable to locate MessageSource with name 'messageSource': using default [org.springframework.context.support.DelegatingMessageSource@1ad70a3]
+2012-11-21 19:17:29,943 DEBUG - Unable to locate ApplicationEventMulticaster with name 'applicationEventMulticaster': using default [org.springframework.context.event.SimpleApplicationEventMulticaster@1ff2589]
+2012-11-21 19:17:29,945 DEBUG - Unable to locate ThemeSource with name 'themeSource': using default [org.springframework.ui.context.support.ResourceBundleThemeSource@d17222]
+2012-11-21 19:17:29,947 INFO - Pre-instantiating singletons in org.springframework.beans.factory.support.DefaultListableBeanFactory@1168774: defining beans [dataSource,jdbcTemplate,jarService,jarDAO,maintenance,com.thinkingtop.kaas.server.service.JarBeanFactory#0,pollThread,watchServiceRunnableWrapper,uploadThread,socketServerRunnableWrapper,kaasRuleService,kaasRuleDAO]; root of factory hierarchy
+2012-11-21 19:17:29,948 DEBUG - Creating shared instance of singleton bean 'dataSource'
+2012-11-21 19:17:29,948 DEBUG - Creating instance of bean 'dataSource'
+2012-11-21 19:17:29,996 DEBUG - Eagerly caching bean 'dataSource' to allow for resolving potential circular references
+2012-11-21 19:17:30,125 DEBUG - Finished creating instance of bean 'dataSource'
+2012-11-21 19:17:30,125 DEBUG - Creating shared instance of singleton bean 'jdbcTemplate'
+2012-11-21 19:17:30,125 DEBUG - Creating instance of bean 'jdbcTemplate'
+2012-11-21 19:17:30,132 DEBUG - Eagerly caching bean 'jdbcTemplate' to allow for resolving potential circular references
+2012-11-21 19:17:30,132 DEBUG - Returning cached instance of singleton bean 'dataSource'
+2012-11-21 19:17:30,180 DEBUG - Invoking afterPropertiesSet() on bean with name 'jdbcTemplate'
+2012-11-21 19:17:30,180 DEBUG - Finished creating instance of bean 'jdbcTemplate'
+2012-11-21 19:17:30,180 DEBUG - Creating shared instance of singleton bean 'jarService'
+2012-11-21 19:17:30,180 DEBUG - Creating instance of bean 'jarService'
+2012-11-21 19:17:30,181 DEBUG - Eagerly caching bean 'jarService' to allow for resolving potential circular references
+2012-11-21 19:17:30,181 DEBUG - Creating shared instance of singleton bean 'jarDAO'
+2012-11-21 19:17:30,181 DEBUG - Creating instance of bean 'jarDAO'
+2012-11-21 19:17:30,181 DEBUG - Eagerly caching bean 'jarDAO' to allow for resolving potential circular references
+2012-11-21 19:17:30,181 DEBUG - Returning cached instance of singleton bean 'jdbcTemplate'
+2012-11-21 19:17:30,185 DEBUG - Finished creating instance of bean 'jarDAO'
+2012-11-21 19:17:30,198 DEBUG - Finished creating instance of bean 'jarService'
+2012-11-21 19:17:30,198 DEBUG - Returning cached instance of singleton bean 'jarDAO'
+2012-11-21 19:17:30,198 DEBUG - Creating shared instance of singleton bean 'maintenance'
+2012-11-21 19:17:30,198 DEBUG - Creating instance of bean 'maintenance'
+2012-11-21 19:17:30,198 DEBUG - Eagerly caching bean 'maintenance' to allow for resolving potential circular references
+2012-11-21 19:17:30,199 DEBUG - Returning cached instance of singleton bean 'jarService'
+2012-11-21 19:17:30,202 DEBUG - Finished creating instance of bean 'maintenance'
+2012-11-21 19:17:30,202 DEBUG - Creating shared instance of singleton bean 'com.thinkingtop.kaas.server.service.JarBeanFactory#0'
+2012-11-21 19:17:30,202 DEBUG - Creating instance of bean 'com.thinkingtop.kaas.server.service.JarBeanFactory#0'
+2012-11-21 19:17:30,203 DEBUG - Eagerly caching bean 'com.thinkingtop.kaas.server.service.JarBeanFactory#0' to allow for resolving potential circular references
+2012-11-21 19:17:30,203 DEBUG - Finished creating instance of bean 'com.thinkingtop.kaas.server.service.JarBeanFactory#0'
+2012-11-21 19:17:30,203 DEBUG - Creating shared instance of singleton bean 'pollThread'
+2012-11-21 19:17:30,203 DEBUG - Creating instance of bean 'pollThread'
+2012-11-21 19:17:30,214 DEBUG - Creating shared instance of singleton bean 'watchServiceRunnableWrapper'
+2012-11-21 19:17:30,214 DEBUG - Creating instance of bean 'watchServiceRunnableWrapper'
+2012-11-21 19:17:30,214 DEBUG - Eagerly caching bean 'watchServiceRunnableWrapper' to allow for resolving potential circular references
+2012-11-21 19:17:30,214 DEBUG - Finished creating instance of bean 'watchServiceRunnableWrapper'
+2012-11-21 19:17:30,232 DEBUG - Initializing new StandardEnvironment
+2012-11-21 19:17:30,232 DEBUG - Adding [systemProperties] PropertySource with lowest search precedence
+2012-11-21 19:17:30,232 DEBUG - Adding [systemEnvironment] PropertySource with lowest search precedence
+2012-11-21 19:17:30,232 DEBUG - Initialized StandardEnvironment with PropertySources [systemProperties,systemEnvironment]
+2012-11-21 19:17:30,233 DEBUG - Initializing new StandardEnvironment
+2012-11-21 19:17:30,233 DEBUG - Adding [systemProperties] PropertySource with lowest search precedence
+2012-11-21 19:17:30,233 DEBUG - Adding [systemEnvironment] PropertySource with lowest search precedence
+2012-11-21 19:17:30,233 DEBUG - Initialized StandardEnvironment with PropertySources [systemProperties,systemEnvironment]
+2012-11-21 19:17:30,233 DEBUG - Initializing new StandardEnvironment
+2012-11-21 19:17:30,233 DEBUG - Adding [systemProperties] PropertySource with lowest search precedence
+2012-11-21 19:17:30,233 DEBUG - Adding [systemEnvironment] PropertySource with lowest search precedence
+2012-11-21 19:17:30,234 DEBUG - Initialized StandardEnvironment with PropertySources [systemProperties,systemEnvironment]
+2012-11-21 19:17:30,235 DEBUG - Initializing new StandardEnvironment
+2012-11-21 19:17:30,235 DEBUG - Adding [systemProperties] PropertySource with lowest search precedence
+2012-11-21 19:17:30,235 DEBUG - Adding [systemEnvironment] PropertySource with lowest search precedence
+2012-11-21 19:17:30,236 DEBUG - Initialized StandardEnvironment with PropertySources [systemProperties,systemEnvironment]
+2012-11-21 19:17:30,236 DEBUG - Initializing new StandardEnvironment
+2012-11-21 19:17:30,237 DEBUG - Adding [systemProperties] PropertySource with lowest search precedence
+2012-11-21 19:17:30,237 DEBUG - Adding [systemEnvironment] PropertySource with lowest search precedence
+2012-11-21 19:17:30,237 DEBUG - Initialized StandardEnvironment with PropertySources [systemProperties,systemEnvironment]
+2012-11-21 19:17:30,242 DEBUG - No property editor [java.lang.ThreadGroupEditor] found for type java.lang.ThreadGroup according to 'Editor' suffix convention
+2012-11-21 19:17:30,245 DEBUG - Eagerly caching bean 'pollThread' to allow for resolving potential circular references
+2012-11-21 19:17:30,245 DEBUG - Invoking init method  'start' on bean with name 'pollThread'
+2012-11-21 19:17:30,245 DEBUG - Finished creating instance of bean 'pollThread'
+2012-11-21 19:17:30,245 DEBUG - Returning cached instance of singleton bean 'watchServiceRunnableWrapper'
+2012-11-21 19:17:30,245 DEBUG - Creating shared instance of singleton bean 'uploadThread'
+2012-11-21 19:17:30,245 DEBUG - Creating instance of bean 'uploadThread'
+2012-11-21 19:17:30,245 DEBUG - Creating shared instance of singleton bean 'socketServerRunnableWrapper'
+2012-11-21 19:17:30,246 DEBUG - Creating instance of bean 'socketServerRunnableWrapper'
+2012-11-21 19:17:30,246 DEBUG - Eagerly caching bean 'socketServerRunnableWrapper' to allow for resolving potential circular references
+2012-11-21 19:17:30,246 DEBUG - Finished creating instance of bean 'socketServerRunnableWrapper'
+2012-11-21 19:17:30,246 DEBUG - Initializing new StandardEnvironment
+2012-11-21 19:17:30,246 DEBUG - Adding [systemProperties] PropertySource with lowest search precedence
+2012-11-21 19:17:30,247 DEBUG - Adding [systemEnvironment] PropertySource with lowest search precedence
+2012-11-21 19:17:30,247 DEBUG - Initialized StandardEnvironment with PropertySources [systemProperties,systemEnvironment]
+2012-11-21 19:17:30,247 DEBUG - Initializing new StandardEnvironment
+2012-11-21 19:17:30,247 DEBUG - Adding [systemProperties] PropertySource with lowest search precedence
+2012-11-21 19:17:30,247 DEBUG - Adding [systemEnvironment] PropertySource with lowest search precedence
+2012-11-21 19:17:30,248 DEBUG - Initialized StandardEnvironment with PropertySources [systemProperties,systemEnvironment]
+2012-11-21 19:17:30,248 DEBUG - Initializing new StandardEnvironment
+2012-11-21 19:17:30,248 DEBUG - Adding [systemProperties] PropertySource with lowest search precedence
+2012-11-21 19:17:30,248 DEBUG - Adding [systemEnvironment] PropertySource with lowest search precedence
+2012-11-21 19:17:30,248 DEBUG - Initialized StandardEnvironment with PropertySources [systemProperties,systemEnvironment]
+2012-11-21 19:17:30,249 DEBUG - Initializing new StandardEnvironment
+2012-11-21 19:17:30,249 DEBUG - Adding [systemProperties] PropertySource with lowest search precedence
+2012-11-21 19:17:30,249 DEBUG - Adding [systemEnvironment] PropertySource with lowest search precedence
+2012-11-21 19:17:30,249 DEBUG - Initialized StandardEnvironment with PropertySources [systemProperties,systemEnvironment]
+2012-11-21 19:17:30,249 DEBUG - Initializing new StandardEnvironment
+2012-11-21 19:17:30,249 DEBUG - Adding [systemProperties] PropertySource with lowest search precedence
+2012-11-21 19:17:30,249 DEBUG - Adding [systemEnvironment] PropertySource with lowest search precedence
+2012-11-21 19:17:30,249 DEBUG - Initialized StandardEnvironment with PropertySources [systemProperties,systemEnvironment]
+2012-11-21 19:17:30,250 DEBUG - Eagerly caching bean 'uploadThread' to allow for resolving potential circular references
+2012-11-21 19:17:30,250 DEBUG - Invoking init method  'start' on bean with name 'uploadThread'
+2012-11-21 19:17:30,254 DEBUG - Finished creating instance of bean 'uploadThread'
+2012-11-21 19:17:30,254 DEBUG - Returning cached instance of singleton bean 'socketServerRunnableWrapper'
+2012-11-21 19:17:30,254 DEBUG - Creating shared instance of singleton bean 'kaasRuleService'
+2012-11-21 19:17:30,255 DEBUG - Creating instance of bean 'kaasRuleService'
+2012-11-21 19:17:30,255 DEBUG - Eagerly caching bean 'kaasRuleService' to allow for resolving potential circular references
+2012-11-21 19:17:30,255 DEBUG - Creating shared instance of singleton bean 'kaasRuleDAO'
+2012-11-21 19:17:30,255 DEBUG - Creating instance of bean 'kaasRuleDAO'
+2012-11-21 19:17:30,257 DEBUG - Eagerly caching bean 'kaasRuleDAO' to allow for resolving potential circular references
+2012-11-21 19:17:30,257 DEBUG - Returning cached instance of singleton bean 'jdbcTemplate'
+2012-11-21 19:17:30,261 DEBUG - Finished creating instance of bean 'kaasRuleDAO'
+2012-11-21 19:17:30,266 DEBUG - Finished creating instance of bean 'kaasRuleService'
+2012-11-21 19:17:30,266 DEBUG - Returning cached instance of singleton bean 'kaasRuleDAO'
+2012-11-21 19:17:30,268 DEBUG - Unable to locate LifecycleProcessor with name 'lifecycleProcessor': using default [org.springframework.context.support.DefaultLifecycleProcessor@5d2e19]
+2012-11-21 19:17:30,269 DEBUG - Returning cached instance of singleton bean 'lifecycleProcessor'
+2012-11-21 19:17:30,279 DEBUG - Published root WebApplicationContext as ServletContext attribute with name [org.springframework.web.context.WebApplicationContext.ROOT]
+2012-11-21 19:17:30,279 INFO - Root WebApplicationContext: initialization completed in 627 ms
+2012-11-21 19:23:41,217 INFO - Closing Root WebApplicationContext: startup date [Wed Nov 21 19:17:29 CST 2012]; root of context hierarchy
+2012-11-21 19:23:41,220 DEBUG - Returning cached instance of singleton bean 'lifecycleProcessor'
+2012-11-21 19:23:41,221 INFO - Destroying singletons in org.springframework.beans.factory.support.DefaultListableBeanFactory@1168774: defining beans [dataSource,jdbcTemplate,jarService,jarDAO,maintenance,com.thinkingtop.kaas.server.service.JarBeanFactory#0,pollThread,watchServiceRunnableWrapper,uploadThread,socketServerRunnableWrapper,kaasRuleService,kaasRuleDAO]; root of factory hierarchy
+2012-11-21 19:23:41,221 DEBUG - Invoking destroy method 'interrupt' on bean with name 'uploadThread'
+2012-11-21 19:23:41,225 DEBUG - Invoking destroy method 'interrupt' on bean with name 'pollThread'
+2012-11-21 19:23:41,226 DEBUG - Retrieved dependent beans for bean 'dataSource': [jdbcTemplate]
+2012-11-21 19:23:41,226 DEBUG - Retrieved dependent beans for bean 'jdbcTemplate': [jarDAO, kaasRuleDAO]
+2012-11-21 19:23:41,226 DEBUG - Retrieved dependent beans for bean 'jarDAO': [jarService]
+2012-11-21 19:23:41,226 DEBUG - Retrieved dependent beans for bean 'jarService': [maintenance]
+2012-11-21 19:23:41,227 DEBUG - Retrieved dependent beans for bean 'kaasRuleDAO': [kaasRuleService]
+2012-11-21 19:23:41,227 DEBUG - Invoking destroy method 'close' on bean with name 'dataSource'
