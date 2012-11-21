@@ -58,4 +58,24 @@ public class KaasServiceManage {
 		}
 		return recommend;
 	}
+	
+	public int getState(String ecommerceName,String keyString){
+		if(kaasService==null){
+			getKaasService();
+		}
+		if(kaasService==null){
+			logger.warn("webservice has closed");
+			return -3;
+		}
+		ExclusiveKeyService eks;
+		int state = -3;
+		try{
+			eks = kaasService.getExclusiveKeyServicePort();
+			state = eks.getState(ecommerceName, keyString);
+		}catch(Exception e){
+			logger.warn("webservice has closed");
+			return -3;
+		}
+		return state;
+	}
 }

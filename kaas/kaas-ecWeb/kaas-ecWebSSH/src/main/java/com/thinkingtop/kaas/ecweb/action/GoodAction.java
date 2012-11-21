@@ -48,6 +48,13 @@ public class GoodAction implements Action {
 		String scheme = "scheme1";
 		int outputItemsNum = 2;
 		int outputQuantitye = 2;
+		
+		int state = kaasServiceManage.getState(ecommerceName, apiKey);
+		if(state!=2){
+			this.goods = null;
+			return "success";
+		}
+		
 		List<String>  recommend =  kaasServiceManage.getRecommends(ecommerceName, apiKey, endUser, scheme, String.valueOf(id), outputItemsNum, outputQuantitye);
 		if(recommend == null){
 			this.goods = null;
@@ -56,6 +63,8 @@ public class GoodAction implements Action {
 		}
 		return "success";
 	}
+	
+	
 	public int getId() {
 		return id;
 	}
