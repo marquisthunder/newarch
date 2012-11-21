@@ -25,7 +25,7 @@ public class PackageClientTest {
 		
 		JarOutputStream out = new JarOutputStream(new FileOutputStream(
 				outputFileName),m);
-		String base = "/com/thinkingtop/kaasservice";
+		String base = "com/thinkingtop/kaasservice";
 		
 		String[] bases = base.split("/");
 		for(int i=0;i<bases.length;i++){
