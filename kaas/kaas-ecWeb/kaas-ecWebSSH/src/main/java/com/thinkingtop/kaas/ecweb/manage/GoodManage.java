@@ -6,13 +6,10 @@ import java.util.List;
 import javax.annotation.Resource;
 
 import org.apache.log4j.Logger;
-import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.stereotype.Component;
 
 import com.thinkingtop.kaas.ecweb.dao.GoodDAO;
 import com.thinkingtop.kaas.ecweb.model.Good;
-import com.thinkingtop.kaasservice.ExclusiveKeyService;
-import com.thinkingtop.kaasservice.KaasService;
 
 @Component("goodManage")
 public class GoodManage {
@@ -23,22 +20,7 @@ public class GoodManage {
 		return gooddao.getGood(id);
 	}
 	
-	public List<Good> getRecommends(String ecommerceName,String apiKey,String endUser,String scheme,String inputItems,int outputItemsNum,int outputQuantitye){
-		KaasService kaasService;
-		try{
-			kaasService = new KaasService();
-		}catch(Exception e){
-			logger.info("webservice is close");
-			return null;
-		}
-		ExclusiveKeyService eks;
-		try{
-			eks = kaasService.getExclusiveKeyServicePort();
-		}catch(Exception e){
-			logger.info("webservice is close");
-			return null;
-		}
-		List<String> recommend = eks.getRecommends(ecommerceName, apiKey, endUser, scheme, inputItems, outputItemsNum, outputQuantitye);
+	public List<Good> getRecommends(List<String>  recommend){
 		List<Good> reGood = new ArrayList<Good>();
 		int index = 0;
 		for(String r : recommend){

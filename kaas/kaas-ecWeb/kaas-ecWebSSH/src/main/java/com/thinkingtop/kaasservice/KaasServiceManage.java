@@ -1,21 +1,23 @@
 package com.thinkingtop.kaasservice;
 
+import java.util.List;
+
 import org.apache.log4j.Logger;
 import org.springframework.stereotype.Component;
-
+@Component("kaasServiceManage")
 public class KaasServiceManage {
 	private Logger logger=Logger.getLogger(KaasServiceManage.class);
 	private KaasService kaasService;
-	KaasServiceManage(){
-		try{
-			kaasService = new KaasService();
-			logger.info("webservice Connection successful");
-		}catch(Exception e){
-			logger.info("webservice Connection failure");
-			kaasService = null;
-		}
-	}
 	public KaasService getKaasService(){
+		if(kaasService==null){
+			try{
+				this.kaasService = new KaasService();
+				logger.info("webservice Connection successful");
+			}catch(Exception e){
+				logger.warn("webservice Connection failure");
+				this.kaasService = null;
+			}
+		}
 		return kaasService;
 	}
 	
@@ -24,16 +26,36 @@ public class KaasServiceManage {
 			getKaasService();
 		}
 		if(kaasService==null){
-			logger.info("webservice has closed");
+			logger.warn("webservice has closed");
 			return null;
 		}
 		ExclusiveKeyService eks;
 		try{
 			eks = kaasService.getExclusiveKeyServicePort();
 		}catch(Exception e){
-			logger.info("webservice has closed");
+			logger.warn("webservice has closed");
 			return null;
 		}
 		return eks;
+	}
+	
+	public List<String> getRecommends(String ecommerceName,String apiKey,String endUser,String scheme,String inputItems,int outputItemsNum,int outputQuantitye){
+		if(kaasService==null){
+			getKaasService();
+		}
+		if(kaasService==null){
+			logger.warn("webservice has closed");
+			return null;
+		}
+		ExclusiveKeyService eks;
+		List<String>  recommend = null;
+		try{
+			eks = kaasService.getExclusiveKeyServicePort();
+			recommend = eks.getRecommends(ecommerceName, apiKey, endUser, scheme, inputItems, outputItemsNum, outputQuantitye);
+		}catch(Exception e){
+			logger.warn("webservice has closed");
+			return null;
+		}
+		return recommend;
 	}
 }

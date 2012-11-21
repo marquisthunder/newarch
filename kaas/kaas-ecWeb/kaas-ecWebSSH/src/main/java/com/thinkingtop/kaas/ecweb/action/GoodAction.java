@@ -15,6 +15,7 @@ import com.opensymphony.xwork2.Action;
 import com.opensymphony.xwork2.ActionSupport;
 import com.thinkingtop.kaas.ecweb.manage.GoodManage;
 import com.thinkingtop.kaas.ecweb.model.Good;
+import com.thinkingtop.kaasservice.KaasServiceManage;
 
 @Component("goodAction")
 @Scope("prototype")
@@ -24,6 +25,7 @@ public class GoodAction implements Action {
 	private Good good;
 	private List<Good> goods;
 	private GoodManage goodManage;
+	private KaasServiceManage kaasServiceManage;
 	@Resource(name="goodManage")
 	public void setGoodManage(GoodManage goodManage) {
 		this.goodManage = goodManage;
@@ -46,8 +48,12 @@ public class GoodAction implements Action {
 		String scheme = "scheme1";
 		int outputItemsNum = 2;
 		int outputQuantitye = 2;
-		
-		this.goods = goodManage.getRecommends(ecommerceName, apiKey, endUser, scheme, String.valueOf(id), outputItemsNum, outputQuantitye);
+		List<String>  recommend =  kaasServiceManage.getRecommends(ecommerceName, apiKey, endUser, scheme, String.valueOf(id), outputItemsNum, outputQuantitye);
+		if(recommend == null){
+			this.goods = null;
+		}else{
+			this.goods = goodManage.getRecommends(recommend);
+		}
 		return "success";
 	}
 	public int getId() {
@@ -67,6 +73,13 @@ public class GoodAction implements Action {
 	}
 	public void setGood(Good good) {
 		this.good = good;
+	}
+	public KaasServiceManage getKaasServiceManage() {
+		return kaasServiceManage;
+	}
+	@Resource(name="kaasServiceManage")
+	public void setKaasServiceManage(KaasServiceManage kaasServiceManage) {
+		this.kaasServiceManage = kaasServiceManage;
 	}
 
 
