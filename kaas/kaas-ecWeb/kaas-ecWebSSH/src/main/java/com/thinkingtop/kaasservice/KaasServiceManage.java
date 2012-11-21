@@ -4,7 +4,6 @@ import java.util.List;
 
 import org.apache.log4j.Logger;
 import org.springframework.stereotype.Component;
-@Component("kaasServiceManage")
 public class KaasServiceManage {
 	private Logger logger=Logger.getLogger(KaasServiceManage.class);
 	private KaasService kaasService;
