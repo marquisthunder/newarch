@@ -16,10 +16,10 @@ public class AlgorithmProperties {
 	public static Properties schemeProperties = new Properties();
 	AlgorithmProperties(){
 		try {
-			InputStream inputStream = Thread.currentThread().getContextClassLoader().getResourceAsStream("algorithm.properties");
+			InputStream inputStream = this.getClass().getClassLoader().getResourceAsStream("algorithm.properties");
 			algorithmProperties.load(inputStream);
 			inputStream.close();
-			inputStream = Thread.currentThread().getContextClassLoader().getResourceAsStream("scheme.properties");
+			inputStream = this.getClass().getClassLoader().getResourceAsStream("scheme.properties");
 			schemeProperties.load(inputStream);
 			inputStream.close(); 
 		} catch (IOException e) {

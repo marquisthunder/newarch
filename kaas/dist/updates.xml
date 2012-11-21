@@ -5,7 +5,7 @@
 			jar-url="http://localhost:8081/kaas/kaas-etl.jar" />
 		<feature>I am a sample from etl</feature>
 	</update>
-	<update component-name="sample-component" version="1">
+	<!-- <update component-name="sample-component" version="1">
 		<installer class-name="SampleUpdate"
 			jar-url="http://localhost:8081/kaas/kaas-etl-1.0.jar" />
 		<feature>I am content</feature>
@@ -14,7 +14,7 @@
 		<installer class-name="com.thinkingtop.kaas.services.algorithm.entrance.Entrance"
 			jar-url="http://localhost:8081/kaas/algorithm/lib/kaas-algorithm-jar-with-dependencies.jar" />
 		<feature>I am content</feature>
-	</update>
+	</update> -->
 	<update component-name="kaas-scheme1" version="1">
 		<installer class-name="com.thinkingtop.kaas.services.algorithm.entrance.Entrance"
 			jar-url="http://localhost:8081/kaas/data/kaas-server/fromService/schemeJar/scheme1.jar" />

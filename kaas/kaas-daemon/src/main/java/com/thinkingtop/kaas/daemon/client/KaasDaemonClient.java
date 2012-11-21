@@ -26,9 +26,13 @@ import org.hardcode.juf.JUpdate;
 import org.hardcode.juf.status.UpdateInfo;
 import org.hardcode.juf.ui.UpdatePanel;
 import org.hardcode.juf.update.Update;
+import org.hibernate.SessionFactory;
+import org.hibernate.impl.SessionFactoryImpl;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.orm.hibernate3.annotation.AnnotationSessionFactoryBean;
 
+import com.thinkingtop.kaas.daemon.factory.KaasSessionFactory;
 import com.thinkingtop.kaas.daemon.reader.KaasDaemonPropertiesReader;
 import com.thinkingtop.kaas.daemon.upload.ClientMain;
 import com.thinkingtop.kaasservice.ExclusiveKeyService;
@@ -59,6 +63,8 @@ public class KaasDaemonClient {
 		//if(getAPIKeyState("jingdong", "an2mZW9iLtGdQ~aobA13+V46_vy$2^D4%8+0mQ17nysq6NPC+2uiJnS$v256t$o4MY_2w1b%%tYNdxQ").get(0).equals("2")) {
 			KaasDaemonClient jus = new KaasDaemonClient();
 			jus.run();
+			KaasDaemonClient jus2 = new KaasDaemonClient();
+			jus2.run();
 		//}
 		
 		
@@ -168,13 +174,16 @@ public class KaasDaemonClient {
 				}*/
 				
 				//write custom classloader
-				//printp();
 				System.out.println(this.getClass().getClassLoader()+"111111111111111111111111111111");
+				printp();
 				//-------------------
-				URL sl= new URL("file:/D:/1.jar"); 
-				URLClassLoader cc = new URLClassLoader(new URL[]{sl},ClassLoader.getSystemClassLoader());
+				//URL sl= new URL("file:/D:/1.jar"); 
+				//URLClassLoader cc = new URLClassLoader(new URL[]{sl},ClassLoader.getSystemClassLoader());
 				//printp();
 				//----------------------
+				/*AnnotationSessionFactoryBean asfb = (AnnotationSessionFactoryBean) new KaasSessionFactory().getBean("sessionFactory");
+
+				asfb.setResourceLoader(new KaasClassLoader());*/
 				
 				update.doUpdate(null, clientUpdateInfo, "sample",actualizaciones[i], null);
 			}
@@ -192,7 +201,9 @@ public class KaasDaemonClient {
 		js.add(new JLabel("update successfully"));
 		js.setSize(400, 400);
 		js.setVisible(true);
-		new ClientMain().startUpload(null);
+		js.dispose();
+		
+		//new ClientMain().startUpload(null);
 		// System.exit(0);
 	}
 
