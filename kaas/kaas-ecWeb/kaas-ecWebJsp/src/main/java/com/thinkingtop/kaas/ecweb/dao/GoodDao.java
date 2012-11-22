@@ -8,7 +8,9 @@ import java.sql.Statement;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 import com.thinkingtop.kaas.ecweb.model.Good;
 
@@ -93,31 +95,6 @@ public class GoodDao {
 		return good;
 	}
 	
-	public static void test() {
-		String sql = "select * from ecs_goods";
-		try {
-			Statement stmt = conn.createStatement();
-			ResultSet rs = stmt.executeQuery(sql);
-			while (rs.next()) {
-				String id = rs.getString("goods_id");
-				String name = rs.getString("goods_name");
-				System.out.println(id + "  -  " + name);
-			}
-		} catch (SQLException e) {
-			System.out.println(e.getMessage());
-			e.printStackTrace();
-		} finally {
-			// 预防性关闭连接（避免异常发生时在try语句块关闭连接没有执行)
-			try {
-				if (conn != null)
-					conn.close();
-			} catch (SQLException e) {
-				System.out.println(e.getMessage());
-				e.printStackTrace();
-			}
-		}
-	}
-	
 	public static Date parseDate(String dateStr,String formatStr){
 		DateFormat sdf=new SimpleDateFormat(formatStr);
 		Date date=null;
@@ -128,6 +105,36 @@ public class GoodDao {
 		}
 		return date;
 	}
+	
+	public static List<Good> getRecommends(List<String>  recommend){
+		List<Good> reGood = new ArrayList<Good>();
+		int index = 0;
+		for(String r : recommend){
+			if (r == null || r.equals("")) {
+				continue;
+			}
+			int id;
+			try {
+				String[] idstrs = r.split(",");
+				//System.out.println("ids[0] = " + idstrs[0]);
+				//System.out.println("ids.length = " + idstrs.length);
+				for(String idstr : idstrs){
+					id = Integer.parseInt(idstr);
+					Good good = GoodDao.getGood(id);
+					reGood.add(good);
+				}
+				index++;
+				if(index == recommend.size()){
+					continue;
+				}
+				reGood.add(new Good());
+			} catch (Exception e) {
+				System.out.println("ID input error");
+			}
+		}
+		return reGood;
+	}
+	
 	
 	public static void printlngood(Good good){
 		System.out.println(good.getGoods_id() + "  -  " + good.getGoods_name()+ "  -  " + good.getGoods_number()+ "  -  " + good.getGoods_weight()+ "  -  " 
@@ -140,10 +147,7 @@ public class GoodDao {
 		GoodDao testjdbc = new GoodDao();
 		Good good = testjdbc.getGood(1);
 		good = testjdbc.getGood(7);
-		System.out.println(good.getGoods_id() + "  -  " + good.getGoods_name()+ "  -  " + good.getGoods_number()+ "  -  " + good.getGoods_weight()+ "  -  " 
-				+ good.getMarket_price()+ "  -  " + good.getShop_price()+ "  -  " +  good.getPromote_price() + "  -  " + good.getPromote_start_date() + "  -  " 
-				+ good.getPromote_end_date()+ "  -  " + good.getGoods_brief()+ "  -  " + good.getGoods_desc()+ "  -  " + good.getIs_real()+ "  -  " 
-				+ good.getAdd_time()+ "  -  " +good.getBin());
+		printlngood(good);
 	}
 
 }

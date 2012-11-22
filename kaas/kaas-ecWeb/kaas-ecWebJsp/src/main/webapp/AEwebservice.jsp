@@ -1,7 +1,7 @@
-<%@page import="com.thinkingtop.kaas.ecweb.dao.GoodDaojsp"%>
+<%@page import="com.thinkingtop.kaas.ecweb.dao.GoodDao"%>
 <%@page import="com.thinkingtop.kaas.ecweb.model.Good"%>
 <%@page import="java.util.List"%>
-<%@page import="com.thinkingtop.kaas.ecweb.manage.KaasserviceManage"%>
+<%@page import="com.thinkingtop.kaasservice.KaasServiceManage"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -29,7 +29,7 @@
 		}
 	}
 	System.out.println("id = " + id);
-	Good good = GoodDaojsp.getGood(id);
+	Good good = GoodDao.getGood(id);
 	
 	String ecommerceName = "jingdong";
 	String apiKey = "an2mZW9iLtGdQ~aobA13+V46_vy$2^D4%8+0mQ17nysq6NPC+2uiJnS$v256t$o4MY_2w1b%%tYNdxQ";
@@ -38,11 +38,17 @@
 	int outputItemsNum = 2;
 	int outputQuantitye = 3;
 	
-	System.out.println("idstr = " + idstr);
-	List<Good> goods = KaasserviceManage.getRecommends(ecommerceName,apiKey,scheme,endUser,idstr,outputItemsNum,outputQuantitye);
+	int state = KaasServiceManage.getState(ecommerceName, apiKey);
+	List<Good> goods = null;
+	if(state==2){
+		List<String>  recommend =  KaasServiceManage.getRecommends(ecommerceName, apiKey, endUser, scheme, String.valueOf(id), outputItemsNum, outputQuantitye);
+		//System.out.println("idstr = " + idstr);
+		goods = GoodDao.getRecommends(recommend);
+	}
 %>
 <body>
 	<input type="button" value="CallWebserviceByPost" onClick="rules()">
+	<%if(good == null)return; %>
 	<table align="center">
 		<tr>
 			<td>
@@ -60,6 +66,7 @@
 			</td>
 		</tr>
 	</table>
+	<%if(goods == null)return; %>
 	<table  align='center'>
 		<tr>
 	<%for(Good g : goods){

@@ -7,12 +7,12 @@ import java.util.jar.Attributes;
 import java.util.jar.JarEntry;
 import java.util.jar.JarOutputStream;
 import java.util.jar.Manifest;
+import java.util.logging.Logger;
 
-import org.apache.log4j.Logger;
 import org.junit.Test;
 
 public class PackageClientTest {
-	private Logger logger=Logger.getLogger(PackageClientTest.class);
+	private Logger logger=Logger.getLogger(PackageClientTest.class.toString());
 	public void jar(String inputFileName, String outputFileName)
 			throws Exception {
 		String classpath = PackageClientTest.class.getResource("/").toString().substring("file:".length());

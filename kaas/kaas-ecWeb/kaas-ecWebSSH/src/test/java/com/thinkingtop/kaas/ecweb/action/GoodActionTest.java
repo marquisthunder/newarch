@@ -34,6 +34,7 @@ public class GoodActionTest {
 				+ good.getPromote_end_date()+ "  -  " + good.getGoods_brief()+ "  -  " + good.getGoods_desc()+ "  -  " + good.getIs_real()+ "  -  " 
 				+ good.getAdd_time()+ "  -  " +good.getBin()[0]);
 		int i = 0;
+		if(goods == null)return;
 		logger.info("goods size: "+goods.size());
 		for(Good g : goods){
 			i++;

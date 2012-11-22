@@ -1,77 +1,82 @@
 package com.thinkingtop.kaasservice;
 
 import java.util.List;
+import java.util.logging.Logger;
 
-import org.apache.log4j.Logger;
 public class KaasServiceManage {
-	private Logger logger=Logger.getLogger(KaasServiceManage.class);
-	private KaasService kaasService;
-	public KaasService getKaasService(){
-		if(kaasService==null){
-			try{
-				this.kaasService = new KaasService();
+	private static Logger logger = Logger.getLogger(KaasServiceManage.class
+			.toString());
+	private static KaasService kaasService;
+
+	public static KaasService getKaasService() {
+		if (kaasService == null) {
+			try {
+				kaasService = new KaasService();
 				logger.info("webservice Connection successful");
-			}catch(Exception e){
-				logger.warn("webservice Connection failure");
-				this.kaasService = null;
+			} catch (Exception e) {
+				logger.info("webservice Connection failure");
+				kaasService = null;
 			}
 		}
 		return kaasService;
 	}
-	
-	public ExclusiveKeyService getExclusiveKeyService(){
-		if(kaasService==null){
+
+	public ExclusiveKeyService getExclusiveKeyService() {
+		if (kaasService == null) {
 			getKaasService();
 		}
-		if(kaasService==null){
-			logger.warn("webservice has closed");
+		if (kaasService == null) {
+			logger.info("webservice has closed");
 			return null;
 		}
 		ExclusiveKeyService eks;
-		try{
+		try {
 			eks = kaasService.getExclusiveKeyServicePort();
-		}catch(Exception e){
-			logger.warn("webservice has closed");
+		} catch (Exception e) {
+			logger.info("webservice has closed");
 			return null;
 		}
 		return eks;
 	}
-	
-	public List<String> getRecommends(String ecommerceName,String apiKey,String endUser,String scheme,String inputItems,int outputItemsNum,int outputQuantitye){
-		if(kaasService==null){
+
+	public static List<String> getRecommends(String ecommerceName,
+			String apiKey, String endUser, String scheme, String inputItems,
+			int outputItemsNum, int outputQuantitye) {
+		if (kaasService == null) {
 			getKaasService();
 		}
-		if(kaasService==null){
-			logger.warn("webservice has closed");
+		if (kaasService == null) {
+			logger.info("webservice has closed");
 			return null;
 		}
 		ExclusiveKeyService eks;
-		List<String>  recommend = null;
-		try{
+		List<String> recommend = null;
+		try {
 			eks = kaasService.getExclusiveKeyServicePort();
-			recommend = eks.getRecommends(ecommerceName, apiKey, endUser, scheme, inputItems, outputItemsNum, outputQuantitye);
-		}catch(Exception e){
-			logger.warn("webservice has closed");
+			recommend = eks.getRecommends(ecommerceName, apiKey, endUser,
+					scheme, inputItems, outputItemsNum, outputQuantitye);
+		} catch (Exception e) {
+			logger.info("webservice has closed");
 			return null;
 		}
 		return recommend;
 	}
-	
-	public int getState(String ecommerceName,String keyString){
-		if(kaasService==null){
+
+	public static int getState(String ecommerceName, String keyString) {
+		if (kaasService == null) {
 			getKaasService();
 		}
-		if(kaasService==null){
-			logger.warn("webservice has closed");
+		if (kaasService == null) {
+			logger.info("webservice has closed");
 			return -3;
 		}
 		ExclusiveKeyService eks;
 		int state = -3;
-		try{
+		try {
 			eks = kaasService.getExclusiveKeyServicePort();
 			state = eks.getState(ecommerceName, keyString);
-		}catch(Exception e){
-			logger.warn("webservice has closed");
+		} catch (Exception e) {
+			logger.info("webservice has closed");
 			return -3;
 		}
 		return state;

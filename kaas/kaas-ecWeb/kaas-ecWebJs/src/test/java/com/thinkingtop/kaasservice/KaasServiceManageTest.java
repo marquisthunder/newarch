@@ -1,11 +1,12 @@
 package com.thinkingtop.kaasservice;
 
-import org.apache.log4j.Logger;
+import java.util.logging.Logger;
+
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
 public class KaasServiceManageTest {
-	static Logger logger=Logger.getLogger(KaasServiceManageTest.class);
+	static Logger logger=Logger.getLogger(KaasServiceManageTest.class.toString());
 	private KaasServiceManage kaasServiceManage;
 	@Test
 	public void test() {
