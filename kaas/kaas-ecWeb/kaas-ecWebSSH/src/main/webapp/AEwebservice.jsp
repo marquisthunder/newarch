@@ -31,11 +31,11 @@
 	<table  align='center'>
 		<tr>
 		<good:iterator value="goods">
-			<c:if test="${goods_name==null}">
+			<c:if test="${goods_id<1 }">
 				</tr></table>
 				<table  align='center'><tr>
 			</c:if>
-			<c:if test="${goods_name!=null}">
+			<c:if test="${goods_id>0 }">
 				<td>
 					<div id="thisGood">
 						<a href="good.action?id=${goods_id }">

@@ -56,11 +56,16 @@ public class GoodAction implements Action {
 		}
 		
 		List<String>  recommend =  kaasServiceManage.getRecommends(ecommerceName, apiKey, endUser, scheme, String.valueOf(id), outputItemsNum, outputQuantitye);
+		/*logger.info("recommend size : "+ recommend.size());
+		for(String r : recommend){
+			logger.info("recommend r : "+ r);
+		}*/
 		if(recommend == null){
 			this.goods = null;
 		}else{
 			this.goods = goodManage.getRecommends(recommend);
 		}
+		//logger.info("goods size : "+ this.goods.size());
 		return "success";
 	}
 	

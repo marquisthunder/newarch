@@ -22,6 +22,9 @@ public class PackageClientTest {
 		Manifest m = new Manifest();
 		Attributes a = m.getMainAttributes();
 		a.put(Attributes.Name.MANIFEST_VERSION, "1.0");
+		a.put(Attributes.Name.IMPLEMENTATION_TITLE, "kaasServiceClient");
+		a.put(Attributes.Name.IMPLEMENTATION_VERSION, "1.0.1");
+		a.put(Attributes.Name.IMPLEMENTATION_VENDOR, "\"Apache Software Foundation\"");
 		
 		JarOutputStream out = new JarOutputStream(new FileOutputStream(
 				outputFileName),m);
@@ -35,7 +38,7 @@ public class PackageClientTest {
 			}
 			out.putNextEntry(new JarEntry(ba));
 		}
-		
+		out.putNextEntry(new JarEntry("META-INF/"));
 		File f = new File(inputFileName);
 		jar(out, f, base);
 		out.close();
@@ -77,7 +80,7 @@ public class PackageClientTest {
 			classpath = classpath.replaceFirst("target/test-classes","target/classes");
 		}
 		try {
-			jar(classpath+"/com/thinkingtop/kaasservice",outpath+"/kaasServiceClient.jar");
+			jar(classpath+"/com/thinkingtop/kaasservice",outpath+"/kaasServiceClient-1.0.jar");
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
