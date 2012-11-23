@@ -83,13 +83,13 @@ function Recommend() {
 	};
 
 	function jurisdiction(){
-		var data = '<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ser="'+serviceUrl+'">';
+		var data = '<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:kaas="'+serviceUrl+'">';
 		data += '<soapenv:Header/>';
 		data += '<soapenv:Body>';
-		data += '<ser:GetState>';
+		data += '<kaas:GetState>';
 		data += '<ecommerceName>' + ecommerceName + '</ecommerceName>';
 		data += '<KeyString>' + key + '</KeyString>';
-		data += '</ser:GetState>';
+		data += '</kaas:GetState>';
 		data += '</soapenv:Body>';
 		data += '</soapenv:Envelope>';
 		var result = requestByPost(data);
@@ -110,10 +110,10 @@ function Recommend() {
 	
 	function getRecommend() {
 		//alert("getRecommend");
-		var data = '<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ser="'+serviceUrl+'">';
+		var data = '<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:kaas="'+serviceUrl+'">';
 		data += '<soapenv:Header/>';
 		data += '<soapenv:Body>';
-		data += '<ser:GetRecommends>';
+		data += '<kaas:GetRecommends>';
 		data += '<ecommerceName>' + ecommerceName + '</ecommerceName>';
 		data += '<KeyString>' + key + '</KeyString>';
 		data += '<endUser>' + endUser + '</endUser>';
@@ -121,7 +121,7 @@ function Recommend() {
 		data += '<inputItems>' + product + '</inputItems>';
 		data += '<outputItemsNum>' + outputItemsNum + '</outputItemsNum>';
 		data += '<outputQuantitye>' + outputQuantitye + '</outputQuantitye>';
-		data += '</ser:GetRecommends>';
+		data += '</kaas:GetRecommends>';
 		data += '</soapenv:Body>';
 		data += '</soapenv:Envelope>';
 		var result = requestByPost(data);
