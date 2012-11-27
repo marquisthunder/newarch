@@ -37,14 +37,15 @@ public class RuleManageTest {
 	
 	@Test
 	public void testGetRecommend() {
-		int outputItemsNum = 1;
+		int outputItemsNum = 2;
 		int outputQuantitye = 2;
-		String[] ss =ruleManage.getRecommend("scheme1", "2", outputItemsNum, outputQuantitye);
+		String[] ss =ruleManage.getRecommend("scheme1", "2.5", outputItemsNum, outputQuantitye);
 		//Assert.assertEquals(true, r==null);
 		for(String s : ss){
 			if(s!=null){
 				logger.info("R ----------:"+s);
-				Assert.assertEquals(outputItemsNum*2-1, s.length());
+				String[] size = s.split(",");
+				Assert.assertEquals(outputItemsNum, size.length);
 			}
 		}
 		Assert.assertEquals(true,ss.length<=outputQuantitye);

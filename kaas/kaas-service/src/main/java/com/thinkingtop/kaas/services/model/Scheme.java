@@ -1,5 +1,6 @@
 package com.thinkingtop.kaas.services.model;
 
+import java.util.Calendar;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
@@ -15,6 +16,7 @@ import javax.persistence.OneToMany;
 public class Scheme {
 	private int id;
 	private Date createDate = new Date();
+	private int month = Calendar.getInstance().get(Calendar.MONTH) + 1; 
 	private String schemeName;
 	private String algorithmNames;
 	private Set<ECommerce_Scheme> ecommerce_scheme = new HashSet<ECommerce_Scheme>();
@@ -56,5 +58,12 @@ public class Scheme {
 	}
 	public void setCreateDate(Date createDate) {
 		this.createDate = createDate;
+	}
+	@Column(nullable=false)
+	public int getMonth() {
+		return month;
+	}
+	public void setMonth(int month) {
+		this.month = month;
 	}
 }

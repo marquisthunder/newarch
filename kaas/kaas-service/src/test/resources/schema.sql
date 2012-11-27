@@ -25,14 +25,15 @@ CREATE TABLE `Scheme` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `algorithmNames` varchar(255) NOT NULL,
   `createDate` datetime NOT NULL,
+  `month` int(11) NOT NULL,
   `schemeName` varchar(255) NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `schemeName` (`schemeName`)
 );
-insert into Scheme (createDate,algorithmNames, schemeName) values 
-(now(),'AlgorithmDefault,AprioriRunner','scheme1');
-insert into Scheme (createDate,algorithmNames,schemeName) values 
-(now(),'AlgorithmDefault,AprioriRunnerMultiThread','scheme2');
+insert into Scheme (createDate,month,algorithmNames, schemeName) values 
+(now(),1,'AlgorithmDefault,AprioriRunner','scheme1');
+insert into Scheme (createDate,month,algorithmNames,schemeName) values 
+(now(),MONTH(now()),'AlgorithmDefault,AprioriRunnerMultiThread','scheme2');
 
 CREATE TABLE `ECommerce_Scheme` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
@@ -159,4 +160,5 @@ INSERT INTO `Rule` (`id`, `products`, `recommendation`, `confidence`, `flag`) VA
 (83, '2', '4', 0.466666666666667, 'general'),
 (84, '3,4', '1', 0.363636363636364, 'general'),
 (85, '6', '1,2', 0.666666666666667, 'general'),
-(86, '1', '6', 0.538461538461538, 'general');
+(86, '1', '6', 0.538461538461538, 'general'),
+(null, '2,4', '30', 0.857142857142857, 'general');

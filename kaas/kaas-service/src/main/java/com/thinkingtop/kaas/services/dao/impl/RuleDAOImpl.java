@@ -41,9 +41,9 @@ public class RuleDAOImpl implements RuleDAO {
 		String sql = "select * from Rule where  products ='"+inputItems;
 		for(int i=0;i<outputItemsNum;i++){
 			if(i==0){
-				sql += "' and recommendation regexp '^[a-zA-Z0-9]";
+				sql += "' and recommendation regexp '^[a-zA-Z0-9]+";
 			}else{
-				sql += ",[a-zA-Z0-9]";
+				sql += ",[a-zA-Z0-9]+";
 			}
 		}
 		sql += "$' order by confidence desc limit 0,"+outputQuantitye;

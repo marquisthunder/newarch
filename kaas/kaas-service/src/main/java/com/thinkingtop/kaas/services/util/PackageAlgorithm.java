@@ -134,7 +134,12 @@ public class PackageAlgorithm {
 			Scheme s = ec_s.getScheme();
 			//logger.info("schemes------------"+s.getAlgorithmNames());
 			try {
-				jar(packagePath.getAlgorithmPath(), packagePath.getMyKaasdataPath()+"/"+s.getSchemeName()+".jar",s.getSchemeName(),ecommerce.getEcommerceName(),s.getAlgorithmNames());
+				String jarName = packagePath.getMyKaasdataPath()+"/"+s.getSchemeName()+".jar";
+				logger.info("packagePath: "+ jarName);
+				File jar = new File(jarName);
+				if(!jar.exists()){
+					jar(packagePath.getAlgorithmPath(), jarName,s.getSchemeName(),ecommerce.getEcommerceName(),s.getAlgorithmNames());
+				}
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
