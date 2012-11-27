@@ -40,7 +40,6 @@ public class GoodDao {
 	public static Good getGood(int id){
 		String sql = "select * from ecs_goods where goods_id = " + id;
 		Good good = new Good();
-		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 		try {
 			Statement stmt = conn.createStatement();
 			ResultSet rs = stmt.executeQuery(sql);

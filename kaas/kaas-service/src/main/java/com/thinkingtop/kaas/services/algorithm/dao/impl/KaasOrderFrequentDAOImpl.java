@@ -3,14 +3,12 @@ package com.thinkingtop.kaas.services.algorithm.dao.impl;
 import java.util.List;
 
 import javax.annotation.Resource;
-
 import org.apache.log4j.Logger;
 import org.hibernate.Query;
 import org.hibernate.SQLQuery;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.stereotype.Component;
-
 import com.thinkingtop.kaas.services.algorithm.dao.KaasOrderFrequentDAO;
 import com.thinkingtop.kaas.services.algorithm.model.KaasOrderFrequent;
 
