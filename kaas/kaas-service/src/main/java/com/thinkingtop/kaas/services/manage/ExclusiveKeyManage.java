@@ -1,11 +1,6 @@
 package com.thinkingtop.kaas.services.manage;
 
-import java.util.Date;
-import java.util.Random;
-
 import javax.annotation.Resource;
-import javax.jws.WebService;
-
 import org.springframework.stereotype.Component;
 
 import com.thinkingtop.kaas.services.dao.ExclusiveKeyDAO;

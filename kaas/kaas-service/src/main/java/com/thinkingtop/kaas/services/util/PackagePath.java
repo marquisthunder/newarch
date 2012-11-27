@@ -3,17 +3,8 @@ package com.thinkingtop.kaas.services.util;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
-import java.util.Iterator;
 import java.util.Properties;
-
-import javax.annotation.Resource;
-
 import org.apache.log4j.Logger;
-import org.dom4j.Attribute;
-import org.dom4j.Document;
-import org.dom4j.DocumentException;
-import org.dom4j.Element;
-import org.dom4j.io.SAXReader;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 

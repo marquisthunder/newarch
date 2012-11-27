@@ -1,7 +1,6 @@
 package com.thinkingtop.kaas.services.algorithm.SevenZip;
 
 import java.io.ByteArrayOutputStream;
-import java.io.ByteArrayInputStream;
 import java.io.IOException;
 
 public class LzmaBench

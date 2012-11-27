@@ -1,26 +1,19 @@
 package com.thinkingtop.kaas.services.algorithm;
 
-import static org.junit.Assert.*;
 
 import java.io.BufferedInputStream;
 import java.io.DataInputStream;
-import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.util.Set;
 
 import org.apache.log4j.Logger;
 import org.junit.Assert;
-import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
-
-import com.thinkingtop.kaas.services.algorithm.impl.AlgorithmDefault;
 import com.thinkingtop.kaas.services.algorithm.impl.AprioriRunner;
 import com.thinkingtop.kaas.services.algorithm.manage.KaasOrderFrequentManage;
 import com.thinkingtop.kaas.services.algorithm.util.KaasDataPath;

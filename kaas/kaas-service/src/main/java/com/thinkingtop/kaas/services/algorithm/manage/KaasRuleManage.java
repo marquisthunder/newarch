@@ -5,13 +5,9 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
-import java.util.Map.Entry;
-
 import javax.annotation.Resource;
-
 import org.apache.log4j.Logger;
 import org.springframework.stereotype.Component;
-
 import com.thinkingtop.kaas.services.algorithm.dao.KaasRuleDAO;
 import com.thinkingtop.kaas.services.algorithm.model.KaasRule;
 import com.thinkingtop.kaas.services.algorithm.util.KaasDataPath;

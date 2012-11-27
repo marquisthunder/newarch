@@ -5,10 +5,7 @@ import java.util.List;
 
 import javax.annotation.Resource;
 
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
-import org.springframework.validation.annotation.Validated;
-
 import com.thinkingtop.kaas.services.algorithm.dao.FileHistoryDAO;
 import com.thinkingtop.kaas.services.algorithm.util.AlgorithmProperties;
 

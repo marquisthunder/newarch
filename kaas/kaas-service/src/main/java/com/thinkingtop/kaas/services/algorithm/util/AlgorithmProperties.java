@@ -1,12 +1,7 @@
 package com.thinkingtop.kaas.services.algorithm.util;
 
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
-import java.io.OutputStream;
-import java.io.UnsupportedEncodingException;
 import java.util.Properties;
 
 import org.springframework.stereotype.Component;

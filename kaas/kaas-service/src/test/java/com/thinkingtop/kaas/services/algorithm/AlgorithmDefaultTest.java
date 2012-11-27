@@ -1,7 +1,5 @@
 package com.thinkingtop.kaas.services.algorithm;
 
-import static org.junit.Assert.*;
-
 import org.apache.log4j.Logger;
 import org.junit.Test;
 import org.junit.runner.RunWith;

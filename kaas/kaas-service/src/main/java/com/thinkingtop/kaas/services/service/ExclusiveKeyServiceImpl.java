@@ -1,11 +1,7 @@
 package com.thinkingtop.kaas.services.service;
 
-import java.math.BigInteger;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
-import java.util.Map;
-import java.util.Random;
 import java.util.Set;
 
 import javax.annotation.Resource;
@@ -14,7 +10,6 @@ import javax.jws.WebService;
 import org.apache.log4j.Logger;
 import org.springframework.stereotype.Component;
 
-import com.thinkingtop.kaas.services.dao.ExclusiveKeyDAO;
 import com.thinkingtop.kaas.services.manage.AlgorithmManage;
 import com.thinkingtop.kaas.services.manage.ExclusiveKeyManage;
 import com.thinkingtop.kaas.services.manage.ECommerceManage;
@@ -22,7 +17,6 @@ import com.thinkingtop.kaas.services.manage.RecommendManage;
 import com.thinkingtop.kaas.services.model.ECommerce_Scheme;
 import com.thinkingtop.kaas.services.model.ExclusiveKey;
 import com.thinkingtop.kaas.services.model.ECommerce;
-import com.thinkingtop.kaas.services.model.Scheme;
 import com.thinkingtop.kaas.services.util.APIKey;
 import com.thinkingtop.kaas.services.util.PackageAlgorithm;
 

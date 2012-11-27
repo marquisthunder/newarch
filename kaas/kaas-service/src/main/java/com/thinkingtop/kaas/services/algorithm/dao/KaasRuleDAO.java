@@ -2,8 +2,6 @@ package com.thinkingtop.kaas.services.algorithm.dao;
 
 import java.util.Iterator;
 import java.util.List;
-import java.util.Map;
-import java.util.Set;
 
 import com.thinkingtop.kaas.services.algorithm.model.KaasRule;
 

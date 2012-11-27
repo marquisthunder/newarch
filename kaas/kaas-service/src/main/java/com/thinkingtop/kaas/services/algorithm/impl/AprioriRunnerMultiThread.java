@@ -1,13 +1,6 @@
 package com.thinkingtop.kaas.services.algorithm.impl;
 
-import java.io.BufferedInputStream;
-import java.io.DataInputStream;
 import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.net.MalformedURLException;
-import java.net.UnknownHostException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -15,28 +8,17 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import java.util.TreeSet;
-
-import javax.annotation.Resource;
-
 import org.apache.log4j.Logger;
 import org.dom4j.Element;
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
 import org.springframework.stereotype.Component;
-
 import com.thinkingtop.kaas.services.algorithm.Algorithm;
 import com.thinkingtop.kaas.services.algorithm.AlgorithmGeneral;
 import com.thinkingtop.kaas.services.algorithm.combinationutil.CombinationModel;
-import com.thinkingtop.kaas.services.algorithm.dao.FileHistoryDAO;
-import com.thinkingtop.kaas.services.algorithm.dao.KaasOrderFrequentDAO;
-import com.thinkingtop.kaas.services.algorithm.dao.KaasRuleDAO;
 import com.thinkingtop.kaas.services.algorithm.manage.KaasOrderFrequentManage;
 import com.thinkingtop.kaas.services.algorithm.manage.KaasRuleManage;
 import com.thinkingtop.kaas.services.algorithm.model.KaasOrderFrequent;
 import com.thinkingtop.kaas.services.algorithm.model.KaasRule;
-import com.thinkingtop.kaas.services.algorithm.util.AlgorithmProperties;
 import com.thinkingtop.kaas.services.algorithm.util.KaasDataPath;
-import com.thinkingtop.kaas.services.algorithm.util.OfConcurrentHashMap;
 
 /**
  * Generation rule class

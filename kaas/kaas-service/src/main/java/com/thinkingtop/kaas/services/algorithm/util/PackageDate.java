@@ -6,11 +6,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.Map.Entry;
-import java.util.jar.Attributes;
 import java.util.jar.JarEntry;
-import java.util.jar.JarOutputStream;
-import java.util.jar.Manifest;
 import java.util.zip.ZipOutputStream;
 
 import javax.annotation.Resource;

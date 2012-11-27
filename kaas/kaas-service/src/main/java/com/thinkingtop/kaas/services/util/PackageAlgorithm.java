@@ -18,8 +18,6 @@ import javax.annotation.Resource;
 import org.apache.log4j.Logger;
 import org.springframework.stereotype.Component;
 
-import com.thinkingtop.kaas.services.algorithm.util.AlgorithmProperties;
-import com.thinkingtop.kaas.services.algorithm.util.KaasDataPath;
 import com.thinkingtop.kaas.services.model.ECommerce;
 import com.thinkingtop.kaas.services.model.ECommerce_Scheme;
 import com.thinkingtop.kaas.services.model.Scheme;

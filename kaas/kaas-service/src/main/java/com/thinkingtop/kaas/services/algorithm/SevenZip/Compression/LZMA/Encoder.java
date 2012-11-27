@@ -2,7 +2,6 @@ package com.thinkingtop.kaas.services.algorithm.SevenZip.Compression.LZMA;
 
 import com.thinkingtop.kaas.services.algorithm.SevenZip.Compression.RangeCoder.BitTreeEncoder;
 import com.thinkingtop.kaas.services.algorithm.SevenZip.Compression.LZMA.Base;
-import com.thinkingtop.kaas.services.algorithm.SevenZip.Compression.LZ.BinTree;
 import com.thinkingtop.kaas.services.algorithm.SevenZip.ICodeProgress;
 import java.io.IOException;
 

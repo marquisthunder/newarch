@@ -13,7 +13,6 @@ import org.springframework.stereotype.Component;
 import com.thinkingtop.kaas.services.dao.ECommerceDAO;
 import com.thinkingtop.kaas.services.model.ECommerce;
 import com.thinkingtop.kaas.services.model.ECommerce_Scheme;
-import com.thinkingtop.kaas.services.model.Scheme;
 
 
 /**

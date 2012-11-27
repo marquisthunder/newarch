@@ -5,12 +5,7 @@ package com.thinkingtop.kaas.services.algorithm.combinationutil;
 //--------------------------------------
 
 import java.math.BigInteger;
-import java.util.HashMap;
-import java.util.HashSet;
 import java.util.Map;
-import java.util.Set;
-
-import org.apache.log4j.Logger;
 
 
 /**
@@ -120,7 +115,7 @@ public class CombinationGenerator {
     }
 
     public static  void main(String[] argv){
-        String[] elements = {"a", "b", "c" , "d"};
+        //String[] elements = {"a", "b", "c" , "d"};
         /*int[] indices;
         CombinationGenerator x = new CombinationGenerator (elements.length, 1);
         StringBuffer combination;

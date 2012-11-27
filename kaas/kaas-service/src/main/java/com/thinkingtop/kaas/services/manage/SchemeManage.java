@@ -2,11 +2,9 @@ package com.thinkingtop.kaas.services.manage;
 
 import javax.annotation.Resource;
 
-import org.hibernate.Session;
 import org.springframework.stereotype.Component;
 
 import com.thinkingtop.kaas.services.dao.SchemeDAO;
-import com.thinkingtop.kaas.services.model.ExclusiveKey;
 import com.thinkingtop.kaas.services.model.Scheme;
 
 /**

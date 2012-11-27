@@ -2,12 +2,9 @@ package com.thinkingtop.kaas.services.algorithm;
 
 import javax.annotation.Resource;
 
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
 
 import com.thinkingtop.kaas.services.algorithm.dao.FileHistoryDAO;
-import com.thinkingtop.kaas.services.algorithm.dao.KaasOrderFrequentDAO;
-import com.thinkingtop.kaas.services.algorithm.dao.KaasRuleDAO;
 import com.thinkingtop.kaas.services.algorithm.manage.KaasOrderFrequentManage;
 import com.thinkingtop.kaas.services.algorithm.manage.KaasRuleManage;
 import com.thinkingtop.kaas.services.algorithm.util.AlgorithmProperties;

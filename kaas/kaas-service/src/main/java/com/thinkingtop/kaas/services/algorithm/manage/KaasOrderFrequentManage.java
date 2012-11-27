@@ -5,7 +5,6 @@ import javax.annotation.Resource;
 import org.springframework.stereotype.Component;
 
 import com.thinkingtop.kaas.services.algorithm.dao.KaasOrderFrequentDAO;
-import com.thinkingtop.kaas.services.algorithm.dao.impl.KaasOrderFrequentDAOImpl;
 import com.thinkingtop.kaas.services.algorithm.model.KaasOrderFrequent;
 @Component("kaasOrderFrequentManage")
 public class KaasOrderFrequentManage {

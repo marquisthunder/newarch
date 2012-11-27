@@ -1,17 +1,11 @@
 package com.thinkingtop.kaas.services.algorithm.manage;
 
 import java.util.Map;
-import java.util.Set;
 
 import javax.annotation.Resource;
-
 import org.apache.log4j.Logger;
-import org.springframework.context.ApplicationContext;
-import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.stereotype.Component;
-
 import com.thinkingtop.kaas.services.algorithm.Algorithm;
-import com.thinkingtop.kaas.services.algorithm.impl.AlgorithmDefault;
 import com.thinkingtop.kaas.services.algorithm.util.AlgorithmProperties;
 import com.thinkingtop.kaas.services.algorithm.util.PackageDate;
 

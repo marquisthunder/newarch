@@ -2,12 +2,8 @@ package com.thinkingtop.kaas.services.algorithm.dao.impl;
 
 import java.util.Iterator;
 import java.util.List;
-import java.util.Map;
-
 import javax.annotation.Resource;
-
 import org.apache.log4j.Logger;
-import org.apache.velocity.runtime.parser.node.SetExecutor;
 import org.hibernate.Query;
 import org.hibernate.SQLQuery;
 import org.hibernate.Session;

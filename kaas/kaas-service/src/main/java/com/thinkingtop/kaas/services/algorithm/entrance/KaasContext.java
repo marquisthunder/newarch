@@ -18,15 +18,12 @@ package com.thinkingtop.kaas.services.algorithm.entrance;
  */
 
 
-import java.net.MalformedURLException;
 
 import org.springframework.beans.BeansException;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.AbstractXmlApplicationContext;
-import org.springframework.context.support.FileSystemXmlApplicationContext;
 import org.springframework.core.io.FileSystemResource;
 import org.springframework.core.io.Resource;
-import org.springframework.core.io.UrlResource;
 
 /**
  * Standalone XML application context, taking the context definition files

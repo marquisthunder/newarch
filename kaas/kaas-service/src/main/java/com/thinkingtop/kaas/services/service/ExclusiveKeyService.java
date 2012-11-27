@@ -6,8 +6,6 @@ import javax.jws.WebMethod;
 import javax.jws.WebParam;
 import javax.jws.WebResult;
 import javax.jws.WebService;
-
-import com.thinkingtop.kaas.services.model.ExclusiveKey;
 /**
  * This is a ExclusiveKeyService Abstract class
  * External exposure method, allows users to call
