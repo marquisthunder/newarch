@@ -67,8 +67,8 @@ CREATE TABLE `Rule` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `confidence` double NOT NULL,
   `flag` varchar(255) NOT NULL,
-  `products` varchar(255) DEFAULT NULL,
-  `recommendation` varchar(255) DEFAULT NULL,
+  `products` varchar(255) NOT NULL,
+  `recommendation` varchar(255) NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `products` (`products`,`recommendation`)
 );

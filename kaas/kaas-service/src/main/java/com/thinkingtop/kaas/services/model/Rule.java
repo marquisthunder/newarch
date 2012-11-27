@@ -22,12 +22,14 @@ public class Rule {
 	private Double confidence;
 	private String flag;
 	
+	@Column(nullable=false)
 	public String getProducts() {
 		return products;
 	}
 	public void setProducts(String products) {
 		this.products = products;
 	}
+	@Column(nullable=false)
 	public String getRecommendation() {
 		return recommendation;
 	}
